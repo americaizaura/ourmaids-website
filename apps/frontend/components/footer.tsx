@@ -115,7 +115,7 @@ const Footer = () => {
       <div>
         <Text size="xs" style={{ textAlign: "center" }}>
           © All Rights Reserved Worldwide | 2000-2023. <br /> The Our Maids
-          logo, its colors, Our Maids and "A helping Hand for Busy People" are
+          logo, its colors, Our Maids and &quot;A helping Hand for Busy People&quot; are
           registered <br />
           trademarks of Our Maids, Inc., a Delaware Corporation.
         </Text>
