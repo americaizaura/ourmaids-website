@@ -24,6 +24,7 @@ import { Carousel } from "@mantine/carousel";
 import Image from "next/image";
 import CardReview from "../components/CardReview";
 import OurServices from "../components/Home/OurServices";
+import AboutUs from "../components/Home/AboutUs";
 
 export default function AppShellDemo() {
   const theme = useMantineTheme();
@@ -84,6 +85,17 @@ export default function AppShellDemo() {
       }
     >
       <HeroSection />
+      <Container
+        style={{
+          marginTop: "200px",
+          marginBottom: "200px",
+        }}
+        size="xl"
+      >
+        <OurServices />
+      </Container>
+
+      <AboutUs />
 
       <Container
         style={{
@@ -91,61 +103,6 @@ export default function AppShellDemo() {
         }}
         size="xl"
       >
-        <OurServices />
-        <section
-          style={{
-            marginTop: "200px",
-          }}
-        >
-          <Container fluid>
-            <Grid grow>
-              <Grid.Col md={5}>
-                <Container fluid>
-                  <Image
-                    src="/images/about.png"
-                    alt="Hero"
-                    width={700}
-                    height={750}
-                    objectFit="cover"
-                  />
-                </Container>
-              </Grid.Col>
-              <Grid.Col md={7}>
-                <Grid>
-                  <Grid.Col md={6} offset={1}>
-                    <h3>ABOUT US</h3>
-                    <h1>LOREM IPSUM DOLOR</h1>
-                    <p style={{ color: "grey" }}>
-                      Lorem ipsum dolor sit amet consectetur. Faucibus egestas
-                      neque nunc ipsum. At non volutpat accumsan ac in malesuada
-                      morbi eu sagittis. Ut volutpat condimentum volutpat
-                      bibendum vel lectus scelerisque netus velit. Felis ut
-                      integer sed eget egestas nibh. Sagittis tincidunt feugiat
-                      viverra scelerisque. Maecenas pellentesque tristique
-                      condimentum pretium. Diam nullam ultrices risus nisl porta
-                      aliquam magna.
-                    </p>
-                    <Button color="secondary.0" radius="xl">
-                      Read More
-                    </Button>
-                  </Grid.Col>
-                </Grid>
-                <Grid>
-                  <Grid.Col md={6} offset={6}>
-                    <Image
-                      src="/images/about.png"
-                      alt="Hero"
-                      width={800}
-                      height={460}
-                      objectFit="cover"
-                    />
-                  </Grid.Col>
-                </Grid>
-              </Grid.Col>
-            </Grid>
-          </Container>
-        </section>
-
         <section>
           <h3>BOOKING</h3>
           <h1>3 easy steps to get started</h1>

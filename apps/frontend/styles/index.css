@@ -5,31 +5,31 @@
 @tailwind utilities;
 
 h1 {
-  @apply text-5xl font-montserrat font-semibold;
+  @apply text-5xl font-montserrat font-semibold !important;
 }
 
 h2 {
-  @apply text-4xl font-montserrat font-semibold;
+  @apply text-4xl font-montserrat font-semibold !important;
 }
 
 h3 {
-  @apply text-3xl font-montserrat font-semibold;
+  @apply text-3xl font-montserrat font-semibold !important;
 }
 
 h4 {
-  @apply text-2xl font-montserrat font-semibold;
+  @apply text-2xl font-montserrat font-semibold !important;
 }
 
 h5 {
-  @apply text-xl font-montserrat font-semibold;
+  @apply text-xl font-montserrat font-semibold !important;
 }
 
 h6 {
-  @apply text-lg font-montserrat font-semibold;
+  @apply text-lg font-montserrat font-semibold !important;
 }
 
 body {
-  @apply font-nunito;
+  @apply font-nunito !important;
   margin: 0;
 }
 

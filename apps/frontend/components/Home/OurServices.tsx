@@ -28,7 +28,7 @@ const OurServices = () => {
     <section className="relative">
       <div className="absolute top-0 left-0 w-full pl-80 ">
         <div
-          className="h-[458px] rounded-xl"
+          className="h-[400px] rounded-xl"
           style={{
             backgroundColor: theme.colors.primary[0],
           }}
@@ -38,7 +38,7 @@ const OurServices = () => {
       <div className="w-full p-10 pl-80">
         <Carousel
           className="h-full"
-          slideSize="300px"
+          slideSize="250px"
           slideGap="md"
           loop
           align="center"
@@ -60,9 +60,9 @@ const OurServices = () => {
           ))}
         </Carousel>
       </div>
-      <div className="absolute top-0 left-0 w-96">
-        <h3 className="mt-0">OUR SERVICES</h3>
-        <h1>LOREM IPSUM DOLOR</h1>
+      <div className="absolute top-0 left-0 w-[600px]">
+        <h4 className="mt-0">OUR SERVICES</h4>
+        <h2>LOREM IPSUM DOLOR</h2>
         <p style={{ color: "grey" }} className="w-80">
           Lorem ipsum dolor sit amet consectetur. A aliquam vestibulum egestas
           ipsum tellus porttitor.

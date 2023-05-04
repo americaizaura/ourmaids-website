@@ -12,7 +12,7 @@ interface serviceInfomation {
 }
 const ServiceCard = ({ title, image, isExpanded }: serviceInfomation) => {
   return (
-    <div className="flex flex-col h-[500px] pb-4 justify-center items-center">
+    <div className="flex flex-col h-[440px] pb-4 justify-center items-center">
       <div>
         <div
           className={`flex flex-col rounded-xl transition-all duration-500   ${
@@ -20,22 +20,22 @@ const ServiceCard = ({ title, image, isExpanded }: serviceInfomation) => {
           }`}
           style={{
             backgroundColor: isExpanded ? "white" : "transparent",
-            padding: "2.5rem",
-            height: isExpanded ? "484px" : "300px",
-            width: "315px",
+            padding: "2rem",
+            height: isExpanded ? "424px" : "250px",
+            width: "250px",
             marginBottom: isExpanded ? "0" : "8rem",
           }}
         >
           <div
             className=" mx-auto w-full"
             style={{
-              height: isExpanded ? "100%" : "208px",
+              height: isExpanded ? "100%" : "180px",
             }}
           >
             <div
               className="mx-auto transition-all duration-500 relative"
               style={{
-                height: isExpanded ? "100%" : "208px",
+                height: isExpanded ? "100%" : "180px",
                 aspectRatio: isExpanded ? undefined : "1/1",
               }}
             >
