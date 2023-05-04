@@ -66,7 +66,7 @@ const Footer = () => {
           <h5>Locations</h5>
           {/* split locations in two rows */}
           <Grid>
-            <Grid.Col span={6}>
+            <Grid.Col md={6} xl={6}>
               <ul
                 style={{
                   listStyle: "none",
@@ -81,7 +81,7 @@ const Footer = () => {
                 ))}
               </ul>
             </Grid.Col>
-            <Grid.Col span="auto">
+            <Grid.Col md={6} xl={6}>
               <ul
                 style={{
                   listStyle: "none",
