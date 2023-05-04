@@ -237,7 +237,7 @@ export default function AppShellDemo() {
             </Carousel>
           </Container>
         </section>
-        <CardReview />
+        {/*   <CardReview /> */}
       </Container>
     </AppShell>
   );
