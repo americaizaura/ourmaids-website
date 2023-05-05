@@ -22,9 +22,11 @@ import HeroSection from "../components/Hero";
 import FooterSection from "../components/footer";
 import { Carousel } from "@mantine/carousel";
 import Image from "next/image";
-import CardReview from "../components/CardReview";
+import CardReview from "../components/Home/Reviews/CardReview";
 import OurServices from "../components/Home/OurServices";
 import AboutUs from "../components/Home/AboutUs";
+import Booking from "../components/Home/Booking";
+import Reviews from "../components/Home/Reviews";
 
 export default function AppShellDemo() {
   const theme = useMantineTheme();
@@ -58,7 +60,7 @@ export default function AppShellDemo() {
       footer={
         <Footer
           fixed={false}
-          height={400}
+          height={460}
           p="xl"
           style={{
             backgroundColor: theme.colors.dark[8],
@@ -94,151 +96,9 @@ export default function AppShellDemo() {
       >
         <OurServices />
       </Container>
-
       <AboutUs />
-
-      <Container
-        style={{
-          marginTop: "200px",
-        }}
-        size="xl"
-      >
-        <section>
-          <h3>BOOKING</h3>
-          <h1>3 easy steps to get started</h1>
-          <Container
-            fluid
-            style={{
-              borderRadius: "20px",
-            }}
-            px={40}
-            py={80}
-          >
-            <Grid gutter={20} justify="center">
-              <Grid.Col md={4}>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    width: "100%",
-                  }}
-                >
-                  1
-                  <Card
-                    shadow="sm"
-                    padding="md"
-                    radius="xl"
-                    style={{
-                      width: "100%",
-                    }}
-                  >
-                    <h1>1</h1>
-                    <h3>LOREM IPSUM DOLOR</h3>
-                  </Card>
-                </div>
-              </Grid.Col>
-              <Grid.Col
-                md={4}
-                style={{
-                  marginTop: "100px",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    width: "100%",
-                    gap: "20px",
-                  }}
-                >
-                  <div
-                    style={{
-                      borderRadius: "50%",
-                      width: "65px",
-                      height: "65px",
-                      backgroundColor: theme.colors.primary[0],
-                      textAlign: "center",
-                      lineHeight: "100px",
-                    }}
-                  >
-                    <span style={{ color: "white", fontSize: "36px" }}>1</span>
-                  </div>
-                  <Card
-                    shadow="sm"
-                    padding="md"
-                    radius="xl"
-                    style={{
-                      width: "100%",
-                    }}
-                  >
-                    <h1>1</h1>
-                    <h3>LOREM IPSUM DOLOR</h3>
-                  </Card>
-                </div>
-              </Grid.Col>
-              <Grid.Col
-                md={4}
-                style={{
-                  marginTop: "200px",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    width: "100%",
-                  }}
-                >
-                  1
-                  <Card
-                    shadow="sm"
-                    padding="md"
-                    radius="xl"
-                    style={{
-                      width: "100%",
-                    }}
-                  >
-                    <h1>1</h1>
-                    <h3>LOREM IPSUM DOLOR</h3>
-                  </Card>
-                </div>
-              </Grid.Col>
-            </Grid>
-          </Container>
-        </section>
-
-        <section>
-          <h3>REVIEWS</h3>
-          <h1>Our clients</h1>
-          <Container
-            fluid
-            style={{
-              height: "100%",
-              borderRadius: "20px",
-            }}
-            px={40}
-            py={80}
-          >
-            <Carousel
-              height={200}
-              slideSize="33.333333%"
-              slideGap="md"
-              loop
-              align="start"
-              breakpoints={[
-                { maxWidth: "md", slideSize: "50%" },
-                { maxWidth: "sm", slideSize: "100%", slideGap: 0 },
-              ]}
-            >
-              <Carousel.Slide>1</Carousel.Slide>
-              <Carousel.Slide>2</Carousel.Slide>
-              <Carousel.Slide>3</Carousel.Slide>
-              <Carousel.Slide>3</Carousel.Slide>
-            </Carousel>
-          </Container>
-        </section>
-        {/*   <CardReview /> */}
-      </Container>
+      <Booking />
+      <Reviews />
     </AppShell>
   );
 }

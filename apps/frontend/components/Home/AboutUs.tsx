@@ -18,7 +18,7 @@ const AboutUs = () => {
           </Grid.Col>
           <Grid.Col md={7}>
             <Grid>
-              <Grid.Col md={12} offset={1}>
+              <Grid.Col md={11} offset={1}>
                 <h4 className="mt-0">ABOUT US</h4>
                 <h2>LOREM IPSUM DOLOR</h2>
                 <p style={{ color: "grey" }}>
