@@ -51,8 +51,8 @@ const Booking = () => {
         }}
         size="xl"
       >
-        <h3>BOOKING</h3>
-        <h1>3 easy steps to get started</h1>
+        <h4>BOOKING</h4>
+        <h2>3 easy steps to get started</h2>
         <div className="grid grid-cols-3 mt-24">
           {steps.map((step, index) => (
             <StepsCard

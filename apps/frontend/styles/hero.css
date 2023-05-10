@@ -1,13 +1,13 @@
 .main_section {
-  display: flex;
+  /*  display: flex;
   flex-direction: column;
-  align-items: center;
-  background: url("../public/images/hero.png");
-  min-height: 500px;
+  align-items: center; */
+  background-image: url("../public/images/hero.png");
+  /*   min-height: 500px;
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
-  max-height: 100vh;
+  max-height: 100vh; */
 }
 .max-width {
   max-width: 1300px;

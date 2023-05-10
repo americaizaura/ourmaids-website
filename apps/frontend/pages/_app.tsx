@@ -3,6 +3,7 @@ import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
 import "../styles/hero.css";
 import "../styles/index.css";
+import Layout from "../components/layaout";
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
 
@@ -21,6 +22,7 @@ export default function App(props: AppProps) {
         withNormalizeCSS
         theme={{
           /** Put your mantine theme override here */
+
           colorScheme: "light",
           primaryColor: "primary",
           colors: {
@@ -50,7 +52,9 @@ export default function App(props: AppProps) {
           },
         }}
       >
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </MantineProvider>
     </>
   );

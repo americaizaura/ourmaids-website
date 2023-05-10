@@ -4,9 +4,7 @@ import Image from "next/image";
 
 const Appbar = () => {
   const theme = useMantineTheme();
-  const li = {
-    margin: "0 10px",
-  };
+
   const a = {
     color: theme.colors.secondary[0],
     textDecoration: "none",
@@ -20,49 +18,29 @@ const Appbar = () => {
   ];
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        height: "100%",
-      }}
-    >
-      <Image src="/images/logo.png" alt="Logo" width={150} height={35} />
+    <header className="fixed w-full z-20 top-0 left-0 drop-shadow bg-primary h-16 px-52">
+      <div className="flex flex-wrap items-center justify-between h-full">
+        <Image src="/images/logo.png" alt="Logo" width={150} height={35} />
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <ul style={{ display: "flex", listStyle: "none" }}>
-          {/*     <li style={{ margin: "0 10px" }}>
-            <a href="#">Booking</a>
-          </li>
-          <li style={{ margin: "0 10px" }}>
-            <a href="#">Services</a>
-          </li>
-          <li style={{ margin: "0 10px" }}>
-            <a href="#">About us</a>
-          </li>
-          <li style={{ margin: "0 10px" }}>
-            <a href="#">Locations</a>
-          </li>
-          <li style={{ margin: "0 10px" }}>
-            <a href="#">Contact Us</a>
-          </li> */}
-          {navigation.map((item) => (
-            <li key={item.name} style={li}>
-              <a href={item.href} style={a}>
-                {item.name}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <ul style={{ display: "flex", listStyle: "none" }} className="gap-14">
+            {navigation.map((item) => (
+              <li key={item.name}>
+                <a href={item.href} style={a} className="text-xl font-bold">
+                  {item.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
+    </header>
   );
 };
 

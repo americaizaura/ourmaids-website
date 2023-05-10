@@ -44,8 +44,8 @@ const Reviews = () => {
       }}
     >
       <Container size="xl">
-        <h3>Reviews</h3>
-        <h1>Our clients</h1>
+        <h4>Reviews</h4>
+        <h2>Our clients</h2>
         {/*     <Carousel>
           {reviews.map((review, index) => (
             <Carousel.Slide key={index}>

@@ -18,7 +18,7 @@ import {
   Card,
 } from "@mantine/core";
 import Appbar from "../components/header";
-import HeroSection from "../components/Home/Hero";
+import HeroSection from "./Home/Hero";
 import FooterSection from "../components/footer";
 import { Carousel } from "@mantine/carousel";
 import Image from "next/image";
@@ -28,7 +28,7 @@ import AboutUs from "../components/Home/AboutUs";
 import Booking from "../components/Home/Booking";
 import Reviews from "../components/Home/Reviews";
 
-export default function AppShellDemo() {
+export default function Layout({ children }) {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   const reviews = [
@@ -40,20 +40,10 @@ export default function AppShellDemo() {
     },
   ];
   return (
-    <>
-      <HeroSection />
-      <Container
-        style={{
-          marginTop: "200px",
-          marginBottom: "200px",
-        }}
-        size="xl"
-      >
-        <OurServices />
-      </Container>
-      <AboutUs />
-      <Booking />
-      <Reviews />
-    </>
+    <div>
+      <Appbar />
+      {children}
+      <FooterSection />
+    </div>
   );
 }
