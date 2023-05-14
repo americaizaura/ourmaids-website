@@ -4,7 +4,7 @@ import Image from "next/image";
 function HeroSection() {
   const theme = useMantineTheme();
   return (
-    <section className="h-screen m-auto mt-16 bg-fixed bg-center bg-cover main_section">
+    <section className="h-screen m-auto lg:mt-16 mt-8 bg-fixed bg-center bg-cover main_section">
       {/*    <div className="max-width">
         <div className="main_section-content">
           <h1
