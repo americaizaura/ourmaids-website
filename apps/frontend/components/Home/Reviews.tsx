@@ -68,7 +68,7 @@ const Reviews = () => {
             </Carousel.Slide>
           ))}
         </Carousel> */}
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-14">
           <div className="grid grid-cols-4 gap-12">
             {services.map((service, index) => (
               <div key={index}>
