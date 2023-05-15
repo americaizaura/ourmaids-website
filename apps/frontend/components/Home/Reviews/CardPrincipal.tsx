@@ -8,23 +8,20 @@ interface CardPrincipalProps {
 
 function CardPrincipal(props: CardPrincipalProps) {
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder>
-      <Group position="apart" mt="md" mb="xs">
-        <Group position="apart" mt="md" mb="xs">
-          <Text weight={500}>Norway Fjord Adventures</Text>
-        </Group>
-        <Badge color="pink" variant="light">
-          On Sale
-        </Badge>
-      </Group>
-
-      <Text size="sm" color="dimmed">
-        Lorem ipsum dolor sit amet consectetur. Cursus pellentesque morbi sed
-        nunc. Quam nulla id habitant volutpat eros magna donec sapien. Semper
-        ullamcorper egestas vitae laoreet sapien adipiscing fringilla pulvinar.
-        Quis tortor ante quis in mattis.
-      </Text>
-      <Button></Button>
-    </Card>
+    <div>
+      <div className="bg-[#fbdceb] flex flex-col gap-3 rounded-3xl px-10 shadow-md h-60 w-80">
+        <div className="mt-8">
+          <div className="text-[22px] font-montserrat font-semibold leading-6">
+            {props.title}
+          </div>
+          <p className="text-[10px]">{props.description}</p>
+        </div>
+        <Button w={150} h={25} color="secondary.0" radius="xl">
+          <p className="text-xs font-bold tracking-widest">{props.botton}</p>
+        </Button>
+      </div>
+    </div>
   );
 }
+
+export default CardPrincipal;
