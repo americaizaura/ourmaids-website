@@ -1,7 +1,16 @@
 import { Carousel } from "@mantine/carousel";
-import { Avatar, Container } from "@mantine/core";
+import { Avatar, Container, Button } from "@mantine/core";
+import CardReview from "./Reviews/CardReview";
+import CardPrincipal from "./Reviews/CardPrincipal";
 
 const Reviews = () => {
+  const services = [
+    {
+      title: "You already managed to use our services?",
+      description: "Let´s us know!",
+      botton: "Leave a review",
+    },
+  ];
   const reviews = [
     {
       review:
@@ -9,15 +18,7 @@ const Reviews = () => {
       img: "/images/hero.png",
       name: "John Doe",
       rating: 5,
-      date: "12/12/2021",
-    },
-    {
-      review:
-        "Lorem ipsum dolor sit amet consectetur. Cursus pellentesque morbi sed nunc",
-      img: "/images/hero.png",
-      name: "John Doe",
-      rating: 5,
-      date: "12/12/2021",
+      date: "12.12.21",
     },
     {
       review:
@@ -25,7 +26,7 @@ const Reviews = () => {
       img: "/images/hero.png",
       name: "John Doe",
       rating: 5,
-      date: "12/12/2021",
+      date: "12.12.21",
     },
     {
       review:
@@ -33,7 +34,7 @@ const Reviews = () => {
       img: "/images/hero.png",
       name: "John Doe",
       rating: 5,
-      date: "12/12/2021",
+      date: "12.12.21",
     },
   ];
 
@@ -67,27 +68,33 @@ const Reviews = () => {
             </Carousel.Slide>
           ))}
         </Carousel> */}
-        <div className="grid grid-cols-4 gap-5">
-          {reviews.map((review, index) => (
-            <div
-              key={index}
-              className="flex flex-col gap-2 bg-white rounded-3xl px-10 shadow-lg h-64 "
-            >
-              <div className="flex flex-row justify-between flex-wrap">
-                <div className="flex flex-row">
-                  <Avatar></Avatar>
-                  <h5 className="mt-0">{review.name}</h5>
-                </div>
-                <p>{review.date}</p>
+        <div className="flex justify-center mt-14">
+          <div className="grid grid-cols-4 gap-12">
+            {services.map((service, index) => (
+              <div key={index}>
+                <CardPrincipal
+                  title={service.title}
+                  description={service.description}
+                  botton={service.botton}
+                />
               </div>
-              <div className="inline-block ">
-                <p className="truncate block">{review.review}</p>
+            ))}
+            {reviews.map((review, index) => (
+              <div key={index}>
+                <CardReview
+                  author={review.name}
+                  date={review.date}
+                  description={review.review}
+                  rating={review.rating}
+                />
               </div>
-              <div>
-                <p>{review.rating}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+        <div className="flex justify-center mt-16">
+          <Button size="lg" variant="outline" color="secondary.0" radius={"xl"} w={125} h={30}>
+              <p className="text-xs font-bold tracking-widest">See more</p> 
+          </Button>
         </div>
       </Container>
     </section>
