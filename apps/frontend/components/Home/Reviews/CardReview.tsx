@@ -6,33 +6,31 @@ interface review {
   description: string;
   image: string;
   rating: number;
+  date: string;
 }
 function CardReview(props: review) {
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder>
-      <Group position="apart" mt="md" mb="xs">
-        <Group position="apart" mt="md" mb="xs">
-          <Avatar
-            component="a"
-            href="https://github.com/rtivital"
-            target="_blank"
-            src="avatar.png"
-            alt="it's me"
-          />
-          <Text weight={500}>Norway Fjord Adventures</Text>
-        </Group>
-        <Badge color="pink" variant="light">
-          On Sale
-        </Badge>
-      </Group>
-
-      <Text size="sm" color="dimmed">
-        Lorem ipsum dolor sit amet consectetur. Cursus pellentesque morbi sed
-        nunc. Quam nulla id habitant volutpat eros magna donec sapien. Semper
-        ullamcorper egestas vitae laoreet sapien adipiscing fringilla pulvinar.
-        Quis tortor ante quis in mattis.
-      </Text>
-    </Card>
+    <div>
+      <div className="flex flex-col gap-3 bg-white rounded-3xl px-10 shadow-md h-52 w-80 ">
+        <div className="flex flex-row justify-between flex-wrap">
+          <div className="flex flex-row space-x-2">
+            <Avatar className="rounded-full"></Avatar>
+            <div className="mt-2 text-base font-bold ">{props.author}</div>
+          </div>
+            <p className="text-xs font-semibold">{props.date}</p>
+        </div>
+        <div className="inline-block space-y-4">
+          <p className="block text-[10px] font-bold text-justify tracking-wider leading-4">
+            {props.description}
+          </p>
+          <div >
+            <p className="text-center text-[10px] font-extrabold">
+            ⭐{props.rating}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
