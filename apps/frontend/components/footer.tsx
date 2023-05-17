@@ -107,7 +107,8 @@ const Footer = () => {
     },
   ];
   return (
-    <footer className="bg-black px-[250px] py-12 mt-[250px]">
+    /*   <footer className="bg-black px-[250px] py-12 mt-[250px]"> */
+    <footer className="bg-black px-[250px] py-12">
       <div className="flex justify-between xl:flex-row flex-col container">
         <div>
           <h4 className="text-background">Our Maids, INC</h4>

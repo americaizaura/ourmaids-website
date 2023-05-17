@@ -27,13 +27,15 @@ const Appbar = () => {
           </ActionIcon>
         </div>
         <div className="grow text-center mx-auto lg:mx-0 lg:grow-0 lg:text-left h-[25px] w-[20px] relative lg:h-[50px] lg:w-[150px]">
-          <Image
-            src="/images/logo.png"
-            alt="Logo"
-            objectFit="contain"
-            layout="fill"
-            className=""
-          />
+          <a href="/">
+            <Image
+              src="/images/logo.png"
+              alt="Logo"
+              objectFit="contain"
+              layout="fill"
+              className=""
+            />
+          </a>
         </div>
         <div className="hidden lg:flex lg:justify-between lg:items-center lg:flex-row">
           <ul

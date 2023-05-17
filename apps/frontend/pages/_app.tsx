@@ -27,7 +27,7 @@ export default function App(props: AppProps) {
           primaryColor: "primary",
           colors: {
             primary: ["#FADCEA"],
-            primaryVariant: ["#3C42BF"],
+            primaryVariant: ["#EFDFE0"],
             secondary: ["#720012"],
             secondaryVariant: ["#3700CB"],
             toolbar: ["#49A2D3"],
