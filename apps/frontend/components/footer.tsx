@@ -1,5 +1,9 @@
-import { Divider, Grid, Text } from "@mantine/core";
-
+import { ActionIcon, Divider, Grid, Text } from "@mantine/core";
+import {
+  BrandFacebook,
+  BrandInstagram,
+  BrandTwitter,
+} from "tabler-icons-react";
 const Footer = () => {
   const locations = [
     {
@@ -104,13 +108,13 @@ const Footer = () => {
   ];
   return (
     <footer className="bg-black px-[250px] py-12 mt-[250px]">
-      <div className="flex justify-between">
+      <div className="flex justify-between xl:flex-row flex-col container">
         <div>
           <h4 className="text-background">Our Maids, INC</h4>
         </div>
         <div>
           <h5 className="text-background">Locations</h5>
-          <div className="flex flex-row justify-between text-background gap-10">
+          <div className="flex flex-row text-background gap-10">
             <ul
               style={{
                 listStyle: "none",
@@ -141,7 +145,7 @@ const Footer = () => {
         </div>
         <div>
           <h5 className="text-background">Company</h5>
-          <div className="flex flex-row justify-between text-background gap-10">
+          <div className="flex flex-row text-background gap-10">
             <ul
               style={{
                 listStyle: "none",
@@ -172,6 +176,42 @@ const Footer = () => {
         </div>
         <div>
           <h5 className="text-background">Social</h5>
+          <div className="flex flex-row justify-between ">
+            <ActionIcon component="a" href="https://www.facebook.com/maids4us">
+              <BrandFacebook
+                size={48}
+                color="white"
+                style={{
+                  fill: "white",
+                }}
+              />
+            </ActionIcon>
+            <ActionIcon
+              variant="transparent"
+              component="a"
+              href="https://www.facebook.com/maids4us"
+            >
+              <BrandInstagram
+                size={48}
+                style={{
+                  fill: "white",
+                }}
+              />
+            </ActionIcon>
+            <ActionIcon
+              variant="transparent"
+              component="a"
+              href="https://www.facebook.com/maids4us"
+            >
+              <BrandTwitter
+                size={19}
+                color="white"
+                style={{
+                  fill: "white",
+                }}
+              />
+            </ActionIcon>
+          </div>
         </div>
       </div>
       <Divider

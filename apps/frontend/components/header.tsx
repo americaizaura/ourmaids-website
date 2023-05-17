@@ -2,20 +2,20 @@
 import { ActionIcon, useMantineTheme } from "@mantine/core";
 import Image from "next/image";
 import { ArrowNarrowRight, Menu2 } from "tabler-icons-react";
-
+import { useRouter } from "next/router";
 const Appbar = () => {
   const theme = useMantineTheme();
-
+  const router = useRouter();
   const a = {
     color: theme.colors.secondary[0],
     textDecoration: "none",
   };
   const navigation = [
-    { name: "Booking", href: "#" },
-    { name: "Services", href: "#" },
-    { name: "About us", href: "#" },
-    { name: "Locations", href: "#" },
-    { name: "Contact us", href: "#" },
+    { name: "Booking", href: "/booking" },
+    { name: "Services", href: "/services" },
+    { name: "About us", href: "/about-us" },
+    { name: "Locations", href: "/locations" },
+    { name: "Contact us", href: "/contact-us" },
   ];
 
   return (

@@ -1,6 +1,7 @@
 import { Container, Grid } from "@mantine/core";
 import StepsCard from "./Booking/StepsCard";
 import Image from "next/image";
+
 const Booking = () => {
   const steps = [
     {
