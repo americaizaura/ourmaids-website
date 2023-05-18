@@ -42,6 +42,7 @@ const Reviews = () => {
     <section
       style={{
         marginTop: "200px",
+        marginBottom: "200px",
       }}
     >
       <Container size="xl">
@@ -92,8 +93,15 @@ const Reviews = () => {
           </div>
         </div>
         <div className="flex justify-center mt-16">
-          <Button size="lg" variant="outline" color="secondary.0" radius={"xl"} w={125} h={30}>
-              <p className="text-xs font-bold tracking-widest">See more</p> 
+          <Button
+            size="lg"
+            variant="outline"
+            color="secondary.0"
+            radius={"xl"}
+            w={125}
+            h={30}
+          >
+            <p className="text-xs font-bold tracking-widest">See more</p>
           </Button>
         </div>
       </Container>
