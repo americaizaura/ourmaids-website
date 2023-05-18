@@ -61,11 +61,11 @@ export default function LocationsView() {
     },
   ];
   return (
-    <div className="lg:mt-16 grow h-full">
-      <Container size="xl" className="pt-24 pb-28">
+    <div className="lg:mt-16 flex flex-col h-full">
+      <Container size="xl" className="pt-24 pb-28 w-full">
         <div className="grid grid-cols-12">
           <Accordion
-            className="col-start-1 col-end-6"
+            className="col-start-1 col-end-6 w-full"
             variant="separated"
             radius="md"
             styles={(theme) => ({
@@ -94,21 +94,28 @@ export default function LocationsView() {
           <div className="bg-primary col-start-7 col-end-13 w-full h-full"></div>
         </div>
       </Container>
-
-      <Container className="w-full h-full relative px-0" fluid>
+      <div className="grow"></div>
+      <div className="w-full relative px-0">
         <div className="bg-[#76AD77] w-3/6 top-0 left-0 -z-10 absolute h-full"></div>
+
         <div className="-z-10  absolute w-3/6 h-full left-[50%]">
-          <Image src="/images/image 31.png" objectFit="fill" layout="fill" />
+          <Image
+            src="/images/image 31.png"
+            objectFit="cover"
+            layout="fill"
+            objectPosition="0 25%"
+            alt="locations"
+          />
         </div>
 
-        <Container size="xl" className="grid grid-cols-12 h-[760px] pt-40">
+        <Container size="xl" className="grid grid-cols-12 h-[500px] pt-16">
           <div className="col-span-5">
             <h2>Find your nearest location</h2>
             <p>Lorem ipsum dolor sit amet consectetur.</p>
             <Input placeholder={"Enter your location"} radius="lg" />
           </div>
         </Container>
-      </Container>
+      </div>
     </div>
   );
 }
