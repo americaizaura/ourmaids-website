@@ -11,9 +11,9 @@ export default function ({ title, image, step }: props) {
   const theme = useMantineTheme();
   return (
     <div
-      className={`flex gap-4  ${step === 2 ? "lg:mt-32 mt-4" : ""} ${
-        step === 3 ? "lg:mt-64 mt-4" : ""
-      }`}
+      className={`flex justify-center md:justify-start gap-4  ${
+        step === 2 ? "md:mt-32 mt-4" : ""
+      } ${step === 3 ? "md:mt-64 mt-4" : ""}`}
     >
       <div>
         <div
@@ -35,7 +35,7 @@ export default function ({ title, image, step }: props) {
             alt={title}
           />
         </div>
-        <h5 className="mt-6">{title}</h5>
+        <h5 className="mt-6 z-10 relative md:static">{title}</h5>
       </div>
     </div>
   );

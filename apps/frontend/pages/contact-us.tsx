@@ -7,7 +7,7 @@ import {
   useMantineTheme,
   rem,
 } from "@mantine/core";
-
+import { GoogleMap, Marker } from "react-google-maps";
 import Input from "../components/Input";
 export default function ContactUsView() {
   const faq = [
@@ -38,7 +38,7 @@ export default function ContactUsView() {
   ];
   return (
     <div className="lg:mt-16 relative h-full flex-grow">
-      <div className="bg-primary top-0 left-0 md:w-[43vw] h-full absolute -z-10 w-full"></div>
+      <div className="bg-primary test"></div>
       <Container size="xl" className="pt-24 pb-28">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
           <div className="md:col-start-1 md:col-end-5">
@@ -67,7 +67,7 @@ export default function ContactUsView() {
               ))}
             </Accordion>
           </div>
-          <div className="md:col-start-6 md:col-end-12">
+          <div className="md:col-start-6 md:col-end-12 mt-6 md:mt-0">
             <div>
               <h2 className="mt-0">Contact Us</h2>
               <p>

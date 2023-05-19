@@ -12,15 +12,24 @@ import Input from "../components/Input";
 export default function AboutUsView() {
   return (
     <div className="lg:mt-16 mt-8">
-      <div className="h-screen w-full bg-primary mb-44"></div>
+      <video
+        controls
+        muted
+        autoPlay
+        className="lg:h-screen lg:w-screen lg:mb-44 w-full h-auto mt-4"
+      >
+        <source src="promo.mp4" type="video/mp4" />
+      </video>
+
       <div className="relative">
+        {/* <div className="absolute h-full 2xl:w-[15%] w-[50%] 2xl:left-[35%] left-0"> */}
         <div className="absolute h-full w-[50%]">
           <Image
             src="/images/aboutUS/image 21.png"
             alt="Hero"
             objectFit="cover"
             layout="fill"
-            className="rounded-r-xl"
+            className="rounded-r-xl 2xl:rounded-xl"
             objectPosition="0 25%"
           />
         </div>
@@ -33,7 +42,7 @@ export default function AboutUsView() {
           </div>
         </div>
         <Container size="xl" className="grid grid-cols-12 mb-60">
-          <div className="col-start-8 col-end-13">
+          <div className="md:col-start-8 md:col-end-13 col-span-12">
             <h2 className="mt-0">ABOUT OUR MAIDS</h2>
             <h1>Lorem Ipsum</h1>
             <p>
@@ -135,7 +144,7 @@ export default function AboutUsView() {
         </div> */}
         <Container size="xl" className="h-full w-full flex flex-col">
           <div className="grid grid-cols-12 mb-14">
-            <div className="col-span-4">
+            <div className="md:col-span-4 col-span-12">
               <h3 className="mt-0">How it all started</h3>
               <p>
                 Lorem ipsum dolor sit amet consectetur. Bibendum ultrices

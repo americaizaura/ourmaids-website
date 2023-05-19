@@ -62,10 +62,11 @@ export default function LocationsView() {
   ];
   return (
     <div className="lg:mt-16 flex flex-col h-full">
-      <Container size="xl" className="pt-24 pb-28 w-full">
-        <div className="grid grid-cols-12">
+      <Container size="xl" className="pt-24 md:pb-28 pb-14 w-full">
+        <h2 className="mt-0">Locations</h2>
+        <div className="grid grid-cols-12 gap-4">
           <Accordion
-            className="col-start-1 col-end-6 w-full"
+            className="col-span-12 md:col-start-1 md:col-end-6 w-full"
             variant="separated"
             radius="md"
             styles={(theme) => ({
@@ -91,13 +92,12 @@ export default function LocationsView() {
               </Accordion.Item>
             ))}
           </Accordion>
-          <div className="bg-primary col-start-7 col-end-13 w-full h-full"></div>
+          <div className="bg-primary col-span-12 md:col-start-7 md:col-end-13 w-full h-56"></div>
         </div>
       </Container>
       <div className="grow"></div>
-      <div className="w-full relative px-0">
-        <div className="bg-[#76AD77] w-3/6 top-0 left-0 -z-10 absolute h-full"></div>
-
+      <div className="w-full hidden relative md:block px-0">
+        <div className="bg-[#76AD77] w-3/6  top-0 left-0 -z-10 absolute h-full"></div>
         <div className="-z-10  absolute w-3/6 h-full left-[50%]">
           <Image
             src="/images/image 31.png"
@@ -109,12 +109,32 @@ export default function LocationsView() {
         </div>
 
         <Container size="xl" className="grid grid-cols-12 h-[500px] pt-16">
-          <div className="col-span-5">
+          <div className="md:col-span-5 col-span-12">
             <h2>Find your nearest location</h2>
             <p>Lorem ipsum dolor sit amet consectetur.</p>
             <Input placeholder={"Enter your location"} radius="lg" />
           </div>
         </Container>
+      </div>
+      <div className="w-full md:hidden  flex flex-col  px-0 h-full">
+        <div className="bg-[#76AD77]  w-full h-full ">
+          <Container size="xl" className="grid grid-cols-12 pt-16">
+            <div className="md:col-span-5 col-span-12">
+              <h2>Find your nearest location</h2>
+              <p>Lorem ipsum dolor sit amet consectetur.</p>
+              <Input placeholder={"Enter your location"} radius="lg" />
+            </div>
+          </Container>
+        </div>
+        <div className="mt-auto relative w-full h-96">
+          <Image
+            src="/images/image 31.png"
+            objectFit="cover"
+            layout="fill"
+            objectPosition="0 25%"
+            alt="locations"
+          />
+        </div>
       </div>
     </div>
   );

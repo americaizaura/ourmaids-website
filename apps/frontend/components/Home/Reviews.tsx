@@ -48,29 +48,8 @@ const Reviews = () => {
       <Container size="xl">
         <h4>Reviews</h4>
         <h2>Our clients</h2>
-        {/*     <Carousel>
-          {reviews.map((review, index) => (
-            <Carousel.Slide key={index}>
-              <div className="flex flex-col gap-4 bg-white rounded-3xl  p-32">
-                <div className="flex flex-row justify-between">
-                  <div className="flex flex-row">
-                    <Avatar></Avatar>
-                    <h5 className="mt-0">{review.name}</h5>
-                  </div>
-                  <p>{review.date}</p>
-                </div>
-                <div>
-                  <p>{review.review}</p>
-                </div>
-                <div>
-                  <h5>{review.rating}</h5>
-                </div>
-              </div>
-            </Carousel.Slide>
-          ))}
-        </Carousel> */}
         <div className="flex justify-center mt-14">
-          <div className="grid grid-cols-4 gap-12">
+          <div className="grid gap-12 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
             {services.map((service, index) => (
               <div key={index}>
                 <CardPrincipal

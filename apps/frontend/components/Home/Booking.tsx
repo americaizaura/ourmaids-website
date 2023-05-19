@@ -53,8 +53,8 @@ const Booking = () => {
         size="xl"
       >
         <h4>BOOKING</h4>
-        <h2 className="z-10 relative lg:static">3 easy steps to get started</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 mt-24">
+        <h2 className="z-10 relative md:static">3 easy steps to get started</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 mt-24">
           {steps.map((step, index) => (
             <StepsCard
               key={index}

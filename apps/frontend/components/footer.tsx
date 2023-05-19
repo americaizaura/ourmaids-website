@@ -116,8 +116,8 @@ const Footer = () => {
   ];
   return (
     /*   <footer className="bg-black px-[250px] py-12 mt-[250px]"> */
-    <footer className="bg-black  py-12">
-      <Container size="xl" className="hidden md:block">
+    <footer className="bg-black  lg:py-12 py-8">
+      <Container size="xl" className="hidden lg:block">
         <div className="flex justify-between flex-row">
           <div>
             <h4 className="text-background">Our Maids, INC</h4>
@@ -228,7 +228,10 @@ const Footer = () => {
           </div>
         </div>
       </Container>
-      <Container size="xl" className="block md:hidden">
+      <Container size="xl" className="block lg:hidden">
+        <div>
+          <h4 className="text-background mt-0">Our Maids, INC</h4>
+        </div>
         <Accordion
           variant="separated"
           radius="md"
@@ -270,14 +273,54 @@ const Footer = () => {
             ))}
           </Accordion.Item>
         </Accordion>
+
+        <div className="flex flex-col justify-center items-center">
+          <h5 className="text-background my-4">Social</h5>
+          <div className="flex flex-row">
+            <ActionIcon component="a" href="https://www.facebook.com/maids4us">
+              <BrandFacebook
+                size={48}
+                color="white"
+                style={{
+                  fill: "white",
+                }}
+              />
+            </ActionIcon>
+            <ActionIcon
+              variant="transparent"
+              component="a"
+              href="https://www.facebook.com/maids4us"
+            >
+              <BrandInstagram
+                size={48}
+                style={{
+                  fill: "white",
+                }}
+              />
+            </ActionIcon>
+            <ActionIcon
+              variant="transparent"
+              component="a"
+              href="https://www.facebook.com/maids4us"
+            >
+              <BrandTwitter
+                size={19}
+                color="white"
+                style={{
+                  fill: "white",
+                }}
+              />
+            </ActionIcon>
+          </div>
+        </div>
       </Container>
       <Container size="xl">
         <Divider
           size="sm"
           style={{
             backgroundColor: "rgba(0,0,0,0.1)",
-            margin: "40px 0",
           }}
+          className="lg:my-10 my-4"
         />
         <div>
           <p className="text-background" style={{ textAlign: "center" }}>
