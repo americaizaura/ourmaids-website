@@ -1,4 +1,12 @@
-import { ActionIcon, Divider, Grid, Text } from "@mantine/core";
+import {
+  ActionIcon,
+  Divider,
+  Grid,
+  Text,
+  Container,
+  Accordion,
+} from "@mantine/core";
+import { AccordionControl } from "@mantine/core/lib/Accordion/AccordionControl/AccordionControl";
 import {
   BrandFacebook,
   BrandInstagram,
@@ -108,137 +116,15 @@ const Footer = () => {
   ];
   return (
     /*   <footer className="bg-black px-[250px] py-12 mt-[250px]"> */
-    <footer className="bg-black px-[250px] py-12">
-      <div className="flex justify-between xl:flex-row flex-col container">
-        <div>
-          <h4 className="text-background">Our Maids, INC</h4>
-        </div>
-        <div>
-          <h5 className="text-background">Locations</h5>
-          <div className="flex flex-row text-background gap-10">
-            <ul
-              style={{
-                listStyle: "none",
-                padding: 0,
-                margin: 0,
-              }}
-            >
-              {locations.slice(0, 6).map((item) => (
-                <li key={item.name}>
-                  <a>{item.name}</a>
-                </li>
-              ))}
-            </ul>
-            <ul
-              style={{
-                listStyle: "none",
-                padding: 0,
-                margin: 0,
-              }}
-            >
-              {locations.slice(6, 12).map((item) => (
-                <li key={item.name}>
-                  <a>{item.name}</a>
-                </li>
-              ))}
-            </ul>
+    <footer className="bg-black  py-12">
+      <Container size="xl" className="hidden md:block">
+        <div className="flex justify-between flex-row">
+          <div>
+            <h4 className="text-background">Our Maids, INC</h4>
           </div>
-        </div>
-        <div>
-          <h5 className="text-background">Company</h5>
-          <div className="flex flex-row text-background gap-10">
-            <ul
-              style={{
-                listStyle: "none",
-                padding: 0,
-                margin: 0,
-              }}
-            >
-              {company.slice(0, 6).map((item) => (
-                <li key={item.name}>
-                  <a>{item.name}</a>
-                </li>
-              ))}
-            </ul>
-            <ul
-              style={{
-                listStyle: "none",
-                padding: 0,
-                margin: 0,
-              }}
-            >
-              {company.slice(6, 12).map((item) => (
-                <li key={item.name}>
-                  <a>{item.name}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        <div>
-          <h5 className="text-background">Social</h5>
-          <div className="flex flex-row justify-between ">
-            <ActionIcon component="a" href="https://www.facebook.com/maids4us">
-              <BrandFacebook
-                size={48}
-                color="white"
-                style={{
-                  fill: "white",
-                }}
-              />
-            </ActionIcon>
-            <ActionIcon
-              variant="transparent"
-              component="a"
-              href="https://www.facebook.com/maids4us"
-            >
-              <BrandInstagram
-                size={48}
-                style={{
-                  fill: "white",
-                }}
-              />
-            </ActionIcon>
-            <ActionIcon
-              variant="transparent"
-              component="a"
-              href="https://www.facebook.com/maids4us"
-            >
-              <BrandTwitter
-                size={19}
-                color="white"
-                style={{
-                  fill: "white",
-                }}
-              />
-            </ActionIcon>
-          </div>
-        </div>
-      </div>
-      <Divider
-        size="sm"
-        style={{
-          backgroundColor: "rgba(0,0,0,0.1)",
-          margin: "40px 0",
-        }}
-      />
-      <div>
-        <p className="text-background" style={{ textAlign: "center" }}>
-          © All Rights Reserved Worldwide | 2000-2023. <br /> The Our Maids
-          logo, its colors, Our Maids and &quot;A helping Hand for Busy
-          People&quot; are registered <br />
-          trademarks of Our Maids, Inc., a Delaware Corporation.
-        </p>
-      </div>
-      {/*   <Grid>
-        <Grid.Col span="auto">
-          <h4>Our Maids, INC</h4>
-        </Grid.Col>
-        <Grid.Col span="auto">
-          <h5>Locations</h5>
-
-          <Grid>
-            <Grid.Col md={6} xl={6}>
+          <div>
+            <h5 className="text-background">Locations</h5>
+            <div className="flex flex-row text-background gap-10">
               <ul
                 style={{
                   listStyle: "none",
@@ -252,8 +138,6 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </Grid.Col>
-            <Grid.Col md={6} xl={6}>
               <ul
                 style={{
                   listStyle: "none",
@@ -267,31 +151,143 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </Grid.Col>
-          </Grid>
-        </Grid.Col>
-        <Grid.Col span="auto">
-          <h5>Company</h5>
-        </Grid.Col>
-        <Grid.Col span="auto">
-          <h5>Social</h5>
-        </Grid.Col>
-      </Grid>
-      <Divider
-        size="sm"
-        style={{
-          backgroundColor: "rgba(0,0,0,0.1)",
-          margin: "40px 0",
-        }}
-      />
-      <div>
-        <Text size="xs" style={{ textAlign: "center" }}>
-          © All Rights Reserved Worldwide | 2000-2023. <br /> The Our Maids
-          logo, its colors, Our Maids and &quot;A helping Hand for Busy
-          People&quot; are registered <br />
-          trademarks of Our Maids, Inc., a Delaware Corporation.
-        </Text>
-      </div> */}
+            </div>
+          </div>
+          <div>
+            <h5 className="text-background">Company</h5>
+            <div className="flex flex-row text-background gap-10">
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: 0,
+                }}
+              >
+                {company.slice(0, 6).map((item) => (
+                  <li key={item.name}>
+                    <a>{item.name}</a>
+                  </li>
+                ))}
+              </ul>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: 0,
+                }}
+              >
+                {company.slice(6, 12).map((item) => (
+                  <li key={item.name}>
+                    <a>{item.name}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div>
+            <h5 className="text-background">Social</h5>
+            <div className="flex flex-row justify-between ">
+              <ActionIcon
+                component="a"
+                href="https://www.facebook.com/maids4us"
+              >
+                <BrandFacebook
+                  size={48}
+                  color="white"
+                  style={{
+                    fill: "white",
+                  }}
+                />
+              </ActionIcon>
+              <ActionIcon
+                variant="transparent"
+                component="a"
+                href="https://www.facebook.com/maids4us"
+              >
+                <BrandInstagram
+                  size={48}
+                  style={{
+                    fill: "white",
+                  }}
+                />
+              </ActionIcon>
+              <ActionIcon
+                variant="transparent"
+                component="a"
+                href="https://www.facebook.com/maids4us"
+              >
+                <BrandTwitter
+                  size={19}
+                  color="white"
+                  style={{
+                    fill: "white",
+                  }}
+                />
+              </ActionIcon>
+            </div>
+          </div>
+        </div>
+      </Container>
+      <Container size="xl" className="block md:hidden">
+        <Accordion
+          variant="separated"
+          radius="md"
+          styles={{
+            item: {
+              // styles added to all items
+
+              backgroundColor: "transparent",
+              borderColor: "white",
+              "&[data-active]": {
+                backgroundColor: "transparent",
+                borderColor: "white",
+              },
+              // styles added to expanded item
+            },
+            chevron: {
+              color: "white",
+            },
+          }}
+        >
+          <Accordion.Item value="locations">
+            <Accordion.Control>
+              <p className="text-surface my-0">Locations</p>
+            </Accordion.Control>
+            {locations.map((item, index) => (
+              <Accordion.Panel key={index}>
+                <a className="text-surface">{item.name}</a>
+              </Accordion.Panel>
+            ))}
+          </Accordion.Item>
+          <Accordion.Item value="company">
+            <Accordion.Control>
+              <p className="text-surface my-0">Company</p>
+            </Accordion.Control>
+            {company.map((item, index) => (
+              <Accordion.Panel key={index}>
+                <a className="text-surface">{item.name}</a>
+              </Accordion.Panel>
+            ))}
+          </Accordion.Item>
+        </Accordion>
+      </Container>
+      <Container size="xl">
+        <Divider
+          size="sm"
+          style={{
+            backgroundColor: "rgba(0,0,0,0.1)",
+            margin: "40px 0",
+          }}
+        />
+        <div>
+          <p className="text-background" style={{ textAlign: "center" }}>
+            © All Rights Reserved Worldwide | 2000-2023. <br /> The Our Maids
+            logo, its colors, Our Maids and &quot;A helping Hand for Busy
+            People&quot; are registered <br />
+            trademarks of Our Maids, Inc., a Delaware Corporation.
+          </p>
+        </div>
+      </Container>
     </footer>
   );
 };

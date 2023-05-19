@@ -7,99 +7,170 @@ import {
   useMantineTheme,
   rem,
 } from "@mantine/core";
-
+import Image from "next/image";
 import Input from "../components/Input";
 export default function AboutUsView() {
-  const faq = [
-    {
-      id: 1,
-      question: "Lorem ipsum dolor sit amet consectetur.",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent. Aliquam nibh id nec et pulvinar dictumst nisi. Tellus tristique semper cursus convallis volutpat lorem. ",
-    },
-    {
-      id: 2,
-      question: "Lorem ipsum dolor sit amet consectetur.",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent. Aliquam nibh id nec et pulvinar dictumst nisi. Tellus tristique semper cursus convallis volutpat lorem. ",
-    },
-    {
-      id: 3,
-      question: "Lorem ipsum dolor sit amet consectetur.",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent. Aliquam nibh id nec et pulvinar dictumst nisi. Tellus tristique semper cursus convallis volutpat lorem. ",
-    },
-    {
-      id: 4,
-      question: "Lorem ipsum dolor sit amet consectetur.",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent. Aliquam nibh id nec et pulvinar dictumst nisi. Tellus tristique semper cursus convallis volutpat lorem. ",
-    },
-  ];
   return (
-    <div className="lg:mt-16 relative h-full flex-grow">
-      <div className="test bg-primary"></div>
-      <Container size="xl" className="pt-24 pb-28">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
-          <div className="md:col-start-1 md:col-end-5">
-            <h6 className="mt-0">FAQ</h6>
-            <Accordion
-              variant="separated"
-              radius="md"
-              styles={{
-                item: {
-                  backgroundColor: "#fff",
-                  "&[data-active]": {
-                    borderColor: "#fff",
-                  },
-                  // styles added to expanded item
-                },
-              }}
-            >
-              {faq.map((item) => (
-                <Accordion.Item value={item.id.toString()} key={item.id}>
-                  <Accordion.Control>
-                    <h6 className="font-bold my-0">{item.question}</h6>
-                  </Accordion.Control>
-                  <Accordion.Panel>{item.answer}</Accordion.Panel>
-                </Accordion.Item>
-              ))}
-            </Accordion>
+    <div className="lg:mt-16 mt-8">
+      <div className="h-screen w-full bg-primary mb-44"></div>
+      <div className="relative">
+        <div className="absolute h-full w-[50%]">
+          <Image
+            src="/images/aboutUS/image 21.png"
+            alt="Hero"
+            objectFit="cover"
+            layout="fill"
+            className="rounded-r-xl"
+            objectPosition="0 25%"
+          />
+        </div>
+        <div className="absolute top-[80%] h-full left-[8%]">
+          <div className="w-64 h-64 rounded-full flex justify-center items-center  bg-[#76AD77]">
+            <h6 className="my-0 text-surface text-center">
+              “Lorem ipsum dolor sit amet consectetur. Cras luctus quam netus
+              vel massa r”
+            </h6>
           </div>
-          <div className="md:col-start-7 md:col-end-12">
-            <div>
-              <h2 className="mt-0">Contact Us</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur. Congue sit tortor tellus
-                lacinia.
-              </p>
-              <div className="space-y-5">
-                <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-                  <Input placeholder="Name" />
-                  <Input placeholder="Email" />
+        </div>
+        <Container size="xl" className="grid grid-cols-12 mb-60">
+          <div className="col-start-8 col-end-13">
+            <h2 className="mt-0">ABOUT OUR MAIDS</h2>
+            <h1>Lorem Ipsum</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur. Cras luctus quam netus vel
+              massa quis nibh venenatis senectus. Vitae amet elit vulputate quam
+              tellus. Neque eget nisi molestie a purus purus ac. Facilisi sed ut
+              egestas lectus nunc id pulvinar. Lacus et tincidunt laoreet nulla
+              scelerisque. Enim pellentesque vestibulum pretium aenean. Ipsum
+              non lacus sagittis morbi aliquet malesuada ac mauris proin.
+            </p>
+            <div className="flex flex-row">
+              <p>icons</p>
+              <h5>Lorem ipsum dolor sit</h5>
+            </div>
+            <div className="flex flex-row">
+              <p>icons</p>
+              <h5>Lorem ipsum dolor sit</h5>
+            </div>
+            <div className="flex flex-row">
+              <p>icons</p>
+              <h5>Lorem ipsum dolor sit</h5>
+            </div>
+            <div className="flex flex-row">
+              <p>icons</p>
+              <h5>Lorem ipsum dolor sit</h5>
+            </div>
+          </div>
+        </Container>
+      </div>
+      <div className="bg-primary h-[900px] w-full  mb-28">
+        <Container size="xl" className="flex flex-col h-full w-full">
+          <div className="grow-0 grid grid-cols-12">
+            <h1 className="col-start-1 col-end-5">
+              We provide the best cleaning services for you
+            </h1>
+          </div>
+          <div className="grow">
+            <div className="grid grid-cols-12 h-full">
+              <div className="col-start-3 col-end-5 h-full">
+                <div className="flex flex-col justify-evenly h-full">
+                  <div>
+                    <h3>Flexible prices</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                  </div>
+                  <div>
+                    <h3>Easy payment</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                  </div>
                 </div>
-
-                <Input placeholder="Phone" />
-                <Textarea
-                  placeholder="Message"
-                  radius="lg"
-                  styles={(theme) => ({
-                    input: {
-                      "&:focus-within": {
-                        borderColor: theme.colors.secondary[0],
-                      },
-                      borderColor: theme.colors.secondary[0],
-                    },
-                  })}
-                />
-                <Button radius="xl" color="secondary.0">
-                  Send
-                </Button>
+              </div>
+              <div className="col-start-5 col-end-9 h-full w-full">
+                <div className="flex items-center h-full">
+                  <Image
+                    src="/images/aboutUS/image 22.png"
+                    alt="Hero"
+                    objectFit="cover"
+                    width={500}
+                    height={500}
+                    className="rounded-r-xl"
+                  />
+                </div>
+              </div>
+              <div className="col-start-9 col-end-11">
+                <div className="flex flex-col justify-evenly h-full">
+                  <div>
+                    <h3>Home services</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                  </div>
+                  <div>
+                    <h3>Deep cleaning</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+        </Container>
+      </div>
+      <div className="w-full mb-60 relative h-full">
+        <div className="absolute top-0 right-0 h-[85%] w-[50%]">
+          <Image
+            src="/images/aboutUS/image 25.png"
+            alt="Hero"
+            layout="fill"
+            objectFit="cover"
+            className="rounded-l-xl"
+            objectPosition="0 25%"
+          />
         </div>
-      </Container>
+        {/*     <div className="absolute top-[100%] left-[15%] h-full w-[50%]">
+          <Image
+            src="/images/aboutUS/image 26.png"
+            alt="Hero"
+            layout="fill"
+            objectFit="cover"
+            className="rounded-xl"
+            objectPosition="0 25%"
+          />
+        </div> */}
+        <Container size="xl" className="h-full w-full flex flex-col">
+          <div className="grid grid-cols-12 mb-14">
+            <div className="col-span-4">
+              <h3 className="mt-0">How it all started</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur. Bibendum ultrices
+                sollicitudin ac quis scelerisque elementum aliquam. Mattis ut
+                suspendisse aliquam diam maecenas nulla. Ullamcorper tellus
+                habitant placerat hac. Blandit felis id sapien mattis dui dui
+                dolor enim semper. Sapien gravida at senectus sit tempus
+                venenatis. Vitae ut varius amet sit enim suscipit tincidunt.
+              </p>
+              <p>
+                Commodo fringilla sit turpis ut. Vulputate varius facilisis
+                vitae nibh maecenas lacus. Nisl ut nulla et nisl dictumst
+                sollicitudin nullam. Vitae placerat turpis semper vel
+                pellentesque lectus. Facilisi pellentesque platea magna nisl
+                felis duis. Odio nullam egestas massa pharetra. Arcu congue
+                risus massa nibh quis quis et et. Ultrices neque sed ut sed in
+                lectus nunc tempus urna. Enim dictumst in in sed dolor.
+                Pellentesque elementum massa viverra amet dictumst morbi.
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-12 w-full h-full">
+            <div className="col-span-4 w-full h-full">
+              <Image
+                src="/images/aboutUS/image 26.png"
+                alt="Hero"
+                width={500}
+                height={300}
+                className="rounded-xl"
+                objectPosition="0 25%"
+              />
+            </div>
+          </div>
+        </Container>
+      </div>
     </div>
   );
 }
