@@ -81,6 +81,26 @@ const Footer = () => {
       name: "Reschedule/Cancelling",
       href: "#",
     },
+    {
+      name: "FAQ",
+      href: "#",
+    },
+    {
+      name: "Privacy Policy",
+      href: "#",
+    },
+    {
+      name: "Terms/Return/Refund Policy",
+      href: "#",
+    },
+    {
+      name: "Empleos/jobs",
+      href: "#",
+    },
+    {
+      name: "Contact us",
+      href: "#",
+    },
   ];
   return (
     <footer className="bg-black px-[250px] py-12 mt-[250px]">
@@ -121,6 +141,34 @@ const Footer = () => {
         </div>
         <div>
           <h5 className="text-background">Company</h5>
+          <div className="flex flex-row justify-between text-background gap-10">
+            <ul
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: 0,
+              }}
+            >
+              {company.slice(0, 6).map((item) => (
+                <li key={item.name}>
+                  <a>{item.name}</a>
+                </li>
+              ))}
+            </ul>
+            <ul
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: 0,
+              }}
+            >
+              {company.slice(6, 12).map((item) => (
+                <li key={item.name}>
+                  <a>{item.name}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div>
           <h5 className="text-background">Social</h5>

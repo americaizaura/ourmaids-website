@@ -11,8 +11,8 @@ export default function ({ title, image, step }: props) {
   const theme = useMantineTheme();
   return (
     <div
-      className={`flex gap-4  ${step === 2 ? "mt-32" : ""} ${
-        step === 3 ? "mt-64" : ""
+      className={`flex gap-4  ${step === 2 ? "lg:mt-32 mt-4" : ""} ${
+        step === 3 ? "lg:mt-64 mt-4" : ""
       }`}
     >
       <div>
