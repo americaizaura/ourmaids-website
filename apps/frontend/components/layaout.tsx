@@ -40,9 +40,9 @@ export default function Layout({ children }) {
     },
   ];
   return (
-    <div>
+    <div className="flex flex-col h-screen">
       <Appbar />
-      {children}
+      <main className="grow">{children}</main>
       <FooterSection />
     </div>
   );

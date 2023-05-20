@@ -1,12 +1,12 @@
 import { Card, Image, Text, Badge, Button, Group, Avatar } from "@mantine/core";
 
 interface review {
-  author: string;
-  title: string;
-  description: string;
-  image: string;
-  rating: number;
-  date: string;
+  author?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  rating?: number;
+  date?: string;
 }
 function CardReview(props: review) {
   return (

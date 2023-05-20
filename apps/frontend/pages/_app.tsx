@@ -22,12 +22,18 @@ export default function App(props: AppProps) {
         withNormalizeCSS
         theme={{
           /** Put your mantine theme override here */
-
+          breakpoints: {
+            xs: "640px",
+            sm: "768px",
+            md: "1024px",
+            lg: "1280px",
+            xl: "1536px",
+          },
           colorScheme: "light",
           primaryColor: "primary",
           colors: {
             primary: ["#FADCEA"],
-            primaryVariant: ["#3C42BF"],
+            primaryVariant: ["#EFDFE0"],
             secondary: ["#720012"],
             secondaryVariant: ["#3700CB"],
             toolbar: ["#49A2D3"],
