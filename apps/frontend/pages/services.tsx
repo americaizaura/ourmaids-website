@@ -1,6 +1,7 @@
 import React from "react";
 import Menu from "../components/Home/OServices/Menu";
 import { Container } from "@mantine/core";
+import CardServices from "../components/Home/OServices/CardServices";
 
 export default function ServicesView() {
   const menu = [
@@ -15,39 +16,39 @@ export default function ServicesView() {
   ];
   const services = [
     {
-      image: "/images/image 17.png",
+      image: "/images/oservices/image 17.png",
       description: "Lorem ipsum dolor.",
     },
     {
-      image: "/images/image 17_1.png",
+      image: "/images/oservices/image 17_1.png",
       description: "Lorem ipsum dolor.",
     },
     {
-      image: "/images/image 17_2.png",
+      image: "/images/oservices/image 17_2.png",
       description: "Lorem ipsum dolor.",
     },
     {
-      image: "/images/image 17.png",
+      image: "/images/oservices/image 17.png",
       description: "Lorem ipsum dolor.",
     },
     {
-      image: "/images/image 17_1.png",
+      image: "/images/oservices/image 17_1.png",
       description: "Lorem ipsum dolor.",
     },
     {
-      image: "/images/image 17_2.png",
+      image: "/images/oservices/image 17_2.png",
       description: "Lorem ipsum dolor.",
     },
     {
-      image: "/images/image 17.png",
+      image: "/images/oservices/image 17.png",
       description: "Lorem ipsum dolor.",
     },
     {
-      image: "/images/image 17_1.png",
+      image: "/images/oservices/image 17_1.png",
       description: "Lorem ipsum dolor.",
     },
     {
-      image: "/images/image 17_2.png",
+      image: "/images/oservices/image 17_2.png",
       description: "Lorem ipsum dolor.",
     },
   ];
@@ -55,9 +56,10 @@ export default function ServicesView() {
     <section>
       <div className="lg:mt-16 mt-8">
         <div className="h-screen w-full bg-primary"></div>
-        <div className="px-12 py-7">
-          <h5>Our Services</h5>
-          <div className="grid grid-cols-12">
+        <div className="px-16 py-7">
+          <h4>Our Services</h4>
+          <div className="flex">
+          <div className="grid grid-cols-5">
             <div className="col-span-3">
               {menu.map((menu, index) => (
                 <div key={index}>
@@ -67,6 +69,21 @@ export default function ServicesView() {
                 </div>
               ))}
             </div>
+          </div>
+          <div className="grid grid-cols-3">
+            <div className="col-span-3">
+              <div className="grid grid-cols-3 gap-8">
+                {services.map((service, index) => (
+                  <div key={index}>
+                      <CardServices
+                        image={service.image}
+                        description={service.description}
+                      />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
           </div>
         </div>
       </div>
