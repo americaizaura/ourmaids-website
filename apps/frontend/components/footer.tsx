@@ -67,11 +67,11 @@ const Footer = () => {
   const company = [
     {
       name: "Booking",
-      href: "#",
+      href: "/booking",
     },
     {
       name: "Locations",
-      href: "#",
+      href: "/locations",
     },
     {
       name: "Store-Payments",
@@ -111,7 +111,7 @@ const Footer = () => {
     },
     {
       name: "Contact us",
-      href: "#",
+      href: "/contact-us",
     },
   ];
   return (
@@ -165,7 +165,9 @@ const Footer = () => {
               >
                 {company.slice(0, 6).map((item) => (
                   <li key={item.name}>
-                    <a>{item.name}</a>
+                    <a href={item.href} className="no-underline text-onPrimary">
+                      {item.name}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -178,7 +180,9 @@ const Footer = () => {
               >
                 {company.slice(6, 12).map((item) => (
                   <li key={item.name}>
-                    <a>{item.name}</a>
+                    <a href={item.href} className="no-underline text-onPrimary">
+                      {item.name}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -268,7 +272,9 @@ const Footer = () => {
             </Accordion.Control>
             {company.map((item, index) => (
               <Accordion.Panel key={index}>
-                <a className="text-surface">{item.name}</a>
+                <a className="text-surface no-underline" href={item.href}>
+                  {item.name}
+                </a>
               </Accordion.Panel>
             ))}
           </Accordion.Item>

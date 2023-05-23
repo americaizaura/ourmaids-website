@@ -4,11 +4,11 @@ import Image from "next/image";
 import { ArrowNarrowRight, Menu2 } from "tabler-icons-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import { useState } from "react";
 const Appbar = () => {
   const theme = useMantineTheme();
   const router = useRouter();
-  const [navbarOpen, setNavbarOpen] = React.useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const isActiveRoute = (path: string) => {
     console.log(router.pathname, path);
 
@@ -23,54 +23,55 @@ const Appbar = () => {
   ];
 
   return (
-    <header className="fixed w-full z-20 top-0 left-0 drop-shadow bg-primary h-12 lg:h-16 xl:px-52 lg:px-16 md:px-8 px-4">
-      <div className="lg:flex lg:flex-wrap lg:items-center lg:justify-between h-full flex items-center">
-        <div className="lg:hidden grow-0">
-          <ActionIcon
-            radius="xl"
-            size="lg"
-            variant="transparent"
-            onClick={() => setNavbarOpen(!navbarOpen)}
-          >
-            <Menu2 size={24} color="black" />
-          </ActionIcon>
+    <header>
+      <div className="fixed w-full z-20 top-0 left-0 drop-shadow bg-primary h-12 lg:h-16 xl:px-52 lg:px-16 md:px-8 px-4">
+        <div className="lg:flex lg:flex-wrap lg:items-center lg:justify-between h-full flex items-center">
+          <div className="lg:hidden grow-0">
+            <ActionIcon
+              radius="xl"
+              size="lg"
+              variant="transparent"
+              onClick={() => setIsNavOpen(!isNavOpen)}
+            >
+              <Menu2 size={24} color="black" />
+            </ActionIcon>
+          </div>
+          <div className="grow text-center mx-auto lg:mx-0 lg:grow-0 lg:text-left h-[25px] w-[20px] relative lg:h-[50px] lg:w-[150px]">
+            <a href="/">
+              <Image
+                src="/images/logo.png"
+                alt="Logo"
+                objectFit="contain"
+                layout="fill"
+                className=""
+              />
+            </a>
+          </div>
+          <div className="hidden lg:flex lg:justify-between lg:items-center lg:flex-row">
+            <ul
+              style={{ listStyle: "none" }}
+              className="lg:gap-14 hidden lg:flex"
+            >
+              {/* text-xl font-bold */}
+              {navigation.map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href}>
+                    <a
+                      className={
+                        isActiveRoute(item.href)
+                          ? "text-secondary text-xl font-bold"
+                          : "text-xl font-bold text-secondary no-underline"
+                      }
+                    >
+                      {item.name}
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div className="grow text-center mx-auto lg:mx-0 lg:grow-0 lg:text-left h-[25px] w-[20px] relative lg:h-[50px] lg:w-[150px]">
-          <a href="/">
-            <Image
-              src="/images/logo.png"
-              alt="Logo"
-              objectFit="contain"
-              layout="fill"
-              className=""
-            />
-          </a>
-        </div>
-        <div className="hidden lg:flex lg:justify-between lg:items-center lg:flex-row">
-          <ul
-            style={{ listStyle: "none" }}
-            className="lg:gap-14 hidden lg:flex"
-          >
-            {/* text-xl font-bold */}
-            {navigation.map((item) => (
-              <li key={item.name}>
-                <Link href={item.href}>
-                  <a
-                    className={
-                      isActiveRoute(item.href)
-                        ? "text-secondary text-xl font-bold"
-                        : "text-xl font-bold text-secondary no-underline"
-                    }
-                  >
-                    {item.name}
-                  </a>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      {/*    <div
+        {/*    <div
         className={
           "lg:flex flex-grow items-center" +
           (navbarOpen ? " flex bg-primary" : " hidden")
@@ -106,6 +107,33 @@ const Appbar = () => {
           </li>
         </ul>
       </div> */}
+      </div>
+      <div
+        id="drawer-example"
+        className={`fixed overflow-hidden z-50 bg-onSurface bg-opacity-25 inset-y-0 transform ease-in-out ${
+          isNavOpen
+            ? " transition-opacity opacity-100 duration-500 translate-x-0"
+            : " transition-all delay-500 opacity-0 -translate-x-full"
+        }`}
+      >
+        <section
+          className={
+            "w-screen max-w-lg left-0 absolute bg-surface h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform " +
+            (isNavOpen ? "translate-x-0" : "-translate-x-full")
+          }
+        >
+          <article className="relative w-screen max-w-lg pb-10 flex flex-col space-y-6 overflow-y-scroll h-full">
+            <header className="p-4 font-bold text-lg">Header</header>
+            {isNavOpen}
+          </article>
+        </section>
+        <section
+          className="w-screen h-full cursor-pointer"
+          onClick={() => {
+            setIsNavOpen(false);
+          }}
+        ></section>
+      </div>
     </header>
   );
 };

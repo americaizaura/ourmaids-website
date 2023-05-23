@@ -5,7 +5,7 @@ const AboutUs = () => {
     <section className="relative">
       <Container size="xl">
         <Grid grow>
-          <Grid.Col md={5}>
+          <Grid.Col md={5} sm={6}>
             <Container fluid>
               <Image
                 src="/images/about.png"
@@ -16,9 +16,9 @@ const AboutUs = () => {
               />
             </Container>
           </Grid.Col>
-          <Grid.Col md={7}>
+          <Grid.Col md={7} sm={6}>
             <Grid>
-              <Grid.Col md={11} offset={1}>
+              <Grid.Col md={11} offsetMd={1} sm={12} offsetSm={0}>
                 <h4 className="mt-0">ABOUT US</h4>
                 <h2>LOREM IPSUM DOLOR</h2>
                 <p style={{ color: "grey" }}>
@@ -38,9 +38,9 @@ const AboutUs = () => {
           </Grid.Col>
         </Grid>
       </Container>
-      <div className="absolute bottom-0 right-0 translate-y-[50%]">
+      <div className="absolute bottom-0 right-0 translate-y-[50%] ">
         <Image
-          src="/images/about.png"
+          src="/images/image 8.png"
           alt="Hero"
           width={500}
           height={250}
