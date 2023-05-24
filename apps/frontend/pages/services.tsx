@@ -58,7 +58,14 @@ export default function ServicesView() {
   return (
     <section>
       <div className="lg:mt-16 mt-8">
-        <div className="h-screen w-full bg-primary"></div>
+        <video
+          controls
+          muted
+          autoPlay
+          className="lg:h-screen lg:w-screen  w-full h-auto mt-4"
+        >
+          <source src="promo.mp4" type="video/mp4" />
+        </video>
         <div className="px-16 py-10">
           <h4>Our Services</h4>
           <div className="flex gap-12">

@@ -30,7 +30,7 @@ export default function App(props: AppProps) {
             xl: "1536px",
           },
           colorScheme: "light",
-          primaryColor: "primary",
+
           colors: {
             primary: ["#FADCEA"],
             primaryVariant: ["#EFDFE0"],
@@ -56,6 +56,7 @@ export default function App(props: AppProps) {
             divider: ["#C6C6C6"],
             textTrack: ["#959595"],
           },
+          primaryColor: "secondary",
         }}
       >
         <Layout>
