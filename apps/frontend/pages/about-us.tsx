@@ -9,6 +9,7 @@ import {
 } from "@mantine/core";
 import Image from "next/image";
 import Input from "../components/Input";
+
 export default function AboutUsView() {
   return (
     <div className="lg:mt-16 mt-8">
@@ -53,21 +54,35 @@ export default function AboutUsView() {
               scelerisque. Enim pellentesque vestibulum pretium aenean. Ipsum
               non lacus sagittis morbi aliquet malesuada ac mauris proin.
             </p>
-            <div className="flex flex-row">
-              <p>icons</p>
-              <h5>Lorem ipsum dolor sit</h5>
+            <div className="flex flex-row ">
+              <Image
+                priority
+                src="/icons/cleaning-equipment.svg"
+                height={40}
+                width={40}
+                alt="Follow us on Twitter"
+              />
+              <h5 className="ml-4">Lorem ipsum dolor sit</h5>
             </div>
             <div className="flex flex-row">
-              <p>icons</p>
-              <h5>Lorem ipsum dolor sit</h5>
+              <Image
+                priority
+                src="/icons/bubbles.svg"
+                height={40}
+                width={40}
+                alt="Follow us on Twitter"
+              />
+              <h5 className="ml-4">Lorem ipsum dolor sit</h5>
             </div>
             <div className="flex flex-row">
-              <p>icons</p>
-              <h5>Lorem ipsum dolor sit</h5>
-            </div>
-            <div className="flex flex-row">
-              <p>icons</p>
-              <h5>Lorem ipsum dolor sit</h5>
+              <Image
+                priority
+                src="/icons/protection.svg"
+                height={40}
+                width={40}
+                alt="Follow us on Twitter"
+              />
+              <h5 className="ml-4">Lorem ipsum dolor sit</h5>
             </div>
           </div>
         </Container>
@@ -75,13 +90,13 @@ export default function AboutUsView() {
       <div className="bg-primary h-[900px] w-full  mb-28">
         <Container size="xl" className="flex flex-col h-full w-full">
           <div className="grow-0 grid grid-cols-12">
-            <h1 className="col-start-1 col-end-5">
+            <h1 className="col-start-1 col-end-6">
               We provide the best cleaning services for you
             </h1>
           </div>
           <div className="grow">
             <div className="grid grid-cols-12 h-full">
-              <div className="col-start-3 col-end-5 h-full">
+              <div className="col-start-2 col-end-5 h-full">
                 <div className="flex flex-col justify-evenly h-full">
                   <div>
                     <h3>Flexible prices</h3>
@@ -93,19 +108,19 @@ export default function AboutUsView() {
                   </div>
                 </div>
               </div>
-              <div className="col-start-5 col-end-9 h-full w-full">
+              <div className="col-start-5 col-end-10 h-full w-full">
                 <div className="flex items-center h-full">
                   <Image
                     src="/images/aboutUS/image 22.png"
                     alt="Hero"
                     objectFit="cover"
                     width={500}
-                    height={500}
+                    height={600}
                     className="rounded-r-xl"
                   />
                 </div>
               </div>
-              <div className="col-start-9 col-end-11">
+              <div className="col-start-10 col-end-13">
                 <div className="flex flex-col justify-evenly h-full">
                   <div>
                     <h3>Home services</h3>

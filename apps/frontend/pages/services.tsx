@@ -67,40 +67,33 @@ export default function ServicesView() {
           <source src="promo.mp4" type="video/mp4" />
         </video>
         <Container size="xl">
-          <div>
-            <h4>Our Services</h4>
-            <div className="flex gap-12">
-              <div className="grid grid-cols-3 ">
-                <div className="col-span-3">
-                  {menu.map((menu, index) => (
-                    <div key={index}>
-                      <div className="mb-6">
-                        <Menu1 title={menu.title} image={menu.image} />
-                      </div>
-                    </div>
-                  ))}
-                  {menu2.map((menu2, index) => (
-                    <div key={index}>
-                      <div className="mb-6">
-                        <Menu2 title={menu2.title} image={menu2.image} />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="grid grid-cols-3">
-                <div className="col-span-3">
-                  <div className="grid grid-cols-3 gap-4">
-                    {services.map((service, index) => (
-                      <div key={index}>
-                        <CardServices
-                          image={service.image}
-                          description={service.description}
-                        />
-                      </div>
-                    ))}
+          <h4>Our Services</h4>
+          <div className="grid grid-cols-12">
+            <div className="col-span-6 md:col-span-3">
+              {menu.map((menu, index) => (
+                <div key={index}>
+                  <div className="mb-6">
+                    <Menu1 title={menu.title} image={menu.image} />
                   </div>
                 </div>
+              ))}
+              {menu2.map((menu2, index) => (
+                <div key={index}>
+                  <div className="mb-6">
+                    <Menu2 title={menu2.title} image={menu2.image} />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="md:col-span-9 col-span-12">
+              <div className="grid md:grid-cols-2  lg:grid-cols-3 grid-cols-1 gap-4">
+                {services.map((service, index) => (
+                  <CardServices
+                    key={index}
+                    image={service.image}
+                    description={service.description}
+                  />
+                ))}
               </div>
             </div>
           </div>
