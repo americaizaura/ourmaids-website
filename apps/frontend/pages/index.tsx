@@ -54,15 +54,9 @@ export default function AppShellDemo() {
     
     */}
       <HeroSection />
-      <Container
-        style={{
-          marginTop: "200px",
-          marginBottom: "200px",
-        }}
-        size="xl"
-      >
+      <Container className="my-16  md:my-52" size="xl">
         <OurServices />
-      </Container>
+      </Container>    
       <AboutUs />
       <Booking />
       <Reviews />

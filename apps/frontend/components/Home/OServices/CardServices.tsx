@@ -8,9 +8,9 @@ interface CardServicesProps {
 function CardServices(props: CardServicesProps) {
   return (
     <>
-      <div className="rounded-full w-full h-80 flex flex-col">
+      <div className="rounded-full w-full h-52 md:h-80 flex flex-col">
         {/*       <div className=""> */}
-        <div className="relative w-full h-64 ">
+        <div className="relative w-full h-36 md:h-64">
           <Image
             className="rounded-2xl object-cover cursor-pointer"
             src={props.image}

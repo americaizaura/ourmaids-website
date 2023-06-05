@@ -5,15 +5,25 @@ const AboutUs = () => {
     <section className="relative">
       <Container size="xl">
         <Grid grow>
-          <Grid.Col md={5} sm={6}>
-            <Container fluid>
-              <Image
-                src="/images/about.png"
-                alt="Hero"
-                width={700}
-                height={750}
-                objectFit="cover"
-              />
+          <Grid.Col md={3} sm={6} className="mb-8 md:mb-0">
+            <Container fluid className="relative w-auto md:h-[531px] h-[200px]">
+            <Image
+                  src="/images/about.png"
+                  alt="Hero"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-xl"
+                  objectPosition="40% 40%"
+                />
+          {/*     <div className="xl:max-h-[530.7px] xl:max-w-[495px] xl:min-h-[512px] xl:min-w-[512px] relative">
+                <Image
+                  src="/images/about.png"
+                  alt="Hero"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-xl"
+                />
+              </div> */}
             </Container>
           </Grid.Col>
           <Grid.Col md={7} sm={6}>
@@ -38,14 +48,14 @@ const AboutUs = () => {
           </Grid.Col>
         </Grid>
       </Container>
-      <div className="absolute bottom-0 right-0 translate-y-[50%] ">
+     {/*  <div className="mt-8 xl:w-[500px] xl:h-64 lg:bottom-0 lg:right-0 lg:translate-y-[50%]  lg:w-[400px] lg:h-56 w-full h-56 lg:absolute lg:block hidden "> */}
+     <div className="mt-8 w-[500px] h-64 bottom-0 right-0 translate-y-[50%]   lg:absolute lg:block hidden ">
         <Image
           src="/images/image 8.png"
           alt="Hero"
-          width={500}
-          height={250}
+          layout="fill"
           objectFit="cover"
-          className="rounded-l-xl"
+          className="md:rounded-l-xl rounded-xl "
         />
       </div>
     </section>

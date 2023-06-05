@@ -1,5 +1,5 @@
 //Crea un componente de tipo función
-import { ActionIcon, useMantineTheme } from "@mantine/core";
+import { ActionIcon, Button, useMantineTheme } from "@mantine/core";
 import Image from "next/image";
 import { ArrowNarrowRight, Menu2 } from "tabler-icons-react";
 import Link from "next/link";
@@ -59,7 +59,7 @@ const Appbar = () => {
                     <a
                       className={
                         isActiveRoute(item.href)
-                          ? "text-secondary text-xl font-bold"
+                          ? "text-secondary text-xl font-bold "
                           : "text-xl font-bold text-secondary no-underline"
                       }
                     >
@@ -110,25 +110,28 @@ const Appbar = () => {
       </div>
       <div
         id="drawer-example"
-        className={`fixed overflow-hidden z-50 bg-onSurface bg-opacity-25 inset-y-0 transform ease-in-out ${
+        className={` fixed overflow-hidden z-50 bg-onSurface bg-opacity-25 inset-y-0 transform ease-in-out ${
           isNavOpen
-            ? " transition-opacity opacity-100 duration-500 translate-x-0"
-            : " transition-all delay-500 opacity-0 -translate-x-full"
+            ? " transition-opacity opacity-100 duration-500 translate-x-0 "
+            : " transition-all delay-500 opacity-0 -translate-x-full "
         }`}
       >
         <section
           className={
-            "w-screen max-w-lg left-0 absolute bg-surface h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform " +
-            (isNavOpen ? "translate-x-0" : "-translate-x-full")
-          }
-        >
-          <article className="relative w-screen max-w-lg pb-10 flex flex-col space-y-6 overflow-y-scroll h-full">
-            <header className="p-4 font-bold text-lg">Header</header>
-            {isNavOpen}
-          </article>
+            " w-52 left-0 absolute bg-surface h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform p-8 space-y-4 " +
+            (isNavOpen ? " translate-x-0 " : " -translate-x-full ")
+          }         
+        > 
+             
+
+          {navigation.map((item, index) => (
+            <Button color="primary.0" className="w-full" size="xs" key={index}>
+              {item.name}
+            </Button>
+          ))}
         </section>
         <section
-          className="w-screen h-full cursor-pointer"
+          className="w-screen h-full"
           onClick={() => {
             setIsNavOpen(false);
           }}

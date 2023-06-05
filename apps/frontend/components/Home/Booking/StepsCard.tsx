@@ -26,7 +26,7 @@ export default function ({ title, image, step }: props) {
         </div>
       </div>
       <div>
-        <div className="relative w-[278px] h-[250px]">
+        <div className="relative w-[278px] h-[250px] xl:w-[278px] xl:h-[250px] lg:w-[250px] lg:h-[230px] md:h-[200px] md:w-[170px]">
           <Image
             className="rounded-xl"
             src={image}

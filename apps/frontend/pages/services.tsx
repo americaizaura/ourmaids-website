@@ -68,7 +68,7 @@ export default function ServicesView() {
         </video>
         <Container size="xl">
           <h4>Our Services</h4>
-          <div className="grid grid-cols-12">
+          <div className="grid grid-cols-12 gap-4">
             <div className="col-span-6 md:col-span-3">
               {menu.map((menu, index) => (
                 <div key={index}>
@@ -86,7 +86,7 @@ export default function ServicesView() {
               ))}
             </div>
             <div className="md:col-span-9 col-span-12">
-              <div className="grid md:grid-cols-2  lg:grid-cols-3 grid-cols-1 gap-4">
+              <div className="grid sm:grid-cols-3  lg:grid-cols-3 grid-cols-2 gap-4">
                 {services.map((service, index) => (
                   <CardServices
                     key={index}
