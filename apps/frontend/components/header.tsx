@@ -20,6 +20,7 @@ const Appbar = () => {
     { name: "About us", href: "/about-us" },
     { name: "Locations", href: "/locations" },
     { name: "Contact us", href: "/contact-us" },
+    { name: "Seccion Victor", href: "/sectionVictor"},
   ];
 
   return (
