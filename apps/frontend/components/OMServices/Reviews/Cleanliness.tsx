@@ -1,0 +1,27 @@
+import React from "react";
+import { Slider, RangeSlider } from '@mantine/core';
+
+interface CleanlinessProps {
+    subtitle: string;
+    qualification: string;
+}
+
+function Cleanliness({ subtitle, qualification }: CleanlinessProps) {
+    return (
+        <div className="flex justify-between items-center ">
+            <p className="text-xs">{subtitle}</p>
+            <div className="flex items-center gap-4">
+                <Slider 
+                    defaultValue={45}
+                    color="secondary.0"
+                    disabled
+                    size={3}
+                    className="w-52"
+                />
+                <p className="text-xs font-bold">{qualification}</p>
+            </div>
+        </div>
+    );
+}
+
+export default Cleanliness;
