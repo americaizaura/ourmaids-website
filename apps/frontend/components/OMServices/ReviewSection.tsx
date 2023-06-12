@@ -57,7 +57,7 @@ const Reviews = () => {
   ];
 
   return (
-    <section className="my-24 mx-24">
+    <section className="">
       <div>
         <h6 className="my-2">Reviews</h6>
         <div className="my-2">
