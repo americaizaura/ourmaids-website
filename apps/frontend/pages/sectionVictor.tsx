@@ -12,13 +12,16 @@ import {
 import { useState } from "react";
 
 import { Group } from "@mantine/core";
-import { DatePicker, DatePickerInput, TimeInput } from "@mantine/dates";
 import Image from "next/image";
 import Reviews from "../components/OMServices/ReviewSection";
+import CleaningTeam from "../components/OMServices/CleaningSection";
 
 
 export default function SectionVictor() {
   return (
-    <Reviews/>
+    <main className="my-24 mx-24">
+      <Reviews/>
+      <CleaningTeam/>
+    </main>
   );
 }

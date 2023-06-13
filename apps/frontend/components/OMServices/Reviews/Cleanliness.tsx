@@ -17,6 +17,11 @@ function Cleanliness({ subtitle, qualification }: CleanlinessProps) {
                     disabled
                     size={3}
                     className="w-52"
+                    styles={(theme)=> ({
+                        bar:{
+                            backgroundColor: theme.colors.secondary[0]
+                        }
+                    })}
                 />
                 <p className="text-xs font-bold">{qualification}</p>
             </div>
