@@ -10,6 +10,17 @@ function CleaningTeam(){
             <Carousel
                 withControls
                 loop
+                styles={{ 
+                    control: {
+                        backgroundColor: "transparent",
+                        color: "black",
+                        border: "none",
+                        boxShadow: "none",
+                    },
+                    controls: {
+                        
+                    } 
+                }}
             >
                 <Carousel.Slide>
                     <CleaningS
