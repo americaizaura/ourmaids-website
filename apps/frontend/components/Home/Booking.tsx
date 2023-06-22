@@ -20,6 +20,7 @@ const Booking = () => {
       step: 3,
     },
   ];
+        
   return (
     <section
       className="relative mt-52 lg:mt-[400px]"

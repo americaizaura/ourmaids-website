@@ -5,74 +5,115 @@ import { ArrowNarrowRight, Menu2 } from "tabler-icons-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+// import component 👇
+import Drawer from "react-modern-drawer";
+
+//import styles 👇
+import "react-modern-drawer/dist/index.css";
 const Appbar = () => {
-  const theme = useMantineTheme();
-  const router = useRouter();
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  const isActiveRoute = (path: string) => {
-    console.log(router.pathname, path);
+	const theme = useMantineTheme();
+	const router = useRouter();
+	const [isNavOpen, setIsNavOpen] = useState(false);
+	const isActiveRoute = (path: string) => {
+		console.log(router.pathname, path);
 
-    return router.pathname === path;
-  };
-  const navigation = [
-    { name: "Booking", href: "/booking" },
-    { name: "Services", href: "/services" },
-    { name: "About us", href: "/about-us" },
-    { name: "Locations", href: "/locations" },
-    { name: "Contact us", href: "/contact-us" },
-    { name: "Seccion Victor", href: "/sectionVictor"},
-  ];
-
-  return (
-    <header>
-      <div className="fixed w-full z-20 top-0 left-0 drop-shadow bg-primary h-12 lg:h-16 xl:px-52 lg:px-16 md:px-8 px-4">
-        <div className="lg:flex lg:flex-wrap lg:items-center lg:justify-between h-full flex items-center">
-          <div className="lg:hidden grow-0">
-            <ActionIcon
-              radius="xl"
-              size="lg"
-              variant="transparent"
-              onClick={() => setIsNavOpen(!isNavOpen)}
-            >
-              <Menu2 size={24} color="black" />
-            </ActionIcon>
-          </div>
-          <div className="grow text-center mx-auto lg:mx-0 lg:grow-0 lg:text-left h-[25px] w-[20px] relative lg:h-[50px] lg:w-[150px]">
-            <a href="/">
-              <Image
-                src="/images/logo.png"
-                alt="Logo"
-                objectFit="contain"
-                layout="fill"
-                className=""
-              />
-            </a>
-          </div>
-          <div className="hidden lg:flex lg:justify-between lg:items-center lg:flex-row">
-            <ul
-              style={{ listStyle: "none" }}
-              className="lg:gap-14 hidden lg:flex"
-            >
-              {/* text-xl font-bold */}
-              {navigation.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href}>
-                    <a
-                      className={
-                        isActiveRoute(item.href)
-                          ? "text-secondary text-xl font-bold "
-                          : "text-xl font-bold text-secondary no-underline"
-                      }
-                    >
-                      {item.name}
-                    </a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        {/*    <div
+		return router.pathname === path;
+	};
+	const navigation = [
+		{ name: "Booking", href: "/booking" },
+		{ name: "Services", href: "/services" },
+		{ name: "About us", href: "/about-us" },
+		{ name: "Locations", href: "/locations" },
+		{ name: "Contact us", href: "/contact-us" },
+		/* 		{ name: "Seccion Victor", href: "/sectionVictor" }, */
+	];
+	const [isOpen, setIsOpen] = useState(false);
+	const toggleDrawer = () => {
+		setIsOpen((prevState) => !prevState);
+	};
+	return (
+		<header>
+			<div className="fixed w-full z-20 top-0 left-0 drop-shadow bg-primary h-[100px]  lg:h-[100px] xl:px-52 lg:px-16 md:px-8 px-4">
+				<div className="lg:flex lg:flex-wrap lg:items-center lg:justify-between h-full flex items-center">
+					<div className="lg:hidden grow-0">
+						<ActionIcon
+							radius="xl"
+							size="lg"
+							variant="transparent"
+							onClick={toggleDrawer}
+						>
+							<Menu2 size={24} color="black" />
+						</ActionIcon>
+					</div>
+					{/*   <button onClick={toggleDrawer}>Show</button> */}
+					<Drawer
+						open={isOpen}
+						onClose={toggleDrawer}
+						direction="left"
+						customIdSuffix="drawer-example"
+						style={{
+							width: "300px",
+						}}
+					>
+						<ul
+							style={{ listStyle: "none" }}
+							className="flex justify-between items-center flex-col gap-4 w-full px-10"
+						>
+							{/* text-xl font-bold */}
+							{navigation.map((item) => (
+								<li key={item.name} className="w-full">
+									<Button radius="xl" color="secondary.0" fullWidth size="xs">
+										<Link href={item.href}>
+											<a
+												className={
+													isActiveRoute(item.href)
+														? "text-onPrimary  no-underline"
+														: "  text-onPrimary no-underline"
+												}
+											>
+												{item.name}
+											</a>
+										</Link>
+									</Button>
+								</li>
+							))}
+						</ul>
+					</Drawer>
+					<div className="grow text-center mx-auto lg:ml-0 lg:grow-0 lg:text-left h-[80px] w-[250px] relative lg:h-[80px] lg:w-[250px]">
+						<a href="/">
+							<Image
+								src="/images/logo.png"
+								alt="Logo"
+								objectFit="contain"
+								layout="fill"
+							/>
+						</a>
+					</div>
+					<div className="hidden lg:flex lg:justify-between lg:items-center lg:flex-row">
+						<ul
+							style={{ listStyle: "none" }}
+							className="lg:gap-14 hidden lg:flex"
+						>
+							{/* text-xl font-bold */}
+							{navigation.map((item) => (
+								<li key={item.name}>
+									<Link href={item.href}>
+										<a
+											className={
+												isActiveRoute(item.href)
+													? "text-secondary text-xl font-bold "
+													: "text-xl font-bold text-secondary no-underline"
+											}
+										>
+											{item.name}
+										</a>
+									</Link>
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
+				{/*    <div
         className={
           "lg:flex flex-grow items-center" +
           (navbarOpen ? " flex bg-primary" : " hidden")
@@ -108,8 +149,8 @@ const Appbar = () => {
           </li>
         </ul>
       </div> */}
-      </div>
-      <div
+			</div>
+			{/*       <div
         id="drawer-example"
         className={` fixed overflow-hidden z-50 bg-onSurface bg-opacity-25 inset-y-0 transform ease-in-out ${
           isNavOpen
@@ -137,9 +178,9 @@ const Appbar = () => {
             setIsNavOpen(false);
           }}
         ></section>
-      </div>
-    </header>
-  );
+      </div> */}
+		</header>
+	);
 };
 
 export default Appbar;
