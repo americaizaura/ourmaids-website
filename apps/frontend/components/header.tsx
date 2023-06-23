@@ -33,8 +33,8 @@ const Appbar = () => {
 	};
 	return (
 		<header>
-			<div className="fixed w-full z-20 top-0 left-0 drop-shadow bg-primary h-[100px]  lg:h-[100px] xl:px-52 lg:px-16 md:px-8 px-4">
-				<div className="lg:flex lg:flex-wrap lg:items-center lg:justify-between h-full flex items-center">
+			<div className="fixed w-full z-20 top-0 left-0 drop-shadow bg-primary h-[140px]  lg:h-[110px]  lg:px-16 md:px-8 px-4">
+				<div className="lg:flex  lg:items-center lg:justify-between h-full flex items-center">
 					<div className="lg:hidden grow-0">
 						<ActionIcon
 							radius="xl"
@@ -51,20 +51,16 @@ const Appbar = () => {
 						onClose={toggleDrawer}
 						direction="left"
 						customIdSuffix="drawer-example"
-						style={{
-							width: "300px",
-						}}
 					>
 						<ul
 							style={{ listStyle: "none" }}
 							className="flex justify-between items-center flex-col gap-4 w-full px-10"
 						>
-							{/* text-xl font-bold */}
 							{navigation.map((item) => (
 								<li key={item.name} className="w-full">
-									<Button radius="xl" color="secondary.0" fullWidth size="xs">
-										<Link href={item.href}>
-											<a
+									<Link href={item.href} passHref>
+										<Button radius="xl" color="secondary.0" fullWidth size="xs">
+											<p
 												className={
 													isActiveRoute(item.href)
 														? "text-onPrimary  no-underline"
@@ -72,29 +68,29 @@ const Appbar = () => {
 												}
 											>
 												{item.name}
-											</a>
-										</Link>
-									</Button>
+											</p>
+										</Button>
+									</Link>
 								</li>
 							))}
 						</ul>
 					</Drawer>
-					<div className="grow text-center mx-auto lg:ml-0 lg:grow-0 lg:text-left h-[80px] w-[250px] relative lg:h-[80px] lg:w-[250px]">
-						<a href="/">
+					<div className="grow text-center mx-auto lg:ml-0  lg:grow-0 lg:text-left h-[70px] w-[200px] relative lg:h-[80px] lg:w-[250px]">
+						<Link href={"/"} passHref>
 							<Image
 								src="/images/logo.png"
 								alt="Logo"
 								objectFit="contain"
 								layout="fill"
+								className="cursor-pointer"
 							/>
-						</a>
+						</Link>
 					</div>
-					<div className="hidden lg:flex lg:justify-between lg:items-center lg:flex-row">
+					<div className="hidden lg:flex lg:justify-between lg:items-center ">
 						<ul
 							style={{ listStyle: "none" }}
 							className="lg:gap-14 hidden lg:flex"
 						>
-							{/* text-xl font-bold */}
 							{navigation.map((item) => (
 								<li key={item.name}>
 									<Link href={item.href}>
@@ -113,72 +109,7 @@ const Appbar = () => {
 						</ul>
 					</div>
 				</div>
-				{/*    <div
-        className={
-          "lg:flex flex-grow items-center" +
-          (navbarOpen ? " flex bg-primary" : " hidden")
-        }
-      >
-        <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-          <li className="nav-item">
-            <a
-              className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-              href="#pablo"
-            >
-              <i className="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i>
-              <span className="ml-2">Share</span>
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-              href="#pablo"
-            >
-              <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i>
-              <span className="ml-2">Tweet</span>
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-              href="#pablo"
-            >
-              <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
-              <span className="ml-2">Pin</span>
-            </a>
-          </li>
-        </ul>
-      </div> */}
 			</div>
-			{/*       <div
-        id="drawer-example"
-        className={` fixed overflow-hidden z-50 bg-onSurface bg-opacity-25 inset-y-0 transform ease-in-out ${
-          isNavOpen
-            ? " transition-opacity opacity-100 duration-500 translate-x-0 "
-            : " transition-all delay-500 opacity-0 -translate-x-full "
-        }`}
-      >
-        <section
-          className={
-            " w-52 left-0 absolute bg-surface h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform p-8 space-y-4 " +
-            (isNavOpen ? " translate-x-0 " : " -translate-x-full ")
-          }         
-        > 
-             
-
-          {navigation.map((item, index) => (
-            <Button color="primary.0" className="w-full" size="xs" key={index}>
-              {item.name}
-            </Button>
-          ))}
-        </section>
-        <section
-          className="w-screen h-full"
-          onClick={() => {
-            setIsNavOpen(false);
-          }}
-        ></section>
-      </div> */}
 		</header>
 	);
 };
