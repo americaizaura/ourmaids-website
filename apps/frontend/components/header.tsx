@@ -1,16 +1,13 @@
 //Crea un componente de tipo función
-import { ActionIcon, Button, useMantineTheme } from "@mantine/core";
+import { ActionIcon, Button, useMantineTheme, Drawer } from "@mantine/core";
 import Image from "next/image";
 import { ArrowNarrowRight, Menu2 } from "tabler-icons-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-// import component 👇
-import Drawer from "react-modern-drawer";
-
-//import styles 👇
-import "react-modern-drawer/dist/index.css";
+import { useDisclosure } from "@mantine/hooks";
 const Appbar = () => {
+	const [opened, { open, close }] = useDisclosure(false);
 	const theme = useMantineTheme();
 	const router = useRouter();
 	const [isNavOpen, setIsNavOpen] = useState(false);
@@ -40,17 +37,16 @@ const Appbar = () => {
 							radius="xl"
 							size="lg"
 							variant="transparent"
-							onClick={toggleDrawer}
+							onClick={open}
 						>
 							<Menu2 size={24} color="black" />
 						</ActionIcon>
 					</div>
 					{/*   <button onClick={toggleDrawer}>Show</button> */}
 					<Drawer
-						open={isOpen}
-						onClose={toggleDrawer}
-						direction="left"
-						customIdSuffix="drawer-example"
+						opened={opened}
+						onClose={close}
+						overlayProps={{ opacity: 0.5, blur: 4 }}
 					>
 						<ul
 							style={{ listStyle: "none" }}
@@ -59,7 +55,13 @@ const Appbar = () => {
 							{navigation.map((item) => (
 								<li key={item.name} className="w-full">
 									<Link href={item.href} passHref>
-										<Button radius="xl" color="secondary.0" fullWidth size="xs">
+										<Button
+											radius="xl"
+											color="secondary.0"
+											fullWidth
+											size="xs"
+											onClick={close}
+										>
 											<p
 												className={
 													isActiveRoute(item.href)
