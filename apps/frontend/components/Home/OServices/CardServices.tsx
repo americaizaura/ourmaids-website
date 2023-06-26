@@ -4,11 +4,11 @@ interface CardServicesProps {
   image: string;
   description: string;
 }
-
+import { useRouter } from "next/router";
 function CardServices(props: CardServicesProps) {
   return (
     <>
-      <div className="rounded-full w-full h-52 md:h-80 flex flex-col">
+      <div className="rounded-full w-full h-52 md:h-80 flex flex-col cursor-pointer">
         {/*       <div className=""> */}
         <div className="relative w-full h-36 md:h-64">
           <Image
