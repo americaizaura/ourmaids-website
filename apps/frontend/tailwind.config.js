@@ -23,12 +23,12 @@ module.exports = {
     colors: {
 
       primary: "#FADCEA",
-      primaryVariant: "#3C42BF",
+      primaryVariant: "#EFDFE0",
       secondary: "#720012",
       secondaryVariant: "#3700CB",
       toolbar: "#49A2D3",
       navigationBar: "#3B82B2",
-      background: "#EDF0F3",
+      background: "#FFF8F6",
       surface: "#FFFFFF",
       success: "#4CAF50",
       info: "#03A9F4",
