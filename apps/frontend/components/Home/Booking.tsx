@@ -22,10 +22,7 @@ const Booking = () => {
   ];
   return (
     <section
-      className="relative "
-      style={{
-        marginTop: "400px",
-      }}
+      className="relative mt-52 lg:mt-[400px]"
     >
       <div className="absolute right-0">
         <Image

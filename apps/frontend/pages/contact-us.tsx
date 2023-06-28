@@ -37,7 +37,7 @@ export default function ContactUsView() {
     },
   ];
   return (
-    <div className="lg:mt-16 relative h-full flex-grow">
+    <div className="lg:mt-16 relative h-full flex-grow ">
       <div className="bg-primary test"></div>
       <Container size="xl" className="pt-24 pb-28">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
