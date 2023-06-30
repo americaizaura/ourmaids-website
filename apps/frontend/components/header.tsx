@@ -1,11 +1,13 @@
 //Crea un componente de tipo función
-import { ActionIcon, Button, useMantineTheme } from "@mantine/core";
+import { ActionIcon, Button, useMantineTheme, Drawer } from "@mantine/core";
 import Image from "next/image";
 import { ArrowNarrowRight, Menu2 } from "tabler-icons-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useDisclosure } from "@mantine/hooks";
 const Appbar = () => {
+  const [opened, { open, close }] = useDisclosure(false);
   const theme = useMantineTheme();
   const router = useRouter();
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -20,47 +22,84 @@ const Appbar = () => {
     { name: "About us", href: "/about-us" },
     { name: "Locations", href: "/locations" },
     { name: "Contact us", href: "/contact-us" },
-    { name: "Seccion Victor", href: "/sectionVictor"},
+    /* 		{ name: "Seccion Victor", href: "/sectionVictor" }, */
   ];
-
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
   return (
     <header>
-      <div className="fixed w-full z-20 top-0 left-0 drop-shadow bg-primary h-12 lg:h-16 xl:px-52 lg:px-16 md:px-8 px-4">
-        <div className="lg:flex lg:flex-wrap lg:items-center lg:justify-between h-full flex items-center">
+      <div className="fixed w-full z-20 top-0 left-0 drop-shadow bg-primary h-[140px]  lg:h-[110px]  lg:px-16 md:px-8 px-4">
+        <div className="lg:flex  lg:items-center lg:justify-between h-full flex items-center">
           <div className="lg:hidden grow-0">
             <ActionIcon
               radius="xl"
               size="lg"
               variant="transparent"
-              onClick={() => setIsNavOpen(!isNavOpen)}
+              onClick={open}
             >
               <Menu2 size={24} color="black" />
             </ActionIcon>
           </div>
-          <div className="grow text-center mx-auto lg:mx-0 lg:grow-0 lg:text-left h-[25px] w-[20px] relative lg:h-[50px] lg:w-[150px]">
-            <a href="/">
+          {/*   <button onClick={toggleDrawer}>Show</button> */}
+          <Drawer
+            opened={opened}
+            onClose={close}
+            overlayProps={{ opacity: 0.5, blur: 4 }}
+          >
+            <ul
+              style={{ listStyle: "none" }}
+              className="flex justify-between items-center flex-col gap-4 w-full px-10"
+            >
+              {navigation.map((item) => (
+                <li key={item.name} className="w-full">
+                  <Link href={item.href} passHref>
+                    <Button
+                      radius="xl"
+                      color="secondary.0"
+                      fullWidth
+                      size="xs"
+                      onClick={close}
+                    >
+                      <p
+                        className={
+                          isActiveRoute(item.href)
+                            ? "text-onPrimary  no-underline"
+                            : "  text-onPrimary no-underline"
+                        }
+                      >
+                        {item.name}
+                      </p>
+                    </Button>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Drawer>
+          <div className="grow text-center mx-auto lg:ml-0  lg:grow-0 lg:text-left h-[70px] w-[200px] relative lg:h-[80px] lg:w-[250px]">
+            <Link href={"/"} passHref>
               <Image
                 src="/images/logo.png"
                 alt="Logo"
                 objectFit="contain"
                 layout="fill"
-                className=""
+                className="cursor-pointer"
               />
-            </a>
+            </Link>
           </div>
-          <div className="hidden lg:flex lg:justify-between lg:items-center lg:flex-row">
+          <div className="hidden lg:flex lg:justify-between lg:items-center ">
             <ul
               style={{ listStyle: "none" }}
-              className="lg:gap-14 hidden lg:flex"
+              className="lg:gap-10 hidden lg:flex"
             >
-              {/* text-xl font-bold */}
               {navigation.map((item) => (
                 <li key={item.name}>
                   <Link href={item.href}>
                     <a
                       className={
                         isActiveRoute(item.href)
-                          ? "text-secondary text-xl font-bold "
+                          ? "text-secondary text-xl font-bold"
                           : "text-xl font-bold text-secondary no-underline"
                       }
                     >
@@ -72,71 +111,6 @@ const Appbar = () => {
             </ul>
           </div>
         </div>
-        {/*    <div
-        className={
-          "lg:flex flex-grow items-center" +
-          (navbarOpen ? " flex bg-primary" : " hidden")
-        }
-      >
-        <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-          <li className="nav-item">
-            <a
-              className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-              href="#pablo"
-            >
-              <i className="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i>
-              <span className="ml-2">Share</span>
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-              href="#pablo"
-            >
-              <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i>
-              <span className="ml-2">Tweet</span>
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-              href="#pablo"
-            >
-              <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
-              <span className="ml-2">Pin</span>
-            </a>
-          </li>
-        </ul>
-      </div> */}
-      </div>
-      <div
-        id="drawer-example"
-        className={` fixed overflow-hidden z-50 bg-onSurface bg-opacity-25 inset-y-0 transform ease-in-out ${
-          isNavOpen
-            ? " transition-opacity opacity-100 duration-500 translate-x-0 "
-            : " transition-all delay-500 opacity-0 -translate-x-full "
-        }`}
-      >
-        <section
-          className={
-            " w-52 left-0 absolute bg-surface h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform p-8 space-y-4 " +
-            (isNavOpen ? " translate-x-0 " : " -translate-x-full ")
-          }         
-        > 
-             
-
-          {navigation.map((item, index) => (
-            <Button color="primary.0" className="w-full" size="xs" key={index}>
-              {item.name}
-            </Button>
-          ))}
-        </section>
-        <section
-          className="w-screen h-full"
-          onClick={() => {
-            setIsNavOpen(false);
-          }}
-        ></section>
       </div>
     </header>
   );
