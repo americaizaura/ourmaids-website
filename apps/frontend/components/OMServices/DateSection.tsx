@@ -38,13 +38,17 @@ export default function DateSection(){
                     },
                     calendarHeaderControl:{
                         display: "none"
+                    },
+                    weekdays: {
+                        backgroundColor: theme.colors.secondary[0],
                     }
                 })}
                 getDayProps={(date) => ({
                     selected: selected.some((s) => dayjs(date).isSame(s, 'date')),
-                    onClick: () => handleSelect(date), 
-                    })}
+                    onClick: () => handleSelect(date),
+                })}
             />
         </aside>
     );
 }
+
