@@ -19,6 +19,7 @@ import ServiceName from "../components/OMServices/SerNameSection";
 import DateSection from "../components/OMServices/DateSection";
 import RecomendSection from "../components/OMServices/RecomendSection";
 import LocationsSection from "../components/OMServices/LocationsSection";
+import RulesSection from "../components/OMServices/RulesSection";
 
 export default function SectionVictor() {
 	return (
@@ -35,6 +36,7 @@ export default function SectionVictor() {
 				<Reviews />
 				<CleaningTeam />
 			</Container>
+			<RulesSection/>
 		</main>
 	);
 }
