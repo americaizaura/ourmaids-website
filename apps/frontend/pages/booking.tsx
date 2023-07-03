@@ -9,13 +9,14 @@ import {
 	Stepper,
 	StepperProps,
 	MultiSelect,
+	ActionIcon,
 } from "@mantine/core";
 import { useState } from "react";
-import { Progress } from "@mantine/core";
+import { Progress, Input as MantineInput } from "@mantine/core";
 import { Group } from "@mantine/core";
 import { DatePicker, DatePickerInput, TimeInput } from "@mantine/dates";
 import Image from "next/image";
-import { CalendarEvent } from "tabler-icons-react";
+import { CalendarEvent, X, ChevronDown } from "tabler-icons-react";
 import { useRouter } from "next/router";
 import Input from "../components/Input";
 
@@ -27,7 +28,7 @@ const steps = {
 };
 export default function BookingView() {
 	const [value, setValue] = useState<Date | null>(null);
-	console.log(value);
+
 	const router = useRouter();
 
 	const [step, setStep] = useState(steps.SERVICE);
@@ -81,7 +82,18 @@ export default function BookingView() {
 			<Container size="xl" className="lg:pt-32 pt-24 pb-12 ">
 				<div className="grid grid-cols-12 ">
 					<div className="col-start-4 col-end-13">
-						<Progress color="secondary.0" value={33} />
+						<Progress
+							color="secondary.0"
+							value={
+								step === steps.SERVICE
+									? 0
+									: step === steps.BOOKING
+									? 33
+									: step === steps.INFORMATION
+									? 66
+									: 100
+							}
+						/>
 					</div>
 				</div>
 				<div className="grid grid-cols-12 ">
@@ -150,7 +162,7 @@ export default function BookingView() {
 						)}
 						{step === steps.BOOKING && (
 							<>
-								<DatePickerInput
+								{/* <DatePickerInput
 									label="Select date"
 									placeholder="Select date"
 									value={value}
@@ -165,10 +177,37 @@ export default function BookingView() {
 											marginBottom: 15,
 										},
 									})}
+								/> */}
+
+								<MantineInput
+									placeholder="Date"
+									radius="lg"
+									readOnly
+									styles={(theme) => ({
+										input: {
+											"&:focus-within": {
+												borderColor: theme.colors.secondary[0],
+											},
+											borderColor: theme.colors.secondary[0],
+										},
+									})}
+									value={value as any}
+									icon={<CalendarEvent />}
+									rightSection={
+										<div>
+											<X
+												onChange={() => setValue(null)}
+												size="1rem"
+												style={{ display: "block", opacity: 0.5 }}
+												className="cursor-pointer"
+											/>
+										</div>
+									}
 								/>
 								<div className="rounded-md bg-onPrimary shadow-md mt-2 p-4 w-[70%]  ">
 									<Group position="center">
 										<DatePicker
+											onChange={setValue}
 											size="sm"
 											value={value}
 											styles={(theme) => ({
@@ -192,7 +231,47 @@ export default function BookingView() {
 										vestibulum elementum amet amet metus.
 									</p>
 								</div>
-								<TimeInput mx="auto" className="mt-8" />
+								<MultiSelect
+									styles={(theme) => ({
+										input: {
+											"&:focus-within": {
+												borderColor: theme.colors.secondary[0],
+											},
+											borderColor: theme.colors.secondary[0],
+										},
+										rightSection: { pointerEvents: "none" },
+									})}
+									radius="md"
+									placeholder="Pick all that you like"
+									rightSection={
+										<ChevronDown
+											size="1rem"
+											style={{ display: "block", opacity: 0.5 }}
+										/>
+									}
+									data={[
+										{
+											value: "rick",
+											label: "Rick",
+											group: "Used to be a pickle",
+										},
+										{
+											value: "morty",
+											label: "Morty",
+											group: "Never was a pickle",
+										},
+										{
+											value: "beth",
+											label: "Beth",
+											group: "Never was a pickle",
+										},
+										{
+											value: "summer",
+											label: "Summer",
+											group: "Never was a pickle",
+										},
+									]}
+								/>
 							</>
 						)}
 						{step === steps.SERVICE && (
@@ -206,9 +285,16 @@ export default function BookingView() {
 											},
 											borderColor: theme.colors.secondary[0],
 										},
+										rightSection: { pointerEvents: "none" },
 									})}
 									radius="md"
 									placeholder="Pick all that you like"
+									rightSection={
+										<ChevronDown
+											size="1rem"
+											style={{ display: "block", opacity: 0.5 }}
+										/>
+									}
 									data={[
 										{
 											value: "rick",
@@ -269,8 +355,9 @@ export default function BookingView() {
 					<div className="col-start-9 col-end-13">
 						<div className="flex flex-row">
 							<h5 className="mt-0 mr-6">Service </h5>
-
-							<h5 className="mt-0 mr-2 text-info">Edit </h5>
+							{step === steps.INFORMATION || step === steps.BOOKING ? (
+								<h5 className="mt-0 mr-2 text-info">Edit </h5>
+							) : null}
 						</div>
 
 						<div className="bg-primary rounded-xl p-8 shadow-md">
@@ -291,7 +378,12 @@ export default function BookingView() {
 						</div>
 						{step === steps.INFORMATION || step === steps.BOOKING ? (
 							<>
-								<h5>Date and time</h5>
+								<div className="flex flex-row">
+									<h5 className="mr-6 mb-0">Date and Time </h5>
+									{step === steps.INFORMATION && (
+										<h5 className="mr-2 mb-0 text-info">Edit </h5>
+									)}
+								</div>
 								<div className="bg-primary rounded-xl p-8 mt-8 shadow-md flex">
 									<CalendarEvent size={26} strokeWidth={2} />
 									<h6 className="my-0 ml-4">12:00 PM Sat. 01 Mar 2023</h6>
