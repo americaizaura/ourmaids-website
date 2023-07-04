@@ -56,7 +56,6 @@ export default function App(props: AppProps) {
 						divider: ["#C6C6C6"],
 						textTrack: ["#959595"],
 					},
-					primaryColor: "secondary",
 				}}
 			>
 				<Layout>

@@ -27,8 +27,8 @@ const steps = {
 	PAYMENT: "PAYMENT",
 };
 export default function BookingView() {
-	const [value, setValue] = useState<Date | null>(null);
-
+	/* const [value, setValue] = useState<Date | null>(null); */
+	const [value, setValue] = useState<[Date | null, Date | null]>([null, null]);
 	const router = useRouter();
 
 	const [step, setStep] = useState(steps.SERVICE);
@@ -208,11 +208,17 @@ export default function BookingView() {
 									<Group position="center">
 										<DatePicker
 											onChange={setValue}
-											size="sm"
+											type="range"
 											value={value}
+											allowSingleDateInRange
 											styles={(theme) => ({
 												day: {
 													"&:focus": {
+														backgroundColor: theme.colors.secondary[0],
+														color: theme.colors.onPrimary[0],
+													},
+
+													"&:hover": {
 														backgroundColor: theme.colors.secondary[0],
 														color: theme.colors.onPrimary[0],
 													},
