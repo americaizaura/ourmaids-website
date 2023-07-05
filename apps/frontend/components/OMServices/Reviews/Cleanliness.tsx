@@ -8,7 +8,7 @@ interface CleanlinessProps {
 
 function Cleanliness({ subtitle, qualification }: CleanlinessProps) {
     return (
-        <div className="flex justify-between items-center ">
+        <div className="flex justify-start md:justify-between items-center gap-4 md:gap-0">
             <p className="text-xs">{subtitle}</p>
             <div className="flex items-center gap-4">
                 <Slider 
