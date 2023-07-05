@@ -24,7 +24,7 @@ import RulesSection from "../components/OMServices/RulesSection";
 export default function SectionVictor() {
 	return (
 		<main>
-			<Container size="xl" className="lg:pt-32 pt-24 pb-12 ">
+			<Container size="xl" className="pt-32 pb-12 ">
 				<ServiceName />
 				<div className="flex gap-40 mb-28">
 					<DateSection/>

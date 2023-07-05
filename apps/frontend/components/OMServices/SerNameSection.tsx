@@ -41,10 +41,10 @@ const ServiceName = () => {
     },
   ];
   return (
-    <section className="flex justify-between">
+    <section className="flex flex-col items-center xl:flex-row md:justify-between">
       <div>
         <h4 className="mb-6">Service Name</h4>
-        <p className="text-xs text-justify w-[780px] tracking-wide font-medium">
+        <p className="text-xs text-justify w-80 md:w-[780px] tracking-wide font-medium leading-5 md:leading-4">
           Lorem ipsum dolor sit amet consectetur. Ut id suspendisse duis
           elementum tristique nulla elementurn. Habitant tempor nisl in congue
           dis. Diam nulla a habitant eget facilisi. Lobortis pellentesque turpis
@@ -59,20 +59,20 @@ const ServiceName = () => {
         </p>
         <div>
           <h6 className="mb-6">Includes</h6>
-          <div className="flex justify-between w-[740px]">
+          <div className="flex flex-col w-[340px] md:flex-row justify-between md:w-[740px]">
             <div className="">
               {CheckList.map((item, index) => (
                 <CheckBox key={index} list={item.list} />
               ))}
             </div>
-            <div className="flex flex-col gap-10">
-              <div className="flex items-center gap-6">
+            <div className="flex md:flex-col gap-8 my-2 md:my-0 md:gap-10 ">
+              <div className="flex items-center gap-2 md:gap-6">
                 <Wand size={32} stroke-width={1.2}></Wand>
                 <label className="text-xs text-justify tracking-wide font-medium">
                   Lorem ipsum dolor
                 </label>
               </div>
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2 md:gap-6">
                 <HomeShield size={32} stroke-width={1.2}></HomeShield>
                 <label className="text-xs text-justify tracking-wide font-medium">
                   Lorem ipsum dolor
@@ -82,7 +82,7 @@ const ServiceName = () => {
           </div>
         </div>
       </div>
-      <aside className="bg-[#efdfe0] w-[440px] h-full my-10 py-14 rounded-xl flex flex-col items-center">
+      <aside className="bg-[#efdfe0] h-full my-10 w-[340px] py-14 rounded-xl flex flex-col items-center md:w-[440px]">
         <div className="flex justify-center gap-4">
           {TypeList.map((item, index) => (
             <div key={index}>
