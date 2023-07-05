@@ -20,37 +20,40 @@ export default function DateSection() {
   return (
     <aside>
       <h6 className="mb-6">Available dates</h6>
-      <Calendar
-        style={{ width: 348, paddingRight: 40 }}
-        level="month"
-        defaultLevel="month"
-        size="md"
-        firstDayOfWeek={0}
-        className="border-solid shadow-md border-[0.1px] border-[#eeeeee] px-5 py-5"
-        weekendDays={[]}
-        styles={(theme) => ({
-          day: {
-            color: "#495057",
-          },
-          weekday: {
-            color: "#adb5bd",
-          },
-          calendarHeaderLevel: {
-            fontWeight: 600,
-          },
-          calendarHeaderControl: {
-            display: "none",
-          },
-          weekdays: {
-            backgroundColor: theme.colors.secondary[0],
-          },
-        })}
-        getDayProps={(date) => ({
-          selected: selected.some((s) => dayjs(date).isSame(s, "date")),
-          onClick: () => handleSelect(date)
-        })}
-      />
+      <Group
+        position="center"      
+      >
+        <Calendar
+          style={{ width: 348, paddingRight: 40 }}
+          level="month"
+          defaultLevel="month"
+          size="md"
+          firstDayOfWeek={0}
+          className="border-solid shadow-md border-[0.1px] border-[#eeeeee] px-5 py-5"
+          weekendDays={[]}
+          styles={(theme) => ({
+            day: {
+              color: "#495057",
+            },
+            weekday: {
+              color: "#adb5bd",
+            },
+            calendarHeaderLevel: {
+              fontWeight: 600,
+            },
+            calendarHeaderControl: {
+              display: "none",
+            },
+            weekdays: {
+              backgroundColor: theme.colors.secondary[0],
+            },
+          })}
+          getDayProps={(date) => ({
+            selected: selected.some((s) => dayjs(date).isSame(s, "date")),
+            onClick: () => handleSelect(date),
+          })}
+        />
+      </Group>
     </aside>
   );
 }
-

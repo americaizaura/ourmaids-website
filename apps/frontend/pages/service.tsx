@@ -26,7 +26,7 @@ export default function SectionVictor() {
 		<main>
 			<Container size="xl" className="pt-32 pb-12 ">
 				<ServiceName />
-				<div className="flex gap-40 mb-28">
+				<div className="flex flex-col lg:gap-40 mb-28 lg:flex-row">
 					<DateSection/>
 					<div>
 						<RecomendSection/>
