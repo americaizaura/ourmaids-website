@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	Button,
 	Textarea,
@@ -9,31 +9,23 @@ import {
 	Input,
 } from "@mantine/core";
 import Image from "next/image";
-import { compose, withProps } from "recompose";
-import {
-	withScriptjs,
-	withGoogleMap,
-	GoogleMap,
-	Marker,
-} from "react-google-maps";
 
-const MyMapComponent = compose(
-	withProps({
-		googleMapURL:
-			"https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",
-		loadingElement: <div style={{ height: `100%` }} />,
-		containerElement: <div style={{ height: `400px` }} />,
-		mapElement: <div style={{ height: `100%` }} />,
-	}),
-	withScriptjs,
-	withGoogleMap
-)((props) => (
-	<GoogleMap defaultZoom={8} defaultCenter={{ lat: -34.397, lng: 150.644 }}>
-		<Marker position={{ lat: -34.397, lng: 150.644 }} />
-	</GoogleMap>
-));
+import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+const containerStyle = {
+	width: "400px",
+	height: "400px",
+};
 
+const center = {
+	lat: -3.745,
+	lng: -38.523,
+};
 export default function LocationsView() {
+	const { isLoaded } = useJsApiLoader({
+		id: "google-map-script",
+		googleMapsApiKey: "YOUR_API_KEY",
+	});
+	const [map, setMap] = useState(null);
 	const locations = [
 		{
 			id: 1,
@@ -117,13 +109,6 @@ export default function LocationsView() {
 						))}
 					</Accordion>
 					{/* 	<div className="bg-primary col-span-12 md:col-start-7 md:col-end-13 w-full h-56"></div> */}
-					<MyMapComponent
-						googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-						isMarkerShown={false}
-						loadingElement={<div style={{ height: `100%` }} />}
-						containerElement={<div style={{ height: `400px` }} />}
-						mapElement={<div style={{ height: `100%` }} />}
-					/>
 				</div>
 			</Container>
 			<div className="grow"></div>
