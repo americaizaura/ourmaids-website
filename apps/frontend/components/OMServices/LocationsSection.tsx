@@ -8,7 +8,7 @@ export default function LocationsSection(){
             <div className="flex gap-x-4">
                 <img src="/images/celular.png" alt="" className="w-3/4 h-56 object-cover rounded-3xl"/>
                 <div>
-                    <div className="text-xs text-justify tracking-wide font-medium">
+                    <div className="text-xs text-justify tracking-wide font-medium w-4/5 md:w-full">
                         Lorem ipsum dolor sit amet consectetur.
                     </div>
                     <Button
