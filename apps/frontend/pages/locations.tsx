@@ -9,23 +9,8 @@ import {
 	Input,
 } from "@mantine/core";
 import Image from "next/image";
-
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
-const containerStyle = {
-	width: "400px",
-	height: "400px",
-};
-
-const center = {
-	lat: -3.745,
-	lng: -38.523,
-};
+import Map from "../components/map";
 export default function LocationsView() {
-	const { isLoaded } = useJsApiLoader({
-		id: "google-map-script",
-		googleMapsApiKey: "YOUR_API_KEY",
-	});
-	const [map, setMap] = useState(null);
 	const locations = [
 		{
 			id: 1,
@@ -80,7 +65,7 @@ export default function LocationsView() {
 		<div className="lg:mt-16 flex flex-col h-full">
 			<Container size="xl" className="pt-24 md:pb-28 pb-14 w-full">
 				<h2 className="mt-0">Locations</h2>
-				<div className="grid grid-cols-12 gap-4">
+				<div className="grid grid-cols-12 md:gap-10 space-y-10 md:space-y-0">
 					<Accordion
 						className="col-span-12 md:col-start-1 md:col-end-6 w-full"
 						variant="separated"
@@ -108,6 +93,16 @@ export default function LocationsView() {
 							</Accordion.Item>
 						))}
 					</Accordion>
+					<div
+						className="col-span-12 md:col-start-6 md:col-end-13 w-full h-[500px]
+					"
+					>
+						<Map
+							ubicationUrl="https://maps.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613507864!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sPT%20Kulkul%20Teknologi%20Internasional!5e0!3m2!1sen!2sid!4v1601138221085!5m2!1sen!2sid"
+							width="100%"
+							height="100%"
+						/>
+					</div>
 					{/* 	<div className="bg-primary col-span-12 md:col-start-7 md:col-end-13 w-full h-56"></div> */}
 				</div>
 			</Container>
@@ -124,7 +119,7 @@ export default function LocationsView() {
 					/>
 				</div>
 
-				<Container size="xl" className="grid grid-cols-12 h-[500px] pt-16">
+				<Container size="xl" className="grid grid-cols-12 h-[480px] pt-16">
 					<div className="md:col-span-5 col-span-12">
 						<h2>Find your nearest location</h2>
 						<p>Lorem ipsum dolor sit amet consectetur.</p>
