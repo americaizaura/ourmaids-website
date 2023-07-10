@@ -17,7 +17,7 @@ const Appbar = () => {
     return router.pathname === path;
   };
   const navigation = [
-    { name: "Booking", href: "/booking" },
+    { name: "Bookings", href: "/booking" },
     { name: "Services", href: "/services" },
     { name: "About us", href: "/about-us" },
     { name: "Locations", href: "/locations" },

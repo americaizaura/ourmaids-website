@@ -66,7 +66,7 @@ const Footer = () => {
 
   const company = [
     {
-      name: "Booking",
+      name: "Bookings",
       href: "/booking",
     },
     {

@@ -20,11 +20,9 @@ const Booking = () => {
       step: 3,
     },
   ];
-        
+
   return (
-    <section
-      className="relative mt-52 lg:mt-[400px]"
-    >
+    <section className="relative mt-52 lg:mt-[400px]">
       <div className="absolute right-0">
         <Image
           src="/images/circle-booking.png"
@@ -50,7 +48,7 @@ const Booking = () => {
         }}
         size="xl"
       >
-        <h4>BOOKING</h4>
+        <h4>BOOKINGS</h4>
         <h2 className="z-10 relative md:static">3 easy steps to get started</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 mt-24">
           {steps.map((step, index) => (
