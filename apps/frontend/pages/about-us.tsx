@@ -26,7 +26,7 @@ export default function AboutUsView() {
         {/* <div className="absolute h-full 2xl:w-[15%] w-[50%] 2xl:left-[35%] left-0"> */}
         <div className="absolute h-full w-[50%]">
           <Image
-            src="/images/aboutUS/image 21.png"
+            src="/images/aboutUs/image-21.webp"
             alt="Hero"
             objectFit="cover"
             layout="fill"
@@ -111,7 +111,7 @@ export default function AboutUsView() {
               <div className="col-start-5 col-end-10 h-full w-full">
                 <div className="flex items-center h-full">
                   <Image
-                    src="/images/aboutUS/image 22.png"
+                    src="/images/aboutUs/image-22.webp"
                     alt="Hero"
                     objectFit="cover"
                     width={500}
@@ -139,7 +139,7 @@ export default function AboutUsView() {
       <div className="w-full mb-60 relative h-full">
         <div className="absolute top-0 right-0 h-[85%] w-[50%]">
           <Image
-            src="/images/aboutUS/image 25.png"
+            src="/images/aboutUs/image-25.webp"
             alt="Hero"
             layout="fill"
             objectFit="cover"
@@ -184,7 +184,7 @@ export default function AboutUsView() {
           <div className="grid grid-cols-12 w-full h-full">
             <div className="col-span-4 w-full h-full">
               <Image
-                src="/images/aboutUS/image 26.png"
+                src="/images/aboutUs/image-26.webp"
                 alt="Hero"
                 width={500}
                 height={300}
