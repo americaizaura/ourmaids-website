@@ -16,6 +16,7 @@ import Image from "next/image";
 import Reviews from "../components/OMServices/ReviewSection";
 import CleaningTeam from "../components/OMServices/CleaningSection";
 import ServiceName from "../components/OMServices/SerNameSection";
+import DateSection from "../components/OMServices/DateSection";
 
 
 export default function SectionVictor() {
@@ -23,6 +24,7 @@ export default function SectionVictor() {
     <main className="my-24 mx-24">
       <ServiceName/>
       <Reviews/>
+
       <CleaningTeam/>
     </main>
   );
