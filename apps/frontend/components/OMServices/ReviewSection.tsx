@@ -57,7 +57,7 @@ const Reviews = () => {
   ];
 
   return (
-    <section className="">
+    <section className="flex flex-col items-center md:items-stretch">
       <div>
         <h6 className="my-2">Reviews</h6>
         <div className="my-2">
@@ -65,7 +65,7 @@ const Reviews = () => {
             <p className="text-xs font-bold mr-4 my-4">4.5⭐</p>
             <p className="text-[0.625rem] font-semibold">12 reviews</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 md:gap-x-24 mb-4 gap-y-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 md:gap-x-24 mb-4 gap-y-0">
             {cleanliness.map((cleanliness, index) => (
               <div key={index}>
                 <Cleanliness
@@ -77,7 +77,7 @@ const Reviews = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-24 gap-y-8 my-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-8 my-12">
         {reviews.map((review, index) => (
           <div key={index}>
             <ReviewsService
