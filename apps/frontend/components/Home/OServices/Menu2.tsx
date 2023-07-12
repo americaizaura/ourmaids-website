@@ -15,7 +15,7 @@ function menu2(props: MenuProps) {
               src={props.image}
               alt={props.title}
             />
-            <p className="text-lg absolute z-20 text-[#fff] px-9 font-bold flex py-3">{props.title}</p>
+            <p className="min-[500px]:px-6 text-base sm:text-lg absolute z-20 text-[#fff] px-3 sm:px-9 font-bold flex py-3">{props.title}</p>
       </aside>
     </div> 
       </div>

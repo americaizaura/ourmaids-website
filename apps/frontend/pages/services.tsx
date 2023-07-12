@@ -68,11 +68,11 @@ export default function ServicesView() {
 				</video>
 				<Container size="xl">
 					<h4>Our Services</h4>
-					<div className="grid grid-cols-12 gap-4">
-						<div className="col-span-6 md:col-span-3">
+					<div className="grid grid-cols-4 md:grid-cols-12">
+						<div className="grid grid-cols-2 md:flex md:flex-col col-span-6 md:col-span-3">
 							{menu.map((menu, index) => (
 								<div key={index}>
-									<div className="mb-6">
+									<div className="mb-6 mr-3 ">
 										<Menu1 title={menu.title} image={menu.image} />
 									</div>
 								</div>
@@ -81,7 +81,7 @@ export default function ServicesView() {
 						<div className="col-span-6 md:col-span-3"> */}
 							{menu2.map((menu2, index) => (
 								<div key={index}>
-									<div className="mb-6">
+									<div className="mb-6 ml-3 md:mr-3 md:ml-0 ">
 										<Menu2 title={menu2.title} image={menu2.image} />
 									</div>
 								</div>
