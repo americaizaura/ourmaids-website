@@ -22,7 +22,7 @@ function CleaningS({
   lorem2,
 }: CleaningProps) {
   return (
-    <div className="flex flex-col md:flex-row justify-center gap-y-10">
+    <div className="flex flex-col md:flex-row justify-center gap-y-10 max-md:w-80">
       <div className="flex">
         <div className="mx-10 w-28 h-28 overflow-hidden rounded-3xl ">
           <img

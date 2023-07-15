@@ -5,7 +5,7 @@ import { CarouselSlide } from "@mantine/carousel/lib/CarouselSlide/CarouselSlide
 
 function CleaningTeam() {
     return (
-        <section className="flex flex-col justify-center md:items-stretch">
+        <section className="flex flex-col justify-center items-center md:items-stretch">
             <div>
                 <h6 className="">Cleaning Team</h6>
                 <Carousel

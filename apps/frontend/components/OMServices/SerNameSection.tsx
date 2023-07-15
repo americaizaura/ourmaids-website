@@ -41,11 +41,11 @@ const ServiceName = () => {
     },
   ];
   return (
-    <section className="flex flex-col md:flex-row md:gap-x-8">
-      <div className="flex flex-col items-start md:items-center md:justify-between ">
+    <section className="flex flex-col md:flex-row md:gap-x-8 2xl:gap-x-16" >
+      <div className="flex flex-col items-center md:justify-between ">
         <div>
           <h4 className="mb-6">Service Name</h4>
-          <p className="text-xs text-justify w-72 md:w-[780px] tracking-wide font-medium leading-5 md:leading-4">
+          <p className="text-xs text-justify w-72 min-[500px]:w-96 sm:w-[780px] tracking-wide font-medium leading-5 md:leading-4">
             Lorem ipsum dolor sit amet consectetur. Ut id suspendisse duis
             elementum tristique nulla elementurn. Habitant tempor nisl in congue
             dis. Diam nulla a habitant eget facilisi. Lobortis pellentesque turpis
@@ -60,13 +60,13 @@ const ServiceName = () => {
           </p>
           <div>
             <h6 className="mb-6">Includes</h6>
-            <div className="flex flex-col w-72 md:flex-row justify-between md:w-[740px]">
-              <div className="">
+            <div className="flex flex-col md:flex-row w-72 justify-between md:w-[740px] min-[500px]:w-96">
+              <div className=" gap-10 md:gap-3 md:flex md:flex-col">
                 {CheckList.map((item, index) => (
                   <CheckBox key={index} list={item.list} />
                 ))}
               </div>
-              <div className="flex md:flex-col gap-8 my-2 md:my-0 md:gap-10 ">
+              <div className="flex md:flex md:flex-col min-[500px]:grid min-[500px]:grid-cols-2 gap-8 my-2 md:my-0 md:gap-10 ">
                 <div className="flex items-center gap-2 md:gap-6">
                   <Wand size={32} stroke-width={1.2}></Wand>
                   <label className="text-xs text-justify tracking-wide font-medium">
@@ -84,7 +84,7 @@ const ServiceName = () => {
           </div>
         </div>
       </div>
-      <section className="flex items-center">
+      <section className="flex justify-center">
         <aside className="bg-[#efdfe0] h-full my-10 w-96 py-14 rounded-xl flex flex-col items-center md:w-[440px]">
           <div className="flex justify-center gap-4">
             {TypeList.map((item, index) => (

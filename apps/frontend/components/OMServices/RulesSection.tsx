@@ -58,10 +58,10 @@ const RulesSection = () => {
   ));
   return (
     <section className="w-full h-2/3 bg-primary">
-      <Container size="xl" className="pt-2 pb-12">
+      <Container size="xl" className="pt-2 pb-12 w-80 md:w-full">
         <h6 className="mb-6">Rules and FAQ</h6>
         <div className="flex flex-col lg:flex-row gap-y-10 gap-x-24">
-          <div className="flex flex-col md:flex-row gap-y-10 gap-x-24">
+          <div className="flex flex-col md:flex-row gap-y-10 gap-x-24  ">
             {rules.map((rule, index) => (
               <div key={index} className="flex flex-col gap-y-8">
                 <div className="text-xs text-justify tracking-wide font-bold">
