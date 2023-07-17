@@ -41,7 +41,7 @@ const ServiceName = () => {
     },
   ];
   return (
-    <section className="flex flex-col md:flex-row md:gap-x-8 2xl:gap-x-16" >
+    <section className="flex flex-col xl:flex-row md:gap-x-8 2xl:gap-x-16" >
       <div className="flex flex-col items-center md:justify-between ">
         <div>
           <h4 className="mb-6">Service Name</h4>
