@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_uses",
+  "info": {
+    "singularName": "about-us",
+    "pluralName": "about-uses",
+    "displayName": "About Us",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "aboutOurMaids": {
+      "type": "text"
+    },
+    "howItAllStarted": {
+      "type": "text"
+    }
+  }
+}
