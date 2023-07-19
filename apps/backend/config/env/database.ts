@@ -1,8 +1,8 @@
-import { parseUri } from 'mysql-parse';
+import { parse} from 'pg-connection-string';
 
 export default ({ env }) => {
     try {
-        const { host, port, database, user, password } = parseUri(env('DATABASE_URL'));
+        const { host, port, database, user, password } = parse(env('DATABASE_URL'));
 
         return {
             connection: {
