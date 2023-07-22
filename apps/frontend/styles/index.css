@@ -54,7 +54,7 @@ body {
   .test {
     width: 100%;
 
-    height: calc(100% - 550px);
+    height: calc(100% - 610px);
     z-index: -1;
     position: absolute;
   }
