@@ -22,18 +22,20 @@ export default function AboutUsView() {
 				<source src="promo.mp4" type="video/mp4" />
 			</video>
 
-			<div className="relative">
-				<div className="hidden lg:absolute lg:block h-full w-[50%]">
-					<Image
-						src="/images/aboutUs/image-21.webp"
-						alt="Hero"
-						objectFit="cover"
-						layout="fill"
-						className="rounded-r-xl 2xl:rounded-xl"
-						objectPosition="0 25%"
-					/>
+			<div className="relative ">
+				<div className="px-4 lg:px-0">
+					<div className="relative lg:absolute lg:block lg:h-full lg:w-[50%] h-[200px] w-full ">
+						<Image
+							src="/images/aboutUs/image-21.webp"
+							alt="Hero"
+							objectFit="cover"
+							layout="fill"
+							className="lg:rounded-r-xl 2xl:rounded-xl rounded-xl"
+							objectPosition="0 25%"
+						/>
+					</div>
 				</div>
-				<div className="hidden lg:absolute lg:block top-[80%] h-full left-[8%]">
+				<div className="absolute lg:block lg:top-[80%] h-full lg:left-[8%] md:top-[10%] md:left-[60%] left-[20%] top-[8%]">
 					<div className="w-64 h-64 rounded-full flex justify-center items-center  bg-[#76AD77]">
 						<h6 className="my-0 text-surface text-center">
 							“Lorem ipsum dolor sit amet consectetur. Cras luctus quam netus
@@ -41,7 +43,11 @@ export default function AboutUsView() {
 						</h6>
 					</div>
 				</div>
-				<Container size="xl" className="grid grid-cols-12 mb-60">
+
+				<Container
+					size="xl"
+					className="grid grid-cols-12 lg:mb-60 mb-12 mt-44 lg:mt-44 md:mt-12"
+				>
 					<div className="lg:col-start-8 md:col-end-13 col-span-12">
 						<h2 className="mt-0">ABOUT OUR MAIDS</h2>
 						<h1>Lorem Ipsum</h1>
@@ -86,16 +92,16 @@ export default function AboutUsView() {
 					</div>
 				</Container>
 			</div>
-			<div className="bg-primary h-[900px] w-full  mb-28">
+			<div className="bg-primary h-auto w-full  mb-28 pb-28">
 				<Container size="xl" className="flex flex-col h-full w-full">
-					<div className="grow-0 grid grid-cols-12">
-						<h1 className="col-start-1 col-end-6">
+					<div className="grow-0 grid grid-cols-12 mb-12">
+						<h1 className="col-start-1 md:col-end-8 col-end-13">
 							We provide the best cleaning services for you
 						</h1>
 					</div>
 					<div className="grow">
-						<div className="grid grid-cols-12 h-full">
-							<div className="col-start-2 col-end-5 h-full">
+						<div className="md:grid md:grid-cols-12 h-full grid grid-cols-1 sm:grid sm:grid-cols-2 sm:max-md:grid-rows-2 sm:max-md:grid-flow-col">
+							<div className="md:col-start-2 md:col-end-5 h-full sm:col-start-1 sm:col-end-2">
 								<div className="flex flex-col justify-evenly h-full">
 									<div>
 										<h3>Flexible prices</h3>
@@ -107,19 +113,19 @@ export default function AboutUsView() {
 									</div>
 								</div>
 							</div>
-							<div className="col-start-5 col-end-10 h-full w-full">
-								<div className="flex items-center h-full">
+							<div className="md:col-start-5  md:col-end-10 h-full w-full sm:max-md:row-start-2 sm:max-md:row-end-3 sm:max-md:col-span-2 ">
+								<div className=" flex items-center md:w-full md:h-[450px] relative sm:max-md:h-[300px] sm:max-md:w-full h-[300px] ">
 									<Image
 										src="/images/aboutUs/image-22.webp"
 										alt="Hero"
-										objectFit="cover"
-										width={500}
-										height={600}
-										className="rounded-r-xl"
+										layout="fill"
+										className="rounded-r-xl md:object-cover sm:max-md:object-contain"
 									/>
+									{/* 	width={500}
+										height={600} */}
 								</div>
 							</div>
-							<div className="col-start-10 col-end-13">
+							<div className="md:col-start-10 md:col-end-13 sm:col-start-2 sm:col-end-3">
 								<div className="flex flex-col justify-evenly h-full">
 									<div>
 										<h3>Home services</h3>
