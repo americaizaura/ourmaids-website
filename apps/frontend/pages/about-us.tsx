@@ -100,8 +100,8 @@ export default function AboutUsView() {
 						</h1>
 					</div>
 					<div className="grow">
-						<div className="md:grid md:grid-cols-12 h-full grid grid-cols-1 sm:grid sm:grid-cols-2 sm:max-md:grid-rows-2 sm:max-md:grid-flow-col">
-							<div className="md:col-start-2 md:col-end-5 h-full sm:col-start-1 sm:col-end-2">
+						<div className="grid md:grid-cols-12 h-full grid-cols-1  sm:grid-cols-2 sm:max-md:grid-rows-2 sm:max-md:grid-flow-col max-sm:grid-rows-3 ">
+							<div className="md:col-start-2 md:col-end-5 h-full sm:col-start-1 sm:col-end-2 max-sm:row-start-1 max-sm:row-end-2">
 								<div className="flex flex-col justify-evenly h-full">
 									<div>
 										<h3>Flexible prices</h3>
@@ -113,19 +113,19 @@ export default function AboutUsView() {
 									</div>
 								</div>
 							</div>
-							<div className="md:col-start-5  md:col-end-10 h-full w-full sm:max-md:row-start-2 sm:max-md:row-end-3 sm:max-md:col-span-2 ">
+							<div className="md:col-start-5  md:col-end-10 h-full w-full sm:max-md:row-start-2 sm:max-md:row-end-3 sm:max-md:col-span-2 max-sm:row-start-3 max-sm:row-end-4 ">
 								<div className=" flex items-center md:w-full md:h-[450px] relative sm:max-md:h-[300px] sm:max-md:w-full h-[300px] ">
 									<Image
 										src="/images/aboutUs/image-22.webp"
 										alt="Hero"
 										layout="fill"
-										className="rounded-r-xl md:object-cover sm:max-md:object-contain"
+										className="rounded-r-xl md:object-cover sm:max-md:object-contain max-sm:object-contain"
 									/>
 									{/* 	width={500}
 										height={600} */}
 								</div>
 							</div>
-							<div className="md:col-start-10 md:col-end-13 sm:col-start-2 sm:col-end-3">
+							<div className="md:col-start-10 md:col-end-13 sm:col-start-2 sm:col-end-3 max-sm:row-start-2 max-sm:row-end-3">
 								<div className="flex flex-col justify-evenly h-full">
 									<div>
 										<h3>Home services</h3>
@@ -142,7 +142,7 @@ export default function AboutUsView() {
 				</Container>
 			</div>
 			<div className="w-full mb-60 relative h-full">
-				<div className="absolute top-0 right-0 h-[85%] w-[50%]">
+				<div className="md:absolute top-0 right-0 h-[85%] w-[50%] hidden md:block">
 					<Image
 						src="/images/aboutUs/image-25.webp"
 						alt="Hero"
@@ -152,16 +152,7 @@ export default function AboutUsView() {
 						objectPosition="0 25%"
 					/>
 				</div>
-				{/*     <div className="absolute top-[100%] left-[15%] h-full w-[50%]">
-          <Image
-            src="/images/aboutUS/image 26.png"
-            alt="Hero"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-xl"
-            objectPosition="0 25%"
-          />
-        </div> */}
+
 				<Container size="xl" className="h-full w-full flex flex-col">
 					<div className="grid grid-cols-12 mb-14">
 						<div className="md:col-span-4 col-span-12">
