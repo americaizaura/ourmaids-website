@@ -19,6 +19,6 @@ VOLUME [ "/app/apps/backend/public/uploads"]
 COPY . .
 
 RUN yarn install
-RUN yarn build --scope=backend
+RUN yarn build --scope backend
 
-CMD ["yarn", "dev", "--scope=backend", "--include-dependencies", "--no-deps"]
+CMD ["yarn", "dev", "--scope", "backend", "--include-dependencies", "--no-deps"]
