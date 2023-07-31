@@ -4,6 +4,8 @@ import { MantineProvider } from "@mantine/core";
 import "../styles/hero.css";
 import "../styles/index.css";
 import Layout from "../components/layaout";
+import client from "../lib/apollo";
+import { ApolloProvider } from "@apollo/client";
 export default function App(props: AppProps) {
 	const { Component, pageProps } = props;
 
@@ -58,9 +60,11 @@ export default function App(props: AppProps) {
 					},
 				}}
 			>
-				<Layout>
-					<Component {...pageProps} />
-				</Layout>
+				<ApolloProvider client={client}>
+					<Layout>
+						<Component {...pageProps} />
+					</Layout>
+				</ApolloProvider>
 			</MantineProvider>
 		</>
 	);

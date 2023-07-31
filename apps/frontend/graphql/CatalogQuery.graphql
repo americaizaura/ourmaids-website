@@ -1,0 +1,98 @@
+# Welcome to Altair GraphQL Client.
+# You can send your request using CmdOrCtrl + Enter.
+
+# Enter your graphQL query here.
+query CatalogQuery($merchantId: ID!) {
+	catalog(filter: { merchantId: { equalToAnyOf: [$merchantId] } }) {
+		pageInfo {
+			hasNextPage
+			endCursor
+		}
+		nodes {
+			__typename
+			id
+			version
+			isDeleted
+			updatedAt
+			absentAt {
+				id
+			}
+			presentAt {
+				id
+			}
+			presentAtAll
+			... on CatalogCategory {
+				name
+			}
+			... on CatalogItem {
+				abbreviation
+				availableElectronically
+				availableForPickup
+				availableOnline
+				category {
+					id
+				}
+				description
+				images {
+					id
+					url
+				}
+				options {
+					id
+					name
+				}
+				labelColor
+				modifierListInfos {
+					modifierList {
+						id
+					}
+					enabled
+					maxSelectedModifiers
+					minSelectedModifiers
+					modifierOverrides {
+						modifier {
+							id
+						}
+						onByDefault
+					}
+				}
+				name
+				productType
+				skipModifierScreen
+				taxes {
+					id
+					name
+				}
+				variations {
+					id
+					name
+				}
+			}
+			... on CatalogItemVariation {
+				name
+				sku
+			}
+			... on CatalogItemOptionValue {
+				name
+				option {
+					description
+					name
+					showColors
+				}
+			}
+			... on CatalogProductSet {
+				allProducts
+				name
+				allSetProducts {
+					id
+				}
+				anySetProducts {
+					id
+				}
+				quantityExact
+				quantityMax
+				quantityMin
+			}
+		}
+	}
+}
