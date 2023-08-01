@@ -58,14 +58,14 @@ export default function ServicesView() {
 	return (
 		<section>
 			<div className="lg:mt-16 mt-8">
-				<video
+				{/* 	<video
 					controls
 					muted
 					autoPlay
 					className="lg:h-screen lg:w-screen  w-full h-auto mt-4"
 				>
 					<source src="promo.mp4" type="video/mp4" />
-				</video>
+				</video> */}
 				<Container size="xl">
 					<h4>Our Services</h4>
 					<div className="grid grid-cols-4 md:grid-cols-12">

@@ -9,8 +9,16 @@ import {
 } from "@mantine/core";
 import { GoogleMap, Marker } from "react-google-maps";
 import Input from "../components/Input";
+import { useEffect, useState } from "react";
 export default function ContactUsView() {
-	const faq = [
+	const [faq, setFaq] = useState([]);
+
+	useEffect(() => {
+		fetch("data.json")
+			.then((response) => response.json())
+			.then((data) => setFaq(data));
+	}, []);
+	/* const faq = [
 		{
 			id: 1,
 			question: "Lorem ipsum dolor sit amet consectetur.",
@@ -35,14 +43,14 @@ export default function ContactUsView() {
 			answer:
 				"Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent. Aliquam nibh id nec et pulvinar dictumst nisi. Tellus tristique semper cursus convallis volutpat lorem. ",
 		},
-	];
+	]; */
 	return (
 		<div className="lg:mt-16 relative h-full flex-grow mt-16">
 			<div className="bg-primary test"></div>
 			<Container size="xl" className="pt-24 pb-28">
 				<div className="grid grid-cols-1 md:grid-cols-12 gap-5">
-					<div className="md:col-start-1 md:col-end-5">
-						<h6 className="mt-0">FAQ</h6>
+					<h6 className="mt-0 mb-0">FAQ</h6>
+					<div className="md:col-start-1 md:col-end-5  max-h-96   overflow-hidden  overflow-y-auto">
 						<Accordion
 							variant="separated"
 							radius="md"
@@ -71,8 +79,9 @@ export default function ContactUsView() {
 						<div>
 							<h2 className="mt-0">Contact Us</h2>
 							<p>
-								Lorem ipsum dolor sit amet consectetur. Congue sit tortor tellus
-								lacinia.
+								Use the form below to send us any message, set up an appointment
+								to look at your facilities and send you a proposal for
+								janitorial services, to reschedule or to cancel a reservation.
 							</p>
 							<div className="space-y-5">
 								<div className="grid md:grid-cols-2 grid-cols-1 gap-4">

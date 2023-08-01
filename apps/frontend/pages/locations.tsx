@@ -122,7 +122,7 @@ export default function LocationsView() {
 				<Container size="xl" className="grid grid-cols-12 h-[480px] pt-16">
 					<div className="md:col-span-5 col-span-12">
 						<h2>Find your nearest location</h2>
-						<p>Lorem ipsum dolor sit amet consectetur.</p>
+
 						<Input placeholder={"Enter your location"} radius="lg" />
 					</div>
 				</Container>
@@ -132,7 +132,7 @@ export default function LocationsView() {
 					<Container size="xl" className="grid grid-cols-12 pt-16">
 						<div className="md:col-span-5 col-span-12">
 							<h2>Find your nearest location</h2>
-							<p>Lorem ipsum dolor sit amet consectetur.</p>
+							{/* <p>Lorem ipsum dolor sit amet consectetur.</p> */}
 							<Input placeholder={"Enter your location"} radius="lg" />
 						</div>
 					</Container>

@@ -9,7 +9,7 @@ import Link from "next/link";
 function CardServices(props: CardServicesProps) {
 	return (
 		<>
-			<Link href="/service">
+			<Link href="/service" passHref>
 				<div className="rounded-full w-full h-52 md:h-80 flex flex-col cursor-pointer">
 					{/*       <div className=""> */}
 					<div className="relative w-full h-36 md:h-64">
