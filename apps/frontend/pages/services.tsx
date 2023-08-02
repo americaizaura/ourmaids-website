@@ -132,8 +132,7 @@ export default function ServicesView({ services }: ServicesProps) {
 											description={service?.name}
 										/>
 									))
-								)}{" "}
-								*
+								)}
 							</div>
 						</div>
 					</div>
