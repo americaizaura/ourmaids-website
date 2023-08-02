@@ -119,7 +119,7 @@ export default function ServicesView({ services }: ServicesProps) {
 										description={service.description}
 									/>
 								))} */}
-								{/* 	{!data ? (
+								{!data ? (
 									<div>Loading...</div>
 								) : (
 									data?.catalogItems?.nodes?.map((service, index) => (
@@ -132,7 +132,8 @@ export default function ServicesView({ services }: ServicesProps) {
 											description={service?.name}
 										/>
 									))
-								)} */}
+								)}{" "}
+								*
 							</div>
 						</div>
 					</div>
