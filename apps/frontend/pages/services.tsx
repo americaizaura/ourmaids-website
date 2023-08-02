@@ -143,13 +143,12 @@ export default function ServicesView({ services }: ServicesProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-	const services = await serverClient
-		.CatalogQuery({
-			merchantId: "MLKWYQQXZSB3S",
-		})
-		.catch((err) => {
+	const services = await serverClient.CatalogQuery({
+		merchantId: "MLKWYQQXZSB3S",
+	});
+	/* 	.catch((err) => {
 			console.log(err);
-		});
+		}); */
 	return {
 		props: {
 			services,
