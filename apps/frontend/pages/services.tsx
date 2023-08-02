@@ -119,7 +119,7 @@ export default function ServicesView({ services }: ServicesProps) {
 										description={service.description}
 									/>
 								))} */}
-								{!data ? (
+								{/* 	{!data ? (
 									<div>Loading...</div>
 								) : (
 									data?.catalogItems?.nodes?.map((service, index) => (
@@ -132,7 +132,7 @@ export default function ServicesView({ services }: ServicesProps) {
 											description={service?.name}
 										/>
 									))
-								)}
+								)} */}
 							</div>
 						</div>
 					</div>
@@ -143,10 +143,13 @@ export default function ServicesView({ services }: ServicesProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-	const services = await serverClient.CatalogQuery({
-		merchantId: "MLKWYQQXZSB3S",
-	});
-
+	const services = await serverClient
+		.CatalogQuery({
+			merchantId: "MLKWYQQXZSB3S",
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 	return {
 		props: {
 			services,
