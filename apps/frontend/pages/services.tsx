@@ -9,9 +9,12 @@ import { serverClient } from "../lib/apollo.server";
 interface ServicesProps {
 	services: CatalogQueryQuery;
 }
-
+const productType = {
+	SUBSCRIPTION: "APPOINTMENTS_SERVICE",
+	ONE_TIME: "REGULAR",
+};
 export default function ServicesView({ services }: ServicesProps) {
-	const {
+	/* const {
 		data: dataServices,
 		loading: loadingServices,
 		error: errorServices,
@@ -19,11 +22,11 @@ export default function ServicesView({ services }: ServicesProps) {
 		variables: {
 			merchantId: "MLKWYQQXZSB3S",
 		},
-	});
+	}); */
 
-	const data = dataServices ?? services;
+	const data = /* dataServices ?? */ services;
 
-	const loading = services && !dataServices ? false : loadingServices;
+	/* const loading = services && !dataServices ? false : loadingServices; */
 	const menu = [
 		{
 			title: "SUBSCRIPTIONS",
@@ -116,7 +119,7 @@ export default function ServicesView({ services }: ServicesProps) {
 										description={service.description}
 									/>
 								))} */}
-								{loading ? (
+								{!data ? (
 									<div>Loading...</div>
 								) : (
 									data?.catalogItems?.nodes?.map((service, index) => (
