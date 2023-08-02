@@ -27,7 +27,21 @@ const OurServices = () => {
 	const [currentSlide, setCurrentSlide] = useState(0);
 	return (
 		<section className="relative">
-			<div className="absolute top-0 left-0 w-full pl-80 ">
+			<div className="sm:absolute top-0 left-0 sm:w-[600px] block w-full pb-10 sm:pb-0">
+				<h4 className="mt-0">OUR SERVICES</h4>
+				<h2>PACKAGES</h2>
+				<p style={{ color: "grey" }} className=" sm:w-72 w-full">
+					WE ARE HERE WHENEVER YOU NEED US! WE HAVE BEEN CLEANING HOMES AND
+					OFFICES IN CALIFORNIA, Texas, Delaware, Maryland, North Carolina,
+					Cancun, Montreal and more FOR OVER 22 YEARS NOW.
+				</p>
+				<Link href="/services" passHref>
+					<Button color="secondary.0" radius="xl">
+						Read More
+					</Button>
+				</Link>
+			</div>
+			<div className="absolute sm:top-0 left-0 w-full sm:pl-80  block">
 				<div
 					className="h-[400px] rounded-xl"
 					style={{
@@ -36,9 +50,9 @@ const OurServices = () => {
 				/>
 			</div>
 
-			<div className="w-full p-10 pl-80">
+			<div className="w-full sm:py-10 sm:pb-10 sm:pl-80 md:pl-80  md:p-10 p-10 sm:p-0">
 				<Carousel
-					className="h-full"
+					className="h-full "
 					slideSize="250px"
 					slideGap="md"
 					loop
@@ -60,20 +74,6 @@ const OurServices = () => {
 						</Carousel.Slide>
 					))}
 				</Carousel>
-			</div>
-			<div className="absolute top-0 left-0 w-[600px]">
-				<h4 className="mt-0">OUR SERVICES</h4>
-				<h2>PACKAGES</h2>
-				<p style={{ color: "grey" }} className=" w-72">
-					WE ARE HERE WHENEVER YOU NEED US! WE HAVE BEEN CLEANING HOMES AND
-					OFFICES IN CALIFORNIA, Texas, Delaware, Maryland, North Carolina,
-					Cancun, Montreal and more FOR OVER 22 YEARS NOW.
-				</p>
-				<Link href="/services" passHref>
-					<Button color="secondary.0" radius="xl">
-						Read More
-					</Button>
-				</Link>
 			</div>
 		</section>
 	);

@@ -12,7 +12,7 @@ import Input from "../components/Input";
 
 export default function AboutUsView() {
 	return (
-		<div className="lg:mt-16 mt-8">
+		<div className="lg:mt-16 mt-40">
 			{/* 	<video
 				controls
 				muted
@@ -49,8 +49,8 @@ export default function AboutUsView() {
 					className="grid grid-cols-12 lg:mb-60 mb-12 mt-44 lg:mt-44 md:mt-12"
 				>
 					<div className="lg:col-start-8 md:col-end-13 col-span-12">
-						<h2 className="mt-0">ABOUT OUR MAIDS</h2>
-						<h1>Why Choose OurMaids.com? </h1>
+						<h2 className="mt-4 md:mt-16 lg:mt-0">ABOUT OUR MAIDS</h2>
+						<h1>Why Choose OurMaids.com ? </h1>
 						<p className="text-justify">
 							We are America's most affordable residential and commercial
 							cleaning service, and the most reliable, and we have been for 23

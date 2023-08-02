@@ -3,8 +3,27 @@ import Menu1 from "../components/Home/OServices/Menu1";
 import { Container } from "@mantine/core";
 import CardServices from "../components/Home/OServices/CardServices";
 import Menu2 from "../components/Home/OServices/Menu2";
+import { CatalogQueryQuery, useCatalogQueryQuery } from "../generated/graphql";
+import { GetServerSideProps } from "next";
+import { serverClient } from "../lib/apollo.server";
+interface ServicesProps {
+	services: CatalogQueryQuery;
+}
 
-export default function ServicesView() {
+export default function ServicesView({ services }: ServicesProps) {
+	const {
+		data: dataServices,
+		loading: loadingServices,
+		error: errorServices,
+	} = useCatalogQueryQuery({
+		variables: {
+			merchantId: "MLKWYQQXZSB3S",
+		},
+	});
+
+	const data = dataServices ?? services;
+
+	const loading = services && !dataServices ? false : loadingServices;
 	const menu = [
 		{
 			title: "SUBSCRIPTIONS",
@@ -17,7 +36,7 @@ export default function ServicesView() {
 			image: "/images/image 20.png",
 		},
 	];
-	const services = [
+	/* 	const services = [
 		{
 			image: "/images/oservices/image 17.png",
 			description: "Lorem ipsum dolor.",
@@ -54,10 +73,10 @@ export default function ServicesView() {
 			image: "/images/oservices/image 17_2.png",
 			description: "Lorem ipsum dolor.",
 		},
-	];
+	]; */
 	return (
-		<section>
-			<div className="lg:mt-16 mt-8">
+		<section className="mb-44 ">
+			<div className="lg:mt-16 mt-8 ">
 				{/* 	<video
 					controls
 					muted
@@ -66,7 +85,7 @@ export default function ServicesView() {
 				>
 					<source src="promo.mp4" type="video/mp4" />
 				</video> */}
-				<Container size="xl">
+				<Container size="xl" className="mt-40">
 					<h4>Our Services</h4>
 					<div className="grid grid-cols-4 md:grid-cols-12">
 						<div className="grid grid-cols-2 md:flex md:flex-col col-span-6 md:col-span-3">
@@ -90,13 +109,27 @@ export default function ServicesView() {
 
 						<div className="md:col-span-9 col-span-12">
 							<div className="grid sm:grid-cols-3  lg:grid-cols-3 grid-cols-2 gap-4">
-								{services.map((service, index) => (
+								{/* 	{services.map((service, index) => (
 									<CardServices
 										key={index}
 										image={service.image}
 										description={service.description}
 									/>
-								))}
+								))} */}
+								{loading ? (
+									<div>Loading...</div>
+								) : (
+									data?.catalogItems?.nodes?.map((service, index) => (
+										<CardServices
+											key={service?.id}
+											image={
+												service?.images[0].url ??
+												"/images/oservices/image 17.png"
+											}
+											description={service?.name}
+										/>
+									))
+								)}
 							</div>
 						</div>
 					</div>
@@ -105,3 +138,15 @@ export default function ServicesView() {
 		</section>
 	);
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	const services = await serverClient.CatalogQuery({
+		merchantId: "MLKWYQQXZSB3S",
+	});
+
+	return {
+		props: {
+			services,
+		},
+	};
+};

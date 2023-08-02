@@ -4,7 +4,7 @@ import Image from "next/image";
 function HeroSection() {
 	const theme = useMantineTheme();
 	return (
-		<section className="h-screen m-auto lg:mt-16 mt-[140px] bg-fixed bg-[center_top_6rem] bg-cover main_section lg:bg-[center_top_4rem] md:bg-[center_top_6rem] ">
+		<section className="lg:h-screen h-[500px] sm:h-[550px] md:h-[650px] m-auto lg:mt-16 mt-[140px] bg-fixed bg-[center_top_6rem] bg-cover main_section lg:bg-[center_top_4rem] md:bg-[center_top_6rem] ">
 			{/*    <div className="max-width">
         <div className="main_section-content">
           <h1
@@ -31,19 +31,19 @@ function HeroSection() {
         </div>
       </div> */}
 
-			<div className="absolute lg:bottom-[30%] lg:right-[55%] bottom-1/3">
+			<div className="absolute xl:bottom-[30%] xl:right-[55%] m-10 2xl:p-0">
 				<h1
 					style={{
 						color: "white",
 					}}
 				>
-					OURMAIDS.COM
+					OURMAIDS
 				</h1>
 				<h4
 					style={{
 						color: "white",
-						maxWidth: "600px",
 					}}
+					className="max-w-[350px] sm:max-w-[700px]"
 				>
 					The most affordable Residential and commercial cleaning services since
 					2,000... and the most reliable. Our prices start at $139.

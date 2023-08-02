@@ -1,9 +1,10 @@
-# Welcome to Altair GraphQL Client.
-# You can send your request using CmdOrCtrl + Enter.
-
-# Enter your graphQL query here.
 query CatalogQuery($merchantId: ID!) {
-	catalog(filter: { merchantId: { equalToAnyOf: [$merchantId] } }) {
+	catalogItems(
+		filter: {
+			merchantId: { equalToAnyOf: [$merchantId] }
+			productType: { equalToAnyOf: APPOINTMENTS_SERVICE }
+		}
+	) {
 		pageInfo {
 			hasNextPage
 			endCursor
@@ -21,9 +22,7 @@ query CatalogQuery($merchantId: ID!) {
 				id
 			}
 			presentAtAll
-			... on CatalogCategory {
-				name
-			}
+
 			... on CatalogItem {
 				abbreviation
 				availableElectronically
@@ -67,31 +66,6 @@ query CatalogQuery($merchantId: ID!) {
 					id
 					name
 				}
-			}
-			... on CatalogItemVariation {
-				name
-				sku
-			}
-			... on CatalogItemOptionValue {
-				name
-				option {
-					description
-					name
-					showColors
-				}
-			}
-			... on CatalogProductSet {
-				allProducts
-				name
-				allSetProducts {
-					id
-				}
-				anySetProducts {
-					id
-				}
-				quantityExact
-				quantityMax
-				quantityMin
 			}
 		}
 	}
