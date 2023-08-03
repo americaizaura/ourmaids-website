@@ -3,24 +3,29 @@ import Menu1 from "../components/Home/OServices/Menu1";
 import { Container } from "@mantine/core";
 import CardServices from "../components/Home/OServices/CardServices";
 import Menu2 from "../components/Home/OServices/Menu2";
-import { CatalogQueryQuery, useCatalogQueryQuery } from "../generated/graphql";
+import {
+	CatalogItemProductType,
+	CatalogQueryQuery,
+	useCatalogQueryQuery,
+} from "../generated/graphql";
 import { GetServerSideProps } from "next";
 import { serverClient } from "../lib/apollo.server";
 interface ServicesProps {
 	services: CatalogQueryQuery;
 }
-const productType = {
-	SUBSCRIPTION: "APPOINTMENTS_SERVICE",
-	ONE_TIME: "REGULAR",
-};
+const appointmentsService = CatalogItemProductType.AppointmentsService;
+const regular = CatalogItemProductType.Regular;
 export default function ServicesView({ services }: ServicesProps) {
-	/* const {
+	const [selectedProductType, setSelectedProductType] =
+		React.useState<CatalogItemProductType>(appointmentsService);
+	/* 	const {
 		data: dataServices,
 		loading: loadingServices,
 		error: errorServices,
 	} = useCatalogQueryQuery({
 		variables: {
 			merchantId: "MLKWYQQXZSB3S",
+			productType: CatalogItemProductType.AppointmentsService,
 		},
 	}); */
 
@@ -125,9 +130,18 @@ export default function ServicesView({ services }: ServicesProps) {
 									data?.catalogItems?.nodes?.map((service, index) => (
 										<CardServices
 											key={service?.id}
-											image={
-												service?.images[0].url ??
+											/* validar que no sea null */
+											/* 	image={
+												service?.images[0]?.url ??
 												"/images/oservices/image 17.png"
+											} */
+											image={
+												service &&
+												service.images &&
+												service.images[0] &&
+												service.images[0].url
+													? service.images[0].url
+													: "/images/oservices/image 17.png"
 											}
 											description={service?.name}
 										/>
@@ -146,6 +160,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 	const services = await serverClient
 		.CatalogQuery({
 			merchantId: "MLKWYQQXZSB3S",
+			productType: appointmentsService,
 		})
 		.catch((err) => {
 			console.log(err);

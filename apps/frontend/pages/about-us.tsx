@@ -50,7 +50,7 @@ export default function AboutUsView() {
 				>
 					<div className="lg:col-start-8 md:col-end-13 col-span-12">
 						<h2 className="mt-4 md:mt-16 lg:mt-0">ABOUT OUR MAIDS</h2>
-						<h1>Why Choose OurMaids.com ? </h1>
+						<h1>Why Choose OurMaids? </h1>
 						<p className="text-justify">
 							We are America's most affordable residential and commercial
 							cleaning service, and the most reliable, and we have been for 23
@@ -62,12 +62,12 @@ export default function AboutUsView() {
 								23 years ago out of a flyer Antonio hang up at her door in
 								McKinney, TX.
 							</strong>
-							<p className="text-justify">
-								We offer Deep House Cleaning, Standard House Cleaning one time
-								or by subscription, Post Construction Home or Office Cleaning,
-								Commercial cleaning services to all kinds of buildings, Building
-								cleaning and maintenance to all types of institutions, and more.
-							</p>
+						</p>
+						<p className="text-justify">
+							We offer Deep House Cleaning, Standard House Cleaning one time or
+							by subscription, Post Construction Home or Office Cleaning,
+							Commercial cleaning services to all kinds of buildings, Building
+							cleaning and maintenance to all types of institutions, and more.
 						</p>
 						<div className="flex flex-row ">
 							<Image
@@ -102,7 +102,7 @@ export default function AboutUsView() {
 					</div>
 				</Container>
 			</div>
-			<div className="bg-primary h-auto w-full  mb-28 pb-28">
+			<div className="bg-primary h-auto w-full  mb-28  pb-6 md:pb-28">
 				<Container size="xl" className="flex flex-col h-full w-full">
 					<div className="grow-0 grid grid-cols-12 mb-12">
 						<h1 className="col-start-1 md:col-end-8 col-end-13">
@@ -110,42 +110,57 @@ export default function AboutUsView() {
 						</h1>
 					</div>
 					<div className="grow">
-						<div className="grid md:grid-cols-12 h-full grid-cols-1  sm:grid-cols-2 sm:max-md:grid-rows-2 sm:max-md:grid-flow-col max-sm:grid-rows-3 ">
+						<div className="grid md:grid-cols-12 h-full grid-cols-1  sm:grid-cols-2 sm:max-md:grid-rows-2 sm:max-md:grid-flow-col max-sm:grid-rows-3  sm:gap-8">
 							<div className="md:col-start-2 md:col-end-5 h-full sm:col-start-1 sm:col-end-2 max-sm:row-start-1 max-sm:row-end-2">
-								<div className="flex flex-col justify-evenly h-full">
+								<div className="flex flex-col justify-around  h-full">
 									<div>
-										<h3>Flexible prices</h3>
-										<p>Lorem ipsum dolor sit amet consectetur.</p>
+										<h3>Affordable prices</h3>
+										<p className="text-justify">
+											Our fees start at $139 weekly subscription for a flat less
+											than 500 s.f. Then go up according to the type of service
+											(Standard, Deep, Move out, etc.)
+										</p>
 									</div>
 									<div>
 										<h3>Easy payment</h3>
-										<p>Lorem ipsum dolor sit amet consectetur.</p>
+										<p className="text-justify">
+											We accept all types of credit and debit cards and you can
+											pay on your mobile home or on theirs. We also take checks,
+											cash, Zelle, cash app, paypal, apple pay and
+											google pay payments.
+										</p>
 									</div>
 								</div>
 							</div>
 							<div className="md:col-start-5  md:col-end-10 h-full w-full sm:max-md:row-start-2 sm:max-md:row-end-3 sm:max-md:col-span-2 max-sm:row-start-3 max-sm:row-end-4 ">
-								<div className=" flex items-center md:w-full md:h-[450px] relative sm:max-md:h-[300px] sm:max-md:w-full h-[300px] ">
+								<div className=" flex items-center md:w-full md:h-full relative sm:max-md:h-full sm:max-md:w-full h-full ">
 									<Image
 										src="/images/aboutUs/image-22.webp"
 										alt="Hero"
 										layout="fill"
-										className="rounded-r-xl md:object-cover sm:max-md:object-contain max-sm:object-contain"
+										className="rounded-r-xl lg:object-cover sm:max-lg:object-contain max-sm:object-contain"
 									/>
 									{/* 	width={500}
 										height={600} */}
 								</div>
 							</div>
 							<div className="md:col-start-10 md:col-end-13 sm:col-start-2 sm:col-end-3 max-sm:row-start-2 max-sm:row-end-3">
-								<div className="flex flex-col justify-evenly h-full">
+								<div className="flex flex-col justify-around h-full">
 									<div>
 										<h3>Home services</h3>
-										<p>Lorem ipsum dolor sit amet consectetur.</p>
+										<p className="text-justify">
+											At your home we do: Deep cleaning, Standard cleaning, Move
+											out/Move in cleaning, Post construction cleaning, domestic
+											services (every day cleaning) and subscriptions: weekly,
+											biweekly, monthly.
+										</p>
 									</div>
 									<div>
 										<h3>Deep cleaning</h3>
-										<p>
-											Ideal for any home, office, or apartment needing frequent
-											deep cleaning.
+										<p className="text-justify">
+											We do office cleaning, janitorial services (building
+											maintenance), church cleaning, cleaning to school, and
+											cleanig & maintenance to any type of building.
 										</p>
 									</div>
 								</div>

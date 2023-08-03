@@ -79,13 +79,16 @@ const Appbar = () => {
 					</Drawer>
 					<div className="grow text-center mx-auto lg:ml-0  lg:grow-0 lg:text-left h-[70px] w-[200px] relative lg:h-[80px] lg:w-[250px]">
 						<Link href={"/"} passHref>
-							<Image
-								src="/images/logo.png"
-								alt="Logo"
-								objectFit="contain"
-								layout="fill"
-								className="cursor-pointer"
-							/>
+							<a>
+								<Image
+									priority
+									src="/images/logo.png"
+									alt="Logo"
+									objectFit="contain"
+									layout="fill"
+									className="cursor-pointer"
+								/>
+							</a>
 						</Link>
 					</div>
 					<div className="hidden lg:flex lg:justify-between lg:items-center ">

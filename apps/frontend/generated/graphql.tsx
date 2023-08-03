@@ -10,6 +10,7 @@ export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' |
 const defaultOptions = {} as const;
 export type CatalogQueryQueryVariables = Exact<{
   merchantId: Scalars['ID']['input'];
+  productType?: InputMaybe<Array<CatalogItemProductType> | CatalogItemProductType>;
 }>;
 
 
@@ -12106,9 +12107,9 @@ export type UrlFilter = {
 
 
 export const CatalogQueryDocument = gql`
-    query CatalogQuery($merchantId: ID!) {
+    query CatalogQuery($merchantId: ID!, $productType: [CatalogItemProductType!]) {
   catalogItems(
-    filter: {merchantId: {equalToAnyOf: [$merchantId]}, productType: {equalToAnyOf: APPOINTMENTS_SERVICE}}
+    filter: {merchantId: {equalToAnyOf: [$merchantId]}, productType: {equalToAnyOf: $productType}}
   ) {
     pageInfo {
       hasNextPage
@@ -12189,6 +12190,7 @@ export const CatalogQueryDocument = gql`
  * const { data, loading, error } = useCatalogQueryQuery({
  *   variables: {
  *      merchantId: // value for 'merchantId'
+ *      productType: // value for 'productType'
  *   },
  * });
  */

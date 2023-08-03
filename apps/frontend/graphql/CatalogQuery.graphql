@@ -1,8 +1,8 @@
-query CatalogQuery($merchantId: ID!) {
+query CatalogQuery($merchantId: ID!, $productType: [CatalogItemProductType!]) {
 	catalogItems(
 		filter: {
 			merchantId: { equalToAnyOf: [$merchantId] }
-			productType: { equalToAnyOf: APPOINTMENTS_SERVICE }
+			productType: { equalToAnyOf: $productType }
 		}
 	) {
 		pageInfo {

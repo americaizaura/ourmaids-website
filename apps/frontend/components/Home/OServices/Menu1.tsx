@@ -8,7 +8,7 @@ interface MenuProps {
 function Menu1(props: MenuProps) {
 	return (
 		<div>
-			<div className="rounded-2xl relative w-full h-20 flex flex-row overflow-hidden shadow-lg">
+			<div className="rounded-2xl relative w-full h-20 flex flex-row cursor-pointer overflow-hidden shadow-lg">
 				<aside className="absolute w-full h-full">
 					<img
 						className="w-96 h-96 translate-y-[-50%] translate-x-[-10%] object-cover absolute z-10"
