@@ -117,13 +117,6 @@ export default function ServicesView({ services }: ServicesProps) {
 
 						<div className="md:col-span-9 col-span-12">
 							<div className="grid sm:grid-cols-3  lg:grid-cols-3 grid-cols-2 gap-4">
-								{/* 	{services.map((service, index) => (
-									<CardServices
-										key={index}
-										image={service.image}
-										description={service.description}
-									/>
-								))} */}
 								{!data ? (
 									<div>Loading...</div>
 								) : (

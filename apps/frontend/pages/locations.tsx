@@ -10,6 +10,7 @@ import {
 } from "@mantine/core";
 import Image from "next/image";
 import Map from "../components/map";
+import { BrandTwitter, MapPin } from "tabler-icons-react";
 export default function LocationsView() {
 	const locations = [
 		{
@@ -18,23 +19,67 @@ export default function LocationsView() {
 			locations: [
 				{
 					id: 1,
-					location:
-						"Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent. Aliquam nibh id nec et pulvinar dictumst nisi. ",
+					name: "Our Office in Dover, DE. (Corporate)",
+					phone: "213-800-7644",
+					location: "8 The Green, Dover, DE, United States",
 				},
 				{
 					id: 2,
-					location:
-						"Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent.",
+					name: "OurMaids of Grand Prairie, TX.",
+					phone: "213-800-7644",
+					location: "3603 Forest Trail Dr, Grand Prairie, TX, United States",
 				},
 				{
 					id: 3,
-					location:
-						"Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent. Aliquam nibh id nec et pulvinar dictumst nisi. ",
+					name: "OurMaids of Delaware",
+					phone: "213-800-7644",
+					location: "7th St, Ocean City, MD 21842 USA",
 				},
 				{
 					id: 4,
+					name: "Office in North Carolina",
+					phone: "213-800-7644",
 					location:
-						"Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent.",
+						"OurMaids of Delaware 7th St, Ocean City, MD 21842 USA, 213-800-7644",
+				},
+				{
+					id: 5,
+					name: "Office in North Carolina",
+					phone: "213-800-7644",
+					location: "915 S Lindell Rd, Greensboro, NC, United States",
+				},
+				{
+					id: 6,
+					name: "OurMaids of Dallas",
+					phone: "213-800-7644",
+					location:
+						"1180 N Masters Dr, Dallas, TX 75217, United States of America",
+				},
+				//add more locations
+				{
+					id: 7,
+					name: "OurMaids of Sun Valley, CA.",
+					phone: "213-800-7644",
+					location: "7520 Satsuma Ave, Sun Valley, CA, United States",
+				},
+				{
+					id: 8,
+					name: "OurMaids of Austin, TX.",
+					phone: "213-800-7644",
+					location: "1070 Mearns Meadow Blvd, Austin, TX, United States",
+				},
+				{
+					id: 9,
+					name: "OurMaids of Fort Worth, TX.",
+					phone: "213-800-7644",
+					location: "2832 Crenshaw Ave, Fort Worth, TX, United States",
+				},
+				{
+					id: 10,
+					name: "OurMaids of Houston, TX.",
+					phone: "213-800-7644",
+					location:
+						"17407 Gilmore St, Van Nuys, CA 91406, United States of America",
 				},
 			],
 		},
@@ -44,8 +89,16 @@ export default function LocationsView() {
 			locations: [
 				{
 					id: 1,
+					name: "OurMaids of Cancun, Mexico",
+					phone: "98-32-44-19-75",
+					location: "Supmz 7, Avenida Bonampak, Cancún, México",
+				},
+				{
+					id: 2,
+					name: "OurMaids of Los Cabos, BCS",
+					phone: "624-106-4460",
 					location:
-						"Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent. Aliquam nibh id nec et pulvinar dictumst nisi. ",
+						"BCS Cabo San Lucas Centro, 23450 Cabo San Lucas, BCS, México",
 				},
 			],
 		},
@@ -55,8 +108,10 @@ export default function LocationsView() {
 			locations: [
 				{
 					id: 1,
+					name: "OurMaids of Montreal, QC",
+					phone: "438-701-2058",
 					location:
-						"Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent. Aliquam nibh id nec et pulvinar dictumst nisi. ",
+						"Office in Montreal, QC Montréal, 6625 Rue Dumas, QC, Canada, 438-701-2058",
 				},
 			],
 		},
@@ -87,7 +142,17 @@ export default function LocationsView() {
 								</Accordion.Control>
 								<Accordion.Panel>
 									{item.locations.map((location) => (
-										<p key={location.id}>{location.location}</p>
+										<div key={location.id} className="flex">
+											<MapPin
+												size={28}
+												className="cursor-pointer mr-4  my-auto"
+											/>
+											<div className="flex flex-col mt-4">
+												<p className="font-bold my-0">{location.name}</p>
+												<p className="my-0">{location.phone}</p>
+												<p className="my-0">{location.location}</p>
+											</div>
+										</div>
 									))}
 								</Accordion.Panel>
 							</Accordion.Item>
