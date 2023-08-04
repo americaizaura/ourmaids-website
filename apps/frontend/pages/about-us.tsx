@@ -186,19 +186,19 @@ export default function AboutUsView() {
 						<div className="lg:col-span-4 col-span-12">
 							<h3 className="mt-0">How it all started</h3>
 							<p className="text-justify">
-								Back in 2,000, in a small shop at Arapaho Rd., Richardson,
-								Texas, United States of America, Antonio V. Moreno, then a CNC
-								programmer at Halliburton Company, decided to quit a well paid,
-								secure employment to enter the unknown, uncertain field of the
-								entrepreneurial world founding Our Maids, Inc., a subsidiary of
-								Antonio Moreno Enterprises, Inc., and OurMaids brand. He was
-								then a Business student at Amberton University. Everything on
-								this site is his idea. Before and after getting his Bachelor of
-								Business Administration Degree form Amberton University in
-								Dallas County (Garland), Texas, he has been working full time on
-								this enterprise uninterrupted for 22 years now.
+								OURMAIDS.COM IS A COMPANY FOR THE PEOPLE, NOT JUST AN ONLINE
+								PLATFORM. LOOK AT MORE REVIEWS HERE We don't "match you with a
+								Pro". We are the Professional cleaners! We review your booking
+								immediately and schedule it within one hour, you get a calendar
+								invite when it is up on the teams app. You can reach one of our
+								friendly Customer Care specialist by phone or e-mail and get
+								live responses almost immediately from 7am to 7pm Monday to
+								Sunday (Numbers on top of each page.) Get online bookings and
+								automated responses 24/7 365 days. Our services are the best in
+								the industry because we have done for so many years now that we
+								have improved all aspects of the service.
 							</p>
-							<p className="text-justify">
+							{/* 	<p className="text-justify">
 								His VISION was a simple one back then. To create a cleaning
 								service company that is not tied up to any brick and mortar
 								store, but one that can be run from anywhere in the world. Then
@@ -211,7 +211,7 @@ export default function AboutUsView() {
 								now, 03/24/2023, we are offering Franchises so everybody has the
 								chance to share on this idea or bringing cleaning services to
 								your home Uber like. Explore franchise opportunities here.
-							</p>
+							</p> */}
 						</div>
 					</div>
 					<div className="grid grid-cols-12 w-full h-full gap-4">

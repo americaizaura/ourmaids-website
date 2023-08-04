@@ -32,19 +32,18 @@ const AboutUs = () => {
 							<Grid.Col md={11} offsetMd={1} sm={12} offsetSm={0}>
 								<h4 className="mt-0">ABOUT US</h4>
 								<h2 className="uppercase">history</h2>
-								<p style={{ color: "grey" }}>
-									Back in 2,000, in a small shop at Arapaho Rd., Richardson,
-									Texas, United States of America, Antonio V. Moreno, then a CNC
-									programmer at Halliburton Company, decided to quit a well
-									paid, secure employment to enter the unknown, uncertain field
-									of the entrepreneurial world founding Our Maids, Inc., a
-									subsidiary of Antonio Moreno Enterprises, Inc., and OurMaids
-									brand. He was then a Business student at Amberton University.
-									Everything on this site is his idea. Before and after getting
-									his Bachelor of Business Administration Degree form Amberton
-									University in Dallas County (Garland), Texas, he has been
-									working full time on this enterprise uninterrupted for 22
-									years now.
+								<p style={{ color: "grey" }} className="text-justify">
+									OURMAIDS.COM IS A COMPANY FOR THE PEOPLE, NOT JUST AN ONLINE
+									PLATFORM. LOOK AT MORE REVIEWS HERE We don't "match you with a
+									Pro". We are the Professional cleaners! We review your booking
+									immediately and schedule it within one hour, you get a
+									calendar invite when it is up on the teams app. You can reach
+									one of our friendly Customer Care specialist by phone or
+									e-mail and get live responses almost immediately from 7am to
+									7pm Monday to Sunday (Numbers on top of each page.) Get online
+									bookings and automated responses 24/7 365 days. Our services
+									are the best in the industry because we have done for so many
+									years now that we have improved all aspects of the service.
 								</p>
 								<Link href="/about-us" passHref>
 									<Button color="secondary.0" radius="xl">
