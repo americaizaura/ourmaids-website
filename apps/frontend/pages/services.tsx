@@ -124,16 +124,22 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 	}; */
 
 	try {
-		const catalog = await fetch("http://localhost:3000/api/catalog", {
-			method: "POST",
-			headers: {
-				"Content-type": "application/json",
-			},
-			body: JSON.stringify({
-				productType: CatalogItemProductType.AppointmentsService,
-			}),
-		});
-		console.log("llegio");
+		const catalog = await fetch(
+			"https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/api/catalog",
+			{
+				method: "POST",
+				headers: {
+					"Content-type": "application/json",
+				},
+				body: JSON.stringify({
+					productType: CatalogItemProductType.AppointmentsService,
+				}),
+			}
+		);
+
+		/* 	const images = await fetch("http://localhost:3000/api/catalog",
+
+		) */
 
 		const data: SearchCatalogItemsResponse = await catalog.json();
 
