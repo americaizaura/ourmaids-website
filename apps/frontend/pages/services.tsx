@@ -10,8 +10,9 @@ import {
 } from "../generated/graphql";
 import { GetServerSideProps } from "next";
 import { serverClient } from "../lib/apollo.server";
+import { SearchCatalogItemsResponse } from "square";
 interface ServicesProps {
-	services: CatalogQueryQuery;
+	services: SearchCatalogItemsResponse;
 }
 const appointmentsService = CatalogItemProductType.AppointmentsService;
 const regular = CatalogItemProductType.Regular;
@@ -30,6 +31,7 @@ export default function ServicesView({ services }: ServicesProps) {
 	}); */
 
 	const data = /* dataServices ?? */ services;
+	console.log(data);
 
 	/* const loading = services && !dataServices ? false : loadingServices; */
 	const menu = [
@@ -44,44 +46,7 @@ export default function ServicesView({ services }: ServicesProps) {
 			image: "/images/image 20.png",
 		},
 	];
-	/* 	const services = [
-		{
-			image: "/images/oservices/image 17.png",
-			description: "Lorem ipsum dolor.",
-		},
-		{
-			image: "/images/oservices/image 17_1.png",
-			description: "Lorem ipsum dolor.",
-		},
-		{
-			image: "/images/oservices/image 17_2.png",
-			description: "Lorem ipsum dolor.",
-		},
-		{
-			image: "/images/oservices/image 17.png",
-			description: "Lorem ipsum dolor.",
-		},
-		{
-			image: "/images/oservices/image 17_1.png",
-			description: "Lorem ipsum dolor.",
-		},
-		{
-			image: "/images/oservices/image 17_2.png",
-			description: "Lorem ipsum dolor.",
-		},
-		{
-			image: "/images/oservices/image 17.png",
-			description: "Lorem ipsum dolor.",
-		},
-		{
-			image: "/images/oservices/image 17_1.png",
-			description: "Lorem ipsum dolor.",
-		},
-		{
-			image: "/images/oservices/image 17_2.png",
-			description: "Lorem ipsum dolor.",
-		},
-	]; */
+
 	return (
 		<section className="mb-44 ">
 			<div className="lg:mt-16 mt-8 ">
@@ -117,29 +82,20 @@ export default function ServicesView({ services }: ServicesProps) {
 
 						<div className="md:col-span-9 col-span-12">
 							<div className="grid sm:grid-cols-3  lg:grid-cols-3 grid-cols-2 gap-4">
-								{!data ? (
-									<div>Loading...</div>
-								) : (
-									data?.catalogItems?.nodes?.map((service, index) => (
-										<CardServices
-											key={service?.id}
-											/* validar que no sea null */
-											/* 	image={
-												service?.images[0]?.url ??
-												"/images/oservices/image 17.png"
-											} */
-											image={
-												service &&
-												service.images &&
-												service.images[0] &&
-												service.images[0].url
-													? service.images[0].url
-													: "/images/oservices/image 17.png"
-											}
-											description={service?.name}
-										/>
-									))
-								)}
+								{data?.items?.map((service, index) => (
+									<CardServices
+										key={service?.id}
+										image={
+											service &&
+											service.imageData &&
+											service.imageData[0] &&
+											service.imageData[0].url
+												? service.imageData[0].url
+												: "/images/oservices/image 17.png"
+										}
+										description={service?.itemData.name}
+									/>
+								))}
 							</div>
 						</div>
 					</div>
@@ -150,17 +106,50 @@ export default function ServicesView({ services }: ServicesProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-	const services = await serverClient
-		.CatalogQuery({
-			merchantId: "MLKWYQQXZSB3S",
-			productType: appointmentsService,
-		})
-		.catch((err) => {
-			console.log(err);
-		});
+	/* 	const catalog = await fetch("http://localhost:3000/api/catalog", {
+		method: "POST",
+		headers: {
+			"Content-type": "application/json",
+		},
+		body: JSON.stringify({
+			productType: CatalogItemProductType.AppointmentsService,
+		}),
+	});
+	const catalogJson = await catalog.json();
+
 	return {
 		props: {
-			services,
+			catalogJson,
 		},
-	};
+	}; */
+
+	try {
+		const catalog = await fetch("http://localhost:3000/api/catalog", {
+			method: "POST",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify({
+				productType: CatalogItemProductType.AppointmentsService,
+			}),
+		});
+		console.log("llegio");
+
+		const data: SearchCatalogItemsResponse = await catalog.json();
+
+		return {
+			props: {
+				services: data,
+			},
+		};
+	} catch (error) {
+		console.log(error);
+		console.log("error");
+
+		return {
+			props: {
+				services: null,
+			},
+		};
+	}
 };
