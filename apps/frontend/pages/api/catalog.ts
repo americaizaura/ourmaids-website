@@ -10,7 +10,7 @@ export default async function handler(req: any, res: any) {
 	if (req.method === "POST") {
 		const { result } = await catalogApi.searchCatalogItems({
 			productTypes: [req.body.productType],
-			limit: 9,
+			/* limit: 9, */
 		});
 		//error TypeError: Do not know how to serialize a BigInt
 		const resultSerialize = toObject(result);

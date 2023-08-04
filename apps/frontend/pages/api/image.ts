@@ -8,10 +8,13 @@ const { catalogApi } = new Client({
 
 export default async function handler(req: any, res: any) {
 	if (req.method === "GET") {
-		const { result } = await catalogApi.listCatalog();
-		//error TypeError: Do not know how to serialize a BigInt
-		const resultSerialize = toObject(result);
 
+
+		const { result } = await catalogApi.listCatalog(undefined, "IMAGE");
+
+		const resultSerialize = toObject(result);
+/* console.log(resultSerialize);
+ */
 		res.status(200).json(resultSerialize);
 	} else {
 		res.status(500).send();

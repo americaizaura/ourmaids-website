@@ -10,29 +10,22 @@ import {
 } from "../generated/graphql";
 import { GetServerSideProps } from "next";
 import { serverClient } from "../lib/apollo.server";
-import { SearchCatalogItemsResponse } from "square";
+import { ListCatalogResponse, SearchCatalogItemsResponse } from "square";
 interface ServicesProps {
-	services: SearchCatalogItemsResponse;
+	services: any;
 }
+const API_BASE_URL =
+	"https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/api";
 const appointmentsService = CatalogItemProductType.AppointmentsService;
 const regular = CatalogItemProductType.Regular;
 export default function ServicesView({ services }: ServicesProps) {
 	const [selectedProductType, setSelectedProductType] =
 		React.useState<CatalogItemProductType>(appointmentsService);
-	/* 	const {
-		data: dataServices,
-		loading: loadingServices,
-		error: errorServices,
-	} = useCatalogQueryQuery({
-		variables: {
-			merchantId: "MLKWYQQXZSB3S",
-			productType: CatalogItemProductType.AppointmentsService,
-		},
-	}); */
 
 	const data = /* dataServices ?? */ services;
-	console.log(data);
 
+	/* console.log(data);
+	 */
 	/* const loading = services && !dataServices ? false : loadingServices; */
 	const menu = [
 		{
@@ -82,18 +75,15 @@ export default function ServicesView({ services }: ServicesProps) {
 
 						<div className="md:col-span-9 col-span-12">
 							<div className="grid sm:grid-cols-3  lg:grid-cols-3 grid-cols-2 gap-4">
-								{data?.items?.map((service, index) => (
+								{data?.map((service, index) => (
 									<CardServices
 										key={service?.id}
 										image={
-											service &&
-											service.imageData &&
-											service.imageData[0] &&
-											service.imageData[0].url
-												? service.imageData[0].url
+											service && service.imageData
+												? service.imageData.url
 												: "/images/oservices/image 17.png"
 										}
-										description={service?.itemData.name}
+										description={service?.itemData?.name}
 									/>
 								))}
 							</div>
@@ -105,52 +95,115 @@ export default function ServicesView({ services }: ServicesProps) {
 	);
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-	/* 	const catalog = await fetch("http://localhost:3000/api/catalog", {
-		method: "POST",
-		headers: {
-			"Content-type": "application/json",
-		},
-		body: JSON.stringify({
-			productType: CatalogItemProductType.AppointmentsService,
-		}),
-	});
-	const catalogJson = await catalog.json();
-
-	return {
-		props: {
-			catalogJson,
-		},
-	}; */
-
+/* export const getServerSideProps: GetServerSideProps = async (context) => {
 	try {
-		const catalog = await fetch(
-			"https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/api/catalog",
-			{
-				method: "POST",
-				headers: {
-					"Content-type": "application/json",
-				},
-				body: JSON.stringify({
-					productType: CatalogItemProductType.AppointmentsService,
-				}),
-			}
-		);
+		const catalog = await fetch("http://localhost:3000/api/catalog", {
+			method: "POST",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify({
+				productType: CatalogItemProductType.Regular,
+			}),
+		});
 
-		/* 	const images = await fetch("http://localhost:3000/api/catalog",
-
-		) */
+		const images = await fetch("http://localhost:3000/api/image");
 
 		const data: SearchCatalogItemsResponse = await catalog.json();
+		const dataImages: ListCatalogResponse = await images.json();
+		console.log();
+
+		const dataCatalog = data.items?.map((item) => {
+			const image = dataImages.objects?.find(
+				(image) =>
+					image.type === "IMAGE" &&
+					image.id === (item.itemData?.imageIds?.[0] || "")
+			);
+
+			return {
+				...item,
+				imageData: image?.imageData || null,
+			};
+		});
 
 		return {
 			props: {
-				services: data,
+				services: dataCatalog,
 			},
 		};
 	} catch (error) {
 		console.log(error);
-		console.log("error");
+
+		return {
+			props: {
+				services: null,
+			},
+		};
+	}
+}; */
+
+async function fetchCatalogItems(): Promise<SearchCatalogItemsResponse | null> {
+	try {
+		const response = await fetch(`${API_BASE_URL}/catalog`, {
+			method: "POST",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify({
+				productType: CatalogItemProductType.Regular,
+			}),
+		});
+		return await response.json();
+	} catch (error) {
+		console.error("Error fetching catalog items:", error);
+		return null;
+	}
+}
+
+async function fetchImages(): Promise<ListCatalogResponse | null> {
+	try {
+		const response = await fetch(`${API_BASE_URL}/image`);
+		return await response.json();
+	} catch (error) {
+		console.error("Error fetching images:", error);
+		return null;
+	}
+}
+
+function enhanceCatalogData(
+	catalogData: SearchCatalogItemsResponse,
+	imagesData: ListCatalogResponse
+) {
+	return catalogData.items?.map((item) => {
+		const image = imagesData.objects?.find(
+			(image) =>
+				image.type === "IMAGE" &&
+				image.id === (item.itemData?.imageIds?.[0] || "")
+		);
+
+		return {
+			...item,
+			imageData: image?.imageData || null,
+		};
+	});
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	try {
+		const [catalogData, imagesData] = await Promise.all([
+			fetchCatalogItems(),
+			fetchImages(),
+		]);
+
+		const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
+
+		return {
+			props: {
+				services: enhancedCatalogData,
+			},
+		};
+	} catch (error) {
+		console.error("Error:", error);
 
 		return {
 			props: {
