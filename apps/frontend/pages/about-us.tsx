@@ -109,26 +109,65 @@ export default function AboutUsView() {
 							We provide the best cleaning services for you
 						</h1>
 					</div>
-					<div className="grow">
+					{/* <div className="grow">
 						<div className="grid md:grid-cols-12 h-full grid-cols-1  sm:grid-cols-2 sm:max-md:grid-rows-2 sm:max-md:grid-flow-col max-sm:grid-rows-3  sm:gap-8">
 							<div className="md:col-start-2 md:col-end-5 h-full sm:col-start-1 sm:col-end-2 max-sm:row-start-1 max-sm:row-end-2">
 								<div className="flex flex-col justify-around  h-full">
 									<div>
-										<h3>Affordable prices</h3>
-										<p className="text-justify">
-											Our fees start at $139 weekly subscription for a flat less
-											than 500 s.f. Then go up according to the type of service
-											(Standard, Deep, Move out, etc.)
+										<h3>
+											Affordable pricescleaning by suscription (standar
+											cleaning)
+										</h3>
+										<p className="text-justify">All rooms:</p>
+										<p>
+											Wipe out picture frames, knickknacks; dust off ceiling
+											fans, lamps; wipe out furniture, woodwork, shelves and
+											baseboards. Remove cobwebs. Vacuum carpets. Mop all floors
+											and dry wood floors. Vacuum furniture, including under any
+											cushions. Empty and clean wastebaskets (trash cans).
+										</p>
+										<p>Bedrooms:</p>
+										<p>
+											In addition to all of the above paragraph, we make the
+											beds, change the linens if left on the bed, straighten
+											your vanity, organize and vacuum your closet if left open.
+										</p>
+										<p>Bathrooms:</p>
+										<p>
+											Clean, scrub and sanitize showers, bathtubs and sinks.
+											Clean and sanitize toilets, vanities, backsplashes. Clean
+											mirrors. Polish chrome. Wash floors and tile walls.
+											Deodorize.
+										</p>
+										<p>Kitchen:</p>
+										<p>
+											Clean appliances, counters, cabinets, tables and chairs.
+											Clean, scrub and sanitize sinks. Clean and sanitize
+											countertops and backsplashes. Clean the range top and
+											refrigerator top and exterior. Fill up the dishwasher.
+											Clean microwave oven inside and out. Wash floors.
 										</p>
 									</div>
 									<div>
-										<h3>Easy payment</h3>
+										<h3>Post construction cleaning</h3>
 										<p className="text-justify">
-											We accept all types of credit and debit cards and you can
-											pay on your mobile home or on theirs. We also take checks,
-											cash, Zelle, cash app, paypal, apple pay and
-											google pay payments.
+											Post construction cleaning tasks include:
 										</p>
+										<ul>
+											<li>Vacuum all carpets</li>
+											<li>Cleaning all floors</li>
+											<li>Washing all bathrooms and its accessories</li>
+											<li>Washing all kitchens</li>
+											<li>Wiping all appliances inside and out</li>
+											<li>Wiping off all baseboards</li>
+											<li>Washing all windows inside</li>
+											<li>Wiping off all ceiling fans</li>
+											<li>Cleaning all cabinets inside and out</li>
+											<li>Cleaning all doors</li>
+											<li>Cleaning all door knobs</li>
+											<li>Swiping all entrance alleys</li>
+											<li>Dispose of all trash (not construction materials)</li>
+										</ul>
 									</div>
 								</div>
 							</div>
@@ -140,28 +179,323 @@ export default function AboutUsView() {
 										layout="fill"
 										className="rounded-r-xl lg:object-cover sm:max-lg:object-contain max-sm:object-contain"
 									/>
-									{/* 	width={500}
-										height={600} */}
 								</div>
 							</div>
 							<div className="md:col-start-10 md:col-end-13 sm:col-start-2 sm:col-end-3 max-sm:row-start-2 max-sm:row-end-3">
 								<div className="flex flex-col justify-around h-full">
 									<div>
-										<h3>Home services</h3>
+										<h3>Move-in, move-out</h3>
 										<p className="text-justify">
-											At your home we do: Deep cleaning, Standard cleaning, Move
-											out/Move in cleaning, Post construction cleaning, domestic
-											services (every day cleaning) and subscriptions: weekly,
-											biweekly, monthly.
+											Move-in, move-out cleaning tasks include:
 										</p>
+										<ul className="text-justify space-y-1">
+											<li>Vacuum all carpets</li>
+											<li>Cleaning all floors</li>
+											<li>Washing all bathrooms and its accessories</li>
+											<li>Washing all kitchens</li>
+											<li>
+												Wiping all appliances inside and out (oven and fridge
+												are custom services)
+											</li>
+											<li>Wiping off all baseboards</li>
+											<li>Wiping off all ceiling fans</li>
+											<li>Cleaning all cabinets inside and out</li>
+											<li>Cleaning all doors</li>
+											<li>Cleaning all door knobs</li>
+											<li>Swiping all entrance alleys</li>
+											<li>Dispose of all trash (not construction materials)</li>
+											<li>Cleaning all windows inside</li>
+										</ul>
 									</div>
 									<div>
 										<h3>Deep cleaning</h3>
 										<p className="text-justify">
-											We do office cleaning, janitorial services (building
-											maintenance), church cleaning, cleaning to school, and
-											cleanig & maintenance to any type of building.
+											In addition to the standard cleaning, deep cleaning
+											includes cleaning:
 										</p>
+										<ul className="text-justify space-y-1">
+											<li>Baseboards</li>
+											<li>Stove and micro ovens</li>
+											<li>Refrigerator inside</li>
+											<li>Cabinets inside</li>
+											<li>Ceiling fans</li>
+											<li>Windows inside</li>
+											<li>Window sills</li>
+											<li>Miniblinds</li>
+											<li>Cobweb removal</li>
+											<li>Cleaning all</li>
+											<li>Door knobs</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> */}
+					<div className="h-full block md:hidden">
+						<Accordion
+							variant="separated"
+							radius="md"
+							styles={{
+								item: {
+									// styles added to all items
+									backgroundColor: "#fff",
+									"&[data-active]": {
+										borderColor: "#fff",
+									},
+									// styles added to expanded item
+								},
+							}}
+						>
+							<Accordion.Item value="customization">
+								<Accordion.Control>
+									Cleaning by suscription (standar cleaning)
+								</Accordion.Control>
+								<Accordion.Panel>
+									<p className="text-justify">All rooms:</p>
+									<p>
+										Wipe out picture frames, knickknacks; dust off ceiling fans,
+										lamps; wipe out furniture, woodwork, shelves and baseboards.
+										Remove cobwebs. Vacuum carpets. Mop all floors and dry wood
+										floors. Vacuum furniture, including under any cushions.
+										Empty and clean wastebaskets (trash cans).
+									</p>
+									<p>Bedrooms:</p>
+									<p>
+										In addition to all of the above paragraph, we make the beds,
+										change the linens if left on the bed, straighten your
+										vanity, organize and vacuum your closet if left open.
+									</p>
+									<p>Bathrooms:</p>
+									<p>
+										Clean, scrub and sanitize showers, bathtubs and sinks. Clean
+										and sanitize toilets, vanities, backsplashes. Clean mirrors.
+										Polish chrome. Wash floors and tile walls. Deodorize.
+									</p>
+									<p>Kitchen:</p>
+									<p>
+										Clean appliances, counters, cabinets, tables and chairs.
+										Clean, scrub and sanitize sinks. Clean and sanitize
+										countertops and backsplashes. Clean the range top and
+										refrigerator top and exterior. Fill up the dishwasher. Clean
+										microwave oven inside and out. Wash floors.
+									</p>
+								</Accordion.Panel>
+							</Accordion.Item>
+							<Accordion.Item value="customizationa">
+								<Accordion.Control>
+									Post construction cleaning
+								</Accordion.Control>
+								<Accordion.Panel>
+									<p className="text-justify">
+										Post construction cleaning tasks include:
+									</p>
+									<ul>
+										<li>Vacuum all carpets</li>
+										<li>Cleaning all floors</li>
+										<li>Washing all bathrooms and its accessories</li>
+										<li>Washing all kitchens</li>
+										<li>Wiping all appliances inside and out</li>
+										<li>Wiping off all baseboards</li>
+										<li>Washing all windows inside</li>
+										<li>Wiping off all ceiling fans</li>
+										<li>Cleaning all cabinets inside and out</li>
+										<li>Cleaning all doors</li>
+										<li>Cleaning all door knobs</li>
+										<li>Swiping all entrance alleys</li>
+										<li>Dispose of all trash (not construction materials)</li>
+									</ul>
+								</Accordion.Panel>
+							</Accordion.Item>
+							<Accordion.Item value="customizationas">
+								<Accordion.Control>Move-in, move-out</Accordion.Control>
+								<Accordion.Panel>
+									<p className="text-justify">
+										Move-in, move-out cleaning tasks include:
+									</p>
+									<ul className="text-justify space-y-1 ">
+										<li>Vacuum all carpets</li>
+										<li>Cleaning all floors</li>
+										<li>Washing all bathrooms and its accessories</li>
+										<li>Washing all kitchens</li>
+										<li>
+											Wiping all appliances inside and out (oven and fridge are
+											custom services)
+										</li>
+										<li>Wiping off all baseboards</li>
+										<li>Wiping off all ceiling fans</li>
+										<li>Cleaning all cabinets inside and out</li>
+										<li>Cleaning all doors</li>
+										<li>Cleaning all door knobs</li>
+										<li>Swiping all entrance alleys</li>
+										<li>Dispose of all trash (not construction materials)</li>
+										<li>Cleaning all windows inside</li>
+									</ul>
+								</Accordion.Panel>
+							</Accordion.Item>
+							<Accordion.Item value="customizationaaaa">
+								<Accordion.Control>Deep cleaning</Accordion.Control>
+								<Accordion.Panel>
+									<p className="text-justify">
+										In addition to the standard cleaning, deep cleaning includes
+										cleaning:
+									</p>
+									<ul className="text-justify space-y-1">
+										<li>Baseboards</li>
+										<li>Stove and micro ovens</li>
+										<li>Refrigerator inside</li>
+										<li>Cabinets inside</li>
+										<li>Ceiling fans</li>
+										<li>Windows inside</li>
+										<li>Window sills</li>
+										<li>Miniblinds</li>
+										<li>Cobweb removal</li>
+										<li>Cleaning all</li>
+										<li>Door knobs</li>
+									</ul>
+								</Accordion.Panel>
+							</Accordion.Item>
+						</Accordion>
+						<div className="h-full w-full justify-center flex">
+							<div className="relative h-[500px] w-[500px]">
+								<Image
+									src="/images/aboutUs/image-22.webp"
+									alt="Hero"
+									layout="fill"
+									className="rounded-r-xl lg:object-cover sm:max-lg:object-contain max-sm:object-contain"
+								/>
+							</div>
+						</div>
+					</div>
+					<div className="h-full hidden md:block">
+						<div className="grid lg:grid-cols-12 md:grid-cols-2 h-full grid-flow-col gap-4">
+							<div className="lg:col-start-2 lg:col-end-5 md:col-start-1 md:col-end-2 row-start-1 row-end-2 mb-4">
+								<h3 className="my-0">
+									Cleaning by suscription (standar cleaning)
+								</h3>
+							</div>
+							{/* repeat(4, minmax(0, 1fr)) */}
+							<div className="lg:col-start-2 lg:col-end-5 md:col-start-1 md:col-end-2  row-start-2 row-end-3 mb-8">
+								<div className="max-h-[250px] overflow-hidden overflow-y-auto custom-scrollbar pr-2">
+									<p className="text-justify">All rooms:</p>
+									<p>
+										Wipe out picture frames, knickknacks; dust off ceiling fans,
+										lamps; wipe out furniture, woodwork, shelves and baseboards.
+										Remove cobwebs. Vacuum carpets. Mop all floors and dry wood
+										floors. Vacuum furniture, including under any cushions.
+										Empty and clean wastebaskets (trash cans).
+									</p>
+									<p>Bedrooms:</p>
+									<p>
+										In addition to all of the above paragraph, we make the beds,
+										change the linens if left on the bed, straighten your
+										vanity, organize and vacuum your closet if left open.
+									</p>
+									<p>Bathrooms:</p>
+									<p>
+										Clean, scrub and sanitize showers, bathtubs and sinks. Clean
+										and sanitize toilets, vanities, backsplashes. Clean mirrors.
+										Polish chrome. Wash floors and tile walls. Deodorize.
+									</p>
+									<p>Kitchen:</p>
+									<p>
+										Clean appliances, counters, cabinets, tables and chairs.
+										Clean, scrub and sanitize sinks. Clean and sanitize
+										countertops and backsplashes. Clean the range top and
+										refrigerator top and exterior. Fill up the dishwasher. Clean
+										microwave oven inside and out. Wash floors.
+									</p>
+								</div>
+							</div>
+							<div className="lg:col-start-2 lg:col-end-5 md:col-start-1 md:col-end-2 row-start-3 row-end-4 mb-4">
+								<h3 className="my-0">Post construction cleaning</h3>
+							</div>
+							<div className="lg:col-start-2 lg:col-end-5 md:col-start-1 md:col-end-3 row-start-4 row-end-5 mb-8">
+								<div>
+									<div className="max-h-[250px] overflow-hidden overflow-y-auto custom-scrollbar pr-2">
+										<p className="text-justify">
+											Post construction cleaning tasks include:
+										</p>
+										<ul>
+											<li>Vacuum all carpets</li>
+											<li>Cleaning all floors</li>
+											<li>Washing all bathrooms and its accessories</li>
+											<li>Washing all kitchens</li>
+											<li>Wiping all appliances inside and out</li>
+											<li>Wiping off all baseboards</li>
+											<li>Washing all windows inside</li>
+											<li>Wiping off all ceiling fans</li>
+											<li>Cleaning all cabinets inside and out</li>
+											<li>Cleaning all doors</li>
+											<li>Cleaning all door knobs</li>
+											<li>Swiping all entrance alleys</li>
+											<li>Dispose of all trash (not construction materials)</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div className="lg:col-start-5 lg:col-end-10 h-full w-full lg:row-start-1 lg:row-end-5 md:row-start-5 md:row-end-6 md:col-start-1 md:col-end-3 flex lg:items-center md:justify-center">
+								<div className="relative h-[500px] w-[500px]">
+									<Image
+										src="/images/aboutUs/image-22.webp"
+										alt="Hero"
+										layout="fill"
+										className="rounded-r-xl lg:object-cover sm:max-lg:object-contain max-sm:object-contain"
+									/>
+								</div>
+							</div>
+							<div className="lg:col-start-10 lg:col-end-13 md:col-start-2 md:col-end-3 row-start-1 row-end-2 mb-4">
+								<h3 className="my-0">Move-in, move-out</h3>
+							</div>
+							<div className="lg:col-start-10 lg:col-end-13 md:col-start-2 md:col-end-3 row-start-2 row-end-3">
+								<div>
+									<div className="max-h-[250px] overflow-hidden overflow-y-auto custom-scrollbar pr-2">
+										<p className="text-justify">
+											Move-in, move-out cleaning tasks include:
+										</p>
+										<ul className="text-justify space-y-1 ">
+											<li>Vacuum all carpets</li>
+											<li>Cleaning all floors</li>
+											<li>Washing all bathrooms and its accessories</li>
+											<li>Washing all kitchens</li>
+											<li>
+												Wiping all appliances inside and out (oven and fridge
+												are custom services)
+											</li>
+											<li>Wiping off all baseboards</li>
+											<li>Wiping off all ceiling fans</li>
+											<li>Cleaning all cabinets inside and out</li>
+											<li>Cleaning all doors</li>
+											<li>Cleaning all door knobs</li>
+											<li>Swiping all entrance alleys</li>
+											<li>Dispose of all trash (not construction materials)</li>
+											<li>Cleaning all windows inside</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div className="lg:col-start-10 lg:col-end-13 md:col-start-2 md:col-end-3 row-start-3 row-end-4 mb-4">
+								<h3 className="my-0">Deep cleaning</h3>
+							</div>
+							<div className="lg:col-start-10 lg:col-end-13 md:col-start-2 md:col-end-3 row-start-4 row-end-5">
+								<div>
+									<div className="max-h-[250px] overflow-hidden overflow-y-auto custom-scrollbar pr-2">
+										<p className="text-justify">
+											In addition to the standard cleaning, deep cleaning
+											includes cleaning:
+										</p>
+										<ul className="text-justify space-y-1">
+											<li>Baseboards</li>
+											<li>Stove and micro ovens</li>
+											<li>Refrigerator inside</li>
+											<li>Cabinets inside</li>
+											<li>Ceiling fans</li>
+											<li>Windows inside</li>
+											<li>Window sills</li>
+											<li>Miniblinds</li>
+											<li>Cobweb removal</li>
+											<li>Cleaning all</li>
+											<li>Door knobs</li>
+										</ul>
 									</div>
 								</div>
 							</div>
@@ -198,20 +532,6 @@ export default function AboutUsView() {
 								the industry because we have done for so many years now that we
 								have improved all aspects of the service.
 							</p>
-							{/* 	<p className="text-justify">
-								His VISION was a simple one back then. To create a cleaning
-								service company that is not tied up to any brick and mortar
-								store, but one that can be run from anywhere in the world. Then
-								OurMaids.com was born as the only cleaning service company based
-								entirely on an online platform. Our StoreFront is online at any
-								minute and at your fingertips to Book your service, then pay for
-								it. Check our services and prices before you order, get instant
-								answers to your most commonly asked questions and speak with a
-								friendly Customer Care specialist 7am to 7pm every day. As of
-								now, 03/24/2023, we are offering Franchises so everybody has the
-								chance to share on this idea or bringing cleaning services to
-								your home Uber like. Explore franchise opportunities here.
-							</p> */}
 						</div>
 					</div>
 					<div className="grid grid-cols-12 w-full h-full gap-4">

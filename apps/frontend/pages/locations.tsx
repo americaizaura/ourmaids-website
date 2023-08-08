@@ -7,11 +7,37 @@ import {
 	useMantineTheme,
 	rem,
 	Input,
+	ThemeIcon,
+	List,
 } from "@mantine/core";
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import Image from "next/image";
 import Map from "../components/map";
 import { BrandTwitter, MapPin } from "tabler-icons-react";
+
+const center = {
+	lat: -3.745,
+	lng: -38.523,
+};
+const containerStyle = {
+	width: "100%",
+	height: "500px",
+	borderRadius: "0.75rem",
+	overflow: "hidden",
+};
 export default function LocationsView() {
+	const { isLoaded } = useLoadScript({
+		googleMapsApiKey:
+			process.env.REACT_APP_GOOGLE_API_KEY ||
+			"AIzaSyCFIeOK8R5tCOSIPBDeCceJx-ayHwwXfhw",
+		language: "en",
+	});
+	const markers = [
+		{ lat: 18.5204, lng: 73.8567 },
+		{ lat: 18.5314, lng: 73.8446 },
+		{ lat: 18.5642, lng: 73.7769 },
+	];
+
 	const locations = [
 		{
 			id: 1,
@@ -22,12 +48,16 @@ export default function LocationsView() {
 					name: "Our Office in Dover, DE. (Corporate)",
 					phone: "213-800-7644",
 					location: "8 The Green, Dover, DE, United States",
+					lat: 39.1562077,
+					lng: 39.1562077,
 				},
 				{
 					id: 2,
 					name: "OurMaids of Grand Prairie, TX.",
 					phone: "213-800-7644",
 					location: "3603 Forest Trail Dr, Grand Prairie, TX, United States",
+					lat: 32.6840495,
+					lng: -97.0477151,
 				},
 				{
 					id: 3,
@@ -116,13 +146,18 @@ export default function LocationsView() {
 			],
 		},
 	];
+	const onLoad = (map) => {
+		const bounds = new google.maps.LatLngBounds();
+		markers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
+		map.fitBounds(bounds);
+	};
 	return (
 		<div className="lg:mt-16 flex flex-col h-full">
-			<Container size="xl" className="pt-24 md:pb-28 pb-14 w-full">
+			<Container size="xl" className="pt-24 pd:mb-28 pb-14 w-full h-full">
 				<h2 className="mt-0">Locations</h2>
-				<div className="grid grid-cols-12 md:gap-10 space-y-10 md:space-y-0">
+				<div className="grid grid-cols-12 md:gap-10 space-y-10 md:space-y-0 h-auto">
 					<Accordion
-						className="col-span-12 md:col-start-1 md:col-end-6 w-full"
+						className="col-span-12 md:col-start-1 md:col-end-6 w-full h-auto"
 						variant="separated"
 						radius="md"
 						styles={(theme) => ({
@@ -133,6 +168,11 @@ export default function LocationsView() {
 									backgroundColor: theme.colors.primaryVariant[0],
 								},
 							},
+							panel: {
+								maxHeight: "280px",
+								overflow: "hidden",
+								overflowY: "auto",
+							},
 						})}
 					>
 						{locations.map((item) => (
@@ -142,12 +182,14 @@ export default function LocationsView() {
 								</Accordion.Control>
 								<Accordion.Panel>
 									{item.locations.map((location) => (
-										<div key={location.id} className="flex">
-											<MapPin
-												size={28}
-												className="cursor-pointer mr-4  my-auto"
-											/>
-											<div className="flex flex-col mt-4">
+										<div
+											key={location.id}
+											className="flex gap-x-4 items-center space-y-4 cursor-pointer"
+										>
+											<div>
+												<MapPin size={28} />
+											</div>
+											<div className="flex flex-col">
 												<p className="font-bold my-0">{location.name}</p>
 												<p className="my-0">{location.phone}</p>
 												<p className="my-0">{location.location}</p>
@@ -162,11 +204,22 @@ export default function LocationsView() {
 						className="col-span-12 md:col-start-6 md:col-end-13 w-full h-[500px]
 					"
 					>
-						<Map
-							ubicationUrl="https://maps.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613507864!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sPT%20Kulkul%20Teknologi%20Internasional!5e0!3m2!1sen!2sid!4v1601138221085!5m2!1sen!2sid"
+						{/* <Map
+							ubicationUrl="https://www.google.com/maps?q=8%20The%20Green,%20Dover,%20DE,%20United%20States&hl=en&output=embed"
 							width="100%"
 							height="100%"
-						/>
+						/> */}
+						<div className="App">
+							{!isLoaded ? (
+								<h1>Loading...</h1>
+							) : (
+								<GoogleMap mapContainerStyle={containerStyle} onLoad={onLoad}>
+									{markers.map(({ lat, lng }, index) => (
+										<Marker position={{ lat, lng }} key={index} />
+									))}
+								</GoogleMap>
+							)}
+						</div>
 					</div>
 					{/* 	<div className="bg-primary col-span-12 md:col-start-7 md:col-end-13 w-full h-56"></div> */}
 				</div>

@@ -137,3 +137,23 @@ body {
 	z-index: -1;
 	position: absolute;
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+	
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #FFFFFF;
+    border-radius: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
