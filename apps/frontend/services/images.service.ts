@@ -1,5 +1,5 @@
 import { ListCatalogResponse } from "square";
-const API_BASE_URL = "http://localhost:3000/api";
+const API_BASE_URL = "https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/api";
 class ImagesService {
 	async fetchImages(): Promise<ListCatalogResponse | null> {
 		try {

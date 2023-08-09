@@ -1,6 +1,6 @@
 import { SearchCatalogItemsResponse } from "square";
 import { CatalogItemProductType } from "../gql/graphql";
-const API_BASE_URL = "http://localhost:3000/api";
+const API_BASE_URL = "https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/api";
 class CatalogService {
 	async fetchCatalogItems(
         productType: CatalogItemProductType,
