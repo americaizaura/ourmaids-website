@@ -32,7 +32,8 @@ import { GetServerSideProps } from "next";
 import { CatalogItemProductType } from "../gql/graphql";
 const API_BASE_URL =
 	"https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/api";
-
+import CatalogService from "../services/catalog.service";
+import ImagesService from "../services/images.service";
 interface ServicesProps {
 	services: any;
 }
@@ -75,34 +76,6 @@ export default function AppShellDemo({ services }: ServicesProps) {
 	);
 }
 
-async function fetchCatalogItems(): Promise<SearchCatalogItemsResponse | null> {
-	try {
-		const response = await fetch(`${API_BASE_URL}/catalog`, {
-			method: "POST",
-			headers: {
-				"Content-type": "application/json",
-			},
-			body: JSON.stringify({
-				productType: CatalogItemProductType.Regular,
-			}),
-		});
-		return await response.json();
-	} catch (error) {
-		console.error("Error fetching catalog items:", error);
-		return null;
-	}
-}
-
-async function fetchImages(): Promise<ListCatalogResponse | null> {
-	try {
-		const response = await fetch(`${API_BASE_URL}/image`);
-		return await response.json();
-	} catch (error) {
-		console.error("Error fetching images:", error);
-		return null;
-	}
-}
-
 function enhanceCatalogData(
 	catalogData: SearchCatalogItemsResponse,
 	imagesData: ListCatalogResponse
@@ -124,8 +97,8 @@ function enhanceCatalogData(
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	try {
 		const [catalogData, imagesData] = await Promise.all([
-			fetchCatalogItems(),
-			fetchImages(),
+			CatalogService.fetchCatalogItems(CatalogItemProductType.Regular, 10),
+			ImagesService.fetchImages(),
 		]);
 
 		const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
