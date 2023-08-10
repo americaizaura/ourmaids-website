@@ -4,87 +4,80 @@ import { CalendarEvent, Home, HomeShield, Wand } from "tabler-icons-react";
 import CheckBox from "./SerName/checkbox";
 import TypeSection from "./SerName/typesection";
 import InputSection from "./SerName/input";
-
-const ServiceName = () => {
-  const CheckList = [
-    {
-      list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
-    },
-    {
-      list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
-    },
-    {
-      list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
-    },
-    {
-      list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
-    },
-  ];
-  const TypeList = [
-    {
-      icon: <Home size={36} stroke-width={1.2}></Home>,
-      type: "Type",
-      suscription: "Suscription",
-    },
-    {
-      icon: <CalendarEvent size={36} stroke-width={1.2}></CalendarEvent>,
-      type: "Type",
-      suscription: "Suscription",
-    },
-  ];
-  const InputList = [
-    {
-      description: "Size",
-    },
-    {
-      description: "Monthly",
-    },
-  ];
-  return (
-    <section className="flex flex-col xl:flex-row md:gap-x-8 2xl:gap-x-16" >
-      <div className="flex flex-col items-center md:justify-between ">
-        <div>
-          <h4 className="mb-6">Service Name</h4>
-          <p className="text-xs text-justify w-72 min-[500px]:w-96 sm:w-[780px] tracking-wide font-medium leading-5 md:leading-4">
-            Lorem ipsum dolor sit amet consectetur. Ut id suspendisse duis
-            elementum tristique nulla elementurn. Habitant tempor nisl in congue
-            dis. Diam nulla a habitant eget facilisi. Lobortis pellentesque turpis
-            velit bibendum mattis sed lacus. Lectus dictumst tempus arcu
-            vestibulum sed ut et Pulvinar ut mus purus quis. Quam leo facilisis
-            augue nec id ut non. Molestie at ac ac ullamcorper amet fermentum
-            habitant consectetur erat Et rhoncus ut turpis morbi nunc. Egestas
-            magna mauris magnis etiam lectus tincidunt quis nisl integer. Ut amet
-            velit consectetur dolor. Tortor dui eu sed ut at. Ornare in feugiat
-            congue dui dui eu dignissim facilisis leo. Odio et varius hac eu sed
-            pharetra posuere sed.
-          </p>
-          <div>
-            <h6 className="mb-6">Includes</h6>
-            <div className="flex flex-col md:flex-row w-72 justify-between md:w-[740px] min-[500px]:w-96">
-              <div className=" gap-10 md:gap-3 md:flex md:flex-col">
-                {CheckList.map((item, index) => (
-                  <CheckBox key={index} list={item.list} />
-                ))}
-              </div>
-              <div className="flex md:flex md:flex-col min-[500px]:grid min-[500px]:grid-cols-2 gap-8 my-2 md:my-0 md:gap-10 ">
-                <div className="flex items-center gap-2 md:gap-6">
-                  <Wand size={32} stroke-width={1.2}></Wand>
-                  <label className="text-xs text-justify tracking-wide font-medium">
-                    Lorem ipsum dolor
-                  </label>
-                </div>
-                <div className="flex items-center gap-2 md:gap-6">
-                  <HomeShield size={32} stroke-width={1.2}></HomeShield>
-                  <label className="text-xs text-justify tracking-wide font-medium">
-                    Lorem ipsum dolor
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <section className="flex justify-center">
+interface ServiceNameProps {
+	name: string;
+	description: string;
+}
+const ServiceName = ({ name, description }: ServiceNameProps) => {
+	const CheckList = [
+		{
+			list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
+		},
+		{
+			list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
+		},
+		{
+			list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
+		},
+		{
+			list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
+		},
+	];
+	const TypeList = [
+		{
+			icon: <Home size={36} stroke-width={1.2}></Home>,
+			type: "Type",
+			suscription: "Suscription",
+		},
+		{
+			icon: <CalendarEvent size={36} stroke-width={1.2}></CalendarEvent>,
+			type: "Type",
+			suscription: "Suscription",
+		},
+	];
+	const InputList = [
+		{
+			description: "Size",
+		},
+		{
+			description: "Monthly",
+		},
+	];
+	return (
+		<section className="flex flex-col xl:flex-row md:gap-x-8 2xl:gap-x-16">
+			<div className="flex flex-col  md:justify-between w-full">
+				<div>
+					<h4 className="mb-6">{name}</h4>
+					<p className="text-xs text-justify tracking-wide font-medium leading-5 md:leading-4">
+						{description}
+					</p>
+					{/* <div>
+						<h6 className="mb-6">Includes</h6>
+						<div className="flex flex-col md:flex-row w-72 justify-between md:w-[740px] min-[500px]:w-96">
+							<div className=" gap-10 md:gap-3 md:flex md:flex-col">
+								{CheckList.map((item, index) => (
+									<CheckBox key={index} list={item.list} />
+								))}
+							</div>
+							<div className="flex md:flex md:flex-col min-[500px]:grid min-[500px]:grid-cols-2 gap-8 my-2 md:my-0 md:gap-10 ">
+								<div className="flex items-center gap-2 md:gap-6">
+									<Wand size={32} stroke-width={1.2}></Wand>
+									<label className="text-xs text-justify tracking-wide font-medium">
+										Lorem ipsum dolor
+									</label>
+								</div>
+								<div className="flex items-center gap-2 md:gap-6">
+									<HomeShield size={32} stroke-width={1.2}></HomeShield>
+									<label className="text-xs text-justify tracking-wide font-medium">
+										Lorem ipsum dolor
+									</label>
+								</div>
+							</div>
+						</div>
+					</div> */}
+				</div>
+			</div>
+			{/*    <section className="flex justify-center">
         <aside className="bg-[#efdfe0] h-full my-10 w-96 py-14 rounded-xl flex flex-col items-center md:w-[440px]">
           <div className="flex justify-center gap-4">
             {TypeList.map((item, index) => (
@@ -114,9 +107,9 @@ const ServiceName = () => {
             <div className="text-sm font-bold">$$$</div>
           </div>
         </aside>
-      </section>
-    </section>
-  );
+      </section> */}
+		</section>
+	);
 };
 
 export default ServiceName;

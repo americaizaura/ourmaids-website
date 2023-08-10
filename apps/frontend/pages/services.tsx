@@ -36,11 +36,6 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 
 	const handleLoadMore = async () => {
 		setLoading(true);
-		/* 	const dataCatalog = await CatalogService.fetchCatalogItems(
-			catalogProductType,
-			6,
-			cursorState
-		); */
 		const [catalogData, imagesData] = await Promise.all([
 			CatalogService.fetchCatalogItems(catalogProductType, 6, cursorState),
 			ImagesService.fetchImages(),
@@ -128,6 +123,7 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 									: data?.map((service, index) => (
 											<CardServices
 												key={service?.id}
+												idCatalogProduct={service?.id || ""}
 												image={
 													service && service.imageData
 														? service.imageData.url

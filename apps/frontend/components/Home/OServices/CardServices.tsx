@@ -3,6 +3,7 @@ import Image from "next/image";
 interface CardServicesProps {
 	image: string;
 	description: string;
+	idCatalogProduct: string;
 }
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -10,7 +11,7 @@ import Link from "next/link";
 function CardServices(props: CardServicesProps) {
 	return (
 		<>
-			<Link href="/service" passHref>
+			<Link href={`/service/${props.idCatalogProduct}`} passHref>
 				<div className="rounded-full w-full h-52 md:h-80 flex flex-col cursor-pointer">
 					<div className="relative w-full h-36 md:h-64">
 						<Image

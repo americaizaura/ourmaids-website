@@ -9,6 +9,7 @@ import {
 	Input,
 	ThemeIcon,
 	List,
+	Skeleton,
 } from "@mantine/core";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import Image from "next/image";
@@ -37,7 +38,7 @@ export default function LocationsView() {
 		{ lat: 18.5314, lng: 73.8446 },
 		{ lat: 18.5642, lng: 73.7769 },
 	];
-
+	const [mapRef, setMapRef] = useState(null);
 	const locations = [
 		{
 			id: 1,
@@ -48,8 +49,8 @@ export default function LocationsView() {
 					name: "Our Office in Dover, DE. (Corporate)",
 					phone: "213-800-7644",
 					location: "8 The Green, Dover, DE, United States",
-					lat: 39.1562077,
-					lng: 39.1562077,
+					lat: 39.158,
+					lng: -75.524,
 				},
 				{
 					id: 2,
@@ -64,19 +65,25 @@ export default function LocationsView() {
 					name: "OurMaids of Delaware",
 					phone: "213-800-7644",
 					location: "7th St, Ocean City, MD 21842 USA",
+					lat: 38.33786,
+					lng: -75.08214,
 				},
 				{
 					id: 4,
-					name: "Office in North Carolina",
-					phone: "213-800-7644",
+					name: "Office in Oklahoma City, OK",
+					phone: "",
 					location:
-						"OurMaids of Delaware 7th St, Ocean City, MD 21842 USA, 213-800-7644",
+						"413 NW Britton Rd, Oklahoma City, Oklahoma, Oklahoma, United States",
+					lat: 35.56656,
+					lng: -97.5213,
 				},
 				{
 					id: 5,
 					name: "Office in North Carolina",
 					phone: "213-800-7644",
 					location: "915 S Lindell Rd, Greensboro, NC, United States",
+					lat: 36.0632,
+					lng: -79.83629,
 				},
 				{
 					id: 6,
@@ -84,6 +91,8 @@ export default function LocationsView() {
 					phone: "213-800-7644",
 					location:
 						"1180 N Masters Dr, Dallas, TX 75217, United States of America",
+					lat: 32.73162,
+					lng: -96.64509,
 				},
 				//add more locations
 				{
@@ -91,25 +100,33 @@ export default function LocationsView() {
 					name: "OurMaids of Sun Valley, CA.",
 					phone: "213-800-7644",
 					location: "7520 Satsuma Ave, Sun Valley, CA, United States",
+					lat: 34.213,
+					lng: -118.378,
 				},
 				{
 					id: 8,
-					name: "OurMaids of Austin, TX.",
+					name: "Office in Austin, TX.",
 					phone: "213-800-7644",
 					location: "1070 Mearns Meadow Blvd, Austin, TX, United States",
+					lat: 30.358,
+					lng: -97.688,
 				},
 				{
 					id: 9,
-					name: "OurMaids of Fort Worth, TX.",
-					phone: "213-800-7644",
+					name: "Office in Fort Worth, TX.",
+					phone: "231-800-7644",
 					location: "2832 Crenshaw Ave, Fort Worth, TX, United States",
+					lat: 32.725,
+					lng: -97.342,
 				},
 				{
 					id: 10,
-					name: "OurMaids of Houston, TX.",
+					name: "OurMaids of Van Nuys, CA.",
 					phone: "213-800-7644",
 					location:
 						"17407 Gilmore St, Van Nuys, CA 91406, United States of America",
+					lat: 34.196,
+					lng: -118.467,
 				},
 			],
 		},
@@ -119,16 +136,19 @@ export default function LocationsView() {
 			locations: [
 				{
 					id: 1,
-					name: "OurMaids of Cancun, Mexico",
+					name: "Office en Cancun, Mexico",
 					phone: "98-32-44-19-75",
 					location: "Supmz 7, Avenida Bonampak, Cancún, México",
+					lat: 21.16195,
+					lng: -86.85191,
 				},
 				{
 					id: 2,
 					name: "OurMaids of Los Cabos, BCS",
 					phone: "624-106-4460",
-					location:
-						"BCS Cabo San Lucas Centro, 23450 Cabo San Lucas, BCS, México",
+					location: "Cabo San Lucas Centro, 23450 Cabo San Lucas, BCS, México",
+					lat: 22.89088,
+					lng: -109.916,
 				},
 			],
 		},
@@ -140,17 +160,32 @@ export default function LocationsView() {
 					id: 1,
 					name: "OurMaids of Montreal, QC",
 					phone: "438-701-2058",
-					location:
-						"Office in Montreal, QC Montréal, 6625 Rue Dumas, QC, Canada, 438-701-2058",
+					location: "Montréal, 6625 Rue Dumas, QC, Canada",
+					lat: 45.45175,
+					lng: -73.59831,
 				},
 			],
 		},
 	];
 	const onLoad = (map) => {
 		const bounds = new google.maps.LatLngBounds();
-		markers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
+		/* markers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng })); */
+		locations.forEach((location) => {
+			location.locations.forEach((location) => {
+				bounds.extend({ lat: location.lat, lng: location.lng });
+			});
+		});
 		map.fitBounds(bounds);
+		setMapRef(map);
 	};
+	const handleMarkerClick = (lat: number, lng: number) => {
+		mapRef?.setZoom(15);
+		mapRef?.panTo({ lat, lng });
+	};
+
+	const [isHovered, setIsHovered] = useState(false);
+	const [idLocation, setIdLocation] = useState(0);
+
 	return (
 		<div className="lg:mt-16 flex flex-col h-full">
 			<Container size="xl" className="pt-24 pd:mb-28 pb-14 w-full h-full">
@@ -185,9 +220,27 @@ export default function LocationsView() {
 										<div
 											key={location.id}
 											className="flex gap-x-4 items-center space-y-4 cursor-pointer"
+											onClick={() => {
+												handleMarkerClick(location.lat, location.lng);
+											}}
+											onMouseEnter={() => {
+												setIsHovered(true);
+												setIdLocation(location.id);
+											}}
+											onMouseLeave={() => {
+												setIsHovered(false);
+												setIdLocation(0);
+											}}
 										>
 											<div>
-												<MapPin size={28} />
+												<MapPin
+													size={28}
+													className={`${
+														isHovered && idLocation === Number(location.id)
+															? "text-secondary"
+															: "text-textPrimary"
+													}`}
+												/>
 											</div>
 											<div className="flex flex-col">
 												<p className="font-bold my-0">{location.name}</p>
@@ -211,11 +264,21 @@ export default function LocationsView() {
 						/> */}
 						<div className="App">
 							{!isLoaded ? (
-								<h1>Loading...</h1>
+								<Skeleton height={500} radius="lg" />
 							) : (
 								<GoogleMap mapContainerStyle={containerStyle} onLoad={onLoad}>
-									{markers.map(({ lat, lng }, index) => (
-										<Marker position={{ lat, lng }} key={index} />
+									{locations.map((location) => (
+										<>
+											{location.locations.map((location) => (
+												<Marker
+													onClick={() => {
+														handleMarkerClick(location.lat, location.lng);
+													}}
+													position={{ lat: location.lat, lng: location.lng }}
+													key={location.id}
+												/>
+											))}
+										</>
 									))}
 								</GoogleMap>
 							)}
