@@ -10,7 +10,7 @@ const API_BASE_URL =
 class CatalogService {
 	async fetchCatalogItems(
 		productType: CatalogItemProductType,
-		limit: number,
+		limit?: number,
 		cursor?: string
 	): Promise<SearchCatalogItemsResponse | null> {
 		try {
