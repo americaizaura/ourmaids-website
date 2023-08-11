@@ -11,6 +11,9 @@ import {
 	MultiSelect,
 	ActionIcon,
 	Loader,
+	Select,
+	Skeleton,
+	Indicator,
 } from "@mantine/core";
 import { useState } from "react";
 import { Progress, Input as MantineInput } from "@mantine/core";
@@ -23,6 +26,7 @@ import Input from "../components/Input";
 import { CatalogItemProductType } from "../gql/graphql";
 import CatalogService from "../services/catalog.service";
 import ImagesService from "../services/images.service";
+import { RetrieveCatalogObjectResponse } from "square";
 
 const steps = {
 	SERVICE: "SERVICE",
@@ -53,11 +57,17 @@ interface Catalog {
 export default function BookingView() {
 	/* const [value, setValue] = useState<Date | null>(null); */
 	const [value, setValue] = useState<[Date | null, Date | null]>([null, null]);
+	const [infoService, setInfoService] =
+		useState<RetrieveCatalogObjectResponse | null>(null);
 	const router = useRouter();
 
 	const [step, setStep] = useState(steps.SERVICE);
 	const handleNext = () => {
 		if (step === steps.SERVICE) {
+			if (!infoService) {
+				setErrorService(true);
+				return;
+			}
 			setStep(steps.BOOKING);
 		} else if (step === steps.BOOKING) {
 			setStep(steps.INFORMATION);
@@ -78,6 +88,9 @@ export default function BookingView() {
 	const [data, setData] = useState([] as Catalog[]);
 	const [opened, setOpened] = useState(false);
 	const [isLoadingCatalog, setIsLoadingCatalog] = useState(false);
+	const [isLoadingRetrieveService, setIsLoadingRetrieveService] =
+		useState(false);
+	const [errorService, setErrorService] = useState(false);
 	useEffect(() => {
 		if (opened) {
 			const fetchData = async () => {
@@ -96,7 +109,7 @@ export default function BookingView() {
 
 				const allCatalogData: Catalog[] = catalogData.map((item) => {
 					return {
-						value: item.itemData.variations[0].id,
+						value: item.id,
 						label: item.itemData.name,
 						group:
 							item.itemData.productType === "REGULAR" ? "Regular" : "Service",
@@ -112,6 +125,33 @@ export default function BookingView() {
 		}
 	}, [opened]);
 
+	const getInfoService = async (id: string) => {
+		console.log(id);
+
+		/* const catalogData = await CatalogService.retrieveCatalogObject(id); */
+		setIsLoadingRetrieveService(true);
+		const [catalogData, imagesData] = await Promise.all([
+			CatalogService.retrieveCatalogObject(id),
+			ImagesService.fetchImages(),
+		]);
+		const image = imagesData.objects?.find(
+			(image) =>
+				image.type === "IMAGE" &&
+				image.id === (catalogData.object?.itemData.imageIds[0] || "")
+		);
+
+		const enhancedCatalogData: RetrieveCatalogObjectResponse = {
+			errors: catalogData.errors,
+			object: {
+				...catalogData.object,
+				imageData: image?.imageData || null,
+			},
+			relatedObjects: catalogData.relatedObjects,
+		};
+
+		setInfoService(enhancedCatalogData);
+		setIsLoadingRetrieveService(false);
+	};
 	return (
 		<div className="relative h-full w-full">
 			<div className="absolute h-full img-booking">
@@ -272,7 +312,11 @@ export default function BookingView() {
 											onChange={setValue}
 											type="range"
 											value={value}
+											defaultValue={value}
 											allowSingleDateInRange
+											minDate={
+												new Date(new Date().setDate(new Date().getDate()))
+											}
 										/>
 									</Group>
 								</div>
@@ -332,8 +376,13 @@ export default function BookingView() {
 						)}
 						{step === steps.SERVICE && (
 							<>
-								<p>Select one or more services.</p>
-								<MultiSelect
+								<p>Select service.</p>
+								<Select
+									onChange={(value) => {
+										getInfoService(value);
+										setErrorService(false);
+									}}
+									error={errorService && "Select a service"}
 									clearable
 									disabled={isLoadingCatalog}
 									nothingFound={data && <Loader size="xs" />}
@@ -357,6 +406,7 @@ export default function BookingView() {
 										/>
 									}
 									data={data}
+									value={infoService ? infoService.object?.id : undefined}
 								/>
 							</>
 						)}
@@ -379,7 +429,12 @@ export default function BookingView() {
 								>
 									Back
 								</Button>
-								<Button radius="xl" color="secondary.0" onClick={handleNext}>
+								<Button
+									radius="xl"
+									color="secondary.0"
+									onClick={handleNext}
+									disabled={errorService}
+								>
 									Next
 								</Button>
 							</div>
@@ -387,7 +442,7 @@ export default function BookingView() {
 						{step === steps.INFORMATION && (
 							<div className="flex mt-12 w-full ">
 								<Button radius="xl" color="secondary.0" className="w-full">
-									Next
+									Nexts
 								</Button>
 							</div>
 						)}
@@ -402,19 +457,68 @@ export default function BookingView() {
 
 						<div className="bg-primary rounded-xl p-8 shadow-md">
 							<div className="relative w-full h-40">
-								<Image
-									src="/images/booking/service.png"
-									layout="fill"
-									objectFit="cover"
-									className="rounded-lg"
-								/>
+								{isLoadingRetrieveService ? (
+									<Skeleton className="w-full h-full" radius="lg" />
+								) : (
+									<Image
+										src={
+											infoService && infoService.object.imageData
+												? infoService.object.imageData.url
+												: "/images/booking/service.png"
+										}
+										layout="fill"
+										objectFit="cover"
+										className="rounded-lg"
+									/>
+								)}
 							</div>
 							<h6 className="mb-4">
-								Lorem ipsum dolor sit amet consectetur. Id faucibus massa eu
-							</h6>
+								{isLoadingRetrieveService ? (
+									<>
+										<Skeleton height={8} radius="xl" className="mb-4" />
+										<Skeleton height={8} radius="xl" width={"70%"} />
+									</>
+								) : infoService && infoService.object.itemData.name ? (
+									infoService.object.itemData.name
+								) : (
+									"No service selected"
+								)}
 
-							<h6 className="my-0">50.00 USD</h6>
-							<p className="mt-4 mb-0">1 hour</p>
+								{/* {infoService && infoService.object.itemData.name
+									? infoService.object.itemData.name
+									: "No service selected"} */}
+							</h6>
+							<p></p>
+							<h6 className="my-0">
+								{/* 	$
+								{infoService && infoService.object?.itemData?.variations[0]
+									? (
+											Number(
+												infoService.object?.itemData?.variations[0]
+													.itemVariationData.priceMoney.amount
+											) / 100
+									  ).toFixed(2)
+									: 0}{" "}
+								USD */}
+								{isLoadingRetrieveService ? (
+									<Skeleton height={8} radius="xl" width={"40%"} />
+								) : (
+									<>
+										{infoService && infoService.object?.itemData?.variations[0]
+											? (
+													Number(
+														infoService.object?.itemData?.variations[0]
+															.itemVariationData.priceMoney.amount
+													) / 100
+											  ).toFixed(2)
+											: 0}{" "}
+										USD
+									</>
+								)}
+							</h6>
+							{/* 	<p className="mt-4 mb-0">
+								{infoService && infoService.object.itemData.variations[0].itemVariationData.}
+							</p> */}
 						</div>
 						{step === steps.INFORMATION || step === steps.BOOKING ? (
 							<>
