@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { forwardRef, useEffect } from "react";
 import {
 	Button,
 	Textarea,
@@ -14,6 +14,7 @@ import {
 	Select,
 	Skeleton,
 	Indicator,
+	Avatar,
 } from "@mantine/core";
 import { useState } from "react";
 import { Progress, Input as MantineInput } from "@mantine/core";
@@ -26,8 +27,9 @@ import Input from "../components/Input";
 import { CatalogItemProductType } from "../gql/graphql";
 import CatalogService from "../services/catalog.service";
 import ImagesService from "../services/images.service";
-import { RetrieveCatalogObjectResponse } from "square";
-
+import BookingService from "../services/booking.service";
+import { Availability, RetrieveCatalogObjectResponse } from "square";
+import { format, set } from "date-fns";
 const steps = {
 	SERVICE: "SERVICE",
 	BOOKING: "BOOKING",
@@ -35,33 +37,69 @@ const steps = {
 	PAYMENT: "PAYMENT",
 };
 
-interface services {
-	id: string;
-}
 interface Catalog {
-	value: /* {
-		idGeneral: string;
-		nameService: string;
-		productType: string;
-		variation: {
-			id: string;
-			itemVariationData: {
-				itemId: string;
-				pricingType: string;
-			};
-		};
-	}; */ string;
+	value: string;
 	group: string;
 	label: string;
 }
+
+interface availableBookingDates {
+	value: string;
+	teammemberid?: string;
+	durationminutes?: number;
+	servicevariationid?: string;
+	servicevariationversion?: number;
+	startat?: string;
+	label: string;
+}
+
+interface ItemProps extends React.ComponentPropsWithoutRef<"div"> {
+	durationminutes?: number;
+	startat?: string;
+}
+
+const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
+	({ durationminutes, startat, ...others }, ref) => {
+		return (
+			<div {...others} ref={ref}>
+				<div className="flex flex-col justify-between">
+					<p className="my-0">
+						{format(new Date(startat), "EEEE, MMMM dd, yyyy h:mm a")}
+					</p>
+					<p className="my-0">
+						Duration: {durationminutes ? durationminutes : 0} min
+					</p>
+				</div>
+			</div>
+		);
+	}
+);
+
+SelectItem.displayName = "div";
+
 export default function BookingView() {
-	/* const [value, setValue] = useState<Date | null>(null); */
-	const [value, setValue] = useState<[Date | null, Date | null]>([null, null]);
+	const [dateBooking, setDateBooking] = useState<[Date | null, Date | null]>([
+		null,
+		null,
+	]);
 	const [infoService, setInfoService] =
 		useState<RetrieveCatalogObjectResponse | null>(null);
-	const router = useRouter();
-
 	const [step, setStep] = useState(steps.SERVICE);
+	const [data, setData] = useState([] as Catalog[]);
+	const [opened, setOpened] = useState(false);
+	const [isLoadingCatalog, setIsLoadingCatalog] = useState(false);
+	const [isLoadingRetrieveService, setIsLoadingRetrieveService] =
+		useState(false);
+	const [errorService, setErrorService] = useState(false);
+	const [errorBooking, setErrorBooking] = useState({
+		date: false,
+		dateSelected: false,
+	});
+	const [availableBooking, setAvailableBooking] = useState(
+		[] as availableBookingDates[]
+	);
+	const [selectedDateBooking, setSelectedDateBooking] = useState("");
+
 	const handleNext = () => {
 		if (step === steps.SERVICE) {
 			if (!infoService) {
@@ -70,6 +108,19 @@ export default function BookingView() {
 			}
 			setStep(steps.BOOKING);
 		} else if (step === steps.BOOKING) {
+			if (dateBooking[0] === null || dateBooking[1] === null) {
+				setErrorBooking({
+					date: true,
+					dateSelected: false,
+				});
+				return;
+			} else if (selectedDateBooking === "") {
+				setErrorBooking({
+					date: false,
+					dateSelected: true,
+				});
+				return;
+			}
 			setStep(steps.INFORMATION);
 		} else {
 			setStep(steps.SERVICE);
@@ -85,29 +136,26 @@ export default function BookingView() {
 			setStep(steps.SERVICE);
 		}
 	};
-	const [data, setData] = useState([] as Catalog[]);
-	const [opened, setOpened] = useState(false);
-	const [isLoadingCatalog, setIsLoadingCatalog] = useState(false);
-	const [isLoadingRetrieveService, setIsLoadingRetrieveService] =
-		useState(false);
-	const [errorService, setErrorService] = useState(false);
+
 	useEffect(() => {
 		if (opened) {
 			const fetchData = async () => {
 				setIsLoadingCatalog(true);
-				const [catalogDataRegular, catalogDataAppointmentsService] =
+				const [catalogData /* , catalogDataAppointmentsService */] =
 					await Promise.all([
-						CatalogService.fetchCatalogItems(CatalogItemProductType.Regular),
 						CatalogService.fetchCatalogItems(
 							CatalogItemProductType.AppointmentsService
 						),
+						/* 	CatalogService.fetchCatalogItems(
+							CatalogItemProductType.AppointmentsService
+						), */
 					]);
 
-				const catalogData = catalogDataRegular.items.concat(
+				/* 	const catalogData = catalogDataRegular.items.concat(
 					catalogDataAppointmentsService.items
-				);
+				); */
 
-				const allCatalogData: Catalog[] = catalogData.map((item) => {
+				const allCatalogData: Catalog[] = catalogData.items.map((item) => {
 					return {
 						value: item.id,
 						label: item.itemData.name,
@@ -115,7 +163,6 @@ export default function BookingView() {
 							item.itemData.productType === "REGULAR" ? "Regular" : "Service",
 					};
 				});
-				console.log(allCatalogData);
 
 				setData(allCatalogData);
 				setIsLoadingCatalog(false);
@@ -125,10 +172,27 @@ export default function BookingView() {
 		}
 	}, [opened]);
 
-	const getInfoService = async (id: string) => {
-		console.log(id);
+	const inputDate = () => {
+		if (dateBooking[0] === null && dateBooking[1] === null) {
+			return "";
+		} else if (dateBooking[0] !== null && dateBooking[1] === null) {
+			//Genera horario de USA
+			return `${dateBooking[0]?.toLocaleDateString(
+				"en-US" /* , {
+				weekday: "short",
+				year: "numeric",
+				month: "short",
+				day: "numeric",
+			} */
+			)} - `;
+		} else if (dateBooking[1] !== null && dateBooking[0] !== null) {
+			return `${dateBooking[0]?.toLocaleDateString(
+				"en-US"
+			)} - ${dateBooking[1]?.toLocaleDateString("en-US")}`;
+		}
+	};
 
-		/* const catalogData = await CatalogService.retrieveCatalogObject(id); */
+	const getInfoService = async (id: string) => {
 		setIsLoadingRetrieveService(true);
 		const [catalogData, imagesData] = await Promise.all([
 			CatalogService.retrieveCatalogObject(id),
@@ -152,6 +216,47 @@ export default function BookingView() {
 		setInfoService(enhancedCatalogData);
 		setIsLoadingRetrieveService(false);
 	};
+
+	const getAvailableBooking = async (
+		dateBooking: [Date | null, Date | null]
+	) => {
+		if (infoService.object && dateBooking[0] && dateBooking[1]) {
+			const availableBooking =
+				await BookingService.fecthSearchAvailabilityBooking(
+					format(dateBooking[0], "yyyy-MM-dd'T'HH:mm:ssxxx"),
+					format(dateBooking[1], "yyyy-MM-dd'T'HH:mm:ssxxx"),
+					infoService.object.itemData.variations[0].id
+				);
+
+			console.log(availableBooking);
+
+			const availableBookingDates: availableBookingDates[] =
+				availableBooking.availabilities.map((availability) => {
+					return {
+						value: availability.startAt,
+						teammemberid: availability.appointmentSegments[0].teamMemberId,
+						durationminutes:
+							availability.appointmentSegments[0].durationMinutes,
+						servicevariationid:
+							availability.appointmentSegments[0].serviceVariationId,
+						servicevariationversion: Number(
+							availability.appointmentSegments[0].serviceVariationVersion
+						),
+						startat: availability.startAt,
+						label:
+							format(
+								new Date(availability.startAt),
+								"EEEE, MMMM dd, yyyy h:mm a"
+							) +
+							` - ${availability.appointmentSegments[0].durationMinutes} min`,
+					};
+				});
+			console.log(availableBookingDates);
+
+			setAvailableBooking(availableBookingDates);
+		}
+	};
+
 	return (
 		<div className="relative h-full w-full">
 			<div className="absolute h-full img-booking">
@@ -264,23 +369,6 @@ export default function BookingView() {
 						)}
 						{step === steps.BOOKING && (
 							<>
-								{/* <DatePickerInput
-									label="Select date"
-									placeholder="Select date"
-									value={value}
-									onChange={setValue}
-									mx="auto"
-									radius="md"
-									clearable
-									allowDeselect
-									styles={(theme) => ({
-										label: {
-											fontWeight: "bold",
-											marginBottom: 15,
-										},
-									})}
-								/> */}
-
 								<MantineInput
 									placeholder="Date"
 									radius="lg"
@@ -293,12 +381,20 @@ export default function BookingView() {
 											borderColor: theme.colors.secondary[0],
 										},
 									})}
-									value={value as any}
+									error={errorBooking["date"] && "Select a date"}
+									value={inputDate()}
 									icon={<CalendarEvent />}
 									rightSection={
 										<div>
 											<X
-												onChange={() => setValue(null)}
+												onClick={() => {
+													setSelectedDateBooking("");
+													setDateBooking([null, null] as [
+														Date | null,
+														Date | null
+													]);
+													setAvailableBooking([] as availableBookingDates[]);
+												}}
 												size="1rem"
 												style={{ display: "block", opacity: 0.5 }}
 												className="cursor-pointer"
@@ -309,11 +405,14 @@ export default function BookingView() {
 								<div className="rounded-md bg-onPrimary shadow-md mt-2 p-4 w-[70%]  ">
 									<Group position="center">
 										<DatePicker
-											onChange={setValue}
+											onChange={(value) => {
+												setSelectedDateBooking("");
+												setAvailableBooking([] as availableBookingDates[]);
+												setErrorBooking({ date: false, dateSelected: false });
+												setDateBooking(value), getAvailableBooking(value);
+											}}
 											type="range"
-											value={value}
-											defaultValue={value}
-											allowSingleDateInRange
+											value={dateBooking}
 											minDate={
 												new Date(new Date().setDate(new Date().getDate()))
 											}
@@ -321,17 +420,15 @@ export default function BookingView() {
 									</Group>
 								</div>
 								<div>
-									<h6 className="mb-4">
-										Lorem ipsum dolor sit amet consectetur.
-									</h6>
+									<h6 className="mb-4">Available days</h6>
 									<p>
 										Lorem ipsum dolor sit amet consectetur. Id faucibus massa eu
 										elementum praesent. Fames tellus massa tempus lectus
 										vestibulum elementum amet amet metus.
 									</p>
 								</div>
-								<MultiSelect
-									disabled={true}
+
+								<Select
 									styles={(theme) => ({
 										input: {
 											"&:focus-within": {
@@ -341,36 +438,25 @@ export default function BookingView() {
 										},
 										rightSection: { pointerEvents: "none" },
 									})}
+									error={errorBooking["dateSelected"] && "Select a date"}
 									radius="md"
-									placeholder="Select a service"
+									clearable
+									placeholder="Select a date"
+									disabled={availableBooking.length === 0}
 									rightSection={
 										<ChevronDown
 											size="1rem"
 											style={{ display: "block", opacity: 0.5 }}
 										/>
 									}
-									data={[
-										{
-											value: "rick",
-											label: "Rick",
-											group: "Used to be a pickle",
-										},
-										{
-											value: "morty",
-											label: "Morty",
-											group: "Never was a pickle",
-										},
-										{
-											value: "beth",
-											label: "Beth",
-											group: "Never was a pickle",
-										},
-										{
-											value: "summer",
-											label: "Summer",
-											group: "Never was a pickle",
-										},
-									]}
+									nothingFound="No available dates"
+									data={availableBooking}
+									itemComponent={SelectItem}
+									onChange={(value) => {
+										setSelectedDateBooking(value);
+										setErrorBooking({ date: false, dateSelected: false });
+									}}
+									value={selectedDateBooking}
 								/>
 							</>
 						)}
@@ -530,7 +616,15 @@ export default function BookingView() {
 								</div>
 								<div className="bg-primary rounded-xl p-8 mt-8 shadow-md flex">
 									<CalendarEvent size={26} strokeWidth={2} />
-									<h6 className="my-0 ml-4">12:00 PM Sat. 01 Mar 2023</h6>
+									<h6 className="my-0 ml-4">
+										{/* 12:00 PM Sat. 01 Mar 2023 */}
+										{selectedDateBooking
+											? format(
+													new Date(selectedDateBooking),
+													"h:mm a EEE, MMM dd, yyyy"
+											  )
+											: "No date selected"}
+									</h6>
 								</div>
 							</>
 						) : null}
