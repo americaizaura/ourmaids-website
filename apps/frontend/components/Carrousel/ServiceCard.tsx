@@ -10,6 +10,8 @@ interface serviceInfomation {
 	image: string;
 	isExpanded?: boolean;
 }
+import ClampLines from "react-clamp-lines";
+import LinesEllipsis from "react-lines-ellipsis";
 const ServiceCard = ({ title, image, isExpanded }: serviceInfomation) => {
 	return (
 		<div className="flex flex-col h-[440px] pb-4 justify-center items-center">
@@ -49,7 +51,20 @@ const ServiceCard = ({ title, image, isExpanded }: serviceInfomation) => {
 						</div>
 					</div>
 
-					<h5 className="text-center m-0 mt-4">{title}</h5>
+					{/* <h5 className="text-center m-0 mt-4">{title}</h5> */}
+					{/* 	<ClampLines
+						text={title}
+						id={title + "id"}
+						buttons={false}
+						className="text-center m-0 mt-4 text-lg "
+						lines={isExpanded ? 3 : 1}
+					/> */}
+					<LinesEllipsis
+						text={title}
+						maxLine={isExpanded ? 10 : 2}
+						ellipsis="..."
+						className="text-center m-0 mt-4 text-xl font-semibold font-montserrat"
+					/>
 					{isExpanded && (
 						<ActionIcon
 							className="mx-auto mt-4"
