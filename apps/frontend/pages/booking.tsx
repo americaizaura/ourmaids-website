@@ -15,7 +15,10 @@ import {
 	Skeleton,
 	Indicator,
 	Avatar,
+	Input,
+	TextInput,
 } from "@mantine/core";
+import { useForm } from "@mantine/form";
 import { useState } from "react";
 import { Progress, Input as MantineInput } from "@mantine/core";
 import { Group } from "@mantine/core";
@@ -23,18 +26,26 @@ import { DatePicker, DatePickerInput, TimeInput } from "@mantine/dates";
 import Image from "next/image";
 import { CalendarEvent, X, ChevronDown } from "tabler-icons-react";
 import { useRouter } from "next/router";
-import Input from "../components/Input";
+/* import Input from "../components/Input"; */
 import { CatalogItemProductType } from "../gql/graphql";
 import CatalogService from "../services/catalog.service";
 import ImagesService from "../services/images.service";
 import BookingService from "../services/booking.service";
 import { Availability, RetrieveCatalogObjectResponse } from "square";
 import { format, set } from "date-fns";
+import { is } from "date-fns/locale";
+import {
+	ApplePay,
+	CreditCard,
+	GooglePay,
+	PaymentForm,
+} from "react-square-web-payments-sdk";
 const steps = {
 	SERVICE: "SERVICE",
 	BOOKING: "BOOKING",
 	INFORMATION: "INFORMATION",
 	PAYMENT: "PAYMENT",
+	BOOKED: "BOOKED",
 };
 
 interface Catalog {
@@ -82,6 +93,7 @@ export default function BookingView() {
 		null,
 		null,
 	]);
+	const [isBook, setIsBookOrPay] = useState(false);
 	const [infoService, setInfoService] =
 		useState<RetrieveCatalogObjectResponse | null>(null);
 	const [step, setStep] = useState(steps.SERVICE);
@@ -99,6 +111,69 @@ export default function BookingView() {
 		[] as availableBookingDates[]
 	);
 	const [selectedDateBooking, setSelectedDateBooking] = useState("");
+	const form = useForm({
+		initialValues: {
+			name: "",
+			email: "",
+			phone: "",
+			message: "",
+			address: "",
+			city: "",
+			state: "",
+			zip: "",
+		},
+		validateInputOnChange: true,
+		validate: {
+			name: (value) => (value.trim().length > 0 ? null : "Name is required"),
+			//doble validacion de email
+			email: (value) => {
+				if (value.trim().length > 0) {
+					if (!value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+						return "Email is invalid";
+					}
+				} else {
+					return "Email is required";
+				}
+			},
+
+			phone: (value) => {
+				if (value.trim().length > 0) {
+					if (!value.match(/^[0-9]+$/)) {
+						return "Phone is invalid";
+					}
+				} else {
+					return "Phone is required";
+				}
+			},
+			message: (value) =>
+				value.trim().length > 0 ? null : "Message is required",
+			address: (value) =>
+				value.trim().length > 0 ? null : "Address is required",
+			city: (value) => (value.trim().length > 0 ? null : "City is required"),
+			state: (value) => (value.trim().length > 0 ? null : "State is required"),
+			//Only numbers
+			zip: (value) => {
+				if (value.trim().length > 0) {
+					if (!value.match(/^[0-9]+$/)) {
+						return "Zip code is invalid";
+					}
+				} else {
+					return "Zip code is required";
+				}
+			},
+		},
+	});
+
+	const sendBooking = () => {
+		if (isBook === true) {
+			console.log("Entro");
+
+			console.log(form.values);
+			setStep(steps.BOOKED);
+		} else {
+			setStep(steps.PAYMENT);
+		}
+	};
 
 	const handleNext = () => {
 		if (step === steps.SERVICE) {
@@ -154,15 +229,21 @@ export default function BookingView() {
 				/* 	const catalogData = catalogDataRegular.items.concat(
 					catalogDataAppointmentsService.items
 				); */
+				console.log(catalogData);
 
-				const allCatalogData: Catalog[] = catalogData.items.map((item) => {
-					return {
-						value: item.id,
-						label: item.itemData.name,
-						group:
-							item.itemData.productType === "REGULAR" ? "Regular" : "Service",
-					};
-				});
+				const allCatalogData: Catalog[] =
+					catalogData && catalogData.items
+						? catalogData.items.map((item) => {
+								return {
+									value: item.id,
+									label: item.itemData.name,
+									group:
+										item.itemData.productType === "REGULAR"
+											? "Regular"
+											: "Service",
+								};
+						  })
+						: [];
 
 				setData(allCatalogData);
 				setIsLoadingCatalog(false);
@@ -276,14 +357,16 @@ export default function BookingView() {
 						objectPosition="0 600"
 					/>
 				)}
-				{step === steps.INFORMATION && (
+				{step === steps.INFORMATION ||
+				step === steps.BOOKED ||
+				step === steps.PAYMENT ? (
 					<Image
 						src="/images/booking/step 3.webp"
 						layout="fill"
 						objectFit="cover"
 						objectPosition="0 600"
 					/>
-				)}
+				) : null}
 			</div>
 			<Container size="xl" className="lg:pt-32 pt-24 pb-12 ">
 				<div className="grid grid-cols-12 ">
@@ -307,50 +390,257 @@ export default function BookingView() {
 					<p>{isLoadingCatalog}</p>
 				</div>
 				<div className="grid grid-cols-12 ">
-					<div className="col-start-4 col-end-8">
+					<div /* className="col-start-4 col-end-8" */
+						className={`
+							${
+								step !== steps.BOOKED && step !== steps.PAYMENT
+									? "col-start-4 col-end-8"
+									: "col-start-4 col-end-13"
+							}
+					`}
+					>
+						{step === steps.PAYMENT && (
+							<PaymentForm
+								applicationId="sq0idp-wvza8I8JkTHQN8HWPJZppg"
+								locationId="LMSWYMNRM3N66"
+								cardTokenizeResponseReceived={(token, verifiedBuyer) => {
+									console.info("Token:", token);
+									console.info("Verified Buyer:", verifiedBuyer);
+								}}
+								createPaymentRequest={() => ({
+									countryCode: "US",
+									currencyCode: "USD",
+									/* 	lineItems: [
+										{
+											amount: (
+												Number(
+													infoService.object?.itemData?.variations[0]
+														.itemVariationData.priceMoney.amount
+												) / 100
+											).toFixed(2),
+											label: infoService.object?.itemData?.name,
+
+										},
+									], */
+									total: {
+										amount: (
+											Number(
+												infoService.object?.itemData?.variations[0]
+													.itemVariationData.priceMoney.amount
+											) / 100
+										).toFixed(2),
+										label: "Total",
+									},
+								})}
+							>
+								{/* 
+								cange labes to english
+								*/}
+
+								<CreditCard
+									render={(Button) => (
+										<Button>
+											{infoService &&
+											infoService.object?.itemData?.variations[0]
+												? (
+														Number(
+															infoService.object?.itemData?.variations[0]
+																.itemVariationData.priceMoney.amount
+														) / 100
+												  ).toFixed(2)
+												: 0}{" "}
+											USD
+										</Button>
+									)}
+								/>
+								<br />
+								<ApplePay />
+								<br />
+								<GooglePay />
+							</PaymentForm>
+						)}
+						{step === steps.BOOKED && (
+							<div className="text-center">
+								<h1>Thank you!</h1>
+								<h4 className="mb-4">Booking confirmed</h4>
+								<p>
+									Thank you for your booking. We will contact you as soon as
+									possible.
+								</p>
+								<p>
+									We have sent you an email with the details of your booking.
+								</p>
+							</div>
+						)}
 						{step === steps.INFORMATION && (
 							<>
-								<p>
-									Lorem ipsum dolor sit amet consectetur. Congue sit tortor
-									tellus lacinia.
-								</p>
+								<form onSubmit={form.onSubmit(() => sendBooking())}>
+									<p>General information</p>
 
-								<div className="space-y-5">
-									<div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-										<Input placeholder="Name" />
-										<Input placeholder="Email" />
-									</div>
+									<div className="space-y-5">
+										<div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+											<TextInput
+												placeholder={"Name"}
+												radius="lg"
+												styles={(theme) => ({
+													input: {
+														"&:focus-within": {
+															borderColor: theme.colors.secondary[0],
+														},
+														borderColor: theme.colors.secondary[0],
+													},
+												})}
+												{...form.getInputProps("name")}
+											/>
+											<TextInput
+												placeholder={"Email"}
+												radius="lg"
+												styles={(theme) => ({
+													input: {
+														"&:focus-within": {
+															borderColor: theme.colors.secondary[0],
+														},
+														borderColor: theme.colors.secondary[0],
+													},
+												})}
+												{...form.getInputProps("email")}
+											/>
+										</div>
 
-									<Input placeholder="Phone" />
-									<Textarea
-										placeholder="Message"
-										radius="lg"
-										styles={(theme) => ({
-											input: {
-												"&:focus-within": {
+										<TextInput
+											placeholder={"Phone"}
+											radius="lg"
+											styles={(theme) => ({
+												input: {
+													"&:focus-within": {
+														borderColor: theme.colors.secondary[0],
+													},
 													borderColor: theme.colors.secondary[0],
 												},
-												borderColor: theme.colors.secondary[0],
-											},
-										})}
-									/>
-								</div>
-
-								<p>
-									Lorem ipsum dolor sit amet consectetur. Congue sit tortor
-									tellus lacinia.
-								</p>
-
-								<div className="space-y-5">
-									<Input placeholder="Lorem" />
-									<Input placeholder="Lorem" />
-									<Input placeholder="Lorem" />
-									<div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-										<Input placeholder="Lorem" />
-										<Input placeholder="Lorem" />
+											})}
+											{...form.getInputProps("phone")}
+										/>
+										<Textarea
+											placeholder="Message"
+											radius="lg"
+											styles={(theme) => ({
+												input: {
+													"&:focus-within": {
+														borderColor: theme.colors.secondary[0],
+													},
+													borderColor: theme.colors.secondary[0],
+												},
+											})}
+											{...form.getInputProps("message")}
+										/>
 									</div>
-								</div>
-								<p>
+
+									<p>Address information</p>
+
+									<div className="space-y-5">
+										<TextInput
+											placeholder={"Address"}
+											radius="lg"
+											styles={(theme) => ({
+												input: {
+													"&:focus-within": {
+														borderColor: theme.colors.secondary[0],
+													},
+													borderColor: theme.colors.secondary[0],
+												},
+											})}
+											{...form.getInputProps("address")}
+										/>
+										<TextInput
+											placeholder={"City"}
+											radius="lg"
+											styles={(theme) => ({
+												input: {
+													"&:focus-within": {
+														borderColor: theme.colors.secondary[0],
+													},
+													borderColor: theme.colors.secondary[0],
+												},
+											})}
+											{...form.getInputProps("city")}
+										/>
+
+										<div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+											<Select
+												radius="md"
+												styles={(theme) => ({
+													input: {
+														"&:focus-within": {
+															borderColor: theme.colors.secondary[0],
+														},
+														borderColor: theme.colors.secondary[0],
+													},
+													rightSection: { pointerEvents: "none" },
+												})}
+												data={[
+													{ value: "DE", label: "DE" },
+													{
+														value: "TX",
+														label: "TX",
+													},
+													{
+														value: "CA",
+														label: "CA",
+													},
+													{
+														value: "NC",
+														label: "NC",
+													},
+													{
+														value: "MD",
+														label: "MD",
+													},
+												]}
+												placeholder="State"
+												rightSection={
+													<ChevronDown
+														size="1rem"
+														style={{ display: "block", opacity: 0.5 }}
+													/>
+												}
+												{...form.getInputProps("state")}
+											/>
+
+											<TextInput
+												placeholder={"Zip code"}
+												radius="lg"
+												styles={(theme) => ({
+													input: {
+														"&:focus-within": {
+															borderColor: theme.colors.secondary[0],
+														},
+														borderColor: theme.colors.secondary[0],
+													},
+												})}
+												{...form.getInputProps("zip")}
+											/>
+										</div>
+									</div>
+									<div className="flex mt-12 justify-between ">
+										<Button
+											radius="xl"
+											color="secondary.0"
+											type="submit"
+											onClick={() => setIsBookOrPay(true)}
+										>
+											Book now
+										</Button>
+										<Button
+											radius="xl"
+											color="secondary.0"
+											type="submit"
+											onClick={() => setIsBookOrPay(false)}
+										>
+											Pay now
+										</Button>
+									</div>
+								</form>
+								{/* 	<p>
 									Lorem ipsum dolor sit amet consectetur. Libero proin
 									pellentesque molestie dictum mauris vel malesuada amet mauris.
 									Aenean donec sit viverra egestas porta. Sollicitudin eu magna
@@ -364,7 +654,7 @@ export default function BookingView() {
 									nibh proin adipiscing sit ipsum. Pellentesque gravida tempus
 									vestibulum egestas volutpat pretium eget. Sed mus aliquet urna
 									dictum neque quis lacus cras phasellus.
-								</p>
+								</p> */}
 							</>
 						)}
 						{step === steps.BOOKING && (
@@ -496,11 +786,15 @@ export default function BookingView() {
 								/>
 							</>
 						)}
-						{/*
-						 */}
+
 						{step === steps.SERVICE && (
 							<div className="flex mt-12 justify-end ">
-								<Button radius="xl" color="secondary.0" onClick={handleNext}>
+								<Button
+									radius="xl"
+									color="secondary.0"
+									onClick={handleNext}
+									disabled={isLoadingRetrieveService}
+								>
 									Next
 								</Button>
 							</div>
@@ -525,110 +819,101 @@ export default function BookingView() {
 								</Button>
 							</div>
 						)}
-						{step === steps.INFORMATION && (
-							<div className="flex mt-12 w-full ">
-								<Button radius="xl" color="secondary.0" className="w-full">
-									Nexts
+						{/* 	{step === steps.INFORMATION && (
+							<div className="flex mt-12 justify-between ">
+								<Button radius="xl" color="secondary.0" type="submit">
+									Book now
+								</Button>
+								<Button radius="xl" color="secondary.0" type="submit">
+									Pay now
 								</Button>
 							</div>
-						)}
+						)} */}
 					</div>
-					<div className="col-start-9 col-end-13">
-						<div className="flex flex-row">
-							<h5 className="mt-0 mr-6">Service </h5>
-							{step === steps.INFORMATION || step === steps.BOOKING ? (
-								<h5 className="mt-0 mr-2 text-info">Edit </h5>
-							) : null}
-						</div>
-
-						<div className="bg-primary rounded-xl p-8 shadow-md">
-							<div className="relative w-full h-40">
-								{isLoadingRetrieveService ? (
-									<Skeleton className="w-full h-full" radius="lg" />
-								) : (
-									<Image
-										src={
-											infoService && infoService.object.imageData
-												? infoService.object.imageData.url
-												: "/images/booking/service.png"
-										}
-										layout="fill"
-										objectFit="cover"
-										className="rounded-lg"
-									/>
-								)}
+					{step !== steps.BOOKED && step !== steps.PAYMENT ? (
+						<div className="col-start-9 col-end-13">
+							<div className="flex flex-row">
+								<h5 className="mt-0 mr-6">Service </h5>
+								{step === steps.INFORMATION || step === steps.BOOKING ? (
+									<h5 className="mt-0 mr-2 text-info">Edit </h5>
+								) : null}
 							</div>
-							<h6 className="mb-4">
-								{isLoadingRetrieveService ? (
-									<>
-										<Skeleton height={8} radius="xl" className="mb-4" />
-										<Skeleton height={8} radius="xl" width={"70%"} />
-									</>
-								) : infoService && infoService.object.itemData.name ? (
-									infoService.object.itemData.name
-								) : (
-									"No service selected"
-								)}
 
-								{/* {infoService && infoService.object.itemData.name
-									? infoService.object.itemData.name
-									: "No service selected"} */}
-							</h6>
-							<p></p>
-							<h6 className="my-0">
-								{/* 	$
-								{infoService && infoService.object?.itemData?.variations[0]
-									? (
-											Number(
-												infoService.object?.itemData?.variations[0]
-													.itemVariationData.priceMoney.amount
-											) / 100
-									  ).toFixed(2)
-									: 0}{" "}
-								USD */}
-								{isLoadingRetrieveService ? (
-									<Skeleton height={8} radius="xl" width={"40%"} />
-								) : (
-									<>
-										{infoService && infoService.object?.itemData?.variations[0]
-											? (
-													Number(
-														infoService.object?.itemData?.variations[0]
-															.itemVariationData.priceMoney.amount
-													) / 100
-											  ).toFixed(2)
-											: 0}{" "}
-										USD
-									</>
-								)}
-							</h6>
-							{/* 	<p className="mt-4 mb-0">
-								{infoService && infoService.object.itemData.variations[0].itemVariationData.}
-							</p> */}
-						</div>
-						{step === steps.INFORMATION || step === steps.BOOKING ? (
-							<>
-								<div className="flex flex-row">
-									<h5 className="mr-6 mb-0">Date and Time </h5>
-									{step === steps.INFORMATION && (
-										<h5 className="mr-2 mb-0 text-info">Edit </h5>
+							<div className="bg-primary rounded-xl p-8 shadow-md">
+								<div className="relative w-full h-40">
+									{isLoadingRetrieveService ? (
+										<Skeleton className="w-full h-full" radius="lg" />
+									) : (
+										<Image
+											src={
+												infoService && infoService.object.imageData
+													? infoService.object.imageData.url
+													: "/images/booking/service.png"
+											}
+											layout="fill"
+											objectFit="cover"
+											className="rounded-lg"
+										/>
 									)}
 								</div>
-								<div className="bg-primary rounded-xl p-8 mt-8 shadow-md flex">
-									<CalendarEvent size={26} strokeWidth={2} />
-									<h6 className="my-0 ml-4">
-										{/* 12:00 PM Sat. 01 Mar 2023 */}
-										{selectedDateBooking
-											? format(
-													new Date(selectedDateBooking),
-													"h:mm a EEE, MMM dd, yyyy"
-											  )
-											: "No date selected"}
-									</h6>
-								</div>
-							</>
-						) : null}
-					</div>
+								<h6 className="mb-4">
+									{isLoadingRetrieveService ? (
+										<>
+											<Skeleton height={8} radius="xl" className="mb-4" />
+											<Skeleton height={8} radius="xl" width={"70%"} />
+										</>
+									) : infoService && infoService.object.itemData.name ? (
+										infoService.object.itemData.name
+									) : (
+										"No service selected"
+									)}
+								</h6>
+								<p></p>
+								<h6 className="my-0">
+									{isLoadingRetrieveService ? (
+										<Skeleton height={8} radius="xl" width={"40%"} />
+									) : (
+										<>
+											{infoService &&
+											infoService.object?.itemData?.variations[0]
+												? (
+														Number(
+															infoService.object?.itemData?.variations[0]
+																.itemVariationData.priceMoney.amount
+														) / 100
+												  ).toFixed(2)
+												: 0}{" "}
+											USD
+										</>
+									)}
+								</h6>
+								{/* 	<p className="mt-4 mb-0">
+									{infoService && infoService.object.itemData.variations[0].itemVariationData.}
+								</p> */}
+							</div>
+							{step === steps.INFORMATION || step === steps.BOOKING ? (
+								<>
+									<div className="flex flex-row">
+										<h5 className="mr-6 mb-0">Date and Time </h5>
+										{step === steps.INFORMATION && (
+											<h5 className="mr-2 mb-0 text-info">Edit </h5>
+										)}
+									</div>
+									<div className="bg-primary rounded-xl p-8 mt-8 shadow-md flex">
+										<CalendarEvent size={26} strokeWidth={2} />
+										<h6 className="my-0 ml-4">
+											{selectedDateBooking
+												? format(
+														new Date(selectedDateBooking),
+														"h:mm a EEE, MMM dd, yyyy"
+												  )
+												: "No date selected"}
+										</h6>
+									</div>
+								</>
+							) : null}
+						</div>
+					) : null}
 				</div>
 			</Container>
 		</div>
