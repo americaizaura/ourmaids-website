@@ -20,7 +20,7 @@ defmodule Ourmaids.ContactMail do
 
   def contact_email(%{"data" => email}) do
     new()
-    |> to([{"Contact", "diegoxx61@gmail.com"}])
+    |> to([{"Contact", "alexishs451@gmail.com"}])
     |> from({"Contact from the franchise web", "noreply@ourmaids.com"})
     |> subject("Someone is looking for you.")
     |> html_body(template(email))
