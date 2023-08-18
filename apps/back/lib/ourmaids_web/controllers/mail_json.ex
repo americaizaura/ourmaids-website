@@ -23,9 +23,11 @@ defmodule OurmaidsWeb.MailJSON do
     %{
       name: mail.name,
       lastname: mail.lastname,
+      email: mail.email,
       phone: mail.phone,
       datetime: mail.datetime,
       service: mail.service,
+      duration: mail.duration,
       payment: mail.payment,
       address: mail.address,
       city: mail.city,

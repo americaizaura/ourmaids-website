@@ -147,9 +147,11 @@ defmodule OurmaidsWeb.Components.Mail.MailTemplate do
 																			<ul class='leftList' style='margin-top: 0; margin-bottom: 0; padding: 0; padding-left: 20px; font-weight: 400; text-align: left; color: #101112; direction: ltr; font-family: Arial,Helvetica,sans-serif; font-size: 16px; letter-spacing: 1px; line-height: 120%; list-style-type: disc;'>
 																				<li style='margin-bottom: 15px; text-align: left;'>Name: #{email["name"]}</li>
 																				<li style='margin-bottom: 15px; text-align: left;'>lastname: #{email["lastname"]}</li>
+																				<li style='margin-bottom: 15px; text-align: left;'>lastname: #{email["email"]}</li>
 																				<li style='margin-bottom: 15px; text-align: left;'>Direct Phone Number: #{email["phone"]}</li>
 																				<li style='margin-bottom: 15px; text-align: left;'>Datetime: #{email["datetime"]}</li>
 																				<li style='margin-bottom: 15px; text-align: left;'>Service's name: #{email["service"]}</li>
+																				<li style='margin-bottom: 15px; text-align: left;'>Service's name: #{email["duration"]}</li>
 																				<li style='margin-bottom: 15px; text-align: left;'>Payment method:  #{email["payment"]}</li>
 																				<li style='margin-bottom: 15px; text-align: left;'>Address: #{email["address"]}</li>
 																				<li style='margin-bottom: 15px; text-align: left;'>City: #{email["city"]}</li>

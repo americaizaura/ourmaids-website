@@ -5,9 +5,11 @@ defmodule Ourmaids.ContactMail do
   defstruct [
     :name,
     :lastname,
+    :email,
     :phone,
     :datetime,
     :service,
+    :duration,
     :payment,
     :address,
     :city,
