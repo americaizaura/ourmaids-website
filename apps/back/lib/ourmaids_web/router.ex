@@ -2,17 +2,19 @@ defmodule OurmaidsWeb.Router do
   use OurmaidsWeb, :router
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug(:accepts, ["json"])
+    plug(CORSPlug)
   end
 
   scope "/api", OurmaidsWeb do
-    pipe_through :api
+    pipe_through(:api)
   end
+
   scope "/api", OurmaidsWeb do
     pipe_through(:api)
 
     post("/mail", MailController, :create)
-
+    options("/mail", MailController, :options)
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
@@ -25,10 +27,10 @@ defmodule OurmaidsWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/dev" do
-      pipe_through [:fetch_session, :protect_from_forgery]
+      pipe_through([:fetch_session, :protect_from_forgery])
 
-      live_dashboard "/dashboard", metrics: OurmaidsWeb.Telemetry
-      forward "/mailbox", Plug.Swoosh.MailboxPreview
+      live_dashboard("/dashboard", metrics: OurmaidsWeb.Telemetry)
+      forward("/mailbox", Plug.Swoosh.MailboxPreview)
     end
   end
 end
