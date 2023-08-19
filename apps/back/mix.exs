@@ -1,12 +1,13 @@
-defmodule Ourmaids.MixProject do
+defmodule Ourmaid.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :ourmaids,
+      app: :ourmaid,
       version: "0.1.0",
-      elixir: "~> 1.14",
+      elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: [] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -18,8 +19,8 @@ defmodule Ourmaids.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Ourmaids.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      mod: {Ourmaid.Application, []},
+      extra_applications: [:logger, :runtime_tools, :bamboo, :bamboo_smtp]
     ]
   end
 
@@ -32,20 +33,28 @@ defmodule Ourmaids.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.7.2"},
-      {:phoenix_live_dashboard, "~> 0.7.2"},
-      {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
+      {:bcrypt_elixir, "~> 3.0"},
+      {:phoenix, "~> 1.6.14"},
+      {:phoenix_ecto, "~> 4.4"},
+      {:ecto_sql, "~> 3.6"},
+      {:myxql, ">= 0.0.0"},
+      {:phoenix_html, "~> 3.0"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_live_view, "~> 0.17.5"},
+      {:floki, ">= 0.30.0", only: :test},
+      {:phoenix_live_dashboard, "~> 0.6"},
+      {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.3"},
-      {:finch, "~> 0.13"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.20"},
+      {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:gen_smtp, "~> 1.1"},
-      {:google_recaptcha, "~> 0.2.0"},
-      {:cors_plug, "~> 3.0"}
+      {:hackney, "~> 1.9"},
+      {:cors_plug, "~> 3.0"},
+      {:bamboo, "~> 2.2.0"},
+      {:bamboo_smtp, "~> 4.1.0"}
+
     ]
   end
 
@@ -57,10 +66,11 @@ defmodule Ourmaids.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "assets.setup", "assets.build"],
-      "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind default", "esbuild default"],
-      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
+      setup: ["deps.get", "ecto.setup"],
+      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      "assets.deploy": ["esbuild default --minify", "phx.digest"]
     ]
   end
 end

@@ -7,37 +7,20 @@
 # General application configuration
 import Config
 
+config :ourmaid,
+  ecto_repos: [Ourmaid.Repo]
+
 # Configures the endpoint
-config :ourmaids, OurmaidsWeb.Endpoint,
+config :ourmaid, OurmaidWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [
-    formats: [json: OurmaidsWeb.ErrorJSON],
-    layout: false
-  ],
-  pubsub_server: Ourmaids.PubSub,
-  live_view: [signing_salt: "P8Df7Jl0"]
+  render_errors: [view: OurmaidWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Ourmaid.PubSub,
+  live_view: [signing_salt: "J/wOZFfo"]
 
-# Configures the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-
-# source .env.dev && mix phx.server
-config :swoosh, :api_client, false
-
-public_captcha =
-  System.get_env("PUBLIC_CAPTCHA") ||
+smtp_pass =
+  System.get_env("SMTP_PASSWORD") ||
     raise """
-    environment variable SMTP_USERNAME is missing.
-    """
-
-private_captcha =
-  System.get_env("PRIVATE_CAPTCHA") ||
-    raise """
-    environment variable SMTP_USERNAME is missing.
+    environment variable SMTP_PASSWORD is missing.
     """
 
 smtp_username =
@@ -46,52 +29,38 @@ smtp_username =
     environment variable SMTP_USERNAME is missing.
     """
 
-smtp_pass =
-  System.get_env("SMTP_PASSWORD") ||
-    raise """
-    environment variable SMTP_PASSWORD is missing.
-    """
-
-config :ourmaids, Ourmaids.Mailer,
-  adapter: Swoosh.Adapters.SMTP,
-  relay: "smtp.ionos.mx",
-  username: smtp_username,
-  password: smtp_pass,
-  ssl: false,
-  tls: :false,
-  auth: :always,
+# In your config/config.exs file
+config :ourmaid, Ourmaid.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  hostname: "ourmaids.com",
+  server: "smtp.ionos.mx",
   port: 587,
+  # or {:system, "SMTP_USERNAME"}
+  username: smtp_username,
+  # or {:system, "SMTP_PASSWORD"}
+  password: smtp_pass,
+  # can be `:always` or `:never`
+  tls: :if_available,
+  # or {:system, "ALLOWED_TLS_VERSIONS"} w/ comma separated values (e.g. "tlsv1.1,tlsv1.2")
+  allowed_tls_versions: [:"tlsv1.1", :"tlsv1.2"],
+  tls_log_level: :error,
+  # optional, can be `:verify_peer` or `:verify_none`
+  tls_verify: :verify_peer,
+  # can be `true`
+  ssl: false,
   retries: 2,
-  no_mx_lookups: false
-
-# config :ourmaids, Ourmaids.Mailer, adapter: Swoosh.Adapters.Local
-# ReCaptcha config
-config :google_recaptcha,
-  api_url: "https://www.google.com/recaptcha/api/siteverify",
-  public_key: public_captcha,
-  secret_key: private_captcha,
-  enabled: true
+  # can be `true`
+  no_mx_lookups: false,
+  auth: :if_available
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.17.11",
+  version: "0.14.29",
   default: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
-  ]
-
-# Configure tailwind (the version is required)
-config :tailwind,
-  version: "3.2.7",
-  default: [
-    args: ~w(
-      --config=tailwind.config.js
-      --input=css/app.css
-      --output=../priv/static/assets/app.css
-    ),
-    cd: Path.expand("../assets", __DIR__)
   ]
 
 # Configures Elixir's Logger
