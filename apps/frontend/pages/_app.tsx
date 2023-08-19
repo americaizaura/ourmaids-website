@@ -6,6 +6,7 @@ import "../styles/index.css";
 import Layout from "../components/layaout";
 import client from "../lib/apollo";
 import { ApolloProvider } from "@apollo/client";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 export default function App(props: AppProps) {
 	const { Component, pageProps } = props;
 
@@ -61,9 +62,11 @@ export default function App(props: AppProps) {
 				}}
 			>
 				<ApolloProvider client={client}>
-					<Layout>
-						<Component {...pageProps} />
-					</Layout>
+					<GoogleReCaptchaProvider reCaptchaKey="6LdrxLQnAAAAAGbBzf5OvpkFr-Gc0FD2RN9YFMod">
+						<Layout>
+							<Component {...pageProps} />
+						</Layout>
+					</GoogleReCaptchaProvider>
 				</ApolloProvider>
 			</MantineProvider>
 		</>

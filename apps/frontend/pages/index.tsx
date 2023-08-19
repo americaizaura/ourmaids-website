@@ -37,6 +37,11 @@ import ImagesService from "../services/images.service";
 interface ServicesProps {
 	services: any;
 }
+import ReCAPTCHA from "react-google-recaptcha";
+import {
+	GoogleReCaptcha,
+	GoogleReCaptchaProvider,
+} from "react-google-recaptcha-v3";
 export default function AppShellDemo({ services }: ServicesProps) {
 	const theme = useMantineTheme();
 	const [opened, setOpened] = useState(false);
@@ -72,6 +77,20 @@ export default function AppShellDemo({ services }: ServicesProps) {
 			<AboutUs />
 			<Booking />
 			<Reviews />
+			{/* 	<ReCAPTCHA
+				sitekey="6Ld61rQnAAAAAOZyssOajwm8AsrA6CEAGzRcpcs4"
+				onChange={(value) => {
+					console.log("Captcha value:", value);
+				}}
+			/> */}
+			{/* <GoogleReCaptchaProvider reCaptchaKey="6LdrxLQnAAAAAGbBzf5OvpkFr-Gc0FD2RN9YFMod">
+				<GoogleReCaptcha
+					onVerify={(token) => {
+						console.log("Captcha value:", token);
+					}}
+				/>
+			</GoogleReCaptchaProvider> */}
+			,
 		</>
 	);
 }

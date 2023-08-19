@@ -2,8 +2,8 @@ import { Client, Environment } from "square";
 
 const { bookingsApi } = new Client({
 	accessToken:
-		"EAAAFJLAQwc57X5arZRGsRm9CrE6dVDblTJ10DJU0PXX9QEBTZHoeDt_ewiSSCW3",
-	environment: Environment.Production,
+		"EAAAEFHgE_JY5r7dECm_Av7WFV-brJ_8M6hbH2VvVETOrdyoDifPYYEF7xMVWZVK",
+	environment: Environment.Sandbox,
 });
 
 export default async function handler(req: any, res: any) {

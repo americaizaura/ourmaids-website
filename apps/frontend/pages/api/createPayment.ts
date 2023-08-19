@@ -1,20 +1,25 @@
 import { Client, Environment } from "square";
 
-const { catalogApi } = new Client({
+const { paymentsApi } = new Client({
 	accessToken:
 		"EAAAEFHgE_JY5r7dECm_Av7WFV-brJ_8M6hbH2VvVETOrdyoDifPYYEF7xMVWZVK",
 	environment: Environment.Sandbox,
 });
-
+import { randomUUID } from "crypto";
 export default async function handler(req: any, res: any) {
-	if (req.method === "GET") {
-
-
-		const { result } = await catalogApi.listCatalog(undefined, "IMAGE");
+	if (req.method === "POST") {
+		const { result } = await paymentsApi.createPayment({
+			idempotencyKey: randomUUID(),
+			sourceId: req.body.sourceId,
+			amountMoney: {
+				amount: req.body.amountMoney.amount,
+				currency: req.body.amountMoney.currency,
+			},
+			buyerEmailAddress: req.body.buyerEmailAddress,
+		});
 
 		const resultSerialize = toObject(result);
-/* console.log(resultSerialize);
- */
+
 		res.status(200).json(resultSerialize);
 	} else {
 		res.status(500).send();

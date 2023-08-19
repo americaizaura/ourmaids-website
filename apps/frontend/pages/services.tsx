@@ -56,9 +56,10 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 			ImagesService.fetchImages(),
 		]);
 		const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
+		setLoadingChange(false);
+		if (!enhancedCatalogData) return;
 		setData(enhancedCatalogData);
 		setCursorState(catalogData.cursor);
-		setLoadingChange(false);
 	};
 
 	const menu = [
@@ -120,7 +121,7 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 									? data?.map((service, index) => (
 											<CardServicesSkeleton key={index} />
 									  ))
-									: data?.map((service, index) => (
+									: /* data?.map((service, index) => (
 											<CardServices
 												key={service?.id}
 												idCatalogProduct={service?.id || ""}
@@ -131,6 +132,22 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 												}
 												description={service?.itemData?.name}
 											/>
+									  )) */
+									data && data.length > 0
+									? data?.map((service, index) => (
+											<CardServices
+												key={service?.id}
+												idCatalogProduct={service?.id || ""}
+												image={
+													service && service.imageData
+														? service.imageData.url
+														: "/images/oservices/image 17.png"
+												}
+												description={service?.itemData?.name}
+											/>
+									  ))
+									: Array.from({ length: 10 }).map((_, index) => (
+											<CardServicesSkeleton key={index} />
 									  ))}
 							</div>
 
@@ -161,6 +178,9 @@ function enhanceCatalogData(
 	catalogData: SearchCatalogItemsResponse,
 	imagesData: ListCatalogResponse
 ): CatalogObject[] | null {
+	console.log(catalogData);
+
+	if (!catalogData && !imagesData) return null;
 	return catalogData.items?.map((item) => {
 		const image = imagesData.objects?.find(
 			(image) =>

@@ -506,7 +506,7 @@ export default function AboutUsView() {
 			<div className="w-full sm:mb-60 mb-32 relative h-full">
 				<div className="lg:absolute top-0 right-0 h-[85%] w-[50%] hidden lg:block">
 					<Image
-						src="/images/aboutUs/image-25.webp"
+						src="/images/aboutUs/how.jpg"
 						alt="Hero"
 						layout="fill"
 						objectFit="cover"
@@ -520,17 +520,32 @@ export default function AboutUsView() {
 						<div className="lg:col-span-4 col-span-12">
 							<h3 className="mt-0">How it all started</h3>
 							<p className="text-justify">
-								OURMAIDS.COM IS A COMPANY FOR THE PEOPLE, NOT JUST AN ONLINE
-								PLATFORM. LOOK AT MORE REVIEWS HERE We don't "match you with a
-								Pro". We are the Professional cleaners! We review your booking
-								immediately and schedule it within one hour, you get a calendar
-								invite when it is up on the teams app. You can reach one of our
-								friendly Customer Care specialist by phone or e-mail and get
-								live responses almost immediately from 7am to 7pm Monday to
-								Sunday (Numbers on top of each page.) Get online bookings and
-								automated responses 24/7 365 days. Our services are the best in
-								the industry because we have done for so many years now that we
-								have improved all aspects of the service.
+								IT ALL STARTED HERE, IN THIS SMALL OFFICE IN RICHARDSON, TX,
+								WITH THIS GROUP OF BEAUTIFUL LADIES, AND A VISIONARY, ANTONIO V.
+								MORENO (he was taking the picture:) Back in 2,000, in a small
+								shop at Arapaho Rd., Richardson, Texas, United States of
+								America, Antonio V. Moreno, then a CNC programmer at Halliburton
+								Company, decided to quit a well paid, secure employment to enter
+								the unknown, uncertain field of the entrepreneurial world
+								founding Our Maids, Inc., a subsidiary of Antonio Moreno
+								Enterprises, Inc., and OurMaids brand. He was then a Business
+								student at Amberton University. Everything on this site is his
+								idea. Before and after getting his Bachelor of Business
+								Administration Degree form Amberton University in Dallas County
+								(Garland), Texas, he has been working full time on this
+								enterprise uninterrupted for 22 years now. His VISION was a
+								simple one back then. To create a cleaning service company that
+								is not tied up to any brick and mortar store, but one that can
+								be run from anywhere in the world. Then OurMaids.com was born as
+								the only cleaning service company based entirely on an online
+								platform. Our StoreFront is online at any minute and at your
+								fingertips to Book your service, then pay for it. Check our
+								services and prices before you order, get instant answers to
+								your most commonly asked questions and speak with a friendly
+								Customer Care specialist 7am to 7pm every day. As of now,
+								03/24/2023, we are offering Franchises so everybody has the
+								chance to share on this idea or bringing cleaning services to
+								your home Uber like. Explore franchise opportunities here.
 							</p>
 						</div>
 					</div>

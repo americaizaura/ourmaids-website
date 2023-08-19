@@ -18,6 +18,7 @@ import {
 	Input,
 	TextInput,
 } from "@mantine/core";
+import ReCAPTCHA from "react-google-recaptcha";
 import { useForm } from "@mantine/form";
 import { useState } from "react";
 import { Progress, Input as MantineInput } from "@mantine/core";
@@ -37,6 +38,7 @@ import { CatalogItemProductType } from "../gql/graphql";
 import CatalogService from "../services/catalog.service";
 import ImagesService from "../services/images.service";
 import BookingService from "../services/booking.service";
+import PaymentService from "../services/payment.service";
 import { Availability, RetrieveCatalogObjectResponse } from "square";
 import { format, set } from "date-fns";
 import { is } from "date-fns/locale";
@@ -97,11 +99,12 @@ SelectItem.displayName = "div";
 export default function BookingView() {
 	const ref = useRef<HTMLInputElement>();
 	const [dateBooking, setDateBooking] = useState<Date | null>(null);
-
+	const recaptchaRef = useRef<ReCAPTCHA>(null);
+	const recaptchaRef2 = useRef<ReCAPTCHA>(null);
 	const [isBook, setIsBookOrPay] = useState(false);
 	const [infoService, setInfoService] =
 		useState<RetrieveCatalogObjectResponse | null>(null);
-	const [step, setStep] = useState(steps.PAYMENT);
+	const [step, setStep] = useState(steps.SERVICE);
 	const [data, setData] = useState([] as Catalog[]);
 	const [opened, setOpened] = useState(false);
 	const [isLoadingCatalog, setIsLoadingCatalog] = useState(false);
@@ -115,6 +118,7 @@ export default function BookingView() {
 	const [availableBooking, setAvailableBooking] = useState(
 		[] as availableBookingDates[]
 	);
+	const [errorRecaptcha, setErrorRecaptcha] = useState(false);
 	const [selectedDateBooking, setSelectedDateBooking] = useState("");
 	const form = useForm({
 		initialValues: {
@@ -191,12 +195,19 @@ export default function BookingView() {
 			},
 		},
 	});
-	const sendBooking = () => {
+	const sendBooking = async () => {
 		if (isBook === true) {
-			console.log("Entro");
-
-			console.log(form.values);
-			setStep(steps.BOOKED);
+			if (recaptchaRef.current.getValue() === "") {
+				setErrorRecaptcha(true);
+				return;
+			}
+			const recaptchaValue = recaptchaRef.current.getValue();
+			const bookingData = {
+				...form.values,
+				...formDate.values,
+				serviceId: infoService?.object?.id,
+				recaptchaValue,
+			};
 		} else {
 			setStep(steps.PAYMENT);
 		}
@@ -271,10 +282,15 @@ export default function BookingView() {
 			CatalogService.retrieveCatalogObject(id),
 			ImagesService.fetchImages(),
 		]);
-		const image = imagesData.objects?.find(
-			(image) =>
-				image.type === "IMAGE" &&
-				image.id === (catalogData.object?.itemData.imageIds[0] || "")
+		const image = imagesData.objects?.find((image) =>
+			image.type === "IMAGE" &&
+			/* image.id === (catalogData.object?.itemData.imageIds[0] || "") */
+			image.id === catalogData &&
+			catalogData.object &&
+			catalogData.object.itemData &&
+			catalogData.object.itemData.imageIds[0]
+				? catalogData.object.itemData.imageIds[0]
+				: ""
 		);
 
 		const enhancedCatalogData: RetrieveCatalogObjectResponse = {
@@ -320,9 +336,13 @@ export default function BookingView() {
 					/>
 				) : null}
 			</div>
-			<Container size="xl" className="lg:pt-32 pt-24 pb-12 ">
+			<Container size="xl" className="lg:pt-32 md:pt-24 pb-12 pt-56">
 				<div className="grid grid-cols-12 ">
-					<div className="col-start-4 col-end-13">
+					<div
+						className="md:col-start-4 md:col-end-13 
+					col-start-1 col-end-13 
+					"
+					>
 						<Progress
 							color="secondary.0"
 							value={
@@ -332,22 +352,25 @@ export default function BookingView() {
 									? 33
 									: step === steps.INFORMATION
 									? 66
+									: step === steps.PAYMENT
+									? 80
 									: 100
 							}
 						/>
 					</div>
 				</div>
 				<div className="grid grid-cols-12 ">
-					<h2 className="col-start-4 col-end-13">Bookings</h2>
-					<p>{isLoadingCatalog}</p>
+					<h2 className="md:col-start-4 md:col-end-13 col-start-1 col-end-13">
+						Bookings
+					</h2>
 				</div>
 				<div className="grid grid-cols-12 ">
 					<div
 						className={`
 							${
 								step !== steps.BOOKED && step !== steps.PAYMENT
-									? "col-start-4 col-end-8"
-									: "col-start-4 col-end-13"
+									? "md:col-start-4 md:col-end-8 col-start-1 col-end-13 sm:col-start-1 sm:col-end-7"
+									: "md:col-start-4 md:col-end-13 col-start-1 col-end-13 sm:col-start-1 sm:col-end-7"
 							}
 					`}
 					>
@@ -355,23 +378,41 @@ export default function BookingView() {
 							<PaymentForm
 								applicationId="sandbox-sq0idb-RDsHXNNRy6kDDn5m_7011A"
 								locationId="LD8BGSHK8NXTZ"
-								cardTokenizeResponseReceived={(token, verifiedBuyer) => {
-									console.info("Token:", token);
-									console.info("Verified Buyer:", verifiedBuyer);
+								cardTokenizeResponseReceived={async (token, verifiedBuyer) => {
+									setErrorRecaptcha(false);
+									if (recaptchaRef2.current.getValue() === "") {
+										setErrorRecaptcha(true);
+										return;
+									}
+									const response = await PaymentService.createPayment(
+										token.token,
+										{
+											amount: Number(
+												infoService.object?.itemData?.variations[0]
+													.itemVariationData.priceMoney.amount
+											),
+											currency: "USD",
+										},
+										"alexishs451@gmail.com"
+									);
+									setStep(steps.BOOKED);
 								}}
 								createPaymentRequest={() => ({
 									countryCode: "US",
 									currencyCode: "USD",
 
 									total: {
-										amount: "100",
+										amount: Number(
+											infoService.object?.itemData?.variations[0]
+												.itemVariationData.priceMoney.amount
+										).toString(),
 										label: "Total",
 									},
 								})}
 							>
 								<CreditCard
 									render={(Button) => (
-										<Button>
+										<Button onChange={() => setErrorRecaptcha(false)}>
 											{infoService &&
 											infoService.object?.itemData?.variations[0]
 												? (
@@ -386,9 +427,21 @@ export default function BookingView() {
 									)}
 								/>
 								<br />
-								<ApplePay />
-								<br />
-								<GooglePay />
+
+								<GooglePay className="mt-4" />
+								<div className="flex justify-center">
+									<ReCAPTCHA
+										className="mt-4"
+										onChange={() => setErrorRecaptcha(false)}
+										ref={recaptchaRef2}
+										sitekey="6Ld61rQnAAAAAOZyssOajwm8AsrA6CEAGzRcpcs4"
+									/>
+								</div>
+								{errorRecaptcha && (
+									<p className="text-error text-center">
+										Recaptcha is required
+									</p>
+								)}
 							</PaymentForm>
 						)}
 						{step === steps.BOOKED && (
@@ -553,7 +606,23 @@ export default function BookingView() {
 											/>
 										</div>
 									</div>
-									<div className="flex mt-12 justify-between ">
+									<div className="flex justify-center mt-12">
+										<ReCAPTCHA
+											onChange={(toke) => {
+												setErrorRecaptcha(false),
+													console.log(toke),
+													alert(toke);
+											}}
+											ref={recaptchaRef}
+											sitekey="6Ld61rQnAAAAAOZyssOajwm8AsrA6CEAGzRcpcs4"
+										/>
+									</div>
+									{errorRecaptcha && (
+										<p className="text-error text-center">
+											Recaptcha is required
+										</p>
+									)}
+									<div className="flex mt-12 justify-between mb-20">
 										<Button
 											radius="xl"
 											color="secondary.0"
@@ -604,23 +673,24 @@ export default function BookingView() {
 									}
 									{...formDate.getInputProps("date")}
 								/>
-
-								<div className="rounded-md bg-onPrimary shadow-md mt-2 p-4 w-[70%]  ">
-									<Group position="center">
-										<DatePicker
-											value={dateBooking}
-											onChange={(value) => {
-												formDate.setFieldValue(
-													"date",
-													format(new Date(value), "MM-dd-yyyy")
-												);
-												setDateBooking(value);
-											}}
-											minDate={
-												new Date(new Date().setDate(new Date().getDate()))
-											}
-										/>
-									</Group>
+								<div className="flex justify-center sm:justify-start">
+									<div className="rounded-md bg-onPrimary shadow-md mt-2 p-4 lg:w-[70%]  w-auto  ">
+										<Group position="center">
+											<DatePicker
+												value={dateBooking}
+												onChange={(value) => {
+													formDate.setFieldValue(
+														"date",
+														format(new Date(value), "MM-dd-yyyy")
+													);
+													setDateBooking(value);
+												}}
+												minDate={
+													new Date(new Date().setDate(new Date().getDate()))
+												}
+											/>
+										</Group>
+									</div>
 								</div>
 								<div>
 									<h6 className="mb-4">Time</h6>
@@ -647,7 +717,7 @@ export default function BookingView() {
 									})}
 									{...formDate.getInputProps("time")}
 								/>
-								<div className="flex mt-12 justify-between ">
+								<div className="flex mt-12 justify-between mb-20">
 									<Button
 										radius="xl"
 										color="secondary.0"
@@ -700,7 +770,7 @@ export default function BookingView() {
 						)}
 
 						{step === steps.SERVICE && (
-							<div className="flex mt-12 justify-end ">
+							<div className="flex mt-12 justify-end mb-10">
 								<Button
 									radius="xl"
 									color="secondary.0"
@@ -713,7 +783,7 @@ export default function BookingView() {
 						)}
 					</div>
 					{step !== steps.BOOKED && step !== steps.PAYMENT ? (
-						<div className="col-start-9 col-end-13">
+						<div className="md:col-start-9 md:col-end-13 col-start-1 col-end-13 sm:col-start-8 sm:col-end-13">
 							<div className="flex flex-row">
 								<h5 className="mt-0 mr-6">Service </h5>
 								{step === steps.INFORMATION || step === steps.BOOKING ? (
@@ -758,7 +828,8 @@ export default function BookingView() {
 										<>
 											{infoService &&
 											infoService.object?.itemData?.variations[0]
-												? (
+												? "$" +
+												  (
 														Number(
 															infoService.object?.itemData?.variations[0]
 																.itemVariationData.priceMoney.amount
@@ -766,6 +837,24 @@ export default function BookingView() {
 												  ).toFixed(2)
 												: 0}{" "}
 											USD
+										</>
+									)}
+								</h6>
+								<h6 className="my-4">
+									{isLoadingRetrieveService ? (
+										<Skeleton height={8} radius="xl" width={"40%"} />
+									) : (
+										<>
+											{infoService &&
+											infoService.object?.itemData?.variations[0]
+												? //function miliseconds to minutes
+												  Math.floor(
+														Number(
+															infoService.object?.itemData?.variations[0]
+																.itemVariationData.serviceDuration
+														) / 60000
+												  ) + " min"
+												: "0"}{" "}
 										</>
 									)}
 								</h6>
@@ -781,11 +870,13 @@ export default function BookingView() {
 									<div className="bg-primary rounded-xl p-8 mt-8 shadow-md flex">
 										<CalendarEvent size={26} strokeWidth={2} />
 										<h6 className="my-0 ml-4">
-											{selectedDateBooking
+											{dateBooking
 												? format(
-														new Date(selectedDateBooking),
+														new Date(dateBooking),
 														"h:mm a EEE, MMM dd, yyyy"
-												  )
+												  ) +
+												  " " +
+												  formDate.values.time
 												: "No date selected"}
 										</h6>
 									</div>
