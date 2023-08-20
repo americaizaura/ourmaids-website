@@ -47,7 +47,8 @@ defmodule Ocstudios.MixProject do
       {:cors_plug, "~> 3.0"},
       {:google_recaptcha, "~> 0.2.0"},
       {:phoenix_swoosh, "~> 1.0"},
-      {:httpoison, "~> 1.8"}
+      {:httpoison, "~> 1.8"},
+      {:ssl_verify_fun, "~> 1.1.7", manager: :rebar3, override: true}
 
     ]
   end
