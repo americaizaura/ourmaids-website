@@ -8,14 +8,11 @@
 import Config
 
 # Configures the endpoint
-config :ourmaids, OurmaidsWeb.Endpoint,
-  url: [host: "localhost"],
-  render_errors: [
-    formats: [json: OurmaidsWeb.ErrorJSON],
-    layout: false
-  ],
-  pubsub_server: Ourmaids.PubSub,
-  live_view: [signing_salt: "P8Df7Jl0"]
+config :ocstudios, OcstudiosWeb.Endpoint,
+  url: [host: "api.ocstudios.mx"],
+  render_errors: [view: OcstudiosWeb.ErrorView, accepts: ~w(json), layout: false],
+  pubsub_server: Ocstudios.PubSub,
+  live_view: [signing_salt: "BbKS1uIi"]
 
 # Configures the mailer
 #
@@ -24,15 +21,34 @@ config :ourmaids, OurmaidsWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
+public_captcha =
+  System.get_env("PUBLIC_CAPTCHA") ||
+    raise """
+    environment variable SMTP_PASSWORD is missing.
+    """
+secret_captcha =
+  System.get_env("SECRET_CAPTCHA") ||
+    raise """
+    environment variable SMTP_PASSWORD is missing.
+    """
+smtp_pass =
+  System.get_env("SMTP_PASSWORD") ||
+    raise """
+    environment variable SMTP_PASSWORD is missing.
+    """
 
-# source .env.dev && mix phx.server
+smtp_username =
+  System.get_env("SMTP_USERNAME") ||
+    raise """
+    environment variable SMTP_USERNAME is missing.
+    """
 config :swoosh, :api_client, false
 
 config :ourmaids, Ourmaids.Mailer,
   adapter: Swoosh.Adapters.SMTP,
   relay: "smtp.ionos.mx",
-  username: {:system, "SMTP_USERNAME"},
-  password: {:system, "SMTP_PASSWORD"},
+  username: smtp_username,
+  password: smtp_pass,
   ssl: false,
   tls: false,
   auth: :always,
@@ -40,34 +56,17 @@ config :ourmaids, Ourmaids.Mailer,
   retries: 2,
   no_mx_lookups: false
 
-# config :ourmaids, Ourmaids.Mailer, adapter: Swoosh.Adapters.Local
-# ReCaptcha config
-config :google_recaptcha,
-  api_url: "https://www.google.com/recaptcha/api/siteverify",
-  public_key: {:system, "PUBLIC_CAPTCHA"},
-  secret_key: {:system, "PRIVATE_CAPTCHA"},
-  enabled: true
+# Swoosh API client is needed for adapters other than SMTP.
+
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.17.11",
+  version: "0.14.29",
   default: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
-  ]
-
-# Configure tailwind (the version is required)
-config :tailwind,
-  version: "3.2.7",
-  default: [
-    args: ~w(
-      --config=tailwind.config.js
-      --input=css/app.css
-      --output=../priv/static/assets/app.css
-    ),
-    cd: Path.expand("../assets", __DIR__)
   ]
 
 # Configures Elixir's Logger
@@ -77,6 +76,14 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+# ReCaptcha config
+config :google_recaptcha,
+  api_url: "https://www.google.com/recaptcha/api/siteverify",
+  public_key: public_captcha,
+  secret_key: private_captcha,
+  enabled: true
+
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
