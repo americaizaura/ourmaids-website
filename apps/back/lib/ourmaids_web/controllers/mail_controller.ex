@@ -13,5 +13,6 @@ defmodule OurmaidsWeb.MailController do
       end
 
     end
+    conn
   end
 end
