@@ -5,9 +5,7 @@ defmodule OurmaidsWeb.MailController do
 
   def create(conn, email) do
     with {:ok, response} <- contact_email(email) |> Ourmaids.Mailer.deliver(response: true) do
-      conn
-      |> put_status(:created)
-      |> render(:show, response: response)
+      render(conn, "show.json", response: response)
     end
 
     conn
