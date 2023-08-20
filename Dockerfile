@@ -18,11 +18,14 @@ ENV PORT=4000 MIX_ENV=prod
 COPY ./apps/back/mix.exs ./apps/back/mix.lock ./
 RUN mix do deps.get, deps.compile
 
+
 COPY ./apps/back .
 # Run frontend build, compile, and digest assets
-RUN mix do compile, assets.deploy
+RUN mix do compile, phx.digest
 
 RUN chmod 777 ./_build
+USER default
+
 
 CMD ["mix", "phx.server"]
 
