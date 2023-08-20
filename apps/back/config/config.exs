@@ -28,37 +28,13 @@ config :ourmaids, OurmaidsWeb.Endpoint,
 # source .env.dev && mix phx.server
 config :swoosh, :api_client, false
 
-public_captcha =
-  System.get_env("PUBLIC_CAPTCHA") ||
-    raise """
-    environment variable SMTP_USERNAME is missing.
-    """
-
-private_captcha =
-  System.get_env("PRIVATE_CAPTCHA") ||
-    raise """
-    environment variable SMTP_USERNAME is missing.
-    """
-
-smtp_username =
-  System.get_env("SMTP_USERNAME") ||
-    raise """
-    environment variable SMTP_USERNAME is missing.
-    """
-
-smtp_pass =
-  System.get_env("SMTP_PASSWORD") ||
-    raise """
-    environment variable SMTP_PASSWORD is missing.
-    """
-
 config :ourmaids, Ourmaids.Mailer,
   adapter: Swoosh.Adapters.SMTP,
   relay: "smtp.ionos.mx",
-  username: smtp_username,
-  password: smtp_pass,
+  username: {:system, "SMTP_USERNAME"},
+  password: {:system, "SMTP_PASSWORD"},
   ssl: false,
-  tls: :false,
+  tls: false,
   auth: :always,
   port: 587,
   retries: 2,
@@ -68,8 +44,8 @@ config :ourmaids, Ourmaids.Mailer,
 # ReCaptcha config
 config :google_recaptcha,
   api_url: "https://www.google.com/recaptcha/api/siteverify",
-  public_key: public_captcha,
-  secret_key: private_captcha,
+  public_key: {:system, "PUBLIC_CAPTCHA"},
+  secret_key: {:system, "PRIVATE_CAPTCHA"},
   enabled: true
 
 # Configure esbuild (the version is required)
