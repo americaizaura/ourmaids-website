@@ -26,11 +26,13 @@ public_captcha =
     raise """
     environment variable SMTP_PASSWORD is missing.
     """
+
 secret_captcha =
   System.get_env("SECRET_CAPTCHA") ||
     raise """
     environment variable SMTP_PASSWORD is missing.
     """
+
 smtp_pass =
   System.get_env("SMTP_PASSWORD") ||
     raise """
@@ -42,6 +44,7 @@ smtp_username =
     raise """
     environment variable SMTP_USERNAME is missing.
     """
+
 config :swoosh, :api_client, false
 
 config :ourmaids, Ourmaids.Mailer,
@@ -57,7 +60,6 @@ config :ourmaids, Ourmaids.Mailer,
   no_mx_lookups: false
 
 # Swoosh API client is needed for adapters other than SMTP.
-
 
 # Configure esbuild (the version is required)
 config :esbuild,
@@ -81,9 +83,8 @@ config :phoenix, :json_library, Jason
 config :google_recaptcha,
   api_url: "https://www.google.com/recaptcha/api/siteverify",
   public_key: public_captcha,
-  secret_key: private_captcha,
+  secret_key: secret_captcha,
   enabled: true
-
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
