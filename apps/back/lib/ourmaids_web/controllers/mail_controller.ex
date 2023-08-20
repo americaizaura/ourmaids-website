@@ -10,6 +10,11 @@ defmodule OurmaidsWeb.MailController do
         |> put_status(:created)
         |> render(:show, response: response)
       end
+    else
+      conn
+      |> put_status(:error)
+      |> render(:error, "Invalid Captcha")
+    end
     end
 
     conn
