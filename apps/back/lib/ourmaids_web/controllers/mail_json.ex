@@ -19,6 +19,10 @@ defmodule OurmaidsWeb.MailJSON do
     %{response: response}
   end
 
+  def error(%{response: response}) do
+    %{response: response}
+  end
+
   defp data(%ContactMail{} = mail) do
     %{
       name: mail.name,
@@ -31,7 +35,7 @@ defmodule OurmaidsWeb.MailJSON do
       city: mail.city,
       state: mail.state,
       zipcode: mail.zipcode,
-      mesaage: mail.message,
+      mesaage: mail.message
     }
   end
 end

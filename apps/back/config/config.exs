@@ -52,6 +52,7 @@ smtp_pass =
     environment variable SMTP_PASSWORD is missing.
     """
 
+
 config :ourmaids, Ourmaids.Mailer,
   adapter: Swoosh.Adapters.SMTP,
   relay: "smtp.ionos.mx",
