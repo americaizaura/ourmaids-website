@@ -103,7 +103,7 @@ const Footer = () => {
 		},
 		{
 			name: "Terms/Return/Refund Policy",
-			href: "#",
+			href: "/privacy-policy",
 		},
 		{
 			name: "Empleos/jobs",
