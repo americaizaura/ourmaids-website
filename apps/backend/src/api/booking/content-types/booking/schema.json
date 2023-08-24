@@ -4,7 +4,8 @@
   "info": {
     "singularName": "booking",
     "pluralName": "bookings",
-    "displayName": "Booking"
+    "displayName": "Booking",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -52,6 +53,10 @@
     },
     "squareUpId": {
       "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "required": true
     }
   }
 }
