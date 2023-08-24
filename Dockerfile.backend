@@ -18,7 +18,7 @@ COPY . .
 RUN yarn install --network-timeout 100000
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
-RUN yarn build
+RUN yarn build --scope backend
 
 
 CMD ["yarn", "start", "--scope", "backend"]
