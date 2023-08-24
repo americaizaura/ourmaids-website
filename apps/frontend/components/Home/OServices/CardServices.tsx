@@ -7,6 +7,7 @@ interface CardServicesProps {
 }
 import { useRouter } from "next/router";
 import Link from "next/link";
+import LinesEllipsis from "react-lines-ellipsis";
 
 function CardServices(props: CardServicesProps) {
 	return (
@@ -22,9 +23,14 @@ function CardServices(props: CardServicesProps) {
 							objectFit="cover"
 						/>
 					</div>
-					<p className=" text-black px-5 font-bold text-center text-sm">
-						{props.description}
-					</p>
+					{/* <p className=" text-black px-5 font-bold text-center text-sm"> */}
+					<LinesEllipsis
+						text={props.description}
+						maxLine={2}
+						ellipsis="..."
+						className="text-black px-5 font-bold text-center text-sm font-montserrat"
+					/>
+					{/* </p> */}
 				</div>
 			</Link>
 		</>

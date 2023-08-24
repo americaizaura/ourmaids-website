@@ -18,7 +18,7 @@ import {
 	Input,
 	TextInput,
 } from "@mantine/core";
-import ReCAPTCHA from "react-google-recaptcha";
+/* import ReCAPTCHA from "react-google-recaptcha"; */
 import { useForm } from "@mantine/form";
 import { useState } from "react";
 import { Progress, Input as MantineInput } from "@mantine/core";
@@ -99,8 +99,8 @@ SelectItem.displayName = "div";
 export default function BookingView() {
 	const ref = useRef<HTMLInputElement>();
 	const [dateBooking, setDateBooking] = useState<Date | null>(null);
-	const recaptchaRef = useRef<ReCAPTCHA>(null);
-	const recaptchaRef2 = useRef<ReCAPTCHA>(null);
+	/* const recaptchaRef = useRef<ReCAPTCHA>(null);
+	const recaptchaRef2 = useRef<ReCAPTCHA>(null); */
 	const [isBook, setIsBookOrPay] = useState(false);
 	const [infoService, setInfoService] =
 		useState<RetrieveCatalogObjectResponse | null>(null);
@@ -118,7 +118,7 @@ export default function BookingView() {
 	const [availableBooking, setAvailableBooking] = useState(
 		[] as availableBookingDates[]
 	);
-	const [errorRecaptcha, setErrorRecaptcha] = useState(false);
+	/* const [errorRecaptcha, setErrorRecaptcha] = useState(false); */
 	const [selectedDateBooking, setSelectedDateBooking] = useState("");
 	const form = useForm({
 		initialValues: {
@@ -197,16 +197,16 @@ export default function BookingView() {
 	});
 	const sendBooking = async () => {
 		if (isBook === true) {
-			if (recaptchaRef.current.getValue() === "") {
+			/* 	if (recaptchaRef.current.getValue() === "") {
 				setErrorRecaptcha(true);
 				return;
-			}
-			const recaptchaValue = recaptchaRef.current.getValue();
+			} */
+			/* const recaptchaValue = recaptchaRef.current.getValue(); */
 			const bookingData = {
 				...form.values,
 				...formDate.values,
 				serviceId: infoService?.object?.id,
-				recaptchaValue,
+				/* recaptchaValue, */
 			};
 		} else {
 			setStep(steps.PAYMENT);
@@ -379,11 +379,6 @@ export default function BookingView() {
 								applicationId="sandbox-sq0idb-RDsHXNNRy6kDDn5m_7011A"
 								locationId="LD8BGSHK8NXTZ"
 								cardTokenizeResponseReceived={async (token, verifiedBuyer) => {
-									setErrorRecaptcha(false);
-									if (recaptchaRef2.current.getValue() === "") {
-										setErrorRecaptcha(true);
-										return;
-									}
 									const response = await PaymentService.createPayment(
 										token.token,
 										{
@@ -395,6 +390,7 @@ export default function BookingView() {
 										},
 										"alexishs451@gmail.com"
 									);
+									alert("Payment complete! " + JSON.stringify(response));
 									setStep(steps.BOOKED);
 								}}
 								createPaymentRequest={() => ({
@@ -412,8 +408,8 @@ export default function BookingView() {
 							>
 								<CreditCard
 									render={(Button) => (
-										<Button onChange={() => setErrorRecaptcha(false)}>
-											{infoService &&
+										<Button>
+											{/* 	{infoService &&
 											infoService.object?.itemData?.variations[0]
 												? (
 														Number(
@@ -422,26 +418,27 @@ export default function BookingView() {
 														) / 100
 												  ).toFixed(2)
 												: 100}{" "}
-											USD
+											USD */}
+											0 USD
 										</Button>
 									)}
 								/>
 								<br />
 
 								<GooglePay className="mt-4" />
-								<div className="flex justify-center">
+								{/* 	<div className="flex justify-center">
 									<ReCAPTCHA
 										className="mt-4"
 										onChange={() => setErrorRecaptcha(false)}
 										ref={recaptchaRef2}
 										sitekey="6Ld61rQnAAAAAOZyssOajwm8AsrA6CEAGzRcpcs4"
 									/>
-								</div>
-								{errorRecaptcha && (
+								</div> */}
+								{/* 	{errorRecaptcha && (
 									<p className="text-error text-center">
 										Recaptcha is required
 									</p>
-								)}
+								)} */}
 							</PaymentForm>
 						)}
 						{step === steps.BOOKED && (
@@ -607,7 +604,7 @@ export default function BookingView() {
 										</div>
 									</div>
 									<div className="flex justify-center mt-12">
-										<ReCAPTCHA
+										{/* 	<ReCAPTCHA
 											onChange={(toke) => {
 												setErrorRecaptcha(false),
 													console.log(toke),
@@ -615,13 +612,13 @@ export default function BookingView() {
 											}}
 											ref={recaptchaRef}
 											sitekey="6Ld61rQnAAAAAOZyssOajwm8AsrA6CEAGzRcpcs4"
-										/>
+										/> */}
 									</div>
-									{errorRecaptcha && (
+									{/* 	{errorRecaptcha && (
 										<p className="text-error text-center">
 											Recaptcha is required
 										</p>
-									)}
+									)} */}
 									<div className="flex mt-12 justify-between mb-20">
 										<Button
 											radius="xl"

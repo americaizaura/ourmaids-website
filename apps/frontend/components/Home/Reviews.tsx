@@ -2,8 +2,10 @@ import { Carousel } from "@mantine/carousel";
 import { Avatar, Container, Button } from "@mantine/core";
 import CardReview from "./Reviews/CardReview";
 import CardPrincipal from "./Reviews/CardPrincipal";
-
-const Reviews = () => {
+interface ReviewsProps {
+	reviewsGoogle: any;
+}
+const Reviews = ({ reviewsGoogle }: ReviewsProps) => {
 	const services = [
 		{
 			title: "You already managed to use our services?",
@@ -59,13 +61,16 @@ const Reviews = () => {
 								/>
 							</div>
 						))}
-						{reviews.map((review, index) => (
+						{/* split array */}
+
+						{reviewsGoogle.reviews.slice(0, 3).map((review, index) => (
 							<div key={index}>
 								<CardReview
-									author={review.name}
-									date={review.date}
-									description={review.review}
+									author={review.author_name}
+									date={review.time}
+									description={review.text}
 									rating={review.rating}
+									avatar={review.profile_photo_url}
 								/>
 							</div>
 						))}
