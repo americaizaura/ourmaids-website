@@ -1,5 +1,6 @@
 import { Button, Container, Grid } from "@mantine/core";
 import Image from "next/image";
+import Link from "next/link";
 const AboutUs = () => {
 	return (
 		<section className="relative">
@@ -30,19 +31,25 @@ const AboutUs = () => {
 						<Grid>
 							<Grid.Col md={11} offsetMd={1} sm={12} offsetSm={0}>
 								<h4 className="mt-0">ABOUT US</h4>
-								<h2>LOREM IPSUM DOLOR</h2>
-								<p style={{ color: "grey" }}>
-									Lorem ipsum dolor sit amet consectetur. Faucibus egestas neque
-									nunc ipsum. At non volutpat accumsan ac in malesuada morbi eu
-									sagittis. Ut volutpat condimentum volutpat bibendum vel lectus
-									scelerisque netus velit. Felis ut integer sed eget egestas
-									nibh. Sagittis tincidunt feugiat viverra scelerisque. Maecenas
-									pellentesque tristique condimentum pretium. Diam nullam
-									ultrices risus nisl porta aliquam magna.
+								<h2 className="uppercase">history</h2>
+								<p style={{ color: "grey" }} className="text-justify">
+									OURMAIDS.COM IS A COMPANY FOR THE PEOPLE, NOT JUST AN ONLINE
+									PLATFORM. LOOK AT MORE REVIEWS HERE We don't "match you with a
+									Pro". We are the Professional cleaners! We review your booking
+									immediately and schedule it within one hour, you get a
+									calendar invite when it is up on the teams app. You can reach
+									one of our friendly Customer Care specialist by phone or
+									e-mail and get live responses almost immediately from 7am to
+									7pm Monday to Sunday (Numbers on top of each page.) Get online
+									bookings and automated responses 24/7 365 days. Our services
+									are the best in the industry because we have done for so many
+									years now that we have improved all aspects of the service.
 								</p>
-								<Button color="secondary.0" radius="xl">
-									Read More
-								</Button>
+								<Link href="/about-us" passHref>
+									<Button color="secondary.0" radius="xl">
+										Read More
+									</Button>
+								</Link>
 							</Grid.Col>
 						</Grid>
 					</Grid.Col>

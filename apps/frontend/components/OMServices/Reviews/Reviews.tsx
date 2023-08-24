@@ -17,7 +17,7 @@ function ReviewsService({
   date,
 }: ReviewsServiceProps) {
   return (
-    <div className="">
+    <div className="w-80 md:w-full">
       <div className="flex justify-between mb-7">
         <div className="flex flex-row">
           <div className="flex items-center">

@@ -1,0 +1,72 @@
+query CatalogQuery($merchantId: ID!, $productType: [CatalogItemProductType!]) {
+	catalogItems(
+		filter: {
+			merchantId: { equalToAnyOf: [$merchantId] }
+			productType: { equalToAnyOf: $productType }
+		}
+	) {
+		pageInfo {
+			hasNextPage
+			endCursor
+		}
+		nodes {
+			__typename
+			id
+			version
+			isDeleted
+			updatedAt
+			absentAt {
+				id
+			}
+			presentAt {
+				id
+			}
+			presentAtAll
+
+			... on CatalogItem {
+				abbreviation
+				availableElectronically
+				availableForPickup
+				availableOnline
+				category {
+					id
+				}
+				description
+				images {
+					id
+					url
+				}
+				options {
+					id
+					name
+				}
+				labelColor
+				modifierListInfos {
+					modifierList {
+						id
+					}
+					enabled
+					maxSelectedModifiers
+					minSelectedModifiers
+					modifierOverrides {
+						modifier {
+							id
+						}
+						onByDefault
+					}
+				}
+				name
+				productType
+				skipModifierScreen
+				taxes {
+					id
+					name
+				}
+				variations {
+					id
+					name
+				}
+			}
+		}
+	}
+}

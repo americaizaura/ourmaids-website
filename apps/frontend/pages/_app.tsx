@@ -4,6 +4,9 @@ import { MantineProvider } from "@mantine/core";
 import "../styles/hero.css";
 import "../styles/index.css";
 import Layout from "../components/layaout";
+import client from "../lib/apollo";
+import { ApolloProvider } from "@apollo/client";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 export default function App(props: AppProps) {
 	const { Component, pageProps } = props;
 
@@ -56,12 +59,15 @@ export default function App(props: AppProps) {
 						divider: ["#C6C6C6"],
 						textTrack: ["#959595"],
 					},
-					primaryColor: "secondary",
 				}}
 			>
-				<Layout>
-					<Component {...pageProps} />
-				</Layout>
+				<ApolloProvider client={client}>
+					<GoogleReCaptchaProvider reCaptchaKey="6LdrxLQnAAAAAGbBzf5OvpkFr-Gc0FD2RN9YFMod">
+						<Layout>
+							<Component {...pageProps} />
+						</Layout>
+					</GoogleReCaptchaProvider>
+				</ApolloProvider>
 			</MantineProvider>
 		</>
 	);
