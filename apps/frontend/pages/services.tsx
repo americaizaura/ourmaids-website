@@ -30,7 +30,7 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 	const [data, setData] = React.useState(services);
 	const [loading, setLoading] = React.useState(false);
 	const [catalogProductType, setCatalogProductType] = React.useState(
-		CatalogItemProductType.Regular
+		CatalogItemProductType.AppointmentsService
 	);
 	const [loadingChange, setLoadingChange] = React.useState(false);
 
@@ -64,7 +64,7 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 
 	const menu = [
 		{
-			title: "SUBSCRIPTIONS",
+			title: "SERVICES",
 			image: "/images/image 19.png",
 		},
 	];
@@ -99,7 +99,7 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 								</div>
 							))}
 
-							{menu2.map((menu2, index) => (
+							{/* 	{menu2.map((menu2, index) => (
 								<div key={index}>
 									<div className="mb-6 ml-3 md:mr-3 md:ml-0 ">
 										<Menu2
@@ -112,7 +112,7 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 										/>
 									</div>
 								</div>
-							))}
+							))} */}
 						</div>
 
 						<div className="md:col-span-9 col-span-12 ">
@@ -198,7 +198,10 @@ function enhanceCatalogData(
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	try {
 		const [catalogData, imagesData] = await Promise.all([
-			CatalogService.fetchCatalogItems(CatalogItemProductType.Regular, 10),
+			CatalogService.fetchCatalogItems(
+				CatalogItemProductType.AppointmentsService,
+				10
+			),
 			ImagesService.fetchImages(),
 		]);
 

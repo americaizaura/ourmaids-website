@@ -62,11 +62,11 @@ export default function App(props: AppProps) {
 				}}
 			>
 				<ApolloProvider client={client}>
-					<GoogleReCaptchaProvider reCaptchaKey="6LdrxLQnAAAAAGbBzf5OvpkFr-Gc0FD2RN9YFMod">
-						<Layout>
-							<Component {...pageProps} />
-						</Layout>
-					</GoogleReCaptchaProvider>
+					{/* <GoogleReCaptchaProvider reCaptchaKey="6LdrxLQnAAAAAGbBzf5OvpkFr-Gc0FD2RN9YFMod"> */}
+					<Layout>
+						<Component {...pageProps} />
+					</Layout>
+					{/* 	</GoogleReCaptchaProvider> */}
 				</ApolloProvider>
 			</MantineProvider>
 		</>

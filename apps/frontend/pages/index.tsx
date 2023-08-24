@@ -36,13 +36,22 @@ import CatalogService from "../services/catalog.service";
 import ImagesService from "../services/images.service";
 interface ServicesProps {
 	services: any;
+	reviewsGoogle: any;
+}
+interface ReviewsProps {
+	reviewsGoogle: any;
 }
 import ReCAPTCHA from "react-google-recaptcha";
 import {
 	GoogleReCaptcha,
 	GoogleReCaptchaProvider,
 } from "react-google-recaptcha-v3";
-export default function AppShellDemo({ services }: ServicesProps) {
+export default function AppShellDemo({
+	services,
+	reviewsGoogle,
+}: ServicesProps) {
+	/* console.log(reviewsGoogle); */
+
 	const theme = useMantineTheme();
 	const [opened, setOpened] = useState(false);
 	const reviews = [
@@ -54,7 +63,7 @@ export default function AppShellDemo({ services }: ServicesProps) {
 		},
 	];
 	const data = services;
-	console.log(data);
+	/* console.log(data); */
 
 	return (
 		<>
@@ -76,7 +85,7 @@ export default function AppShellDemo({ services }: ServicesProps) {
 			</Container>
 			<AboutUs />
 			<Booking />
-			<Reviews />
+			<Reviews reviewsGoogle={reviewsGoogle} />
 			{/* 	<ReCAPTCHA
 				sitekey="6Ld61rQnAAAAAOZyssOajwm8AsrA6CEAGzRcpcs4"
 				onChange={(value) => {
@@ -120,11 +129,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 			ImagesService.fetchImages(),
 		]);
 
+		const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${"ChIJC-g-TsaVwoAReX0svaIhOL4"}&key=${"AIzaSyCFIeOK8R5tCOSIPBDeCceJx-ayHwwXfhw&"}&sessiontoken=${""}`;
+
 		const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
+		const reviews = await fetch(url);
+		const data = await reviews.json();
+		console.log(data);
 
 		return {
 			props: {
 				services: enhancedCatalogData,
+				reviewsGoogle: data && data.status === "OK" ? data.result : null,
 			},
 		};
 	} catch (error) {
