@@ -122,37 +122,6 @@ function enhanceCatalogData(
 	});
 }
 
-const getReviewsGoogle = async () => {
-	try {
-		console.log("entro");
-
-		const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${"ChIJC-g-TsaVwoAReX0svaIhOL4"}&fields=reviews&key=${"AIzaSyD6a4rfWD8-ZvwunQFW6UoyOn2_uw3l2Z0"}`;
-		fetch(url, {
-			method: "GET",
-			mode: "cors",
-			headers: {
-				"Content-Type": "application/json",
-				"Access-Control-Allow-Credentials": "true",
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods":
-					"GET, POST, PATCH, PUT, DELETE, OPTIONS",
-				"Access-Control-Allow-Headers":
-					"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
-			},
-		}).then((res) => {
-			console.log(res);
-
-			if (res.ok) {
-				console.log(res.json());
-
-				return res.json();
-			}
-		});
-	} catch (e) {
-		console.log("Error" + e);
-	}
-};
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	try {
 		const [catalogData, imagesData] = await Promise.all([

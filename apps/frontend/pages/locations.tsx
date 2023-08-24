@@ -219,7 +219,7 @@ export default function LocationsView() {
 									{item.locations.map((location) => (
 										<div
 											key={location.id}
-											className="flex gap-x-4 items-center space-y-4 cursor-pointer"
+											className="flex gap-x-4 items-center py-2 cursor-pointer hover:bg-surface hover:bg-opacity-10 hover:text-secondary "
 											onClick={() => {
 												handleMarkerClick(location.lat, location.lng);
 											}}

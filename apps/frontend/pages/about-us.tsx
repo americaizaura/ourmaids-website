@@ -9,8 +9,11 @@ import {
 } from "@mantine/core";
 import Image from "next/image";
 import Input from "../components/Input";
+import { useDisclosure } from "@mantine/hooks";
 
 export default function AboutUsView() {
+	const [opened, { open, close }] = useDisclosure(false);
+
 	return (
 		<div className="lg:mt-16 mt-40">
 			{/* 	<video
@@ -374,7 +377,7 @@ export default function AboutUsView() {
 								</h3>
 							</div>
 							{/* repeat(4, minmax(0, 1fr)) */}
-							<div className="lg:col-start-2 lg:col-end-5 md:col-start-1 md:col-end-2  row-start-2 row-end-3 mb-8">
+							<div className="lg:col-start-2 lg:col-end-5 md:col-start-1 md:col-end-2  row-start-2 row-end-3 ">
 								<div className="max-h-[250px] overflow-hidden overflow-y-auto custom-scrollbar pr-2">
 									<p className="text-justify">All rooms:</p>
 									<p>
@@ -382,9 +385,9 @@ export default function AboutUsView() {
 										lamps; wipe out furniture, woodwork, shelves and baseboards.
 										Remove cobwebs. Vacuum carpets. Mop all floors and dry wood
 										floors. Vacuum furniture, including under any cushions.
-										Empty and clean wastebaskets (trash cans).
+										{/* Empty and clean wastebaskets (trash cans). */}
 									</p>
-									<p>Bedrooms:</p>
+									{/* <p>Bedrooms:</p>
 									<p>
 										In addition to all of the above paragraph, we make the beds,
 										change the linens if left on the bed, straighten your
@@ -403,13 +406,25 @@ export default function AboutUsView() {
 										countertops and backsplashes. Clean the range top and
 										refrigerator top and exterior. Fill up the dishwasher. Clean
 										microwave oven inside and out. Wash floors.
-									</p>
+									</p> */}
 								</div>
 							</div>
-							<div className="lg:col-start-2 lg:col-end-5 md:col-start-1 md:col-end-2 row-start-3 row-end-4 mb-4">
+							<div className="flex justify-center lg:col-start-2 lg:col-end-5 md:col-start-1 md:col-end-2  row-start-3 row-end-4 mb-8">
+								<Button
+									size="lg"
+									variant="outline"
+									color="secondary.0"
+									radius={"xl"}
+									w={125}
+									h={30}
+								>
+									<p className="text-xs font-bold tracking-widest">Read more</p>
+								</Button>
+							</div>
+							<div className="lg:col-start-2 lg:col-end-5 md:col-start-1 md:col-end-2 row-start-4 row-end-5 mb-4">
 								<h3 className="my-0">Post construction cleaning</h3>
 							</div>
-							<div className="lg:col-start-2 lg:col-end-5 md:col-start-1 md:col-end-3 row-start-4 row-end-5 mb-8">
+							<div className="lg:col-start-2 lg:col-end-5 md:col-start-1 md:col-end-3 row-start-5 row-end-6">
 								<div>
 									<div className="max-h-[250px] overflow-hidden overflow-y-auto custom-scrollbar pr-2">
 										<p className="text-justify">
@@ -421,19 +436,31 @@ export default function AboutUsView() {
 											<li>Washing all bathrooms and its accessories</li>
 											<li>Washing all kitchens</li>
 											<li>Wiping all appliances inside and out</li>
-											<li>Wiping off all baseboards</li>
-											<li>Washing all windows inside</li>
-											<li>Wiping off all ceiling fans</li>
+											{/* <li>Wiping off all baseboards</li>
+											<li>Washing all windows inside</li> */}
+											{/* <li>Wiping off all ceiling fans</li>
 											<li>Cleaning all cabinets inside and out</li>
 											<li>Cleaning all doors</li>
 											<li>Cleaning all door knobs</li>
 											<li>Swiping all entrance alleys</li>
-											<li>Dispose of all trash (not construction materials)</li>
+											<li>Dispose of all trash (not construction materials)</li> */}
 										</ul>
 									</div>
 								</div>
 							</div>
-							<div className="lg:col-start-5 lg:col-end-10 h-full w-full lg:row-start-1 lg:row-end-5 md:row-start-5 md:row-end-6 md:col-start-1 md:col-end-3 flex lg:items-center md:justify-center">
+							<div className="flex justify-center lg:col-start-2 lg:col-end-5 md:col-start-1 md:col-end-2  row-start-6 row-end-7 mb-8">
+								<Button
+									size="lg"
+									variant="outline"
+									color="secondary.0"
+									radius={"xl"}
+									w={125}
+									h={30}
+								>
+									<p className="text-xs font-bold tracking-widest">Read more</p>
+								</Button>
+							</div>
+							<div className="lg:col-start-5 lg:col-end-10 h-full w-full lg:row-start-1 lg:row-end-7 md:row-start-6 md:row-end-7 md:col-start-1 md:col-end-3 flex lg:items-center md:justify-center">
 								<div className="relative h-[500px] w-[500px]">
 									<Image
 										src="/images/aboutUs/image-22.webp"
@@ -457,26 +484,40 @@ export default function AboutUsView() {
 											<li>Cleaning all floors</li>
 											<li>Washing all bathrooms and its accessories</li>
 											<li>Washing all kitchens</li>
-											<li>
+											<li>Wiping off all baseboards</li>
+											{/* <li>
 												Wiping all appliances inside and out (oven and fridge
 												are custom services)
-											</li>
-											<li>Wiping off all baseboards</li>
+											</li> */}
+											{/* 
 											<li>Wiping off all ceiling fans</li>
 											<li>Cleaning all cabinets inside and out</li>
 											<li>Cleaning all doors</li>
 											<li>Cleaning all door knobs</li>
 											<li>Swiping all entrance alleys</li>
 											<li>Dispose of all trash (not construction materials)</li>
-											<li>Cleaning all windows inside</li>
+											<li>Cleaning all windows inside</li> */}
 										</ul>
 									</div>
 								</div>
 							</div>
-							<div className="lg:col-start-10 lg:col-end-13 md:col-start-2 md:col-end-3 row-start-3 row-end-4 mb-4">
+
+							<div className="flex justify-center lg:col-start-10 lg:col-end-13 md:col-start-2 md:col-end-3 row-start-3 row-end-4">
+								<Button
+									size="lg"
+									variant="outline"
+									color="secondary.0"
+									radius={"xl"}
+									w={125}
+									h={30}
+								>
+									<p className="text-xs font-bold tracking-widest">Read more</p>
+								</Button>
+							</div>
+							<div className="lg:col-start-10 lg:col-end-13 md:col-start-2 md:col-end-3 row-start-4 row-end-5 mb-4">
 								<h3 className="my-0">Deep cleaning</h3>
 							</div>
-							<div className="lg:col-start-10 lg:col-end-13 md:col-start-2 md:col-end-3 row-start-4 row-end-5">
+							<div className="lg:col-start-10 lg:col-end-13 md:col-start-2 md:col-end-3 row-start-5 row-end-6">
 								<div>
 									<div className="max-h-[250px] overflow-hidden overflow-y-auto custom-scrollbar pr-2">
 										<p className="text-justify">
@@ -489,15 +530,28 @@ export default function AboutUsView() {
 											<li>Refrigerator inside</li>
 											<li>Cabinets inside</li>
 											<li>Ceiling fans</li>
+											{/* 
 											<li>Windows inside</li>
-											<li>Window sills</li>
-											<li>Miniblinds</li>
+											<li>Window sills</li> */}
+											{/* <li>Miniblinds</li>
 											<li>Cobweb removal</li>
 											<li>Cleaning all</li>
-											<li>Door knobs</li>
+											<li>Door knobs</li> */}
 										</ul>
 									</div>
 								</div>
+							</div>
+							<div className="flex justify-center lg:col-start-10 lg:col-end-13 md:col-start-2 md:col-end-3 row-start-6 row-end-7">
+								<Button
+									size="lg"
+									variant="outline"
+									color="secondary.0"
+									radius={"xl"}
+									w={125}
+									h={30}
+								>
+									<p className="text-xs font-bold tracking-widest">Read more</p>
+								</Button>
 							</div>
 						</div>
 					</div>

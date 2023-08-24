@@ -33,17 +33,17 @@ export default function SectionVictor({ service }: ServiceProps) {
 					name={service.object?.itemData?.name}
 					description={service.object?.itemData?.description}
 				/>
-				<div className="flex flex-col justify-center items-center gap-x-32 mb-10 2xl:gap-x-40 md:my-28 md:flex-row">
+				{/* <div className="flex flex-col justify-center items-center gap-x-32 mb-10 2xl:gap-x-40 md:my-28 md:flex-row">
 					<DateSection />
 					<div>
 						<RecomendSection />
 						<LocationsSection />
 					</div>
-				</div>
-				<Reviews />
-				<CleaningTeam />
+				</div> */}
+				{/* <Reviews />
+				<CleaningTeam /> */}
 			</Container>
-			<RulesSection />
+			{/* <RulesSection /> */}
 		</main>
 	);
 }
