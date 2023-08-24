@@ -1,5 +1,5 @@
 {
-  "name": "turbo-basic-shared",
+  "name": "with-docker",
   "version": "0.0.0",
   "private": true,
   "workspaces": [
@@ -8,16 +8,23 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel & turbo run develop",
-    "dev:docker": "docker-compose up -d",
+    "clean": "turbo run clean",
+    "start": "turbo run start",
+    "dev": "turbo run dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "gql": "turbo run gql",
+    "test": "turbo run test"
   },
+  "dependencies": {},
   "devDependencies": {
-    "prettier": "^2.5.1",
+    "eslint-config-custom": "*",
+    "prettier": "^2.8.8",
     "turbo": "latest"
   },
+  "packageManager": "yarn@1.22.19",
   "engines": {
+    "node": ">=14.0.0",
     "npm": ">=7.0.0"
   }
 }

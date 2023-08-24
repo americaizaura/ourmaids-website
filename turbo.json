@@ -1,24 +1,50 @@
 {
     "$schema": "https://turbo.build/schema.json",
+    "globalDependencies": [
+      "**/.env.*local",
+      "**/.env"
+    ],
+    "globalEnv": [
+      "PORT"
+    ],
     "pipeline": {
-        "build": {
-            "dependsOn": [
-                "^build"
-            ],
-            "outputs": [
-                "build/**",
-                "dist/**",
-                ".next/**"
-            ]
-        },
-        "lint": {
-            "outputs": []
-        },
-        "dev": {
-            "cache": false
-        },
-        "develop": {
-            "cache": false
-        }
+      "build": {
+        "outputs": [
+          "dist/**",
+          ".next/**",
+          "!.next/cache/**",
+          "public/dist/**"
+        ],
+        "dependsOn": [
+          "^build"
+        ],
+        "env": [
+          "NEXT_PUBLIC_API_HOST"
+        ]
+      },
+      "test": {
+        "outputs": [
+          "coverage/**"
+        ],
+        "dependsOn": []
+      },
+      "lint": {
+        "dependsOn": [
+          "^build"
+        ]
+      },
+      "dev": {
+        "cache": false,
+        "persistent": true
+      },
+      "gql": {
+        "cache": false
+      },
+      "start": {
+        "cache": false
+      },
+      "clean": {
+        "cache": false
+      }
     }
-}
+  }
