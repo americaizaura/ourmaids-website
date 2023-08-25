@@ -59,7 +59,7 @@ export class MailService {
                 
                 <mj-text font-size="30px" font-family="Georgian, Arial" line-height="2">Confirmation of Your Maid Booking</mj-text>
                 <mj-text font-size="16px" font-family="helvetica">Dear ${data.name} ${data.lastName}</mj-text>
-                <mj-text font-size="12px" font-family="helvetica">We are thrilled to confirm your booking for maid services with us. Your satisfaction is our priority, and we're looking forward to providing you with exceptional service. Please find the details of your booking below:</mj-text>
+                <mj-text font-size="12px" font-family="helvetica">We are thrilled to confirm your booking for maid services with us. Your satisfaction is our priority, and we're looking forward to providing you with an exceptional service. Please find the details of your booking below:</mj-text>
                 <mj-table>
                 <tr style="border-bottom:1px solid #ecedee;text-align:left;">
                     <td style="padding:16px 0;">Booking Details:</td>
@@ -74,7 +74,7 @@ export class MailService {
                 </tr>
                 <tr style="border-bottom:1px solid #ecedee;text-align:left;">
                     <td style="padding:16px;">Datetime</td>
-                    <td style="padding:16px;">${moment(data.dateTime).format("MMM D YY h:mm a")}</td>
+                    <td style="padding:16px;">${moment(data.dateTime).format("LLLL")}</td>
                 </tr>
                 <tr style="border-bottom:1px solid #ecedee;text-align:left;">
                     <td style="padding:16px;">Service's name</td>
@@ -91,6 +91,10 @@ export class MailService {
                 <tr style="border-bottom:1px solid #ecedee;text-align:left;">
                     <td style="padding:16px;">City</td>
                     <td style="padding:16px;">${data.city}</td>
+                </tr>
+                <tr style="border-bottom:1px solid #ecedee;text-align:left;">
+                    <td style="padding:16px;">State</td>
+                    <td style="padding:16px;">${data.state}</td>
                 </tr>
                 <tr style="border-bottom:1px solid #ecedee;text-align:left;">
                     <td style="padding:16px;">Zip Code</td>
