@@ -19,7 +19,7 @@ EXPOSE 1337
 RUN yarn install --network-timeout 100000
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
-RUN yarn build --scope backend
+RUN yarn build
 
 
 CMD ["yarn","workspace","backend", "start"]
