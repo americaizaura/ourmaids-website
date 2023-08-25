@@ -25,7 +25,8 @@
       "required": true
     },
     "dateTime": {
-      "type": "datetime"
+      "type": "datetime",
+      "required": true
     },
     "servicesName": {
       "type": "string",

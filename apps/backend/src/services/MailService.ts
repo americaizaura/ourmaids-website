@@ -1,6 +1,6 @@
 import { Booking, Contact } from "../types/ContentType";
 import mjml2html from "mjml";
-const moment = require("moment");
+import moment from "moment-timezone";
 import { MJMLParseResults } from "mjml-core";
 
 export enum MailType {
@@ -16,9 +16,11 @@ export class MailService {
     }
     MailService.instance = this;
   }
+
   logoImage = `
     <mj-image width="200px" src="https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/_next/image?url=%2Fimages%2Flogo.png&w=1920&q=75" container-background-color="#fadcea"></mj-image>
     `;
+
   async sendMail(strapi, mailType: MailType, data: any) {
     let parseResults: MJMLParseResults;
     let subject: string;
@@ -75,9 +77,10 @@ export class MailService {
                 </tr>
                 <tr style="border-bottom:1px solid #ecedee;text-align:left;">
                     <td style="padding:16px;">Datetime</td>
-                    <td style="padding:16px;">${moment(data.dateTime).format(
-                      "LLLL zz"
-                    )}</td>
+                    <td style="padding:16px;">${moment
+                      .utc(data.dateTime)
+                      .tz("US/Central")
+                      .format("LLLL zz")}</td>
                 </tr>
                 <tr style="border-bottom:1px solid #ecedee;text-align:left;">
                     <td style="padding:16px;">Service's name</td>

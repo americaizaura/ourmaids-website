@@ -16,6 +16,7 @@
     "@strapi/provider-email-nodemailer": "^4.12.6",
     "@strapi/strapi": "4.11.7",
     "@types/mjml": "^4.7.1",
+    "@types/moment": "^2.13.0",
     "mjml": "^4.14.1",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
