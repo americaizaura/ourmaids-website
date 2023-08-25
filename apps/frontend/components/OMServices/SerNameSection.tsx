@@ -5,53 +5,53 @@ import CheckBox from "./SerName/checkbox";
 import TypeSection from "./SerName/typesection";
 import InputSection from "./SerName/input";
 interface ServiceNameProps {
-	name: string;
-	description: string;
+  name: string;
+  description: string;
 }
 const ServiceName = ({ name, description }: ServiceNameProps) => {
-	const CheckList = [
-		{
-			list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
-		},
-		{
-			list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
-		},
-		{
-			list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
-		},
-		{
-			list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
-		},
-	];
-	const TypeList = [
-		{
-			icon: <Home size={36} stroke-width={1.2}></Home>,
-			type: "Type",
-			suscription: "Suscription",
-		},
-		{
-			icon: <CalendarEvent size={36} stroke-width={1.2}></CalendarEvent>,
-			type: "Type",
-			suscription: "Suscription",
-		},
-	];
-	const InputList = [
-		{
-			description: "Size",
-		},
-		{
-			description: "Monthly",
-		},
-	];
-	return (
-		<section className="flex flex-col xl:flex-row md:gap-x-8 2xl:gap-x-16">
-			<div className="flex flex-col  md:justify-between w-full">
-				<div>
-					<h4 className="mb-6">{name}</h4>
-					<p className="text-xs text-justify tracking-wide font-medium leading-5 md:leading-4">
-						{description}
-					</p>
-					{/* <div>
+  const CheckList = [
+    {
+      list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
+    },
+    {
+      list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
+    },
+    {
+      list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
+    },
+    {
+      list: "Lorem ipsum dolor sit amet consectetur. Ut maecenas consequat tellus pharetra quis pellentesque eu sed sapien.",
+    },
+  ];
+  const TypeList = [
+    {
+      icon: <Home size={36} stroke-width={1.2}></Home>,
+      type: "Type",
+      suscription: "Suscription",
+    },
+    {
+      icon: <CalendarEvent size={36} stroke-width={1.2}></CalendarEvent>,
+      type: "Type",
+      suscription: "Suscription",
+    },
+  ];
+  const InputList = [
+    {
+      description: "Size",
+    },
+    {
+      description: "Monthly",
+    },
+  ];
+  return (
+    <section className="flex flex-col xl:flex-row md:gap-x-8 2xl:gap-x-16">
+      <div className="flex flex-col  md:justify-between w-full">
+        <div>
+          <h4 className="mb-6">{name}</h4>
+          <p className="text-xs text-justify tracking-wide font-medium leading-5 md:leading-4">
+            {description}
+          </p>
+          {/* <div>
 						<h6 className="mb-6">Includes</h6>
 						<div className="flex flex-col md:flex-row w-72 justify-between md:w-[740px] min-[500px]:w-96">
 							<div className=" gap-10 md:gap-3 md:flex md:flex-col">
@@ -75,9 +75,9 @@ const ServiceName = ({ name, description }: ServiceNameProps) => {
 							</div>
 						</div>
 					</div> */}
-				</div>
-			</div>
-			{/*    <section className="flex justify-center">
+        </div>
+      </div>
+      {/*    <section className="flex justify-center">
         <aside className="bg-[#efdfe0] h-full my-10 w-96 py-14 rounded-xl flex flex-col items-center md:w-[440px]">
           <div className="flex justify-center gap-4">
             {TypeList.map((item, index) => (
@@ -108,8 +108,8 @@ const ServiceName = ({ name, description }: ServiceNameProps) => {
           </div>
         </aside>
       </section> */}
-		</section>
-	);
+    </section>
+  );
 };
 
 export default ServiceName;

@@ -8,6 +8,13 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Mayb
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 const defaultOptions = {} as const;
+export type CreateContactUsMutationVariables = Exact<{
+  data: ContactUsInput;
+}>;
+
+
+export type CreateContactUsMutation = { __typename?: 'Mutation', createContactUs?: { __typename?: 'ContactUsEntityResponse', data?: { __typename?: 'ContactUsEntity', id?: string | null } | null } | null };
+
 export type CreateBookingMutationVariables = Exact<{
   data: BookingInput;
 }>;
@@ -62,7 +69,6 @@ export type Booking = {
   message: Scalars['String']['output'];
   name: Scalars['String']['output'];
   phone: Scalars['String']['output'];
-  publishedAt?: Maybe<Scalars['DateTime']['output']>;
   servicesName: Scalars['String']['output'];
   squareUpId?: Maybe<Scalars['String']['output']>;
   state: Scalars['String']['output'];
@@ -101,7 +107,6 @@ export type BookingFiltersInput = {
   not?: InputMaybe<BookingFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<BookingFiltersInput>>>;
   phone?: InputMaybe<StringFilterInput>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
   servicesName?: InputMaybe<StringFilterInput>;
   squareUpId?: InputMaybe<StringFilterInput>;
   state?: InputMaybe<StringFilterInput>;
@@ -118,7 +123,6 @@ export type BookingInput = {
   message?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   phone?: InputMaybe<Scalars['String']['input']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   servicesName?: InputMaybe<Scalars['String']['input']>;
   squareUpId?: InputMaybe<Scalars['String']['input']>;
   state?: InputMaybe<Scalars['String']['input']>;
@@ -153,10 +157,10 @@ export type BooleanFilterInput = {
 export type ContactUs = {
   __typename?: 'ContactUs';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
+  email: Scalars['String']['output'];
   message?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  phone?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  phone: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
@@ -703,7 +707,6 @@ export type QueryBookingArgs = {
 export type QueryBookingsArgs = {
   filters?: InputMaybe<BookingFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
@@ -1258,6 +1261,41 @@ export type UsersPermissionsUserRelationResponseCollection = {
 };
 
 
+export const CreateContactUsDocument = gql`
+    mutation CreateContactUs($data: ContactUsInput!) {
+  createContactUs(data: $data) {
+    data {
+      id
+    }
+  }
+}
+    `;
+export type CreateContactUsMutationFn = Apollo.MutationFunction<CreateContactUsMutation, CreateContactUsMutationVariables>;
+
+/**
+ * __useCreateContactUsMutation__
+ *
+ * To run a mutation, you first call `useCreateContactUsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateContactUsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createContactUsMutation, { data, loading, error }] = useCreateContactUsMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateContactUsMutation(baseOptions?: Apollo.MutationHookOptions<CreateContactUsMutation, CreateContactUsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateContactUsMutation, CreateContactUsMutationVariables>(CreateContactUsDocument, options);
+      }
+export type CreateContactUsMutationHookResult = ReturnType<typeof useCreateContactUsMutation>;
+export type CreateContactUsMutationResult = Apollo.MutationResult<CreateContactUsMutation>;
+export type CreateContactUsMutationOptions = Apollo.BaseMutationOptions<CreateContactUsMutation, CreateContactUsMutationVariables>;
 export const CreateBookingDocument = gql`
     mutation CreateBooking($data: BookingInput!) {
   createBooking(data: $data) {

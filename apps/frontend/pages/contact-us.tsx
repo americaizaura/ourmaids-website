@@ -10,40 +10,16 @@ import {
 import { GoogleMap, Marker } from "react-google-maps";
 import Input from "../components/Input";
 import { useEffect, useState } from "react";
+import { useCreateContactUsMutation } from "../generated/graphql";
 export default function ContactUsView() {
 	const [faq, setFaq] = useState([]);
-
+	const [createContactUs, { loading }] = useCreateContactUsMutation();
 	useEffect(() => {
 		fetch("data.json")
 			.then((response) => response.json())
 			.then((data) => setFaq(data));
 	}, []);
-	/* const faq = [
-		{
-			id: 1,
-			question: "Lorem ipsum dolor sit amet consectetur.",
-			answer:
-				"Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent. Aliquam nibh id nec et pulvinar dictumst nisi. Tellus tristique semper cursus convallis volutpat lorem. ",
-		},
-		{
-			id: 2,
-			question: "Lorem ipsum dolor sit amet consectetur.",
-			answer:
-				"Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent. Aliquam nibh id nec et pulvinar dictumst nisi. Tellus tristique semper cursus convallis volutpat lorem. ",
-		},
-		{
-			id: 3,
-			question: "Lorem ipsum dolor sit amet consectetur.",
-			answer:
-				"Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent. Aliquam nibh id nec et pulvinar dictumst nisi. Tellus tristique semper cursus convallis volutpat lorem. ",
-		},
-		{
-			id: 4,
-			question: "Lorem ipsum dolor sit amet consectetur.",
-			answer:
-				"Lorem ipsum dolor sit amet consectetur. Sagittis quis non nulla praesent. Aliquam nibh id nec et pulvinar dictumst nisi. Tellus tristique semper cursus convallis volutpat lorem. ",
-		},
-	]; */
+
 	return (
 		<div className="lg:mt-16 relative h-full flex-grow mt-16">
 			<div className="bg-primary test"></div>

@@ -20,9 +20,7 @@ export default function DateSection() {
   return (
     <aside>
       <h6 className="mb-6">Available dates</h6>
-      <Group
-        position="center"      
-      >
+      <Group position="center">
         <Calendar
           style={{ width: 348, paddingRight: 40 }}
           level="month"

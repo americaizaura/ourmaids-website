@@ -1,12 +1,12 @@
 mutation CreateBooking($data: BookingInput!) {
-	createBooking(data: $data) {
-		data {
-			id
-			attributes {
-				name
-				lastName
-				email
-			}
-		}
-	}
+  createBooking(data: $data) {
+    data {
+      id
+      attributes {
+        name
+        lastName
+        email
+      }
+    }
+  }
 }

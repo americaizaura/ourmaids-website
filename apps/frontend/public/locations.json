@@ -1,9 +1,7 @@
 [
-    {
-        "id":1,
-        "country":"United States",
-        "locations": {
-            
-        }
-    }
+  {
+    "id": 1,
+    "country": "United States",
+    "locations": {}
+  }
 ]
