@@ -2,11 +2,14 @@ import {
 	RetrieveCatalogObjectResponse,
 	SearchCatalogItemsResponse,
 } from "square";
-import { CatalogItemProductType } from "../gql/graphql";
-const API_BASE_URL =
-	"https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/api";
+enum CatalogItemProductType {
+	AppointmentsService = "APPOINTMENTS_SERVICE",
+	Regular = "REGULAR",
+}
 /* const API_BASE_URL =
-	"http://localhost:3000/api"; */
+	"https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/api"; */
+const API_BASE_URL =
+	"http://localhost:3000/api";
 class CatalogService {
 	async fetchCatalogItems(
 		productType: CatalogItemProductType,

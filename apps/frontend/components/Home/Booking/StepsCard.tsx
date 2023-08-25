@@ -7,7 +7,7 @@ interface props {
 	index: number;
 }
 
-export default function ({ title, image, step }: props) {
+export default function StepesCard({ title, image, step }: props) {
 	const theme = useMantineTheme();
 	return (
 		<div

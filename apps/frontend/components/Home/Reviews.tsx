@@ -77,16 +77,22 @@ const Reviews = ({ reviewsGoogle }: ReviewsProps) => {
 					</div>
 				</div>
 				<div className="flex justify-center mt-16">
-					<Button
-						size="lg"
-						variant="outline"
-						color="secondary.0"
-						radius={"xl"}
-						w={125}
-						h={30}
+					<a
+						href="https://www.google.com/maps/place/Our+Maids,+Inc/@34.2072574,-118.366808,15z/data=!4m8!3m7!1s0x80c295c64e3ee80b:0xbe3821a2bd2c7d79!8m2!3d34.2072574!4d-118.366808!9m1!1b1!16s%2Fg%2F11j7d_s13c?entry=ttu"
+						target="_blank"
+						rel="noreferrer"
 					>
-						<p className="text-xs font-bold tracking-widest">See more</p>
-					</Button>
+						<Button
+							size="lg"
+							variant="outline"
+							color="secondary.0"
+							radius={"xl"}
+							w={125}
+							h={30}
+						>
+							<p className="text-xs font-bold tracking-widest">See more</p>
+						</Button>
+					</a>
 				</div>
 			</Container>
 		</section>

@@ -36,14 +36,14 @@ const OurServices = ({ data }: ServicesProps) => {
 					style={{ color: "grey" }}
 					className=" sm:w-72 w-full normal-case  text-justify"
 				>
-					Choose your service package, then click on "buy now" to purchase it
-					before your team starts cleaning. (if you just booked a service, you
-					can pay now or when the team arrives at your place. We also accept
-					checks, cash, zelle, cash app, apple pay.) Money back guarantee. If
-					you or us cancel, your money will be immediately returned to your
-					card. No cancellation fees apply if you cancel before your team
-					arrives at your place. Please call or email us if you need janitorial
-					services.
+					Choose your service package, then click on &quot;buy now&quot; to
+					purchase it before your team starts cleaning. (if you just booked a
+					service, you can pay now or when the team arrives at your place. We
+					also accept checks, cash, zelle, cash app, apple pay.) Money back
+					guarantee. If you or us cancel, your money will be immediately
+					returned to your card. No cancellation fees apply if you cancel before
+					your team arrives at your place. Please call or email us if you need
+					janitorial services.
 				</p>
 				<Link href="/services" passHref>
 					<Button color="secondary.0" radius="xl">

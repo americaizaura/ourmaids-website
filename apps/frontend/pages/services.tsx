@@ -2,14 +2,7 @@ import React from "react";
 import Menu1 from "../components/Home/OServices/Menu1";
 import { Button, Container } from "@mantine/core";
 import CardServices from "../components/Home/OServices/CardServices";
-import Menu2 from "../components/Home/OServices/Menu2";
-import {
-	CatalogItemProductType,
-	CatalogQueryQuery,
-	useCatalogQueryQuery,
-} from "../generated/graphql";
 import { GetServerSideProps } from "next";
-import { serverClient } from "../lib/apollo.server";
 import {
 	CatalogObject,
 	ListCatalogResponse,
@@ -17,12 +10,14 @@ import {
 } from "square";
 import CatalogService from "../services/catalog.service";
 import ImagesService from "../services/images.service";
-import useCatalogHook from "../Hooks/useCatalogHook";
-import useImageHook from "../Hooks/useImageHook";
 import CardServicesSkeleton from "../components/Home/OServices/cardServiceSkeleton";
 interface ServicesProps {
 	services: CatalogObject[];
 	cursor: string;
+}
+enum CatalogItemProductType {
+	AppointmentsService = "APPOINTMENTS_SERVICE",
+	Regular = "REGULAR",
 }
 
 export default function ServicesView({ services, cursor }: ServicesProps) {

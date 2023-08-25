@@ -46,7 +46,7 @@ function HeroSection() {
 					className="max-w-[350px] sm:max-w-[700px]"
 				>
 					The most affordable Residential and commercial cleaning services since
-					2,000... and the most reliable. Our prices start at $139.
+					2000... and the most reliable. Our prices start at $139.
 				</h4>
 
 				<Button radius="xl" color="secondary.0" mr={10}>

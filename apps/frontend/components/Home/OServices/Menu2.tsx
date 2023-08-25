@@ -1,5 +1,9 @@
 import { Card, Image, Text, Badge, Button, Group, Avatar } from "@mantine/core";
-import { CatalogItemProductType } from "../../../generated/graphql.server";
+
+enum CatalogItemProductType {
+	AppointmentsService = "APPOINTMENTS_SERVICE",
+	Regular = "REGULAR",
+}
 
 interface MenuProps {
 	title: string;

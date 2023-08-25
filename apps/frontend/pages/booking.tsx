@@ -1,53 +1,38 @@
 import React, { forwardRef, useEffect, useRef } from "react";
+import { toast } from "react-toastify";
 import {
 	Button,
 	Textarea,
 	Container,
-	Accordion,
-	useMantineTheme,
-	rem,
-	Stepper,
-	StepperProps,
-	MultiSelect,
 	ActionIcon,
 	Loader,
 	Select,
 	Skeleton,
-	Indicator,
-	Avatar,
-	Input,
 	TextInput,
+	Dialog,
 } from "@mantine/core";
-/* import ReCAPTCHA from "react-google-recaptcha"; */
+import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "@mantine/form";
 import { useState } from "react";
 import { Progress, Input as MantineInput } from "@mantine/core";
 import { Group } from "@mantine/core";
-import { DatePicker, DatePickerInput, TimeInput } from "@mantine/dates";
+import { DatePicker, TimeInput } from "@mantine/dates";
 import Image from "next/image";
-import {
-	CalendarEvent,
-	X,
-	ChevronDown,
-	Clock2,
-	Clock,
-} from "tabler-icons-react";
-import { useRouter } from "next/router";
-/* import Input from "../components/Input"; */
-import { CatalogItemProductType } from "../gql/graphql";
+import { CalendarEvent, X, ChevronDown, Clock } from "tabler-icons-react";
+
 import CatalogService from "../services/catalog.service";
 import ImagesService from "../services/images.service";
-import BookingService from "../services/booking.service";
+
 import PaymentService from "../services/payment.service";
-import { Availability, RetrieveCatalogObjectResponse } from "square";
-import { format, set } from "date-fns";
-import { is } from "date-fns/locale";
+import { RetrieveCatalogObjectResponse } from "square";
+import { format } from "date-fns";
 import {
-	ApplePay,
 	CreditCard,
 	GooglePay,
 	PaymentForm,
 } from "react-square-web-payments-sdk";
+
+import { useCreateBookingMutation } from "../generated/graphql";
 const steps = {
 	SERVICE: "SERVICE",
 	BOOKING: "BOOKING",
@@ -62,19 +47,14 @@ interface Catalog {
 	label: string;
 }
 
-interface availableBookingDates {
-	value: string;
-	teammemberid?: string;
-	durationminutes?: number;
-	servicevariationid?: string;
-	servicevariationversion?: number;
-	startat?: string;
-	label: string;
-}
-
 interface ItemProps extends React.ComponentPropsWithoutRef<"div"> {
 	durationminutes?: number;
 	startat?: string;
+}
+
+enum CatalogItemProductType {
+	AppointmentsService = "APPOINTMENTS_SERVICE",
+	Regular = "REGULAR",
 }
 
 const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
@@ -99,8 +79,6 @@ SelectItem.displayName = "div";
 export default function BookingView() {
 	const ref = useRef<HTMLInputElement>();
 	const [dateBooking, setDateBooking] = useState<Date | null>(null);
-	/* const recaptchaRef = useRef<ReCAPTCHA>(null);
-	const recaptchaRef2 = useRef<ReCAPTCHA>(null); */
 	const [isBook, setIsBookOrPay] = useState(false);
 	const [infoService, setInfoService] =
 		useState<RetrieveCatalogObjectResponse | null>(null);
@@ -111,15 +89,7 @@ export default function BookingView() {
 	const [isLoadingRetrieveService, setIsLoadingRetrieveService] =
 		useState(false);
 	const [errorService, setErrorService] = useState(false);
-	const [errorBooking, setErrorBooking] = useState({
-		date: false,
-		dateSelected: false,
-	});
-	const [availableBooking, setAvailableBooking] = useState(
-		[] as availableBookingDates[]
-	);
-	/* const [errorRecaptcha, setErrorRecaptcha] = useState(false); */
-	const [selectedDateBooking, setSelectedDateBooking] = useState("");
+	const [createBooking, { loading }] = useCreateBookingMutation();
 	const form = useForm({
 		initialValues: {
 			name: "",
@@ -134,7 +104,7 @@ export default function BookingView() {
 		validateInputOnChange: true,
 		validate: {
 			name: (value) => (value.trim().length > 0 ? null : "Name is required"),
-			//doble validacion de email
+
 			email: (value) => {
 				if (value.trim().length > 0) {
 					if (!value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
@@ -197,26 +167,43 @@ export default function BookingView() {
 	});
 	const sendBooking = async () => {
 		if (isBook === true) {
-			/* 	if (recaptchaRef.current.getValue() === "") {
-				setErrorRecaptcha(true);
-				return;
-			} */
-			/* const recaptchaValue = recaptchaRef.current.getValue(); */
 			const bookingData = {
 				...form.values,
 				...formDate.values,
 				serviceId: infoService?.object?.id,
-				/* recaptchaValue, */
 			};
+
+			createBooking({
+				variables: {
+					data: {
+						address: bookingData.address,
+						city: bookingData.city,
+						dateTime: bookingData.date + " " + bookingData.time,
+						email: bookingData.email,
+						message: bookingData.message,
+						name: bookingData.name,
+						lastName: bookingData.name,
+						phone: bookingData.phone,
+						servicesName: infoService?.object?.itemData?.name,
+						state: bookingData.state,
+						zipCode: bookingData.zip,
+					},
+				},
+			})
+				.then(() => {
+					setStep(steps.BOOKED);
+				})
+				.catch((error) => {
+					console.log(error);
+
+					toast.error(error.message);
+				});
 		} else {
 			setStep(steps.PAYMENT);
 		}
 	};
 
 	const sendBookingDate = () => {
-		console.log("Entro");
-
-		console.log(formDate.values);
 		setStep(steps.INFORMATION);
 	};
 
@@ -315,6 +302,7 @@ export default function BookingView() {
 						layout="fill"
 						objectFit="cover"
 						objectPosition="0 600"
+						alt="step 1"
 					/>
 				)}
 				{step === steps.BOOKING && (
@@ -323,6 +311,7 @@ export default function BookingView() {
 						layout="fill"
 						objectFit="cover"
 						objectPosition="0 600"
+						alt="step 2"
 					/>
 				)}
 				{step === steps.INFORMATION ||
@@ -333,6 +322,7 @@ export default function BookingView() {
 						layout="fill"
 						objectFit="cover"
 						objectPosition="0 600"
+						alt="step 3"
 					/>
 				) : null}
 			</div>
@@ -625,6 +615,7 @@ export default function BookingView() {
 											color="secondary.0"
 											type="submit"
 											onClick={() => setIsBookOrPay(true)}
+											loading={loading}
 										>
 											Book now
 										</Button>
@@ -799,6 +790,7 @@ export default function BookingView() {
 													? infoService.object.imageData.url
 													: "/images/booking/service.png"
 											}
+											alt="service"
 											layout="fill"
 											objectFit="cover"
 											className="rounded-lg"
