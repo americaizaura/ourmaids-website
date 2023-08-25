@@ -1,4 +1,4 @@
-import { ListCatalogResponse } from "square";
+import { ListCatalogResponse, Payment } from "square";
 const API_BASE_URL = process.env.NEXT_PUBLIC_SERVER_API;
 /* const API_BASE_URL = "http://localhost:3000/api"; */
 class PaymentService {
@@ -9,7 +9,7 @@ class PaymentService {
       currency: string;
     },
     buyerEmailAddress: string
-  ): Promise<ListCatalogResponse | null> {
+  ): Promise<any | null> {
     try {
       const response = await fetch(`${API_BASE_URL}/createPayment`, {
         method: "POST",

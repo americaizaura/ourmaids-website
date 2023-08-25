@@ -6,11 +6,14 @@ import {
 	Accordion,
 	useMantineTheme,
 	rem,
+	TextInput,
 } from "@mantine/core";
 import { GoogleMap, Marker } from "react-google-maps";
 import Input from "../components/Input";
 import { useEffect, useState } from "react";
 import { useCreateContactUsMutation } from "../generated/graphql";
+import { useForm } from "@mantine/form";
+import { toast } from "react-toastify";
 export default function ContactUsView() {
 	const [faq, setFaq] = useState([]);
 	const [createContactUs, { loading }] = useCreateContactUsMutation();
@@ -19,6 +22,59 @@ export default function ContactUsView() {
 			.then((response) => response.json())
 			.then((data) => setFaq(data));
 	}, []);
+
+	const form = useForm({
+		initialValues: {
+			name: "",
+			email: "",
+			phone: "",
+			message: "",
+		},
+		validateInputOnChange: true,
+		validate: {
+			email: (value) => {
+				if (value.trim().length > 0) {
+					if (!value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+						return "Email is invalid";
+					}
+				} else {
+					return "Email is required";
+				}
+			},
+			name: (value) => (value.trim().length > 0 ? null : "Name is required"),
+			phone: (value) => {
+				if (value.trim().length > 0) {
+					if (!value.match(/^[0-9]+$/)) {
+						return "Phone is invalid";
+					}
+				} else {
+					return "Phone is required";
+				}
+			},
+			message: (value) =>
+				value.trim().length > 0 ? null : "Message is required",
+		},
+	});
+
+	const sendContactUs = () => {
+		createContactUs({
+			variables: {
+				data: {
+					name: form.values.name,
+					email: form.values.email,
+					phone: form.values.phone,
+					message: form.values.message,
+				},
+			},
+		})
+			.then((res) => {
+				toast.success("Message sent successfully");
+				form.reset();
+			})
+			.catch((err) => {
+				toast.error("Something went wrong");
+			});
+	};
 
 	return (
 		<div className="lg:mt-16 relative h-full flex-grow mt-16">
@@ -59,29 +115,73 @@ export default function ContactUsView() {
 								to look at your facilities and send you a proposal for
 								janitorial services, to reschedule or to cancel a reservation.
 							</p>
-							<div className="space-y-5">
-								<div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-									<Input placeholder="Name" />
-									<Input placeholder="Email" />
-								</div>
+							<form onSubmit={form.onSubmit(() => sendContactUs())}>
+								<div className="space-y-5">
+									<div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+										<TextInput
+											placeholder={"Name"}
+											radius="lg"
+											styles={(theme) => ({
+												input: {
+													"&:focus-within": {
+														borderColor: theme.colors.secondary[0],
+													},
+													borderColor: theme.colors.secondary[0],
+												},
+											})}
+											{...form.getInputProps("name")}
+										/>
+										<TextInput
+											placeholder={"email"}
+											radius="lg"
+											styles={(theme) => ({
+												input: {
+													"&:focus-within": {
+														borderColor: theme.colors.secondary[0],
+													},
+													borderColor: theme.colors.secondary[0],
+												},
+											})}
+											{...form.getInputProps("email")}
+										/>
+									</div>
 
-								<Input placeholder="Phone" />
-								<Textarea
-									placeholder="Message"
-									radius="lg"
-									styles={(theme) => ({
-										input: {
-											"&:focus-within": {
+									<TextInput
+										placeholder={"Phone"}
+										radius="lg"
+										styles={(theme) => ({
+											input: {
+												"&:focus-within": {
+													borderColor: theme.colors.secondary[0],
+												},
 												borderColor: theme.colors.secondary[0],
 											},
-											borderColor: theme.colors.secondary[0],
-										},
-									})}
-								/>
-								<Button radius="xl" color="secondary.0">
-									Send
-								</Button>
-							</div>
+										})}
+										{...form.getInputProps("phone")}
+									/>
+									<Textarea
+										{...form.getInputProps("message")}
+										placeholder="Message"
+										radius="lg"
+										styles={(theme) => ({
+											input: {
+												"&:focus-within": {
+													borderColor: theme.colors.secondary[0],
+												},
+												borderColor: theme.colors.secondary[0],
+											},
+										})}
+									/>
+									<Button
+										radius="xl"
+										color="secondary.0"
+										type="submit"
+										loading={loading}
+									>
+										Send
+									</Button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
