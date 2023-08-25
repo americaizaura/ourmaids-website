@@ -7,21 +7,24 @@
     "displayName": "Contact Us"
   },
   "options": {
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "email": {
-      "type": "email"
+      "type": "email",
+      "required": true
     },
     "phone": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "message": {
-      "type": "text"
+      "type": "string"
     }
   }
 }
