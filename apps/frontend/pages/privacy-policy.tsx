@@ -11,11 +11,11 @@ export default function PrivacyPolicy() {
 			<h5 className="text-secondaryVariant mb-0">Introduction</h5>
 			<p className="text-justify">
 				This Privacy Policy outlines Our Maids Franchise, Inc., also DBA Our
-				Maids, and Our Maids, Inc., ("we", "our" or "the Company") practices
-				with respect to information collected from users who access our websites
-				at https://www.ourmaids.com and
-				https://www.ourmaidsfranchise.com/("Sites"), or otherwise share personal
-				information with us (collectively: "Users").
+				Maids, and Our Maids, Inc., (&quot;we&quot;, &quot;our&quot; or
+				&quot;the Company&quot;) practices with respect to information collected
+				from users who access our websites at https://www.ourmaids.com and
+				https://www.ourmaidsfranchise.com/(&quot;Sites&quot;), or otherwise
+				share personal information with us (collectively: &quot;Users&quot;).
 			</p>
 
 			<h1 className="text-secondary">OurMaids, Inc, Terms and conditions.</h1>
@@ -30,20 +30,21 @@ export default function PrivacyPolicy() {
 					<p>
 						By accessing the webapp https://www.ourmaids.com (including any
 						mobile optimized version of our app and any other websites and any
-						apps bearing OurMaids name) (the “Website” or "Webapp"), you are
-						agreeing to be bound by these terms of service (“Terms of Service”)
-						and all applicable laws and regulations. You agree that you are
-						responsible for compliance with any laws that are applicable to your
-						use of the Website. Please carefully review these Terms of Service
-						and the Privacy Policy, and any other terms and conditions that may
-						appear on the Website that govern particular offers or features
-						incorporated herein (together, the "Terms & Conditions"). Such Terms
-						& Conditions govern your use of and access to the Website and any
-						and all content, data and information contained on the Website. If
-						you do not agree with these Terms of Service, you may not use the
-						Website or provide us with any of your Personal Information (as
-						defined in the Privacy Policy). The materials contained in this
-						Website are protected by applicable copyright and trademark law.
+						apps bearing OurMaids name) (the “Website” or &quot;Webapp&quot;),
+						you are agreeing to be bound by these terms of service (“Terms of
+						Service”) and all applicable laws and regulations. You agree that
+						you are responsible for compliance with any laws that are applicable
+						to your use of the Website. Please carefully review these Terms of
+						Service and the Privacy Policy, and any other terms and conditions
+						that may appear on the Website that govern particular offers or
+						features incorporated herein (together, the &quot;Terms &
+						Conditions&quot;). Such Terms & Conditions govern your use of and
+						access to the Website and any and all content, data and information
+						contained on the Website. If you do not agree with these Terms of
+						Service, you may not use the Website or provide us with any of your
+						Personal Information (as defined in the Privacy Policy). The
+						materials contained in this Website are protected by applicable
+						copyright and trademark law.
 					</p>
 				</li>
 				<li>
@@ -62,8 +63,8 @@ export default function PrivacyPolicy() {
 				<li>
 					<h6 className="mb-0">
 						1.4. Copyright 2000-2023 by Our Maids, Inc. The Our Maids logo, its
-						colors, Our Maids and "A helping Hand for Busy People"are registered
-						trademarks with the USPTO of Our Maids, Inc., a Delaware
+						colors, Our Maids and &quot;A helping Hand for Busy People&quot;are
+						registered trademarks with the USPTO of Our Maids, Inc., a Delaware
 						Corporation. No part of this site shall be copied, distributed nor
 						transmitted in any way without prior written permission from us nor
 						distributed to profit from it without written permission from
@@ -141,8 +142,8 @@ export default function PrivacyPolicy() {
 									materials; or
 								</li>
 								<li>
-									transfer the materials to another person or "mirror" the
-									materials on any other server.
+									transfer the materials to another person or &quot;mirror&quot;
+									the materials on any other server.
 								</li>
 							</ul>
 						</li>
@@ -163,12 +164,12 @@ export default function PrivacyPolicy() {
 					<h5 className="mb-4">3. Disclaimer</h5>
 					<ul className="list-disc">
 						<li>
-							The materials on our Website are provided on an 'as is' basis. We
-							make no warranties, expressed or implied, and hereby disclaim and
-							negate all other warranties including, without limitation, implied
-							warranties or conditions of merchantability, fitness for a
-							particular purpose, or non-infringement of intellectual property
-							or other violation of rights.
+							The materials on our Website are provided on an &quot;as is&quot;
+							basis. We make no warranties, expressed or implied, and hereby
+							disclaim and negate all other warranties including, without
+							limitation, implied warranties or conditions of merchantability,
+							fitness for a particular purpose, or non-infringement of
+							intellectual property or other violation of rights.
 						</li>
 						<li>
 							Further, we do not warrant or make any representations concerning
@@ -209,7 +210,7 @@ export default function PrivacyPolicy() {
 						We have not reviewed all of the sites linked to our Website and we
 						are not responsible for the contents of any such linked site. The
 						inclusion of any link does not imply endorsement by us of the site.
-						Use of any such linked website is at the user's own risk.
+						Use of any such linked website is at the user&apos;s own risk.
 					</p>
 				</li>
 				<li>
@@ -311,23 +312,24 @@ export default function PrivacyPolicy() {
 				<li>
 					Business, for the purpose of the CCPA (California Consumer Privacy
 					Act), refers to the Company as the legal entity that collects
-					Consumers' personal information and determines the purposes and means
-					of the processing of Consumers' personal information, or on behalf of
-					which such information is collected and that alone, or jointly with
-					others, determines the purposes and means of the processing of
-					consumers' personal information, that does business in the State of
-					California.
+					Consumers&apos; personal information and determines the purposes and
+					means of the processing of Consumers&apos; personal information, or on
+					behalf of which such information is collected and that alone, or
+					jointly with others, determines the purposes and means of the
+					processing of consumers&apos; personal information, that does business
+					in the State of California.
 				</li>
 				<li>
-					Company (referred to as either "the Company", "We", "Us" or "Our" in
-					this Agreement) refers to Our Maids Franchise, Inc., 8 The Green,
-					Suite 300, Dover DE, 19901. For the purpose of the GDPR, the Company
-					is the Data Controller.Consumer, for the purpose of the CCPA
-					(California Consumer Privacy Act), means a natural person who is a
-					California resident. A resident, as defined in the law, includes (1)
-					every individual who is in the USA for other than a temporary or
-					transitory purpose, and (2) every individual who is domiciled in the
-					USA who is outside the USA for a temporary or transitory purpose.
+					Company (referred to as either &quot;the Company&quot;,
+					&quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement)
+					refers to Our Maids Franchise, Inc., 8 The Green, Suite 300, Dover DE,
+					19901. For the purpose of the GDPR, the Company is the Data
+					Controller.Consumer, for the purpose of the CCPA (California Consumer
+					Privacy Act), means a natural person who is a California resident. A
+					resident, as defined in the law, includes (1) every individual who is
+					in the USA for other than a temporary or transitory purpose, and (2)
+					every individual who is domiciled in the USA who is outside the USA
+					for a temporary or transitory purpose.
 				</li>
 				<li>
 					Cookies are small files that are placed on Your computer, mobile
@@ -369,7 +371,7 @@ export default function PrivacyPolicy() {
 					Sale, for the purpose of the CCPA (California Consumer Privacy Act),
 					means selling, renting, releasing, disclosing, disseminating, making
 					available, transferring, or otherwise communicating orally, in
-					writing, or by electronic or other means, a Consumer's Personal
+					writing, or by electronic or other means, a Consumer&apos;s Personal
 					information to another business or a third party for monetary or other
 					valuable consideration.
 				</li>
@@ -450,10 +452,11 @@ export default function PrivacyPolicy() {
 			<p>
 				Processing of your personal information (meaning, any information which
 				may potentially allow your identification with reasonable means;
-				hereinafter "Personal Information") is necessary for the performance of
-				our contractual obligations towards you and providing you with our
-				services, to protect our legitimate interests and for compliance with
-				legal and financial regulatory obligations to which we are subject.
+				hereinafter &quot;Personal Information&quot;) is necessary for the
+				performance of our contractual obligations towards you and providing you
+				with our services, to protect our legitimate interests and for
+				compliance with legal and financial regulatory obligations to which we
+				are subject.
 			</p>
 			<p className="mb-0">
 				When you use the Site, you consent to the collection, storage, use, and
@@ -614,34 +617,34 @@ export default function PrivacyPolicy() {
 				services.
 			</p>
 			<p>
-				A "cookie" is a small piece of information that a website assign to your
-				device while you are viewing a website. Cookies are very helpful and can
-				be used for various different purposes. These purposes include allowing
-				you to navigate between pages efficiently, enable automatic activation
-				of certain features, remembering your preferences and making the
-				interaction between you and our Services quicker and easier. Cookies are
-				also used to help ensure that the advertisements you see are relevant to
-				you and your interests and to compile statistical data on your use of
-				our Services.
+				A &quot;cookie&quot; is a small piece of information that a website
+				assign to your device while you are viewing a website. Cookies are very
+				helpful and can be used for various different purposes. These purposes
+				include allowing you to navigate between pages efficiently, enable
+				automatic activation of certain features, remembering your preferences
+				and making the interaction between you and our Services quicker and
+				easier. Cookies are also used to help ensure that the advertisements you
+				see are relevant to you and your interests and to compile statistical
+				data on your use of our Services.
 			</p>
 			<p>The Site uses the following types of cookies:</p>
 			<ol type="a" className="space-y-4">
 				<li>
-					'session cookies' which are stored only temporarily during a browsing
-					session in order to allow normal use of the system and are deleted
-					from your device when the browser is closed;
+					&apos;session cookies&apos; which are stored only temporarily during a
+					browsing session in order to allow normal use of the system and are
+					deleted from your device when the browser is closed;
 				</li>
 				<li>
-					'persistent cookies' which are read only by the Site, saved on your
-					computer for a fixed period and are not deleted when the browser is
-					closed. Such cookies are used where we need to know who you are for
-					repeat visits, for example to allow us to store your preferences for
-					the next sign-in;
+					&apos;persistent cookies&apos; which are read only by the Site, saved
+					on your computer for a fixed period and are not deleted when the
+					browser is closed. Such cookies are used where we need to know who you
+					are for repeat visits, for example to allow us to store your
+					preferences for the next sign-in;
 				</li>
 				<li>
-					'third party cookies' which are set by other online services who run
-					content on the page you are viewing, for example by third party
-					analytics companies who monitor and analyze our web access.
+					&apos;third party cookies&apos; which are set by other online services
+					who run content on the page you are viewing, for example by third
+					party analytics companies who monitor and analyze our web access.
 				</li>
 			</ol>
 			<p>
@@ -738,11 +741,12 @@ export default function PrivacyPolicy() {
 			<p>
 				We reserve the right to periodically amend or revise the Privacy Policy;
 				material changes will be effective immediately upon the display of the
-				revised Privacy policy. The last revision will be reflected in the "Last
-				modified" section. Your continued use of the Platform, following the
-				notification of such amendments on our website, constitutes your
-				acknowledgment and consent of such amendments to the Privacy Policy and
-				your agreement to be bound by the terms of such amendments.
+				revised Privacy policy. The last revision will be reflected in the
+				&quot;Last modified&quot; section. Your continued use of the Platform,
+				following the notification of such amendments on our website,
+				constitutes your acknowledgment and consent of such amendments to the
+				Privacy Policy and your agreement to be bound by the terms of such
+				amendments.
 			</p>
 			<h5 className="mb-0">How to contact us</h5>
 			<p className="mb-0">

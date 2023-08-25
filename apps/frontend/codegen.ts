@@ -2,16 +2,7 @@ import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
 	overwrite: true,
-	schema: [
-		{
-			"https://connect.squareup.com/public/graphql": {
-				headers: {
-					Authorization:
-						"Bearer EAAAFJLAQwc57X5arZRGsRm9CrE6dVDblTJ10DJU0PXX9QEBTZHoeDt_ewiSSCW3",
-				},
-			},
-		},
-	],
+	schema: "https://ourmaids-website-backend.on.ocstudios.mx/graphql",
 	documents: "graphql/**/*.graphql",
 	generates: {
 		"generated/graphql.tsx": {

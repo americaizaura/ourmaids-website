@@ -34,16 +34,17 @@ const AboutUs = () => {
 								<h2 className="uppercase">history</h2>
 								<p style={{ color: "grey" }} className="text-justify">
 									OURMAIDS.COM IS A COMPANY FOR THE PEOPLE, NOT JUST AN ONLINE
-									PLATFORM. LOOK AT MORE REVIEWS HERE We don't "match you with a
-									Pro". We are the Professional cleaners! We review your booking
-									immediately and schedule it within one hour, you get a
-									calendar invite when it is up on the teams app. You can reach
-									one of our friendly Customer Care specialist by phone or
-									e-mail and get live responses almost immediately from 7am to
-									7pm Monday to Sunday (Numbers on top of each page.) Get online
-									bookings and automated responses 24/7 365 days. Our services
-									are the best in the industry because we have done for so many
-									years now that we have improved all aspects of the service.
+									PLATFORM. LOOK AT MORE REVIEWS HERE We don&apos;t &quot;match
+									you with a Pro&quot;. We are the Professional cleaners! We
+									review your booking immediately and schedule it within one
+									hour, you get a calendar invite when it is up on the teams
+									app. You can reach one of our friendly Customer Care
+									specialist by phone or e-mail and get live responses almost
+									immediately from 7am to 7pm Monday to Sunday (Numbers on top
+									of each page.) Get online bookings and automated responses
+									24/7 365 days. Our services are the best in the industry
+									because we have done for so many years now that we have
+									improved all aspects of the service.
 								</p>
 								<Link href="/about-us" passHref>
 									<Button color="secondary.0" radius="xl">

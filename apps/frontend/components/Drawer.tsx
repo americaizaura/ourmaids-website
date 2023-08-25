@@ -51,24 +51,24 @@ function Drawer() {
 						<div className="py-4 px-6">
 							<ul className="space-y-4">
 								<li>
-									<Link href="/" passHref>
-										<a className="text-gray-700 transition-colors duration-200 hover:text-gray-900">
+									<Link href="/">
+										<div className="text-gray-700 transition-colors duration-200 hover:text-gray-900">
 											Home
-										</a>
+										</div>
 									</Link>
 								</li>
 								<li>
-									<Link href="/about" passHref>
-										<a className="text-gray-700 transition-colors duration-200 hover:text-gray-900">
+									<Link href="/about">
+										<div className="text-gray-700 transition-colors duration-200 hover:text-gray-900">
 											About
-										</a>
+										</div>
 									</Link>
 								</li>
 								<li>
-									<Link href="/contact" passHref>
-										<a className="text-gray-700 transition-colors duration-200 hover:text-gray-900">
+									<Link href="/contact">
+										<div className="text-gray-700 transition-colors duration-200 hover:text-gray-900">
 											Contact
-										</a>
+										</div>
 									</Link>
 								</li>
 							</ul>

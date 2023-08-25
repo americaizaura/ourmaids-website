@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	Button,
 	Textarea,
@@ -6,13 +6,34 @@ import {
 	Accordion,
 	useMantineTheme,
 	rem,
+	Modal,
 } from "@mantine/core";
 import Image from "next/image";
 import Input from "../components/Input";
 import { useDisclosure } from "@mantine/hooks";
 
 export default function AboutUsView() {
-	const [opened, { open, close }] = useDisclosure(false);
+	//function to open modalas only one state
+	const [openedModal, setOpenedModal] = useState({
+		deepClean: false,
+		postConstruction: false,
+		moveInMoveOut: false,
+		cleaningBySuscription: false,
+	});
+
+	const handleOpenModal = (modalName: string) => {
+		setOpenedModal({
+			...openedModal,
+			[modalName]: true,
+		});
+	};
+
+	const handleCloseModal = (modalName: string) => {
+		setOpenedModal({
+			...openedModal,
+			[modalName]: false,
+		});
+	};
 
 	return (
 		<div className="lg:mt-16 mt-40">
@@ -55,7 +76,7 @@ export default function AboutUsView() {
 						<h2 className="mt-4 md:mt-16 lg:mt-0">ABOUT OUR MAIDS</h2>
 						<h1>Why Choose OurMaids? </h1>
 						<p className="text-justify">
-							We are America's most affordable residential and commercial
+							We are America&lsquo;s most affordable residential and commercial
 							cleaning service, and the most reliable, and we have been for 23
 							uninterrupted years now! We have opened 12 franchises as of now
 							and planning to open many more,
@@ -576,7 +597,7 @@ export default function AboutUsView() {
 							<p className="text-justify">
 								IT ALL STARTED HERE, IN THIS SMALL OFFICE IN RICHARDSON, TX,
 								WITH THIS GROUP OF BEAUTIFUL LADIES, AND A VISIONARY, ANTONIO V.
-								MORENO (he was taking the picture:) Back in 2,000, in a small
+								MORENO (he was taking the picture:) Back in 2000, in a small
 								shop at Arapaho Rd., Richardson, Texas, United States of
 								America, Antonio V. Moreno, then a CNC programmer at Halliburton
 								Company, decided to quit a well paid, secure employment to enter

@@ -29,7 +29,7 @@ import Booking from "../components/Home/Booking";
 import Reviews from "../components/Home/Reviews";
 import { ListCatalogResponse, SearchCatalogItemsResponse } from "square";
 import { GetServerSideProps } from "next";
-import { CatalogItemProductType } from "../gql/graphql";
+
 const API_BASE_URL =
 	"https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/api";
 import CatalogService from "../services/catalog.service";
@@ -40,6 +40,10 @@ interface ServicesProps {
 }
 interface ReviewsProps {
 	reviewsGoogle: any;
+}
+enum CatalogItemProductType {
+	AppointmentsService = "APPOINTMENTS_SERVICE",
+	Regular = "REGULAR",
 }
 import ReCAPTCHA from "react-google-recaptcha";
 import {

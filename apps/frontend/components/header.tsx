@@ -78,17 +78,15 @@ const Appbar = () => {
 						</ul>
 					</Drawer>
 					<div className="grow text-center mx-auto lg:ml-0  lg:grow-0 lg:text-left h-[70px] w-[200px] relative lg:h-[80px] lg:w-[250px]">
-						<Link href={"/"} passHref>
-							<a>
-								<Image
-									priority
-									src="/images/logo.png"
-									alt="Logo"
-									objectFit="contain"
-									layout="fill"
-									className="cursor-pointer"
-								/>
-							</a>
+						<Link href={"/"}>
+							<Image
+								priority
+								src="/images/logo.png"
+								alt="Logo"
+								objectFit="contain"
+								layout="fill"
+								className="cursor-pointer"
+							/>
 						</Link>
 					</div>
 					<div className="hidden lg:flex lg:justify-between lg:items-center ">
@@ -98,8 +96,8 @@ const Appbar = () => {
 						>
 							{navigation.map((item) => (
 								<li key={item.name}>
-									<Link href={item.href} passHref>
-										<a
+									<Link href={item.href}>
+										<div
 											className={
 												isActiveRoute(item.href)
 													? "text-secondary text-xl font-bold"
@@ -107,7 +105,7 @@ const Appbar = () => {
 											}
 										>
 											{item.name}
-										</a>
+										</div>
 									</Link>
 								</li>
 							))}

@@ -11,7 +11,12 @@ import {
 	List,
 	Skeleton,
 } from "@mantine/core";
-import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+import {
+	GoogleMap,
+	Marker,
+	MarkerF,
+	useLoadScript,
+} from "@react-google-maps/api";
 import Image from "next/image";
 import Map from "../components/map";
 import { BrandTwitter, MapPin } from "tabler-icons-react";
@@ -267,19 +272,24 @@ export default function LocationsView() {
 								<Skeleton height={500} radius="lg" />
 							) : (
 								<GoogleMap mapContainerStyle={containerStyle} onLoad={onLoad}>
-									{locations.map((location) => (
-										<>
-											{location.locations.map((location) => (
-												<Marker
+									{locations
+										.map((locationGroup) =>
+											locationGroup.locations.map((location) => (
+												<MarkerF
 													onClick={() => {
 														handleMarkerClick(location.lat, location.lng);
 													}}
 													position={{ lat: location.lat, lng: location.lng }}
-													key={location.id}
+													key={
+														"locationGroup_" +
+														locationGroup.id +
+														"location_" +
+														location.id
+													}
 												/>
-											))}
-										</>
-									))}
+											))
+										)
+										.flat()}
 								</GoogleMap>
 							)}
 						</div>

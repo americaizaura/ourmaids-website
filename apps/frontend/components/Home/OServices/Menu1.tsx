@@ -1,11 +1,15 @@
 import { Card, Image, Text, Badge, Button, Group, Avatar } from "@mantine/core";
-import { CatalogItemProductType } from "../../../gql/graphql";
 
 interface MenuProps {
 	title: string;
 	image: string;
 	onClick?: () => void;
 	productType: CatalogItemProductType;
+}
+
+enum CatalogItemProductType {
+	AppointmentsService = "APPOINTMENTS_SERVICE",
+	Regular = "REGULAR",
 }
 
 function Menu1(props: MenuProps) {

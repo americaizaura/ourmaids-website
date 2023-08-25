@@ -20,6 +20,7 @@ export default function RescheduleView() {
 		<div className="relative h-full w-full">
 			<div className="absolute h-full w-96 ">
 				<Image
+					alt="reschedule"
 					src="/images/reschedule.png"
 					layout="fill"
 					objectFit="cover"
