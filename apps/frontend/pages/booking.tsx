@@ -94,18 +94,20 @@ export default function BookingView() {
 	const form = useForm({
 		initialValues: {
 			name: "",
+			lastName: "",
 			email: "",
 			phone: "",
 			message: "",
 			address: "",
 			city: "",
-			state: "",
+			state: "California",
 			zip: "",
 		},
 		validateInputOnChange: true,
 		validate: {
 			name: (value) => (value.trim().length > 0 ? null : "Name is required"),
-
+			lastName: (value) =>
+				value.trim().length > 0 ? null : "Last name is required",
 			email: (value) => {
 				if (value.trim().length > 0) {
 					if (!value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
@@ -125,8 +127,8 @@ export default function BookingView() {
 					return "Phone is required";
 				}
 			},
-			message: (value) =>
-				value.trim().length > 0 ? null : "Message is required",
+			/* message: (value) =>
+				value.trim().length > 0 ? null : "Message is required", */
 			address: (value) =>
 				value.trim().length > 0 ? null : "Address is required",
 			city: (value) => (value.trim().length > 0 ? null : "City is required"),
@@ -194,7 +196,7 @@ export default function BookingView() {
 						email: bookingData.email,
 						message: bookingData.message,
 						name: bookingData.name,
-						lastName: bookingData.name,
+						lastName: bookingData.lastName,
 						phone: bookingData.phone,
 						servicesName: infoService?.object?.itemData?.name,
 						state: bookingData.state,
@@ -519,7 +521,7 @@ export default function BookingView() {
 												{...form.getInputProps("name")}
 											/>
 											<TextInput
-												placeholder={"Email"}
+												placeholder={"Last Name"}
 												radius="lg"
 												styles={(theme) => ({
 													input: {
@@ -529,10 +531,22 @@ export default function BookingView() {
 														borderColor: theme.colors.secondary[0],
 													},
 												})}
-												{...form.getInputProps("email")}
+												{...form.getInputProps("lastName")}
 											/>
 										</div>
-
+										<TextInput
+											placeholder={"Email"}
+											radius="lg"
+											styles={(theme) => ({
+												input: {
+													"&:focus-within": {
+														borderColor: theme.colors.secondary[0],
+													},
+													borderColor: theme.colors.secondary[0],
+												},
+											})}
+											{...form.getInputProps("email")}
+										/>
 										<TextInput
 											placeholder={"Phone"}
 											radius="lg"
@@ -603,6 +617,8 @@ export default function BookingView() {
 													},
 													rightSection: { pointerEvents: "none" },
 												})}
+												/* defaultValue="CA" */
+												disabled
 												data={[
 													{ value: "DE", label: "DE" },
 													{
@@ -610,8 +626,8 @@ export default function BookingView() {
 														label: "TX",
 													},
 													{
-														value: "CA",
-														label: "CA",
+														value: "California",
+														label: "California",
 													},
 													{
 														value: "NC",
@@ -647,17 +663,7 @@ export default function BookingView() {
 											/>
 										</div>
 									</div>
-									<div className="flex justify-center mt-12">
-										{/* 	<ReCAPTCHA
-											onChange={(toke) => {
-												setErrorRecaptcha(false),
-													console.log(toke),
-													alert(toke);
-											}}
-											ref={recaptchaRef}
-											sitekey="6Ld61rQnAAAAAOZyssOajwm8AsrA6CEAGzRcpcs4"
-										/> */}
-									</div>
+
 									{/* 	{errorRecaptcha && (
 										<p className="text-error text-center">
 											Recaptcha is required
