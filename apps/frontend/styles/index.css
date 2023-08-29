@@ -1,0 +1,158 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  @apply text-5xl font-montserrat font-semibold !important;
+}
+
+h2 {
+  @apply text-4xl font-montserrat font-semibold !important;
+}
+
+h3 {
+  @apply text-3xl font-montserrat font-semibold !important;
+}
+
+h4 {
+  @apply text-2xl font-montserrat font-semibold !important;
+}
+
+h5 {
+  @apply text-xl font-montserrat font-semibold !important;
+}
+
+h6 {
+  @apply text-lg font-montserrat font-semibold !important;
+}
+
+body {
+  @apply font-nunito !important;
+  margin: 0;
+}
+
+.shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color),
+    0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+@media (min-width: 768px) {
+  .test {
+    width: calc(50% - (1 * (85.5rem / 12)));
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+  }
+}
+
+@media (min-width: 691px) and (max-width: 767px) {
+  .test {
+    width: 100%;
+
+    height: calc(100% - 620px);
+    z-index: -1;
+    position: absolute;
+  }
+}
+
+@media (min-width: 474px) and (max-width: 690px) {
+  .test {
+    width: 100%;
+
+    height: calc(100% - 640px);
+    z-index: -1;
+    position: absolute;
+  }
+}
+
+@media (min-width: 364px) and (max-width: 473px) {
+  .test {
+    width: 100%;
+
+    height: calc(100% - 660px);
+    z-index: -1;
+    position: absolute;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 363px) {
+  .test {
+    width: 100%;
+
+    height: calc(100% - 680px);
+    z-index: -1;
+    position: absolute;
+  }
+}
+
+@media (min-width: 282px) and (max-width: 299px) {
+  .test {
+    width: 100%;
+
+    height: calc(100% - 710px);
+    z-index: -1;
+    position: absolute;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 281px) {
+  .test {
+    width: 100%;
+
+    height: calc(100% - 735px);
+    z-index: -1;
+    position: absolute;
+  }
+}
+
+/*  @media (min-width: 640px) and (max-width: 767) {
+	.test {
+		width: 100%;
+
+		height: calc(100% - 610px);
+		z-index: -1;
+		position: absolute;
+	}
+}  */
+
+@media (min-width: 768px) {
+  .img-booking {
+    width: calc(33% - (1 * (85.5rem / 12)));
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+  }
+}
+
+.test--2 {
+  width: calc(50.3% - (1 * (85.5rem / 12)));
+  height: 100%;
+  z-index: -1;
+  position: absolute;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* a {
+	text-decoration: none;
+} */

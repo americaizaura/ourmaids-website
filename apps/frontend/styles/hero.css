@@ -1,0 +1,11 @@
+.main_section {
+  /*  display: flex;
+  flex-direction: column;
+  align-items: center; */
+  background-image: url("../public/images/hero.png");
+  /*   min-height: 500px;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  max-height: 100vh; */
+}
