@@ -2,7 +2,7 @@ import { Client, Environment } from "square";
 
 const { paymentsApi } = new Client({
 	accessToken: process.env.NEXT_PUBLIC_SQUARE_ACCESS_TOKEN,
-	environment: Environment.Production,
+	environment: process.env.NEXT_PUBLIC_SQUARE_ENVIRONMENT as Environment,
 });
 import { randomUUID } from "crypto";
 export default async function handler(req: any, res: any) {
