@@ -3,7 +3,7 @@ import { Client, Environment } from "square";
 const { paymentsApi } = new Client({
   accessToken:
     "EAAAEFHgE_JY5r7dECm_Av7WFV-brJ_8M6hbH2VvVETOrdyoDifPYYEF7xMVWZVK",
-  environment: Environment.Production,
+  environment: Environment.Sandbox,
 });
 import { randomUUID } from "crypto";
 export default async function handler(req: any, res: any) {
