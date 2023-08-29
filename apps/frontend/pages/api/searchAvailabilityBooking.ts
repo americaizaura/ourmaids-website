@@ -3,7 +3,7 @@ import { Client, Environment } from "square";
 const { bookingsApi } = new Client({
   accessToken:
     "EAAAEFHgE_JY5r7dECm_Av7WFV-brJ_8M6hbH2VvVETOrdyoDifPYYEF7xMVWZVK",
-  environment: Environment.Sandbox,
+  environment: Environment.Production,
 });
 
 export default async function handler(req: any, res: any) {
