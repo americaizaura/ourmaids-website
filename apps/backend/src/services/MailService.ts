@@ -17,10 +17,6 @@ export class MailService {
     MailService.instance = this;
   }
 
-  logoImage = `
-    <mj-image width="200px" src="https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/_next/image?url=%2Fimages%2Flogo.png&w=1920&q=75" container-background-color="#fadcea"></mj-image>
-    `;
-
   async sendMail(strapi, mailType: MailType, data: any) {
     let parseResults: MJMLParseResults;
     let subject: string;
@@ -34,18 +30,27 @@ export class MailService {
           subject,
           html: parseResults.html,
         });
+        await strapi.plugin("email").service("email").send({
+          to: "CustomerCare@ourmaids.com",
+          subject,
+          html: parseResults.html,
+        });
         break;
       case MailType.CONTACT:
         parseResults = mjml2html(this.getContactMtml(data));
         subject = `Contact ${data.name}`;
         await strapi.plugin("email").service("email").send({
-          to: "zamudio1243@gmail.com", //"CustomerCare@ourmaids.com"
+          to: "CustomerCare@ourmaids.com",
           subject,
           html: parseResults.html,
         });
         break;
     }
   }
+
+  logoImage = `
+  <mj-image width="200px" src="https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/_next/image?url=%2Fimages%2Flogo.png&w=1920&q=75" container-background-color="#fadcea"></mj-image>
+  `;
 
   getBookingMtml(data: Booking) {
     return `
