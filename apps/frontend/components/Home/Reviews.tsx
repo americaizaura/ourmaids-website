@@ -63,31 +63,17 @@ const Reviews = ({ reviewsGoogle }: ReviewsProps) => {
 						))}
 						{/* split array */}
 
-						{reviewsGoogle &&
-							reviewsGoogle.reviews &&
-							reviewsGoogle.reviews.slice(0, 3).map((review, index) => (
-								<div key={index}>
-									<CardReview
-										author={review.name}
-										date={review.date}
-										description={review.review}
-										rating={review.rating}
-										avatar={review.img}
-									/>
-								</div>
-							))}
-
 						{reviewsGoogle ? (
 							reviewsGoogle &&
 							reviewsGoogle.reviews &&
 							reviewsGoogle.reviews.slice(0, 3).map((review, index) => (
 								<div key={index}>
 									<CardReview
-										author={review.name}
-										date={review.date}
-										description={review.review}
+										author={review.author_name}
+										date={review.time}
+										description={review.text}
 										rating={review.rating}
-										avatar={review.img}
+										avatar={review.profile_photo_url}
 									/>
 								</div>
 							))
