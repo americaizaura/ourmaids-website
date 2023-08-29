@@ -2,8 +2,8 @@ import { Client, Environment } from "square";
 
 const { catalogApi } = new Client({
   accessToken:
-    "EAAAEFHgE_JY5r7dECm_Av7WFV-brJ_8M6hbH2VvVETOrdyoDifPYYEF7xMVWZVK",
-  environment: Environment.Sandbox,
+   process.env.NEXT_PUBLIC_SQUARE_ACCESS_TOKEN,
+  environment: Environment.Production,
 });
 
 export default async function handler(req: any, res: any) {
