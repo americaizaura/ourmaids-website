@@ -29,9 +29,6 @@ import Booking from "../components/Home/Booking";
 import Reviews from "../components/Home/Reviews";
 import { ListCatalogResponse, SearchCatalogItemsResponse } from "square";
 import { GetServerSideProps } from "next";
-
-const API_BASE_URL =
-	"https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/api";
 import CatalogService from "../services/catalog.service";
 import ImagesService from "../services/images.service";
 interface ServicesProps {
@@ -138,7 +135,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 		const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
 		const reviews = await fetch(url);
 		const data = await reviews.json();
-		console.log(data);
 
 		return {
 			props: {

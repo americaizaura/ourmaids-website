@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef } from "react";
+import React, { forwardRef, use, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import {
 	Button,
@@ -9,7 +9,6 @@ import {
 	Select,
 	Skeleton,
 	TextInput,
-	Dialog,
 } from "@mantine/core";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "@mantine/form";
@@ -19,10 +18,9 @@ import { Group } from "@mantine/core";
 import { DatePicker, TimeInput } from "@mantine/dates";
 import Image from "next/image";
 import { CalendarEvent, X, ChevronDown, Clock } from "tabler-icons-react";
-
 import CatalogService from "../services/catalog.service";
 import ImagesService from "../services/images.service";
-
+import { useRouter } from "next/router";
 import PaymentService from "../services/payment.service";
 import { RetrieveCatalogObjectResponse } from "square";
 import { format, formatISO, parse, parseISO, toDate } from "date-fns";
@@ -77,6 +75,8 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
 SelectItem.displayName = "div";
 
 export default function BookingView() {
+	const router = useRouter();
+	const { service } = router.query;
 	const ref = useRef<HTMLInputElement>();
 	const [dateBooking, setDateBooking] = useState<Date | null>(null);
 	const [isBook, setIsBookOrPay] = useState(false);
@@ -127,13 +127,10 @@ export default function BookingView() {
 					return "Phone is required";
 				}
 			},
-			/* message: (value) =>
-				value.trim().length > 0 ? null : "Message is required", */
 			address: (value) =>
 				value.trim().length > 0 ? null : "Address is required",
 			city: (value) => (value.trim().length > 0 ? null : "City is required"),
 			state: (value) => (value.trim().length > 0 ? null : "State is required"),
-			//Only numbers
 			zip: (value) => {
 				if (value.trim().length > 0) {
 					if (!value.match(/^[0-9]+$/)) {
@@ -157,7 +154,7 @@ export default function BookingView() {
 			time: (value) => {
 				console.log(value);
 				const timeRegex: RegExp = /^(?:0[8-9]|1[0-9]|2[0]):[0-5][0-9]$/;
-				//validation betewwen 9:00 and 18:00
+
 				if (value.trim().length > 0) {
 					if (!value.match(timeRegex)) {
 						return "Time is invalid";
@@ -280,12 +277,51 @@ export default function BookingView() {
 		}
 	}, [opened]);
 
+	useEffect(() => {
+		console.log(service);
+		if (service) {
+			getInfoService(service as string);
+			const fetchData = async () => {
+				setIsLoadingCatalog(true);
+				const [catalogData] = await Promise.all([
+					CatalogService.fetchCatalogItems(
+						CatalogItemProductType.AppointmentsService
+					),
+				]);
+
+				const allCatalogData: Catalog[] =
+					catalogData && catalogData.items
+						? catalogData.items.map((item) => {
+								return {
+									value: item.id,
+									label: item.itemData.name,
+									group:
+										item.itemData.productType === "REGULAR"
+											? "Regular"
+											: "Service",
+								};
+						  })
+						: [];
+
+				setData(allCatalogData);
+				setIsLoadingCatalog(false);
+			};
+			fetchData();
+			setStep(steps.BOOKING);
+		}
+	}, [service]);
+
 	const getInfoService = async (id: string) => {
 		setIsLoadingRetrieveService(true);
 		const [catalogData, imagesData] = await Promise.all([
 			CatalogService.retrieveCatalogObject(id),
 			ImagesService.fetchImages(),
 		]);
+		if (!catalogData || !catalogData.object) {
+			router.push("/");
+			return;
+		}
+
 		const image = imagesData.objects?.find((image) =>
 			image.type === "IMAGE" &&
 			/* image.id === (catalogData.object?.itemData.imageIds[0] || "") */
@@ -308,6 +344,7 @@ export default function BookingView() {
 
 		setInfoService(enhancedCatalogData);
 		setIsLoadingRetrieveService(false);
+		console.log(infoService);
 	};
 
 	return (

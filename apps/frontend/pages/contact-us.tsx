@@ -8,8 +8,7 @@ import {
 	rem,
 	TextInput,
 } from "@mantine/core";
-import { GoogleMap, Marker } from "react-google-maps";
-import Input from "../components/Input";
+
 import { useEffect, useState } from "react";
 import { useCreateContactUsMutation } from "../generated/graphql";
 import { useForm } from "@mantine/form";
