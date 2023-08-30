@@ -25,16 +25,21 @@ export class MailService {
       case MailType.BOOKING:
         parseResults = mjml2html(this.getBookingMtml(data));
         subject = `Confirmation of Your Maid Booking`;
-        await strapi.plugin("email").service("email").send({
-          to: data.email,
-          subject,
-          html: parseResults.html,
-        });
-        await strapi.plugin("email").service("email").send({
-          to: "CustomerCare@ourmaids.com",
-          subject,
-          html: parseResults.html,
-        });
+        await Promise.all([
+          strapi.plugin("email").service("email").send({
+            to: data.email,
+            subject,
+            html: parseResults.html,
+          }),
+          strapi
+            .plugin("email")
+            .service("email")
+            .send({
+              to: "CustomerCare@ourmaids.com",
+              subject: `New Booking Request from ${data.name} ${data.lastName}`,
+              html: mjml2html(this.getAdminBookingMtml(data)).html,
+            }),
+        ]);
         break;
       case MailType.CONTACT:
         parseResults = mjml2html(this.getContactMtml(data));
@@ -132,6 +137,84 @@ export class MailService {
                 <mj-text font-size="12px" font-family="helvetica">Our Maids,</mj-text>
                 <mj-text font-size="12px" font-family="helvetica">CustomerCare@ourmaids.com</mj-text>
                 <mj-text font-size="12px" font-family="helvetica">302-389-5221</mj-text>
+
+            </mj-column>
+            </mj-section>
+            </mj-body>
+        </mjml>
+        `;
+  }
+  getAdminBookingMtml(data: Booking) {
+    return `
+        <mjml>
+        <mj-head>
+            <mj-font name="Georgian" href="https://fonts.googleapis.com/css?family=Noto+Serif+Georgian" />
+        </mj-head>
+        <mj-body>
+            <mj-section>
+            <mj-column>
+                ${this.logoImage}
+                <mj-text font-size="30px" font-family="Georgian, Arial" line-height="2">Service Request Received!</mj-text>
+                
+
+                <mj-text font-size="12px" font-family="helvetica">A new service request has been received through Our Maids.
+                 Below, you will find the relevant details of the reservation: </mj-text>
+                <mj-table>
+                <tr style="border-bottom:1px solid #ecedee;text-align:left;">
+                    <td style="padding:16px 0;">Booking Details:</td>
+                    <td style="padding:16px 0;"></td>
+                <tr style="border-bottom:1px solid #ecedee;text-align:left;">
+                    <td style="padding:16px;">Client Name</td>
+                    <td style="padding:16px;">${data.name} ${data.lastName}</td>
+                </tr>
+                <tr style="border-bottom:1px solid #ecedee;text-align:left;">
+                    <td style="padding:16px;">Direct Phone Number</td>
+                    <td style="padding:16px;">${data.phone}</td>
+                </tr>
+                <tr style="border-bottom:1px solid #ecedee;text-align:left;">
+                    <td style="padding:16px;">Datetime</td>
+                    <td style="padding:16px;">${moment
+                      .utc(data.dateTime)
+                      .tz("US/Central")
+                      .format("LLLL zz")}</td>
+                </tr>
+                <tr style="border-bottom:1px solid #ecedee;text-align:left;">
+                    <td style="padding:16px;">Service's name</td>
+                    <td style="padding:16px;">${data.servicesName}</td>
+                </tr>
+                <tr style="border-bottom:1px solid #ecedee;text-align:left;">
+                    <td style="padding:16px;">Payment method</td>
+                    <td style="padding:16px;">${
+                      data.squareUpId ? "Credit" : "Pending"
+                    }</td>
+                </tr>
+                <tr style="border-bottom:1px solid #ecedee;text-align:left;">
+                    <td style="padding:16px;">Address</td>
+                    <td style="padding:16px;">${data.address}</td>
+                </tr>
+                <tr style="border-bottom:1px solid #ecedee;text-align:left;">
+                    <td style="padding:16px;">City</td>
+                    <td style="padding:16px;">${data.city}</td>
+                </tr>
+                <tr style="border-bottom:1px solid #ecedee;text-align:left;">
+                    <td style="padding:16px;">State</td>
+                    <td style="padding:16px;">${data.state}</td>
+                </tr>
+                <tr style="border-bottom:1px solid #ecedee;text-align:left;">
+                    <td style="padding:16px;">Zip Code</td>
+                    <td style="padding:16px;">${data.zipCode}</td>
+                </tr>
+                </tr>
+                </mj-table>
+
+                ${
+                  data.message
+                    ? `
+                <mj-text font-size="16px" font-family="Georgian, Arial" line-height="2">Additional Message:</mj-text>
+                <mj-text font-size="14px" font-family="helvetica">${data.message}</mj-text>
+                    `
+                    : ""
+                }
 
             </mj-column>
             </mj-section>
