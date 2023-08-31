@@ -71,7 +71,6 @@ export class MailService {
                 <mj-text font-size="16px" font-family="helvetica">Dear ${
                   data.name
                 } ${data.lastName}</mj-text>
-                <mj-text font-size="16px" font-family="helvetica">Dear [Name] [LastName]</mj-text>
                 <mj-text font-size="12px" font-family="helvetica">Your booking was accepted! One of our team members Will get back to you if a change is needed. If you need immediate asssistance, please call <a href="tel:213-800-7644">
                     213-800-7644.
                   </a> </mj-text>
