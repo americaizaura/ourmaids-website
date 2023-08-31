@@ -322,22 +322,15 @@ export default function BookingView() {
 			return;
 		}
 
-		const image = imagesData.objects?.find((image) =>
-			image.type === "IMAGE" &&
-			/* image.id === (catalogData.object?.itemData.imageIds[0] || "") */
-			image.id === catalogData &&
-			catalogData.object &&
-			catalogData.object.itemData &&
-			catalogData.object.itemData.imageIds[0]
-				? catalogData.object.itemData.imageIds[0]
-				: ""
+		const image = imagesData.objects?.find(
+			(image) => image.id === (catalogData.object.itemData?.imageIds?.[0] || "")
 		);
 
 		const enhancedCatalogData: RetrieveCatalogObjectResponse = {
 			errors: catalogData.errors,
 			object: {
 				...catalogData.object,
-				imageData: image?.imageData || null,
+				imageData: image ? image.imageData : null,
 			},
 			relatedObjects: catalogData.relatedObjects,
 		};
@@ -780,9 +773,9 @@ export default function BookingView() {
 								<div>
 									<h6 className="mb-4">Time</h6>
 									<p>
-										Lorem ipsum dolor sit amet consectetur. Id faucibus massa eu
-										elementum praesent. Fames tellus massa tempus lectus
-										vestibulum elementum amet amet metus.
+										Please note: we may or may not be able to service your home
+										the same day. It is advisable that you book at least 12
+										hours in advance. The arrival window is 60 minutes
 									</p>
 								</div>
 								<TimeInput
@@ -957,10 +950,7 @@ export default function BookingView() {
 										<CalendarEvent size={26} strokeWidth={2} />
 										<h6 className="my-0 ml-4">
 											{dateBooking
-												? format(
-														new Date(dateBooking),
-														"h:mm a EEE, MMM dd, yyyy"
-												  ) +
+												? format(new Date(dateBooking), "EEE, MMM dd, yyyy") +
 												  " " +
 												  formDate.values.time
 												: "No date selected"}
