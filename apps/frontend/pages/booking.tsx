@@ -398,7 +398,7 @@ export default function BookingView() {
 				</div>
 				<div className="grid grid-cols-12 ">
 					<h2 className="md:col-start-4 md:col-end-13 col-start-1 col-end-13">
-						Bookings
+						Bookings by OurMaids Inc
 					</h2>
 				</div>
 				<div className="grid grid-cols-12 ">
