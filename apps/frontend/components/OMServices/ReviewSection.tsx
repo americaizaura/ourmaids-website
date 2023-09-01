@@ -14,7 +14,7 @@ const Reviews = () => {
 		},
 		{
 			name: "Liam Smith",
-			profilePic: "/images/Avatar.webp",
+			profilePic: "/images/Avatar2.jpg",
 			review:
 				"I've tried various cleaning services before, but none come close to the quality I experienced with OurMaids. From start to finish, everything was seamless. The attention to detail and commitment to cleanliness is evident in every corner of my home. Highly recommend!",
 			date: "4 day ago",
@@ -22,7 +22,7 @@ const Reviews = () => {
 		},
 		{
 			name: "Olivia Williams",
-			profilePic: "/images/Avatar.webp",
+			profilePic: "/images/Avatar3.jpeg",
 			review:
 				"OurMaids transformed my living space into a spotless haven. The online booking platform was user-friendly, and the service itself was top-notch. The cleaners were friendly, efficient, and left my place looking brand new. I'm genuinely impressed and will be using their service regularly.",
 			date: "1 month ago",
@@ -30,7 +30,7 @@ const Reviews = () => {
 		},
 		{
 			name: "Noah Jones",
-			profilePic: "/images/Avatar.webp",
+			profilePic: "/images/Avatar4.jpeg",
 			review:
 				"What a fantastic find! OurMaids delivered an exceptional cleaning service that made my day. The team's professionalism and dedication were evident from the moment they arrived. My home feels revitalized, and I can't thank them enough. If you're seeking quality and reliability, look no further.",
 			date: "10 day ago",

@@ -17,7 +17,13 @@ import { Progress, Input as MantineInput } from "@mantine/core";
 import { Group } from "@mantine/core";
 import { DatePicker, TimeInput } from "@mantine/dates";
 import Image from "next/image";
-import { CalendarEvent, X, ChevronDown, Clock } from "tabler-icons-react";
+import {
+	CalendarEvent,
+	X,
+	ChevronDown,
+	Clock,
+	Apple,
+} from "tabler-icons-react";
 import CatalogService from "../services/catalog.service";
 import ImagesService from "../services/images.service";
 import { useRouter } from "next/router";
@@ -25,6 +31,7 @@ import PaymentService from "../services/payment.service";
 import { RetrieveCatalogObjectResponse } from "square";
 import { format, formatISO, parse, parseISO, toDate } from "date-fns";
 import {
+	ApplePay,
 	CreditCard,
 	GooglePay,
 	PaymentForm,
@@ -513,6 +520,7 @@ export default function BookingView() {
 										<br />
 
 										<GooglePay className="mt-4" />
+										{/* <ApplePay className="mt-4" /> */}
 									</>
 								)}
 							</PaymentForm>

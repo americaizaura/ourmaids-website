@@ -114,6 +114,15 @@ export default function ContactUsView() {
 								to look at your facilities and send you a proposal for
 								janitorial services, to reschedule or to cancel a reservation.
 							</p>
+							<p className="mb-0">
+								Call or email us: <a href="tel:213-800-7644"> 213-800-7644</a>,{" "}
+								<a href="mailto:customercare@ourmaids.com">
+									customercare@ourmaids.com
+								</a>
+							</p>
+							<p className="mt-0">
+								Write to us: 8 The Green, Suite 14095, Dover, DE 19901. 
+							</p>
 							<form onSubmit={form.onSubmit(() => sendContactUs())}>
 								<div className="space-y-5">
 									<div className="grid md:grid-cols-2 grid-cols-1 gap-4">

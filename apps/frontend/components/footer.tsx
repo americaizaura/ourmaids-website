@@ -7,9 +7,11 @@ import {
 	Accordion,
 } from "@mantine/core";
 import { AccordionControl } from "@mantine/core/lib/Accordion/AccordionControl/AccordionControl";
+import Link from "next/link";
 import {
 	BrandFacebook,
 	BrandInstagram,
+	BrandLinkedin,
 	BrandTwitter,
 } from "tabler-icons-react";
 const Footer = () => {
@@ -191,32 +193,55 @@ const Footer = () => {
 					<div>
 						<h5 className="text-background">Social</h5>
 						<div className="flex flex-row justify-between">
-							<BrandFacebook
-								size={28}
-								style={{
-									color: "black",
-									fill: "#fff",
-								}}
-								className="cursor-pointer mr-2"
-							/>
-
-							<BrandInstagram
-								size={28}
-								style={{
-									color: "black",
-									fill: "#fff",
-								}}
-								className="cursor-pointer mr-2"
-							/>
-
-							<BrandTwitter
-								size={28}
-								style={{
-									color: "black",
-									fill: "#fff",
-								}}
-								className="cursor-pointer"
-							/>
+							<Link
+								href="https://www.facebook.com/maids4us/about"
+								target="_blank"
+							>
+								<BrandFacebook
+									size={28}
+									style={{
+										color: "black",
+										fill: "#fff",
+									}}
+									className="cursor-pointer mr-2"
+								/>
+							</Link>
+							<Link
+								href="https://www.instagram.com/ourmaids/?utm_source=ig_profile_share&igshid=81m038vqevlc"
+								target="_blank"
+							>
+								<BrandInstagram
+									size={28}
+									style={{
+										color: "black",
+										fill: "#fff",
+									}}
+									className="cursor-pointer mr-2"
+								/>
+							</Link>
+							<Link href="https://twitter.com/ourmaids?lang=en" target="_blank">
+								<BrandTwitter
+									size={28}
+									style={{
+										color: "black",
+										fill: "#fff",
+									}}
+									className="cursor-pointer"
+								/>
+							</Link>
+							<Link
+								href="https://www.linkedin.com/in/antoniovmoreno"
+								target="_blank"
+							>
+								<BrandLinkedin
+									size={28}
+									style={{
+										color: "black",
+										fill: "#fff",
+									}}
+									className="cursor-pointer"
+								/>
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -272,32 +297,55 @@ const Footer = () => {
 				<div className="flex flex-col justify-center items-center">
 					<h5 className="text-background my-4">Social</h5>
 					<div className="flex flex-row">
-						<BrandFacebook
-							size={28}
-							style={{
-								color: "black",
-								fill: "#fff",
-							}}
-							className="cursor-pointer mr-2"
-						/>
-
-						<BrandInstagram
-							size={28}
-							style={{
-								color: "black",
-								fill: "#fff",
-							}}
-							className="cursor-pointer mr-2"
-						/>
-
-						<BrandTwitter
-							size={28}
-							style={{
-								color: "black",
-								fill: "#fff",
-							}}
-							className="cursor-pointer"
-						/>
+						<Link
+							href="https://www.facebook.com/maids4us/about"
+							target="_blank"
+						>
+							<BrandFacebook
+								size={28}
+								style={{
+									color: "black",
+									fill: "#fff",
+								}}
+								className="cursor-pointer mr-2"
+							/>
+						</Link>
+						<Link
+							href="https://www.instagram.com/ourmaids/?utm_source=ig_profile_share&igshid=81m038vqevlc"
+							target="_blank"
+						>
+							<BrandInstagram
+								size={28}
+								style={{
+									color: "black",
+									fill: "#fff",
+								}}
+								className="cursor-pointer mr-2"
+							/>
+						</Link>
+						<Link href="https://twitter.com/ourmaids?lang=en" target="_blank">
+							<BrandTwitter
+								size={28}
+								style={{
+									color: "black",
+									fill: "#fff",
+								}}
+								className="cursor-pointer"
+							/>
+						</Link>
+						<Link
+							href="https://www.linkedin.com/in/antoniovmoreno"
+							target="_blank"
+						>
+							<BrandLinkedin
+								size={28}
+								style={{
+									color: "black",
+									fill: "#fff",
+								}}
+								className="cursor-pointer"
+							/>
+						</Link>
 					</div>
 				</div>
 			</Container>
