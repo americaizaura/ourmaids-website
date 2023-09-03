@@ -433,7 +433,7 @@ export default function BookingView() {
                       ),
                       currency: "USD",
                     },
-                    "alexishs451@gmail.com"
+                    form.values.email
                   )
                     .then((response) => {
                       console.log(response);
@@ -656,7 +656,7 @@ export default function BookingView() {
                           rightSection: { pointerEvents: "none" },
                         })}
                         /* defaultValue="CA" */
-                        disabled
+
                         data={[
                           { value: "Texas", label: "Texas" },
                           {
