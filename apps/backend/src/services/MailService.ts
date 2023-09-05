@@ -35,7 +35,7 @@ export class MailService {
             .plugin("email")
             .service("email")
             .send({
-              to: "alexishs451@gmail.com", //"CustomerCare@ourmaids.com",
+              to: "CustomerCare@ourmaids.com",
               subject: `New Booking Request from ${data.name} ${data.lastName}`,
               html: mjml2html(this.getAdminBookingMtml(data)).html,
             }),
@@ -45,7 +45,7 @@ export class MailService {
         parseResults = mjml2html(this.getContactMtml(data));
         subject = `Contact ${data.name}`;
         await strapi.plugin("email").service("email").send({
-          to: "alexishs451@gmail.com", //"CustomerCare@ourmaids.com",
+          to: "CustomerCare@ourmaids.com",
           subject,
           html: parseResults.html,
         });
