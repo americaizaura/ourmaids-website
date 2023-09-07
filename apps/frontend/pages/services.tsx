@@ -4,97 +4,103 @@ import { Button, Container } from "@mantine/core";
 import CardServices from "../components/Home/OServices/CardServices";
 import { GetServerSideProps } from "next";
 import {
-  CatalogObject,
-  ListCatalogResponse,
-  SearchCatalogItemsResponse,
+	CatalogObject,
+	ListCatalogResponse,
+	SearchCatalogItemsResponse,
 } from "square";
 import CatalogService from "../services/catalog.service";
 import ImagesService from "../services/images.service";
 import CardServicesSkeleton from "../components/Home/OServices/cardServiceSkeleton";
+import { NextSeo } from "next-seo";
 interface ServicesProps {
-  services: CatalogObject[];
-  cursor: string;
+	services: CatalogObject[];
+	cursor: string;
 }
 enum CatalogItemProductType {
-  AppointmentsService = "APPOINTMENTS_SERVICE",
-  Regular = "REGULAR",
+	AppointmentsService = "APPOINTMENTS_SERVICE",
+	Regular = "REGULAR",
 }
 
 export default function ServicesView({ services, cursor }: ServicesProps) {
-  const [cursorState, setCursorState] = React.useState(cursor);
-  const [data, setData] = React.useState(services);
-  const [loading, setLoading] = React.useState(false);
-  const [catalogProductType, setCatalogProductType] = React.useState(
-    CatalogItemProductType.AppointmentsService
-  );
-  const [loadingChange, setLoadingChange] = React.useState(false);
+	const [cursorState, setCursorState] = React.useState(cursor);
+	const [data, setData] = React.useState(services);
+	const [loading, setLoading] = React.useState(false);
+	const [catalogProductType, setCatalogProductType] = React.useState(
+		CatalogItemProductType.AppointmentsService
+	);
+	const [loadingChange, setLoadingChange] = React.useState(false);
 
-  const handleLoadMore = async () => {
-    setLoading(true);
-    const [catalogData, imagesData] = await Promise.all([
-      CatalogService.fetchCatalogItems(catalogProductType, 6, cursorState),
-      ImagesService.fetchImages(),
-    ]);
-    const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
-    setData([...data, ...enhancedCatalogData]);
-    setCursorState(catalogData.cursor);
-    setLoading(false);
-  };
+	const handleLoadMore = async () => {
+		setLoading(true);
+		const [catalogData, imagesData] = await Promise.all([
+			CatalogService.fetchCatalogItems(catalogProductType, 6, cursorState),
+			ImagesService.fetchImages(),
+		]);
+		const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
+		setData([...data, ...enhancedCatalogData]);
+		setCursorState(catalogData.cursor);
+		setLoading(false);
+	};
 
-  const changeProductType = async (productType: CatalogItemProductType) => {
-    if (productType === catalogProductType) return;
-    setCatalogProductType(productType);
-    setLoadingChange(true);
+	const changeProductType = async (productType: CatalogItemProductType) => {
+		if (productType === catalogProductType) return;
+		setCatalogProductType(productType);
+		setLoadingChange(true);
 
-    const [catalogData, imagesData] = await Promise.all([
-      CatalogService.fetchCatalogItems(productType, 10),
-      ImagesService.fetchImages(),
-    ]);
-    const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
-    setLoadingChange(false);
-    if (!enhancedCatalogData) return;
-    setData(enhancedCatalogData);
-    setCursorState(catalogData.cursor);
-  };
+		const [catalogData, imagesData] = await Promise.all([
+			CatalogService.fetchCatalogItems(productType, 10),
+			ImagesService.fetchImages(),
+		]);
+		const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
+		setLoadingChange(false);
+		if (!enhancedCatalogData) return;
+		setData(enhancedCatalogData);
+		setCursorState(catalogData.cursor);
+	};
 
-  const menu = [
-    {
-      title: "SERVICES",
-      image: "/images/image 19.png",
-    },
-  ];
-  const menu2 = [
-    {
-      title: "ONE TIME",
-      image: "/images/image 20.png",
-    },
-  ];
+	const menu = [
+		{
+			title: "SERVICES",
+			image: "/images/image 19.png",
+		},
+	];
+	const menu2 = [
+		{
+			title: "ONE TIME",
+			image: "/images/image 20.png",
+		},
+	];
 
-  return (
-    <section className="mb-44 ">
-      <div className="lg:mt-16 mt-8 ">
-        <Container size="xl" className="mt-40">
-          <h4>Our Services</h4>
-          <div className="grid grid-cols-4 md:grid-cols-12">
-            <div className="grid grid-cols-2 md:flex md:flex-col col-span-6 md:col-span-3">
-              {menu.map((menu, index) => (
-                <div key={index}>
-                  <div className="mb-6 mr-3 ">
-                    <Menu1
-                      title={menu.title}
-                      image={menu.image}
-                      onClick={() =>
-                        changeProductType(
-                          CatalogItemProductType.AppointmentsService
-                        )
-                      }
-                      productType={catalogProductType}
-                    />
-                  </div>
-                </div>
-              ))}
+	return (
+		<>
+			<NextSeo
+				title="House Cleaning Service Packages & Gift Cards | Our Maids, Inc."
+				description="Find the best cleaning supplies and products for your home at Our Maids, Inc. Quality and affordable prices to keep your space clean and healthy."
+			/>
+			<section className="sm:mb-44 mb-20">
+				<div className="lg:mt-16 mt-8 ">
+					<Container size="xl" className="mt-40">
+						<h4>Our Services</h4>
+						<div className="grid grid-cols-4 md:grid-cols-12">
+							<div className="grid grid-cols-1 md:flex md:flex-col col-span-12 md:col-span-3">
+								{menu.map((menu, index) => (
+									<div key={index}>
+										<div className="mb-6 sm:mr-3 ">
+											<Menu1
+												title={menu.title}
+												image={menu.image}
+												onClick={() =>
+													changeProductType(
+														CatalogItemProductType.AppointmentsService
+													)
+												}
+												productType={catalogProductType}
+											/>
+										</div>
+									</div>
+								))}
 
-              {/* 	{menu2.map((menu2, index) => (
+								{/* 	{menu2.map((menu2, index) => (
 								<div key={index}>
 									<div className="mb-6 ml-3 md:mr-3 md:ml-0 ">
 										<Menu2
@@ -108,15 +114,15 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 									</div>
 								</div>
 							))} */}
-            </div>
+							</div>
 
-            <div className="md:col-span-9 col-span-12 ">
-              <div className="grid sm:grid-cols-3  lg:grid-cols-3 grid-cols-2 gap-4">
-                {loadingChange
-                  ? data?.map((service, index) => (
-                      <CardServicesSkeleton key={index} />
-                    ))
-                  : /* data?.map((service, index) => (
+							<div className="md:col-span-9 col-span-12 ">
+								<div className="grid sm:grid-cols-3  lg:grid-cols-3 grid-cols-2 gap-4">
+									{loadingChange
+										? data?.map((service, index) => (
+												<CardServicesSkeleton key={index} />
+										  ))
+										: /* data?.map((service, index) => (
 											<CardServices
 												key={service?.id}
 												idCatalogProduct={service?.id || ""}
@@ -128,96 +134,97 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 												description={service?.itemData?.name}
 											/>
 									  )) */
-                  data && data.length > 0
-                  ? data?.map((service, index) => (
-                      <CardServices
-                        key={service?.id}
-                        idCatalogProduct={service?.id || ""}
-                        image={
-                          service && service.imageData
-                            ? service.imageData.url
-                            : "/images/oservices/image 17.png"
-                        }
-                        description={service?.itemData?.name}
-                      />
-                    ))
-                  : Array.from({ length: 10 }).map((_, index) => (
-                      <CardServicesSkeleton key={index} />
-                    ))}
-              </div>
+										data && data.length > 0
+										? data?.map((service, index) => (
+												<CardServices
+													key={service?.id}
+													idCatalogProduct={service?.id || ""}
+													image={
+														service && service.imageData
+															? service.imageData.url
+															: "/images/oservices/image 17.png"
+													}
+													description={service?.itemData?.name}
+												/>
+										  ))
+										: Array.from({ length: 10 }).map((_, index) => (
+												<CardServicesSkeleton key={index} />
+										  ))}
+								</div>
 
-              <div className="flex items-center w-full justify-center mt-4">
-                <Button
-                  radius="xl"
-                  color="secondary.0"
-                  onClick={handleLoadMore}
-                  variant="outline"
-                  loading={loading}
-                  style={{
-                    display: cursorState ? "block" : "none",
-                  }}
-                  size="lg"
-                >
-                  Load More
-                </Button>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </div>
-    </section>
-  );
+								<div className="flex items-center w-full justify-center mt-4">
+									<Button
+										radius="xl"
+										color="secondary.0"
+										onClick={handleLoadMore}
+										variant="outline"
+										loading={loading}
+										style={{
+											display: cursorState ? "block" : "none",
+										}}
+										size="lg"
+									>
+										View More
+									</Button>
+								</div>
+							</div>
+						</div>
+					</Container>
+				</div>
+			</section>
+		</>
+	);
 }
 
 function enhanceCatalogData(
-  catalogData: SearchCatalogItemsResponse,
-  imagesData: ListCatalogResponse
+	catalogData: SearchCatalogItemsResponse,
+	imagesData: ListCatalogResponse
 ): CatalogObject[] | null {
-  console.log(catalogData);
+	console.log(catalogData);
 
-  if (!catalogData && !imagesData) return null;
-  return catalogData.items?.map((item) => {
-    const image = imagesData.objects?.find(
-      (image) =>
-        image.type === "IMAGE" &&
-        image.id === (item.itemData?.imageIds?.[0] || "")
-    );
+	if (!catalogData && !imagesData) return null;
+	return catalogData.items?.map((item) => {
+		const image = imagesData.objects?.find(
+			(image) =>
+				image.type === "IMAGE" &&
+				image.id === (item.itemData?.imageIds?.[0] || "")
+		);
 
-    return {
-      ...item,
-      imageData: image?.imageData || null,
-    };
-  });
+		return {
+			...item,
+			imageData: image?.imageData || null,
+		};
+	});
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  try {
-    const [catalogData, imagesData] = await Promise.all([
-      CatalogService.fetchCatalogItems(
-        CatalogItemProductType.AppointmentsService,
-        10
-      ),
-      ImagesService.fetchImages(),
-    ]);
+	try {
+		const [catalogData, imagesData] = await Promise.all([
+			CatalogService.fetchCatalogItems(
+				CatalogItemProductType.AppointmentsService,
+				10
+			),
+			ImagesService.fetchImages(),
+		]);
 
-    const enhancedCatalogData: ServicesProps = {
-      cursor: catalogData.cursor,
-      services: enhanceCatalogData(catalogData, imagesData),
-    };
+		const enhancedCatalogData: ServicesProps = {
+			cursor: catalogData.cursor,
+			services: enhanceCatalogData(catalogData, imagesData),
+		};
 
-    return {
-      props: {
-        services: enhancedCatalogData.services,
-        cursor: enhancedCatalogData.cursor,
-      },
-    };
-  } catch (error) {
-    console.error("Error:", error);
+		return {
+			props: {
+				services: enhancedCatalogData.services,
+				cursor: enhancedCatalogData.cursor,
+			},
+		};
+	} catch (error) {
+		console.error("Error:", error);
 
-    return {
-      props: {
-        services: null,
-      },
-    };
-  }
+		return {
+			props: {
+				services: null,
+			},
+		};
+	}
 };

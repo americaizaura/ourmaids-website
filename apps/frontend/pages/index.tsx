@@ -1,21 +1,21 @@
 import { useState } from "react";
 import {
-  AppShell,
-  Navbar,
-  Header,
-  Footer,
-  Aside,
-  Text,
-  MediaQuery,
-  Burger,
-  useMantineTheme,
-  Box,
-  BackgroundImage,
-  Center,
-  Container,
-  Grid,
-  Button,
-  Card,
+	AppShell,
+	Navbar,
+	Header,
+	Footer,
+	Aside,
+	Text,
+	MediaQuery,
+	Burger,
+	useMantineTheme,
+	Box,
+	BackgroundImage,
+	Center,
+	Container,
+	Grid,
+	Button,
+	Card,
 } from "@mantine/core";
 import Appbar from "../components/header";
 import HeroSection from "../components/Home/Hero";
@@ -32,126 +32,88 @@ import { GetServerSideProps } from "next";
 import CatalogService from "../services/catalog.service";
 import ImagesService from "../services/images.service";
 interface ServicesProps {
-  services: any;
-  reviewsGoogle: any;
+	services: any;
+	reviewsGoogle: any;
 }
 interface ReviewsProps {
-  reviewsGoogle: any;
+	reviewsGoogle: any;
 }
 enum CatalogItemProductType {
-  AppointmentsService = "APPOINTMENTS_SERVICE",
-  Regular = "REGULAR",
+	AppointmentsService = "APPOINTMENTS_SERVICE",
+	Regular = "REGULAR",
 }
-import ReCAPTCHA from "react-google-recaptcha";
-import {
-  GoogleReCaptcha,
-  GoogleReCaptchaProvider,
-} from "react-google-recaptcha-v3";
+import { NextSeo } from "next-seo";
 export default function AppShellDemo({
-  services,
-  reviewsGoogle,
+	services,
+	reviewsGoogle,
 }: ServicesProps) {
-  /* console.log(reviewsGoogle); */
+	const data = services;
 
-  const theme = useMantineTheme();
-  const [opened, setOpened] = useState(false);
-  const reviews = [
-    {
-      title: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      image: "/images/hero.png",
-      rating: 5,
-    },
-  ];
-  const data = services;
-  /* console.log(data); */
-
-  return (
-    <>
-      {/*    <HeroSection />
-      <Container
-        style={{
-          marginTop: "200px",
-          marginBottom: "200px",
-        }}
-        size="xl"
-      >
-        <OurServices />
-      </Container>
-    
-    */}
-      <HeroSection />
-      <Container className="my-16  lg:my-52" size="xl">
-        <OurServices data={data} />
-      </Container>
-      <AboutUs />
-      <Booking />
-      <Reviews reviewsGoogle={reviewsGoogle} />
-      {/* 	<ReCAPTCHA
-				sitekey="6Ld61rQnAAAAAOZyssOajwm8AsrA6CEAGzRcpcs4"
-				onChange={(value) => {
-					console.log("Captcha value:", value);
-				}}
-			/> */}
-      {/* <GoogleReCaptchaProvider reCaptchaKey="6LdrxLQnAAAAAGbBzf5OvpkFr-Gc0FD2RN9YFMod">
-				<GoogleReCaptcha
-					onVerify={(token) => {
-						console.log("Captcha value:", token);
-					}}
-				/>
-			</GoogleReCaptchaProvider> */}
-      ,
-    </>
-  );
+	return (
+		<>
+			<NextSeo
+				title="Residential Cleaning Company in Los Angeles | Our Maids, Inc"
+				description="Our Maids offers professional house cleaning services and commercial cleaning services with easy online booking, transparent pricing, and a satisfaction guarantee."
+			/>
+			<HeroSection />
+			<Container className="my-16  lg:my-52" size="xl">
+				<OurServices data={data} />
+			</Container>
+			<AboutUs />
+			<Booking />
+			<Reviews reviewsGoogle={reviewsGoogle} />,
+		</>
+	);
 }
 
 function enhanceCatalogData(
-  catalogData: SearchCatalogItemsResponse,
-  imagesData: ListCatalogResponse
+	catalogData: SearchCatalogItemsResponse,
+	imagesData: ListCatalogResponse
 ) {
-  return catalogData.items?.map((item) => {
-    const image = imagesData.objects?.find(
-      (image) =>
-        image.type === "IMAGE" &&
-        image.id === (item.itemData?.imageIds?.[0] || "")
-    );
+	return catalogData.items?.map((item) => {
+		const image = imagesData.objects?.find(
+			(image) =>
+				image.type === "IMAGE" &&
+				image.id === (item.itemData?.imageIds?.[0] || "")
+		);
 
-    return {
-      ...item,
-      imageData: image?.imageData || null,
-    };
-  });
+		return {
+			...item,
+			imageData: image?.imageData || null,
+		};
+	});
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  try {
-    const [catalogData, imagesData] = await Promise.all([
-      CatalogService.fetchCatalogItems(
-        CatalogItemProductType.AppointmentsService,
-        10
-      ),
-      ImagesService.fetchImages(),
-    ]);
+	try {
+		const [catalogData, imagesData] = await Promise.all([
+			CatalogService.fetchCatalogItems(
+				CatalogItemProductType.AppointmentsService,
+				10
+			),
+			ImagesService.fetchImages(),
+		]);
 
-    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${"ChIJC-g-TsaVwoAReX0svaIhOL4"}&key=${"AIzaSyCFIeOK8R5tCOSIPBDeCceJx-ayHwwXfhw&"}`;
+		const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${"ChIJC-g-TsaVwoAReX0svaIhOL4"}&key=${"AIzaSyCFIeOK8R5tCOSIPBDeCceJx-ayHwwXfhw&"}`;
 
-    const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
-    const reviews = await fetch(url);
-    const data = await reviews.json();
+		const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
+		const reviews = await fetch(url);
+		const data = await reviews.json();
 
-    return {
-      props: {
-        services: enhancedCatalogData,
-        reviewsGoogle: data && data.status === "OK" ? data.result : null,
-      },
-    };
-  } catch (error) {
-    console.error("Error:", error);
+		return {
+			props: {
+				services: enhancedCatalogData,
+				reviewsGoogle: data && data.status === "OK" ? data.result : null,
+			},
+		};
+	} catch (error) {
+		console.error("Error:", error);
 
-    return {
-      props: {
-        services: null,
-      },
-    };
-  }
+		return {
+			props: {
+				services: null,
+				reviewsGoogle: null,
+			},
+		};
+	}
 };
