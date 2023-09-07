@@ -11,6 +11,7 @@ import {
 import Image from "next/image";
 import Input from "../components/Input";
 import { useDisclosure } from "@mantine/hooks";
+import { NextSeo } from "next-seo";
 
 export default function AboutUsView() {
 	//function to open modalas only one state
