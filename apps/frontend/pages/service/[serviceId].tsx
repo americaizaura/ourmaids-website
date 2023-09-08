@@ -24,45 +24,55 @@ import RulesSection from "../../components/OMServices/RulesSection";
 import { GetServerSideProps } from "next";
 import { ListCatalogResponse, RetrieveCatalogObjectResponse } from "square";
 import ImagesService from "../../services/images.service";
+import { NextSeo } from "next-seo";
 
 interface ServiceProps {
 	service: any;
 }
 export default function SectionVictor({ service }: ServiceProps) {
 	return (
-		<main>
-			<Container size="xl" className="pt-32 pb-12 md:w-auto">
-				{service && service.object ? (
-					<ServiceName
-						name={service.object.itemData.name}
-						description={service.object.itemData.description}
-					/>
-				) : (
-					<div>
-						<Skeleton height={10} mt={6} radius="xl" width="40%" />
-						<Skeleton height={8} mt={6} width="70%" radius="xl" />
-					</div>
-				)}
+		<>
+			<NextSeo
+				title={
+					service && service.object ? service.object.itemData.name : "Our Maids"
+				}
+				description="Our Maids is a professional house cleaning service with a satisfaction guarantee. We offer easy online booking and quality cleaning."
+			/>
 
-				<div className="flex flex-col justify-center  gap-x-32 mb-10 2xl:gap-x-40 md:my-12 md:flex-row">
-					<DateSection />
-					<div>
-						<RecomendSection />
-						<LocationsSection
-							url={
-								service && service.object && service.object.imageData
-									? service.object.imageData.url
-									: "/images/oservices/image 17.png"
-							}
-							id={service && service.object ? service.object.id : ""}
+			<main>
+				<Container size="xl" className="pt-32 pb-12 md:w-auto">
+					{service && service.object ? (
+						<ServiceName
+							name={service.object.itemData.name}
+							description={service.object.itemData.description}
 						/>
+					) : (
+						<div>
+							<Skeleton height={10} mt={6} radius="xl" width="40%" />
+							<Skeleton height={8} mt={6} width="70%" radius="xl" />
+						</div>
+					)}
+
+					<div className="flex flex-col justify-center  gap-x-32 mb-10 2xl:gap-x-40 md:my-12 md:flex-row">
+						<DateSection />
+						<div>
+							<RecomendSection />
+							<LocationsSection
+								url={
+									service && service.object && service.object.imageData
+										? service.object.imageData.url
+										: "/images/oservices/image 17.png"
+								}
+								id={service && service.object ? service.object.id : ""}
+							/>
+						</div>
 					</div>
-				</div>
-				<Reviews />
-				<CleaningTeam />
-			</Container>
-			<RulesSection />
-		</main>
+					<Reviews />
+					<CleaningTeam />
+				</Container>
+				<RulesSection />
+			</main>
+		</>
 	);
 }
 

@@ -8,8 +8,9 @@ import client from "../lib/apollo";
 import { ApolloProvider } from "@apollo/client";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AnimatePresence, motion } from "framer-motion";
 export default function App(props: AppProps) {
-	const { Component, pageProps } = props;
+	const { Component, pageProps, router } = props;
 
 	return (
 		<>
@@ -56,7 +57,21 @@ export default function App(props: AppProps) {
 			>
 				<ApolloProvider client={client}>
 					<Layout>
-						<Component {...pageProps} />
+						<motion.div
+							key={router.route}
+							initial="initial"
+							animate="animate"
+							variants={{
+								initial: {
+									opacity: 0,
+								},
+								animate: {
+									opacity: 1,
+								},
+							}}
+						>
+							<Component {...pageProps} />
+						</motion.div>
 					</Layout>
 				</ApolloProvider>
 			</MantineProvider>
