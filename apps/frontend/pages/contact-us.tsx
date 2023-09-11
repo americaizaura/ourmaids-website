@@ -88,7 +88,7 @@ export default function ContactUsView() {
 				<Container size="xl" className="pt-24 pb-28">
 					<div className="grid grid-cols-1 md:grid-cols-12 gap-5">
 						<h6 className="mt-0 mb-0">FAQ</h6>
-						<div className="md:col-start-1 md:col-end-5  h-[400px]   overflow-hidden custom-scrollbar overflow-y-auto pr-2">
+						<div className="md:col-start-1 md:col-end-5  h-[450px] h-max[450px]  overflow-hidden custom-scrollbar overflow-y-auto pr-2">
 							<Accordion
 								variant="separated"
 								radius="md"

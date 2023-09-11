@@ -33,7 +33,7 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 	const handleLoadMore = async () => {
 		setLoading(true);
 		const [catalogData, imagesData] = await Promise.all([
-			CatalogService.fetchCatalogItems(catalogProductType, 6, cursorState),
+			CatalogService.fetchCatalogItems(catalogProductType, 20, cursorState),
 			ImagesService.fetchImages(),
 		]);
 		const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
@@ -48,7 +48,7 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 		setLoadingChange(true);
 
 		const [catalogData, imagesData] = await Promise.all([
-			CatalogService.fetchCatalogItems(productType, 10),
+			CatalogService.fetchCatalogItems(productType, 20),
 			ImagesService.fetchImages(),
 		]);
 		const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
@@ -202,7 +202,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 		const [catalogData, imagesData] = await Promise.all([
 			CatalogService.fetchCatalogItems(
 				CatalogItemProductType.AppointmentsService,
-				10
+				20
 			),
 			ImagesService.fetchImages(),
 		]);

@@ -9,6 +9,7 @@ import { ApolloProvider } from "@apollo/client";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AnimatePresence, motion } from "framer-motion";
+import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 export default function App(props: AppProps) {
 	const { Component, pageProps, router } = props;
 
@@ -71,6 +72,12 @@ export default function App(props: AppProps) {
 							}}
 						>
 							<Component {...pageProps} />
+							<ProgressBar
+								height="2px"
+								color="#720012"
+								options={{ showSpinner: false }}
+								shallowRouting
+							/>
 						</motion.div>
 					</Layout>
 				</ApolloProvider>

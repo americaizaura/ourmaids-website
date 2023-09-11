@@ -38,7 +38,7 @@ function HeroSection() {
 						color: "white",
 					}}
 				>
-					OURMAIDS
+					OurMaids.Inc
 				</h1>
 				<h4
 					style={{
