@@ -1,19 +1,6 @@
-import React, { useEffect } from "react";
-import {
-	Button,
-	Textarea,
-	Container,
-	Accordion,
-	useMantineTheme,
-	rem,
-	Stepper,
-	StepperProps,
-	Skeleton,
-} from "@mantine/core";
-import { useState } from "react";
+import React from "react";
+import { Container, Skeleton } from "@mantine/core";
 import CatalogService from "../../services/catalog.service";
-import { Group } from "@mantine/core";
-import Image from "next/image";
 import Reviews from "../../components/OMServices/ReviewSection";
 import CleaningTeam from "../../components/OMServices/CleaningSection";
 import ServiceName from "../../components/OMServices/SerNameSection";
@@ -100,16 +87,13 @@ function enhanceCatalogData(
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	try {
 		const { serviceId } = context.params;
-		/* 	const data = await CatalogService.retrieveCatalogObject(
-			serviceId as string
-		); */
+
 		const [data, imagesData] = await Promise.all([
 			CatalogService.retrieveCatalogObject(serviceId as string),
 			ImagesService.fetchImages(),
 		]);
 
 		const enhancedCatalogData = enhanceCatalogData(data, imagesData);
-		/* console.log(enhancedCatalogData); */
 
 		return {
 			props: {
@@ -117,7 +101,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 			},
 		};
 	} catch (err) {
-		console.log(err);
 		return {
 			props: {
 				service: null,

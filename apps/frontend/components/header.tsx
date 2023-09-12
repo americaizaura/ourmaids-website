@@ -1,19 +1,17 @@
 //Crea un componente de tipo función
 import { ActionIcon, Button, useMantineTheme, Drawer } from "@mantine/core";
 import Image from "next/image";
-import { ArrowNarrowRight, Menu2, Phone } from "tabler-icons-react";
+import { Menu2, Phone } from "tabler-icons-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 const Appbar = () => {
 	const [opened, { open, close }] = useDisclosure(false);
-	const theme = useMantineTheme();
-	const router = useRouter();
-	const [isNavOpen, setIsNavOpen] = useState(false);
-	const isActiveRoute = (path: string) => {
-		console.log(router.pathname, path);
 
+	const router = useRouter();
+
+	const isActiveRoute = (path: string) => {
 		return router.pathname === path;
 	};
 	const navigation = [
@@ -24,10 +22,6 @@ const Appbar = () => {
 		{ name: "Contact us", href: "/contact-us" },
 		/* 		{ name: "Seccion Victor", href: "/sectionVictor" }, */
 	];
-	const [isOpen, setIsOpen] = useState(false);
-	const toggleDrawer = () => {
-		setIsOpen((prevState) => !prevState);
-	};
 
 	return (
 		<header>

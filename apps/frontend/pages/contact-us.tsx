@@ -4,8 +4,6 @@ import {
 	Textarea,
 	Container,
 	Accordion,
-	useMantineTheme,
-	rem,
 	TextInput,
 } from "@mantine/core";
 

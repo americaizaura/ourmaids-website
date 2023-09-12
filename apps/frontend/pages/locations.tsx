@@ -1,16 +1,5 @@
-import React, { useState } from "react";
-import {
-	Button,
-	Textarea,
-	Container,
-	Accordion,
-	useMantineTheme,
-	rem,
-	Input,
-	ThemeIcon,
-	List,
-	Skeleton,
-} from "@mantine/core";
+import React, { use, useCallback, useEffect, useState } from "react";
+import { Container, Accordion, Input, Skeleton } from "@mantine/core";
 import {
 	GoogleMap,
 	Marker,
@@ -18,14 +7,11 @@ import {
 	useLoadScript,
 } from "@react-google-maps/api";
 import Image from "next/image";
-import Map from "../components/map";
-import { BrandTwitter, MapPin } from "tabler-icons-react";
-import { NextSeo } from "next-seo";
 
-const center = {
-	lat: -3.745,
-	lng: -38.523,
-};
+import { MapPin } from "tabler-icons-react";
+import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
+
 const containerStyle = {
 	width: "100%",
 	height: "500px",
@@ -37,11 +23,8 @@ export default function LocationsView() {
 		googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
 		language: "en",
 	});
-	const markers = [
-		{ lat: 18.5204, lng: 73.8567 },
-		{ lat: 18.5314, lng: 73.8446 },
-		{ lat: 18.5642, lng: 73.7769 },
-	];
+	const router = useRouter();
+	const { lat, lng } = router.query;
 	const [mapRef, setMapRef] = useState(null);
 	const locations = [
 		{
@@ -173,7 +156,7 @@ export default function LocationsView() {
 	];
 	const onLoad = (map) => {
 		const bounds = new google.maps.LatLngBounds();
-		/* markers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng })); */
+
 		locations.forEach((location) => {
 			location.locations.forEach((location) => {
 				bounds.extend({ lat: location.lat, lng: location.lng });
@@ -182,13 +165,24 @@ export default function LocationsView() {
 		map.fitBounds(bounds);
 		setMapRef(map);
 	};
-	const handleMarkerClick = (lat: number, lng: number) => {
-		mapRef?.setZoom(15);
-		mapRef?.panTo({ lat, lng });
-	};
+	const handleMarkerClick = useCallback(
+		(lat: number, lng: number) => {
+			setTimeout(() => {
+				mapRef?.setZoom(15);
+			}, 50);
+			mapRef?.panTo({ lat, lng });
+		},
+		[mapRef]
+	);
 
 	const [isHovered, setIsHovered] = useState(false);
 	const [idLocation, setIdLocation] = useState(0);
+
+	useEffect(() => {
+		if (lat && lng && mapRef) {
+			handleMarkerClick(Number(lat), Number(lng));
+		}
+	}, [lat, lng, mapRef, handleMarkerClick]);
 
 	return (
 		<>
@@ -266,11 +260,6 @@ export default function LocationsView() {
 							className="col-span-12 md:col-start-6 md:col-end-13 w-full h-[500px]
 					"
 						>
-							{/* <Map
-							ubicationUrl="https://www.google.com/maps?q=8%20The%20Green,%20Dover,%20DE,%20United%20States&hl=en&output=embed"
-							width="100%"
-							height="100%"
-						/> */}
 							<div className="App">
 								{!isLoaded ? (
 									<Skeleton height={500} radius="lg" />
@@ -298,7 +287,6 @@ export default function LocationsView() {
 								)}
 							</div>
 						</div>
-						{/* 	<div className="bg-primary col-span-12 md:col-start-7 md:col-end-13 w-full h-56"></div> */}
 					</div>
 				</Container>
 				<div className="grow"></div>
@@ -327,8 +315,12 @@ export default function LocationsView() {
 						<Container size="xl" className="grid grid-cols-12 pt-16">
 							<div className="md:col-span-5 col-span-12">
 								<h2>Find your nearest location</h2>
-								{/* <p>Lorem ipsum dolor sit amet consectetur.</p> */}
-								<Input placeholder={"Enter your location"} radius="lg" />
+
+								<Input
+									placeholder={"Enter your location"}
+									radius="lg"
+									className="mb-10"
+								/>
 							</div>
 						</Container>
 					</div>

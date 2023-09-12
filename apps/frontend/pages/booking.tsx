@@ -160,7 +160,6 @@ export default function BookingView() {
 		validate: {
 			date: (value) => (value.trim().length > 0 ? null : "Date is required"),
 			time: (value) => {
-				console.log(value);
 				const timeRegex: RegExp = /^(?:0[8-9]|1[0-9]|2[0]):[0-5][0-9]$/;
 
 				if (value.trim().length > 0) {
@@ -188,7 +187,6 @@ export default function BookingView() {
 					new Date()
 				)
 			);
-			console.log(dateTime);
 
 			createBooking({
 				variables: {
@@ -213,8 +211,6 @@ export default function BookingView() {
 					setStep(steps.BOOKED);
 				})
 				.catch((error) => {
-					console.log(error);
-
 					toast.error(error.message);
 				});
 		} else {
@@ -286,7 +282,6 @@ export default function BookingView() {
 	}, [opened]);
 
 	useEffect(() => {
-		console.log(service);
 		if (service) {
 			getInfoService(service as string);
 			const fetchData = async () => {
@@ -345,7 +340,6 @@ export default function BookingView() {
 
 		setInfoService(enhancedCatalogData);
 		setIsLoadingRetrieveService(false);
-		console.log(infoService);
 	};
 
 	return (
@@ -446,8 +440,6 @@ export default function BookingView() {
 											form.values.email
 										)
 											.then((response) => {
-												console.log(response);
-
 												const dateTime = formatISO(
 													parse(
 														formDate.values.date + " " + formDate.values.time,
@@ -880,7 +872,12 @@ export default function BookingView() {
 								<div className="flex flex-row">
 									<h5 className="mt-0 mr-6">Service </h5>
 									{step === steps.INFORMATION || step === steps.BOOKING ? (
-										<h5 className="mt-0 mr-2 text-info">Edit </h5>
+										<h5
+											className="mt-0 mr-2 text-info cursor-pointer"
+											onClick={() => setStep(steps.SERVICE)}
+										>
+											Edit{" "}
+										</h5>
 									) : null}
 								</div>
 
@@ -958,7 +955,12 @@ export default function BookingView() {
 										<div className="flex flex-row">
 											<h5 className="mr-6 mb-0">Date and Time </h5>
 											{step === steps.INFORMATION && (
-												<h5 className="mr-2 mb-0 text-info">Edit </h5>
+												<h5
+													className="mr-2 mb-0 text-info cursor-pointer "
+													onClick={() => setStep(steps.BOOKING)}
+												>
+													Edit{" "}
+												</h5>
 											)}
 										</div>
 										<div className="bg-primary rounded-xl p-8 mt-8 shadow-md flex">

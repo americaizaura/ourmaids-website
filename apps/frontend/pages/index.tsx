@@ -1,28 +1,5 @@
-import { useState } from "react";
-import {
-	AppShell,
-	Navbar,
-	Header,
-	Footer,
-	Aside,
-	Text,
-	MediaQuery,
-	Burger,
-	useMantineTheme,
-	Box,
-	BackgroundImage,
-	Center,
-	Container,
-	Grid,
-	Button,
-	Card,
-} from "@mantine/core";
-import Appbar from "../components/header";
+import { Container } from "@mantine/core";
 import HeroSection from "../components/Home/Hero";
-import FooterSection from "../components/footer";
-import { Carousel } from "@mantine/carousel";
-import Image from "next/image";
-import CardReview from "../components/Home/Reviews/CardReview";
 import OurServices from "../components/Home/OurServices";
 import AboutUs from "../components/Home/AboutUs";
 import Booking from "../components/Home/Booking";
@@ -35,9 +12,7 @@ interface ServicesProps {
 	services: any;
 	reviewsGoogle: any;
 }
-interface ReviewsProps {
-	reviewsGoogle: any;
-}
+
 enum CatalogItemProductType {
 	AppointmentsService = "APPOINTMENTS_SERVICE",
 	Regular = "REGULAR",

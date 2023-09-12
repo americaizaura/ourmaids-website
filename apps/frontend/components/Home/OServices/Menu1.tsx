@@ -25,7 +25,7 @@ function Menu1(props: MenuProps) {
 			>
 				<aside className="absolute w-full h-full">
 					<img
-						className="w-[150%] md:w-96 h-96 translate-y-[-50%] translate-x-[-10%] object-cover absolute z-10"
+						className="w-[150%] md:w-96 h-96 translate-y-[-50%] translate-x-[-10%] object-cover absolute z-10 brightness-50"
 						src={props.image}
 						alt={props.title}
 					/>

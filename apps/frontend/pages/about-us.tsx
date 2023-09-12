@@ -1,15 +1,6 @@
-import React, { useState } from "react";
-import {
-	Button,
-	Textarea,
-	Container,
-	Accordion,
-	useMantineTheme,
-	rem,
-	Modal,
-} from "@mantine/core";
+import React from "react";
+import { Button, Container, Accordion, Modal } from "@mantine/core";
 import Image from "next/image";
-import Input from "../components/Input";
 import { useDisclosure } from "@mantine/hooks";
 import { NextSeo } from "next-seo";
 

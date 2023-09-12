@@ -1,5 +1,4 @@
-import { Carousel } from "@mantine/carousel";
-import { Avatar, Container, Button } from "@mantine/core";
+import { Container, Button } from "@mantine/core";
 import CardReview from "./Reviews/CardReview";
 import CardPrincipal from "./Reviews/CardPrincipal";
 interface ReviewsProps {

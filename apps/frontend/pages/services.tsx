@@ -99,21 +99,6 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 										</div>
 									</div>
 								))}
-
-								{/* 	{menu2.map((menu2, index) => (
-								<div key={index}>
-									<div className="mb-6 ml-3 md:mr-3 md:ml-0 ">
-										<Menu2
-											title={menu2.title}
-											image={menu2.image}
-											onClick={() =>
-												changeProductType(CatalogItemProductType.Regular)
-											}
-											productType={catalogProductType}
-										/>
-									</div>
-								</div>
-							))} */}
 							</div>
 
 							<div className="md:col-span-9 col-span-12 ">
@@ -122,19 +107,7 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 										? data?.map((service, index) => (
 												<CardServicesSkeleton key={index} />
 										  ))
-										: /* data?.map((service, index) => (
-											<CardServices
-												key={service?.id}
-												idCatalogProduct={service?.id || ""}
-												image={
-													service && service.imageData
-														? service.imageData.url
-														: "/images/oservices/image 17.png"
-												}
-												description={service?.itemData?.name}
-											/>
-									  )) */
-										data && data.length > 0
+										: data && data.length > 0
 										? data?.map((service, index) => (
 												<CardServices
 													key={service?.id}
@@ -180,8 +153,6 @@ function enhanceCatalogData(
 	catalogData: SearchCatalogItemsResponse,
 	imagesData: ListCatalogResponse
 ): CatalogObject[] | null {
-	console.log(catalogData);
-
 	if (!catalogData && !imagesData) return null;
 	return catalogData.items?.map((item) => {
 		const image = imagesData.objects?.find(

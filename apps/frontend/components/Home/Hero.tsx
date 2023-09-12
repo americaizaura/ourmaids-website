@@ -1,5 +1,4 @@
 import { Button, useMantineTheme } from "@mantine/core";
-import Image from "next/image";
 import Link from "next/link";
 
 function HeroSection() {

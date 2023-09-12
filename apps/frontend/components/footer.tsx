@@ -17,52 +17,85 @@ import {
 const Footer = () => {
 	const locations = [
 		{
-			name: "Dover, DE",
-			href: "/locations?lat=39.158&lng=-75.524",
+			id: 1,
+			name: "Dover, DE.",
+			lat: 39.158,
+			lng: -75.524,
 		},
 		{
-			name: "Grand Prairie, TX",
-			href: "/locations?lat=32.6840495&lng=-97.0477151",
+			id: 2,
+			name: "Grand Prairie, TX.",
+			lat: 32.6840495,
+			lng: -97.0477151,
 		},
 		{
-			name: "Dover, DE",
-			href: "#",
+			id: 3,
+			name: "Delaware",
+			lat: 38.33786,
+			lng: -75.08214,
 		},
 		{
-			name: "Dallas, TX",
-			href: "#",
-		},
-		{
-			name: "Ft. Worth, TX",
-			href: "#",
-		},
-		{
-			name: "Austin, TX",
-			href: "#",
-		},
-		{
+			id: 4,
 			name: "Oklahoma City, OK",
-			href: "#",
+			lat: 35.56656,
+			lng: -97.5213,
 		},
 		{
-			name: "Ocean City, MD",
-			href: "#",
+			id: 5,
+			name: "North Carolina",
+			lat: 36.0632,
+			lng: -79.83629,
 		},
 		{
-			name: "Cancun, MX",
-			href: "#",
+			id: 6,
+			name: "Dallas",
+			lat: 32.73162,
+			lng: -96.64509,
+		},
+		//add more locations
+		{
+			id: 7,
+			name: "Sun Valley, CA.",
+			lat: 34.213,
+			lng: -118.378,
 		},
 		{
+			id: 8,
+			name: "Austin, TX.",
+			lat: 30.358,
+			lng: -97.688,
+		},
+		{
+			id: 9,
+			name: "Fort Worth, TX.",
+			lat: 32.725,
+			lng: -97.342,
+		},
+		{
+			id: 10,
+			name: "Van Nuys, CA.",
+			lat: 34.196,
+			lng: -118.467,
+		},
+
+		{
+			id: 11,
+			name: "Cancun, Mexico",
+			lat: 21.16195,
+			lng: -86.85191,
+		},
+		{
+			id: 12,
+			name: "Los Cabos, BCS",
+			lat: 22.89088,
+			lng: -109.916,
+		},
+
+		{
+			id: 13,
 			name: "Montreal, QC",
-			href: "#",
-		},
-		{
-			name: "Merida, MX",
-			href: "#",
-		},
-		{
-			name: "Greensboro, NC",
-			href: "#",
+			lat: 45.45175,
+			lng: -73.59831,
 		},
 	];
 
@@ -139,9 +172,14 @@ const Footer = () => {
 									margin: 0,
 								}}
 							>
-								{locations.slice(0, 6).map((item) => (
+								{locations.slice(0, 7).map((item) => (
 									<li key={item.name}>
-										<a>{item.name}</a>
+										<Link
+											href={`/locations?lat=${item.lat}&lng=${item.lng}`}
+											className="no-underline text-onPrimary"
+										>
+											{item.name}
+										</Link>
 									</li>
 								))}
 							</ul>
@@ -152,9 +190,14 @@ const Footer = () => {
 									margin: 0,
 								}}
 							>
-								{locations.slice(6, 12).map((item) => (
+								{locations.slice(7, 13).map((item) => (
 									<li key={item.name}>
-										<a>{item.name}</a>
+										<Link
+											href={`/locations?lat=${item.lat}&lng=${item.lng}`}
+											className="no-underline text-onPrimary"
+										>
+											{item.name}
+										</Link>
 									</li>
 								))}
 							</ul>
