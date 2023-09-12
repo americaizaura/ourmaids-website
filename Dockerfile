@@ -1,4 +1,4 @@
-FROM node:16-alpine as builder
+FROM node:18-alpine
 
 WORKDIR /app
 
@@ -17,23 +17,11 @@ ENV NEXT_PUBLIC_APPLICATION_ID=${NEXT_PUBLIC_APPLICATION_ID}
 ENV NEXT_PUBLIC_SERVER_API=${NEXT_PUBLIC_SERVER_API}
 ENV NEXT_PUBLIC_SQUARE_ENVIRONMENT=${NEXT_PUBLIC_SQUARE_ENVIRONMENT}
 
-COPY ./apps/frontend .
+COPY . .
 
-RUN yarn install \
-  --prefer-offline \
-  --frozen-lockfile \
-  --non-interactive \
-  --production=false
+RUN yarn install --timeout 1000000
 
 RUN yarn build
-
-FROM node:16-alpine
-
-WORKDIR /app
-
-COPY --from=builder /app  .
-
-ENV HOST 0.0.0.0
 
 RUN echo 'NEXT_PUBLIC_SERVER_URI=${NEXT_PUBLIC_SERVER_URI}\n\
   NEXT_PUBLIC_MAPS_API_KEY=${NEXT_PUBLIC_MAPS_API_KEY}\n\
@@ -46,4 +34,4 @@ RUN echo 'NEXT_PUBLIC_SERVER_URI=${NEXT_PUBLIC_SERVER_URI}\n\
 
 EXPOSE 3000
 
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "workspace", "frontend", "start" ]
