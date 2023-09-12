@@ -16,6 +16,8 @@
     "@strapi/plugin-users-permissions": "4.11.7",
     "@strapi/provider-email-nodemailer": "^4.12.6",
     "@strapi/strapi": "4.11.7",
+    "mysql": "^2.18.1",
+    "mysql-parse": "^2.0.8",
     "mysql2": "^3.6.1",
     "pg": "8.8.0"
   },
