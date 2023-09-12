@@ -50,6 +50,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-maps": "^9.4.5",
+    "react-gtm-module": "^2.0.11",
     "react-icons": "^4.8.0",
     "react-lines-ellipsis": "^0.15.3",
     "react-square-web-payments-sdk": "^3.2.1",

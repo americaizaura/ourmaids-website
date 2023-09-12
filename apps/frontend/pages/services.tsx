@@ -74,8 +74,27 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 	return (
 		<>
 			<NextSeo
-				title="House Cleaning Service Packages & Gift Cards | Our Maids, Inc."
-				description="Find the best cleaning supplies and products for your home at Our Maids, Inc. Quality and affordable prices to keep your space clean and healthy."
+				title="House Cleaning Service Packages: Deep, subscriptions | Our Maids, Inc."
+				description="Find the best cleaning packages and services for your home at Our Maids, Inc. Quality and affordable prices to keep your space clean and healthy."
+				openGraph={{
+					type: "eCommerceSite",
+					title:
+						"House Cleaning Service Packages: Deep, subscriptions | Our Maids, Inc.",
+					description:
+						"Find the best cleaning packages and services for your home at Our Maids, Inc. Quality and affordable prices to keep your space clean and healthy.",
+					url: "https://ourmaids.com/services",
+					locale: "en_US",
+					siteName: "Our Maids, Inc.",
+					images: [
+						{
+							url: "https://lirp.cdn-website.com/abe73f30/dms3rep/multi/opt/dd15cc77-febb-4a67-8307-e18ec72e3707-8117d990-378w.jpg",
+							width: 400,
+							height: 200,
+							alt: "Our Maids, Inc.",
+						},
+					],
+				}}
+				canonical="https://ourmaids.com/services"
 			/>
 			<section className="sm:mb-44 mb-20">
 				<div className="lg:mt-16 mt-8 ">

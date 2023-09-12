@@ -5,8 +5,27 @@ export default function PrivacyPolicy() {
 	return (
 		<>
 			<NextSeo
-				title="Privacy Policy | Our Maids, Inc."
-				description="You can read here Our Maids Franchise, Inc. Privacy policy to know about how we handle the information you submits."
+				title="Know how we use your info. Read our Privacy Policy | OurMaids, Inc."
+				description="The safeguard of your information is our top priority. You can read here OurMaids, Inc. Privacy policy to know about how we handle the information you submit."
+				openGraph={{
+					type: "eCommerceSite",
+					title:
+						"Know how we use your info. Read our Privacy Policy | OurMaids, Inc.",
+					description:
+						"The safeguard of your information is our top priority. You can read here OurMaids, Inc. Privacy policy to know about how we handle the information you submit.",
+					url: "https://ourmaids.com/privacy-policy",
+					locale: "en_US",
+					siteName: "Our Maids, Inc.",
+					images: [
+						{
+							url: "https://lirp.cdn-website.com/abe73f30/dms3rep/multi/opt/Contact-Us-1200w.jpg",
+							width: 400,
+							height: 200,
+							alt: "Our Maids, Inc.",
+						},
+					],
+				}}
+				canonical="https://ourmaids.com/privacy-policy"
 			/>
 			<Container size="xl" className="lg:mt-2 pt-40 pb-14 text-justify">
 				<h2 className="text-secondary mb-0">

@@ -40,8 +40,26 @@ const SiteMap = () => {
 	return (
 		<>
 			<NextSeo
-				title="Sitemap | Our Maids Franchise, Inc"
-				description="You can read here Our Maids Franchise, Inc. Privacy policy to know about how we handle the information you submit."
+				title="Sitemap | OurMaids, Inc."
+				description="OurMaids, Inc. Site Map will guide you to easily find whatever you are looking for on this web app."
+				openGraph={{
+					type: "eCommerceSite",
+					title: "Sitemap | OurMaids, Inc.",
+					description:
+						"OurMaids, Inc. Site Map will guide you to easily find whatever you are looking for on this web app.",
+					url: "https://ourmaids.com/sitemap",
+					locale: "en_US",
+					siteName: "Our Maids, Inc.",
+					images: [
+						{
+							url: "https://lirp.cdn-website.com/abe73f30/dms3rep/multi/opt/Contact-Us-1200w.jpg",
+							width: 400,
+							height: 200,
+							alt: "Our Maids, Inc.",
+						},
+					],
+				}}
+				canonical="https://ourmaids.com/sitemap"
 			/>
 			<Container size="xl" className="mt-40 mb-20">
 				<h1 className="text-secondary">Sitemap</h1>

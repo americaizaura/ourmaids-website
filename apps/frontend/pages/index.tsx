@@ -27,8 +27,27 @@ export default function AppShellDemo({
 	return (
 		<>
 			<NextSeo
-				title="Residential Cleaning Company in Los Angeles | Our Maids, Inc"
-				description="Our Maids offers professional house cleaning services and commercial cleaning services with easy online booking, transparent pricing, and a satisfaction guarantee."
+				title="Residential & commercial cleaning company in the United States, Canada and Mexico | OurMaids, Inc."
+				description="OurMaids, Inc., offers professional house cleaning services and commercial cleaning services in the United States, Canada and Mexico, with easy online booking, transparent pricing, and a satisfaction guarantee."
+				openGraph={{
+					type: "eCommerceSite",
+					title:
+						"Residential & commercial cleaning company in the United States, Canada and Mexico | OurMaids, Inc.",
+					description:
+						"OurMaids, Inc., offers professional house cleaning services and commercial cleaning services in the United States, Canada and Mexico, with easy online booking, transparent pricing, and a satisfaction guarantee.",
+					url: "https://ourmaids.com/",
+					locale: "en_US",
+					siteName: "OurMaids, Inc.",
+					images: [
+						{
+							url: "https://lirp.cdn-website.com/abe73f30/dms3rep/multi/opt/dd15cc77-febb-4a67-8307-e18ec72e3707-8117d990-378w.jpg",
+							width: 400,
+							height: 200,
+							alt: "OurMaids, Inc.",
+						},
+					],
+				}}
+				canonical="https://ourmaids.com/"
 			/>
 			<HeroSection />
 			<Container className="my-16  lg:my-52" size="xl">

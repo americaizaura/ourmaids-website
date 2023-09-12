@@ -12,18 +12,49 @@ import { GetServerSideProps } from "next";
 import { ListCatalogResponse, RetrieveCatalogObjectResponse } from "square";
 import ImagesService from "../../services/images.service";
 import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
 
 interface ServiceProps {
 	service: any;
 }
 export default function SectionVictor({ service }: ServiceProps) {
+	const router = useRouter();
+	const { serviceId } = router.query;
 	return (
 		<>
 			<NextSeo
 				title={
 					service && service.object ? service.object.itemData.name : "Our Maids"
 				}
-				description="Our Maids is a professional house cleaning service with a satisfaction guarantee. We offer easy online booking and quality cleaning."
+				description={
+					service && service.object ? service.object.itemData.description : ""
+				}
+				openGraph={{
+					type: "eCommerceSite",
+					title: service && service.object ? service.object.itemData.name : "",
+					description:
+						service && service.object
+							? service.object.itemData.description
+							: "",
+					url:
+						"https://ourmaids.com/service/" + (serviceId as string).toString(),
+					locale: "en_US",
+					siteName: "Our Maids, Inc.",
+					images: [
+						{
+							url:
+								service && service.object && service.object.imageData
+									? service.object.imageData.url
+									: "/images/oservices/image 17.png",
+							width: 400,
+							height: 200,
+							alt: "Our Maids, Inc.",
+						},
+					],
+				}}
+				canonical={
+					"https://ourmaids.com/service/" + (serviceId as string).toString()
+				}
 			/>
 
 			<main>
@@ -72,7 +103,6 @@ function enhanceCatalogData(
 	const image = imagesData.objects?.find(
 		(image) => image.id === (service.object.itemData?.imageIds?.[0] || "")
 	);
-	console.log(image);
 
 	const enhancedService = {
 		...service,
