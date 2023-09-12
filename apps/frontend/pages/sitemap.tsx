@@ -1,6 +1,12 @@
 import { Container } from "@mantine/core";
 import { NextSeo } from "next-seo";
-
+import CatalogService from "../services/catalog.service";
+import { GetServerSideProps } from "next";
+import Link from "next/link";
+enum CatalogItemProductType {
+	AppointmentsService = "APPOINTMENTS_SERVICE",
+	Regular = "REGULAR",
+}
 const company = [
 	{
 		name: "Bookings",
@@ -36,7 +42,11 @@ const company = [
 		href: "/contact-us",
 	},
 ];
-const SiteMap = () => {
+
+interface ServicesProps {
+	services: any;
+}
+const SiteMap = ({ services }: ServicesProps) => {
 	return (
 		<>
 			<NextSeo
@@ -73,9 +83,48 @@ const SiteMap = () => {
 						</li>
 					))}
 				</ul>
+				<h6 className="mb-4 mt-8">Services</h6>
+				<ul className="marker:text-secondary list-outside list-disc space-y-2 mt-0">
+					{services.map((service, index) => (
+						<li key={index}>
+							<Link
+								href={`/service/${service.id}`}
+								className="text-secondary no-underline"
+							>
+								{service.itemData?.name}
+							</Link>
+						</li>
+					))}
+				</ul>
 			</Container>
 		</>
 	);
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	try {
+		const [catalogData] = await Promise.all([
+			CatalogService.fetchCatalogItems(
+				CatalogItemProductType.AppointmentsService
+			),
+		]);
+
+		console.log("catalogData", catalogData);
+
+		return {
+			props: {
+				services: catalogData.items || null,
+			},
+		};
+	} catch (error) {
+		console.error("Error:", error);
+
+		return {
+			props: {
+				services: null,
+			},
+		};
+	}
 };
 
 export default SiteMap;
