@@ -345,8 +345,27 @@ export default function BookingView() {
 	return (
 		<>
 			<NextSeo
-				title="Book Cleaning services in Los Angeles | Our Maids, Inc."
-				description="Book your professional house or office cleaning service online with Our Maids. Easy, transparent, and reliable service with a satisfaction guarantee. BOOK ONLINE, ANY TIME!"
+				title="Book Cleaning services here every day of the year | Our Maids, Inc."
+				description="Book your professional house or office cleaning service online with OurMaids, Inc. Easy, transparent, and reliable service with a satisfaction guarantee. BOOK ONLINE, ANY TIME!"
+				openGraph={{
+					type: "eCommerceSite",
+					title:
+						"Book Cleaning services here every day of the year | Our Maids, Inc.",
+					description:
+						"Book your professional house or office cleaning service online with OurMaids, Inc. Easy, transparent, and reliable service with a satisfaction guarantee. BOOK ONLINE, ANY TIME!",
+					url: "https://ourmaids.com/booking",
+					locale: "en_US",
+					siteName: "OurMaids, Inc.",
+					images: [
+						{
+							url: "https://lirp.cdn-website.com/abe73f30/dms3rep/multi/opt/dd15cc77-febb-4a67-8307-e18ec72e3707-8117d990-378w.jpg",
+							width: 400,
+							height: 200,
+							alt: "OurMaids, Inc.",
+						},
+					],
+				}}
+				canonical="https://ourmaids.com/booking"
 			/>
 
 			<div className="relative h-full w-full">

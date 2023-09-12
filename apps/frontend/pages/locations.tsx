@@ -187,8 +187,27 @@ export default function LocationsView() {
 	return (
 		<>
 			<NextSeo
-				title="Cleaning Services Locations | Our Maids, Inc."
-				description="Find Our Maids' professional house cleaning services in multiple locations across the US. Easy online booking and quality service with a satisfaction guarantee."
+				title="Home and office Cleaning Services Locations | Our Maids, Inc."
+				description="Find OurMaids, Inc., professional house cleaning services in multiple locations across the US, Canada and Mexico. Easy online booking and quality service with a satisfaction guarantee."
+				openGraph={{
+					type: "eCommerceSite",
+					title:
+						"Home and office Cleaning Services Locations | Our Maids, Inc.",
+					description:
+						"Find OurMaids, Inc., professional house cleaning services in multiple locations across the US, Canada and Mexico. Easy online booking and quality service with a satisfaction guarantee.",
+					url: "https://ourmaids.com/locations",
+					locale: "en_US",
+					siteName: "Our Maids, Inc.",
+					images: [
+						{
+							url: "https://lirp.cdn-website.com/abe73f30/dms3rep/multi/opt/dd15cc77-febb-4a67-8307-e18ec72e3707-8117d990-378w.jpg",
+							width: 400,
+							height: 200,
+							alt: "Our Maids, Inc.",
+						},
+					],
+				}}
+				canonical="https://ourmaids.com/locations"
 			/>
 			<div className="lg:mt-16 flex flex-col h-full">
 				<Container size="xl" className="pt-24 pd:mb-28 pb-14 w-full h-full">

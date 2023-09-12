@@ -77,8 +77,27 @@ export default function ContactUsView() {
 	return (
 		<>
 			<NextSeo
-				title="Contact Us | Our Maids"
-				description="Our Maids is a professional house cleaning service with a satisfaction guarantee. We offer easy online booking and quality cleaning."
+				title="Contact OurMaids, inc., to request any information, or reschedule a cleaning service."
+				description="Need to request information about janitorial services, reschedule or cancel a cleaning service? OurMaids, Inc., makes it easy with our online rescheduling tool."
+				openGraph={{
+					type: "eCommerceSite",
+					title:
+						"Contact OurMaids, inc., to request any information, or reschedule a cleaning service.",
+					description:
+						"Need to request information about janitorial services, reschedule or cancel a cleaning service? OurMaids, Inc., makes it easy with our online rescheduling tool.",
+					url: "https://ourmaids.com/contact-us",
+					locale: "en_US",
+					siteName: "Our Maids, Inc.",
+					images: [
+						{
+							url: "https://lirp.cdn-website.com/abe73f30/dms3rep/multi/opt/Contact-Us-1200w.jpg",
+							width: 400,
+							height: 200,
+							alt: "Our Maids, Inc.",
+						},
+					],
+				}}
+				canonical="https://ourmaids.com/contact-us"
 			/>
 
 			<div className="lg:mt-16 relative h-full flex-grow mt-16">
