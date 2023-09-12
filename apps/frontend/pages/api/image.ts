@@ -10,8 +10,7 @@ export default async function handler(req: any, res: any) {
 		const { result } = await catalogApi.listCatalog(undefined, "IMAGE");
 
 		const resultSerialize = toObject(result);
-		/* console.log(resultSerialize);
-		 */
+		
 		res.status(200).json(resultSerialize);
 	} else {
 		res.status(500).send();

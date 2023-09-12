@@ -7,7 +7,7 @@ const { catalogApi } = new Client({
 
 export default async function handler(req: any, res: any) {
 	if (req.method === "GET") {
-		console.log(req.query.objectId);
+		
 
 		const { result } = await catalogApi.retrieveCatalogObject(
 			req.query.objectId

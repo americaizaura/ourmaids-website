@@ -1,109 +1,42 @@
-import { useState } from "react";
-import {
-	AppShell,
-	Navbar,
-	Header,
-	Footer,
-	Aside,
-	Text,
-	MediaQuery,
-	Burger,
-	useMantineTheme,
-	Box,
-	BackgroundImage,
-	Center,
-	Container,
-	Grid,
-	Button,
-	Card,
-} from "@mantine/core";
-import Appbar from "../components/header";
+import { Container } from "@mantine/core";
 import HeroSection from "../components/Home/Hero";
-import FooterSection from "../components/footer";
-import { Carousel } from "@mantine/carousel";
-import Image from "next/image";
-import CardReview from "../components/Home/Reviews/CardReview";
 import OurServices from "../components/Home/OurServices";
 import AboutUs from "../components/Home/AboutUs";
 import Booking from "../components/Home/Booking";
 import Reviews from "../components/Home/Reviews";
 import { ListCatalogResponse, SearchCatalogItemsResponse } from "square";
 import { GetServerSideProps } from "next";
-
-const API_BASE_URL =
-	"https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/api";
 import CatalogService from "../services/catalog.service";
 import ImagesService from "../services/images.service";
 interface ServicesProps {
 	services: any;
 	reviewsGoogle: any;
 }
-interface ReviewsProps {
-	reviewsGoogle: any;
-}
+
 enum CatalogItemProductType {
 	AppointmentsService = "APPOINTMENTS_SERVICE",
 	Regular = "REGULAR",
 }
-import ReCAPTCHA from "react-google-recaptcha";
-import {
-	GoogleReCaptcha,
-	GoogleReCaptchaProvider,
-} from "react-google-recaptcha-v3";
+import { NextSeo } from "next-seo";
 export default function AppShellDemo({
 	services,
 	reviewsGoogle,
 }: ServicesProps) {
-	/* console.log(reviewsGoogle); */
-
-	const theme = useMantineTheme();
-	const [opened, setOpened] = useState(false);
-	const reviews = [
-		{
-			title: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-			description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-			image: "/images/hero.png",
-			rating: 5,
-		},
-	];
 	const data = services;
-	/* console.log(data); */
 
 	return (
 		<>
-			{/*    <HeroSection />
-      <Container
-        style={{
-          marginTop: "200px",
-          marginBottom: "200px",
-        }}
-        size="xl"
-      >
-        <OurServices />
-      </Container>
-    
-    */}
+			<NextSeo
+				title="Residential Cleaning Company in Los Angeles | Our Maids, Inc"
+				description="Our Maids offers professional house cleaning services and commercial cleaning services with easy online booking, transparent pricing, and a satisfaction guarantee."
+			/>
 			<HeroSection />
 			<Container className="my-16  lg:my-52" size="xl">
 				<OurServices data={data} />
 			</Container>
 			<AboutUs />
 			<Booking />
-			<Reviews reviewsGoogle={reviewsGoogle} />
-			{/* 	<ReCAPTCHA
-				sitekey="6Ld61rQnAAAAAOZyssOajwm8AsrA6CEAGzRcpcs4"
-				onChange={(value) => {
-					console.log("Captcha value:", value);
-				}}
-			/> */}
-			{/* <GoogleReCaptchaProvider reCaptchaKey="6LdrxLQnAAAAAGbBzf5OvpkFr-Gc0FD2RN9YFMod">
-				<GoogleReCaptcha
-					onVerify={(token) => {
-						console.log("Captcha value:", token);
-					}}
-				/>
-			</GoogleReCaptchaProvider> */}
-			,
+			<Reviews reviewsGoogle={reviewsGoogle} />,
 		</>
 	);
 }
@@ -129,7 +62,10 @@ function enhanceCatalogData(
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	try {
 		const [catalogData, imagesData] = await Promise.all([
-			CatalogService.fetchCatalogItems(CatalogItemProductType.Regular, 10),
+			CatalogService.fetchCatalogItems(
+				CatalogItemProductType.AppointmentsService,
+				10
+			),
 			ImagesService.fetchImages(),
 		]);
 
@@ -138,7 +74,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 		const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
 		const reviews = await fetch(url);
 		const data = await reviews.json();
-		console.log(data);
 
 		return {
 			props: {
@@ -152,6 +87,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 		return {
 			props: {
 				services: null,
+				reviewsGoogle: null,
 			},
 		};
 	}
