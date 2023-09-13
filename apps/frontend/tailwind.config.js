@@ -12,16 +12,15 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        nunito: ['Nunito', 'sans-serif'],
-        montserrat: ['Montserrat', 'sans-serif'],
+        nunito: ["Nunito", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"],
       },
     },
     fontFamily: {
-      sans: ['Nunito', 'sans-serif'],
-      display: ['Montserrat', 'sans-serif'],
+      sans: ["Nunito", "sans-serif"],
+      display: ["Montserrat", "sans-serif"],
     },
     colors: {
-
       primary: "#FADCEA",
       primaryVariant: "#EFDFE0",
       secondary: "#720012",
@@ -46,11 +45,10 @@ module.exports = {
       divider: "#C6C6C6",
       textTrack: "#959595",
       black: "#000000",
-    }
+    },
   },
   plugins: [],
   corePlugins: {
     preflight: false,
-  }
-
-}
+  },
+};

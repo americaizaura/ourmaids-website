@@ -48,9 +48,7 @@ const ServiceName = ({ name, description }: ServiceNameProps) => {
 			<div className="flex flex-col  md:justify-between w-full">
 				<div>
 					<h4 className="mb-6">{name}</h4>
-					<p className="text-xs text-justify tracking-wide font-medium leading-5 md:leading-4">
-						{description}
-					</p>
+					<p className="text-justify font-medium">{description}</p>
 					{/* <div>
 						<h6 className="mb-6">Includes</h6>
 						<div className="flex flex-col md:flex-row w-72 justify-between md:w-[740px] min-[500px]:w-96">

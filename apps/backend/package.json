@@ -20,6 +20,9 @@
     "mjml": "^4.14.1",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
+    "mysql": "^2.18.1",
+    "mysql-parse": "^2.0.8",
+    "mysql2": "^3.6.1",
     "pg": "8.8.0"
   },
   "author": {

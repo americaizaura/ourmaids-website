@@ -1,19 +1,17 @@
 //Crea un componente de tipo función
 import { ActionIcon, Button, useMantineTheme, Drawer } from "@mantine/core";
 import Image from "next/image";
-import { ArrowNarrowRight, Menu2 } from "tabler-icons-react";
+import { Menu2, Phone } from "tabler-icons-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 const Appbar = () => {
 	const [opened, { open, close }] = useDisclosure(false);
-	const theme = useMantineTheme();
-	const router = useRouter();
-	const [isNavOpen, setIsNavOpen] = useState(false);
-	const isActiveRoute = (path: string) => {
-		console.log(router.pathname, path);
 
+	const router = useRouter();
+
+	const isActiveRoute = (path: string) => {
 		return router.pathname === path;
 	};
 	const navigation = [
@@ -24,10 +22,7 @@ const Appbar = () => {
 		{ name: "Contact us", href: "/contact-us" },
 		/* 		{ name: "Seccion Victor", href: "/sectionVictor" }, */
 	];
-	const [isOpen, setIsOpen] = useState(false);
-	const toggleDrawer = () => {
-		setIsOpen((prevState) => !prevState);
-	};
+
 	return (
 		<header>
 			<div className="fixed w-full z-20 top-0 left-0 drop-shadow bg-primary h-[140px]  lg:h-[110px]  lg:px-16 md:px-8 px-4">
@@ -54,7 +49,14 @@ const Appbar = () => {
 						>
 							{navigation.map((item) => (
 								<li key={item.name} className="w-full">
-									<Link href={item.href} passHref>
+									<Link
+										href={item.href}
+										className={
+											isActiveRoute(item.href)
+												? "text-onPrimary  no-underline"
+												: "  text-onPrimary no-underline"
+										}
+									>
 										<Button
 											radius="xl"
 											color="secondary.0"
@@ -62,15 +64,7 @@ const Appbar = () => {
 											size="xs"
 											onClick={close}
 										>
-											<p
-												className={
-													isActiveRoute(item.href)
-														? "text-onPrimary  no-underline"
-														: "  text-onPrimary no-underline"
-												}
-											>
-												{item.name}
-											</p>
+											<p>{item.name}</p>
 										</Button>
 									</Link>
 								</li>
@@ -89,6 +83,12 @@ const Appbar = () => {
 							/>
 						</Link>
 					</div>
+					<Link href="tel:213-800-7644">
+						<Phone
+							size={28}
+							className=" fill-info stroke-none md:hidden block"
+						/>
+					</Link>
 					<div className="hidden lg:flex lg:justify-between lg:items-center ">
 						<ul
 							style={{ listStyle: "none" }}
@@ -96,16 +96,15 @@ const Appbar = () => {
 						>
 							{navigation.map((item) => (
 								<li key={item.name}>
-									<Link href={item.href}>
-										<div
-											className={
-												isActiveRoute(item.href)
-													? "text-secondary text-xl font-bold"
-													: "text-xl font-bold text-secondary no-underline"
-											}
-										>
-											{item.name}
-										</div>
+									<Link
+										href={item.href}
+										className={
+											isActiveRoute(item.href)
+												? "text-secondary text-xl font-bold"
+												: "text-xl font-bold text-secondary no-underline"
+										}
+									>
+										<div>{item.name}</div>
 									</Link>
 								</li>
 							))}

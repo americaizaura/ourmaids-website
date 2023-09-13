@@ -1,9 +1,8 @@
 import { Client, Environment } from "square";
 
 const { bookingsApi } = new Client({
-	accessToken:
-		"EAAAEFHgE_JY5r7dECm_Av7WFV-brJ_8M6hbH2VvVETOrdyoDifPYYEF7xMVWZVK",
-	environment: Environment.Sandbox,
+	accessToken: process.env.NEXT_PUBLIC_SQUARE_ACCESS_TOKEN,
+	environment: process.env.NEXT_PUBLIC_SQUARE_ENVIRONMENT as Environment,
 });
 
 export default async function handler(req: any, res: any) {
@@ -29,9 +28,9 @@ export default async function handler(req: any, res: any) {
 
 		res.status(200).json(resultSerialize);
 	} else {
-		res.status(500).send(
-			"Sorry, we only accept POST requests at this endpoint."
-		);
+		res
+			.status(500)
+			.send("Sorry, we only accept POST requests at this endpoint.");
 	}
 }
 

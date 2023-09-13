@@ -8,6 +8,13 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type CreateContactUsMutationVariables = Exact<{
+  data: ContactUsInput;
+}>;
+
+
+export type CreateContactUsMutation = { __typename?: 'Mutation', createContactUs?: { __typename?: 'ContactUsEntityResponse', data?: { __typename?: 'ContactUsEntity', id?: string | null } | null } | null };
+
 export type CreateBookingMutationVariables = Exact<{
   data: BookingInput;
 }>;
@@ -62,7 +69,6 @@ export type Booking = {
   message: Scalars['String']['output'];
   name: Scalars['String']['output'];
   phone: Scalars['String']['output'];
-  publishedAt?: Maybe<Scalars['DateTime']['output']>;
   servicesName: Scalars['String']['output'];
   squareUpId?: Maybe<Scalars['String']['output']>;
   state: Scalars['String']['output'];
@@ -101,7 +107,6 @@ export type BookingFiltersInput = {
   not?: InputMaybe<BookingFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<BookingFiltersInput>>>;
   phone?: InputMaybe<StringFilterInput>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
   servicesName?: InputMaybe<StringFilterInput>;
   squareUpId?: InputMaybe<StringFilterInput>;
   state?: InputMaybe<StringFilterInput>;
@@ -118,7 +123,6 @@ export type BookingInput = {
   message?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   phone?: InputMaybe<Scalars['String']['input']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   servicesName?: InputMaybe<Scalars['String']['input']>;
   squareUpId?: InputMaybe<Scalars['String']['input']>;
   state?: InputMaybe<Scalars['String']['input']>;
@@ -153,10 +157,10 @@ export type BooleanFilterInput = {
 export type ContactUs = {
   __typename?: 'ContactUs';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
+  email: Scalars['String']['output'];
   message?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  phone?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  phone: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
@@ -703,7 +707,6 @@ export type QueryBookingArgs = {
 export type QueryBookingsArgs = {
   filters?: InputMaybe<BookingFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
@@ -1258,6 +1261,15 @@ export type UsersPermissionsUserRelationResponseCollection = {
 };
 
 
+export const CreateContactUsDocument = gql`
+    mutation CreateContactUs($data: ContactUsInput!) {
+  createContactUs(data: $data) {
+    data {
+      id
+    }
+  }
+}
+    `;
 export const CreateBookingDocument = gql`
     mutation CreateBooking($data: BookingInput!) {
   createBooking(data: $data) {
@@ -1280,6 +1292,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    CreateContactUs(variables: CreateContactUsMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CreateContactUsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CreateContactUsMutation>(CreateContactUsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CreateContactUs', 'mutation');
+    },
     CreateBooking(variables: CreateBookingMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CreateBookingMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<CreateBookingMutation>(CreateBookingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CreateBooking', 'mutation');
     }

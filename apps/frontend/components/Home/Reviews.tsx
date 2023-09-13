@@ -1,5 +1,4 @@
-import { Carousel } from "@mantine/carousel";
-import { Avatar, Container, Button } from "@mantine/core";
+import { Container, Button } from "@mantine/core";
 import CardReview from "./Reviews/CardReview";
 import CardPrincipal from "./Reviews/CardPrincipal";
 interface ReviewsProps {
@@ -63,17 +62,23 @@ const Reviews = ({ reviewsGoogle }: ReviewsProps) => {
 						))}
 						{/* split array */}
 
-						{reviewsGoogle.reviews.slice(0, 3).map((review, index) => (
-							<div key={index}>
-								<CardReview
-									author={review.author_name}
-									date={review.time}
-									description={review.text}
-									rating={review.rating}
-									avatar={review.profile_photo_url}
-								/>
-							</div>
-						))}
+						{reviewsGoogle ? (
+							reviewsGoogle &&
+							reviewsGoogle.reviews &&
+							reviewsGoogle.reviews.slice(0, 3).map((review, index) => (
+								<div key={index}>
+									<CardReview
+										author={review.author_name}
+										date={review.time}
+										description={review.text}
+										rating={review.rating}
+										avatar={review.profile_photo_url}
+									/>
+								</div>
+							))
+						) : (
+							<h4>No reviews yet</h4>
+						)}
 					</div>
 				</div>
 				<div className="flex justify-center mt-16">

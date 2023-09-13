@@ -11,6 +11,7 @@ import {
 import CatalogService from "../services/catalog.service";
 import ImagesService from "../services/images.service";
 import CardServicesSkeleton from "../components/Home/OServices/cardServiceSkeleton";
+import { NextSeo } from "next-seo";
 interface ServicesProps {
 	services: CatalogObject[];
 	cursor: string;
@@ -32,7 +33,7 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 	const handleLoadMore = async () => {
 		setLoading(true);
 		const [catalogData, imagesData] = await Promise.all([
-			CatalogService.fetchCatalogItems(catalogProductType, 6, cursorState),
+			CatalogService.fetchCatalogItems(catalogProductType, 20, cursorState),
 			ImagesService.fetchImages(),
 		]);
 		const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
@@ -47,7 +48,7 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 		setLoadingChange(true);
 
 		const [catalogData, imagesData] = await Promise.all([
-			CatalogService.fetchCatalogItems(productType, 10),
+			CatalogService.fetchCatalogItems(productType, 20),
 			ImagesService.fetchImages(),
 		]);
 		const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
@@ -71,101 +72,99 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 	];
 
 	return (
-		<section className="mb-44 ">
-			<div className="lg:mt-16 mt-8 ">
-				<Container size="xl" className="mt-40">
-					<h4>Our Services</h4>
-					<div className="grid grid-cols-4 md:grid-cols-12">
-						<div className="grid grid-cols-2 md:flex md:flex-col col-span-6 md:col-span-3">
-							{menu.map((menu, index) => (
-								<div key={index}>
-									<div className="mb-6 mr-3 ">
-										<Menu1
-											title={menu.title}
-											image={menu.image}
-											onClick={() =>
-												changeProductType(
-													CatalogItemProductType.AppointmentsService
-												)
-											}
-											productType={catalogProductType}
-										/>
-									</div>
-								</div>
-							))}
-
-							{/* 	{menu2.map((menu2, index) => (
-								<div key={index}>
-									<div className="mb-6 ml-3 md:mr-3 md:ml-0 ">
-										<Menu2
-											title={menu2.title}
-											image={menu2.image}
-											onClick={() =>
-												changeProductType(CatalogItemProductType.Regular)
-											}
-											productType={catalogProductType}
-										/>
-									</div>
-								</div>
-							))} */}
-						</div>
-
-						<div className="md:col-span-9 col-span-12 ">
-							<div className="grid sm:grid-cols-3  lg:grid-cols-3 grid-cols-2 gap-4">
-								{loadingChange
-									? data?.map((service, index) => (
-											<CardServicesSkeleton key={index} />
-									  ))
-									: /* data?.map((service, index) => (
-											<CardServices
-												key={service?.id}
-												idCatalogProduct={service?.id || ""}
-												image={
-													service && service.imageData
-														? service.imageData.url
-														: "/images/oservices/image 17.png"
+		<>
+			<NextSeo
+				title="House Cleaning Service Packages: Deep, subscriptions | Our Maids, Inc."
+				description="Find the best cleaning packages and services for your home at Our Maids, Inc. Quality and affordable prices to keep your space clean and healthy."
+				openGraph={{
+					type: "eCommerceSite",
+					title:
+						"House Cleaning Service Packages: Deep, subscriptions | Our Maids, Inc.",
+					description:
+						"Find the best cleaning packages and services for your home at Our Maids, Inc. Quality and affordable prices to keep your space clean and healthy.",
+					url: "https://ourmaids.com/services",
+					locale: "en_US",
+					siteName: "Our Maids, Inc.",
+					images: [
+						{
+							url: "https://lirp.cdn-website.com/abe73f30/dms3rep/multi/opt/dd15cc77-febb-4a67-8307-e18ec72e3707-8117d990-378w.jpg",
+							width: 400,
+							height: 200,
+							alt: "Our Maids, Inc.",
+						},
+					],
+				}}
+				canonical="https://ourmaids.com/services"
+			/>
+			<section className="sm:mb-44 mb-20">
+				<div className="lg:mt-16 mt-8 ">
+					<Container size="xl" className="mt-40">
+						<h4>Our Services</h4>
+						<div className="grid grid-cols-4 md:grid-cols-12">
+							<div className="grid grid-cols-1 md:flex md:flex-col col-span-12 md:col-span-3">
+								{menu.map((menu, index) => (
+									<div key={index}>
+										<div className="mb-6 sm:mr-3 ">
+											<Menu1
+												title={menu.title}
+												image={menu.image}
+												onClick={() =>
+													changeProductType(
+														CatalogItemProductType.AppointmentsService
+													)
 												}
-												description={service?.itemData?.name}
+												productType={catalogProductType}
 											/>
-									  )) */
-									data && data.length > 0
-									? data?.map((service, index) => (
-											<CardServices
-												key={service?.id}
-												idCatalogProduct={service?.id || ""}
-												image={
-													service && service.imageData
-														? service.imageData.url
-														: "/images/oservices/image 17.png"
-												}
-												description={service?.itemData?.name}
-											/>
-									  ))
-									: Array.from({ length: 10 }).map((_, index) => (
-											<CardServicesSkeleton key={index} />
-									  ))}
+										</div>
+									</div>
+								))}
 							</div>
 
-							<div className="flex items-center w-full justify-center mt-4">
-								<Button
-									radius="xl"
-									color="secondary.0"
-									onClick={handleLoadMore}
-									variant="outline"
-									loading={loading}
-									style={{
-										display: cursorState ? "block" : "none",
-									}}
-									size="lg"
-								>
-									Load More
-								</Button>
+							<div className="md:col-span-9 col-span-12 ">
+								<div className="grid sm:grid-cols-3  lg:grid-cols-3 grid-cols-2 gap-4">
+									{loadingChange
+										? data?.map((service, index) => (
+												<CardServicesSkeleton key={index} />
+										  ))
+										: data && data.length > 0
+										? data?.map((service, index) => (
+												<CardServices
+													key={service?.id}
+													idCatalogProduct={service?.id || ""}
+													image={
+														service && service.imageData
+															? service.imageData.url
+															: "/images/oservices/image 17.png"
+													}
+													description={service?.itemData?.name}
+												/>
+										  ))
+										: Array.from({ length: 10 }).map((_, index) => (
+												<CardServicesSkeleton key={index} />
+										  ))}
+								</div>
+
+								<div className="flex items-center w-full justify-center mt-4">
+									<Button
+										radius="xl"
+										color="secondary.0"
+										onClick={handleLoadMore}
+										variant="outline"
+										loading={loading}
+										style={{
+											display: cursorState ? "block" : "none",
+										}}
+										size="lg"
+									>
+										View More
+									</Button>
+								</div>
 							</div>
 						</div>
-					</div>
-				</Container>
-			</div>
-		</section>
+					</Container>
+				</div>
+			</section>
+		</>
 	);
 }
 
@@ -173,8 +172,6 @@ function enhanceCatalogData(
 	catalogData: SearchCatalogItemsResponse,
 	imagesData: ListCatalogResponse
 ): CatalogObject[] | null {
-	console.log(catalogData);
-
 	if (!catalogData && !imagesData) return null;
 	return catalogData.items?.map((item) => {
 		const image = imagesData.objects?.find(
@@ -195,7 +192,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 		const [catalogData, imagesData] = await Promise.all([
 			CatalogService.fetchCatalogItems(
 				CatalogItemProductType.AppointmentsService,
-				10
+				20
 			),
 			ImagesService.fetchImages(),
 		]);

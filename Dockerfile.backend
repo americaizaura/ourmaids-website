@@ -5,6 +5,13 @@ RUN apk add --no-cache libc6-compat
 # add turborepo
 RUN yarn global add turbo
 
+ARG PUBLIC_URL=http://conecta-backoffice.on.ocstudios.mx
+ENV PUBLIC_URL=${PUBLIC_URL}
+ARG DATABASE_URL=example.com
+ENV DATABASE_URL=${DATABASE_URL}
+ARG DATABASE_CA=
+ENV DATABASE_CA=${DATABASE_CA}
+
 WORKDIR /app
 
 #add strapi

@@ -1,5 +1,5 @@
 import { Button, useMantineTheme } from "@mantine/core";
-import Image from "next/image";
+import Link from "next/link";
 
 function HeroSection() {
 	const theme = useMantineTheme();
@@ -37,7 +37,7 @@ function HeroSection() {
 						color: "white",
 					}}
 				>
-					OURMAIDS
+					OurMaids, Inc.
 				</h1>
 				<h4
 					style={{
@@ -48,13 +48,16 @@ function HeroSection() {
 					The most affordable Residential and commercial cleaning services since
 					2000... and the most reliable. Our prices start at $139.
 				</h4>
-
-				<Button radius="xl" color="secondary.0" mr={10}>
-					Bookings
-				</Button>
-				<Button radius="xl" color="secondary.0">
-					Franchise
-				</Button>
+				<Link href="/booking">
+					<Button radius="xl" color="secondary.0" mr={10}>
+						Bookings
+					</Button>
+				</Link>
+				<Link href="https://www.ourmaidsfranchise.com/" target="_blank">
+					<Button radius="xl" color="secondary.0">
+						Franchise
+					</Button>
+				</Link>
 			</div>
 		</section>
 	);

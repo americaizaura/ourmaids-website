@@ -302,18 +302,6 @@
             "deprecationReason": null
           },
           {
-            "name": "publishedAt",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "servicesName",
             "description": null,
             "args": [],
@@ -671,18 +659,6 @@
             "deprecationReason": null
           },
           {
-            "name": "publishedAt",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "DateTimeFilterInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "servicesName",
             "description": null,
             "type": {
@@ -843,18 +819,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "publishedAt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
               "ofType": null
             },
             "defaultValue": null,
@@ -1241,9 +1205,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -1265,9 +1233,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -1277,9 +1249,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -5402,18 +5378,6 @@
                   "ofType": null
                 },
                 "defaultValue": "{}",
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "publicationState",
-                "description": null,
-                "type": {
-                  "kind": "ENUM",
-                  "name": "PublicationState",
-                  "ofType": null
-                },
-                "defaultValue": "LIVE",
                 "isDeprecated": false,
                 "deprecationReason": null
               },

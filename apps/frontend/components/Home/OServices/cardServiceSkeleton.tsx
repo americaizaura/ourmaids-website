@@ -1,16 +1,4 @@
-import {
-	Card,
-	Text,
-	Badge,
-	Button,
-	Group,
-	Avatar,
-	Skeleton,
-} from "@mantine/core";
-import Image from "next/image";
-
-import { useRouter } from "next/router";
-import Link from "next/link";
+import { Skeleton } from "@mantine/core";
 
 function CardServicesSkeleton() {
 	return (

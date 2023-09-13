@@ -39,7 +39,9 @@ function ReviewsService({
         </div>
       </div>
       <div>
-        <p className="text-justify text-[0.625rem] tracking-wide font-semibold leading-4">{review}</p>
+        <p className="text-justify text-[0.625rem] tracking-wide font-semibold leading-4">
+          {review}
+        </p>
       </div>
     </div>
   );

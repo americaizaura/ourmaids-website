@@ -1,4 +1,4 @@
-import { Card, Image, Text, Badge, Button, Group, Avatar } from "@mantine/core";
+import { Button } from "@mantine/core";
 
 interface CardPrincipalProps {
 	title: string;

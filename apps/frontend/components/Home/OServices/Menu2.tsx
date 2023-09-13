@@ -1,5 +1,3 @@
-import { Card, Image, Text, Badge, Button, Group, Avatar } from "@mantine/core";
-
 enum CatalogItemProductType {
 	AppointmentsService = "APPOINTMENTS_SERVICE",
 	Regular = "REGULAR",
