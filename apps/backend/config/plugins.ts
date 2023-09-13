@@ -12,6 +12,11 @@ export default ({ env }) => ({
             },
         },
     },
+    "users-permissions": {
+        config: {
+            jwtSecret: env('USER_JWT_SECRET'),
+        }
+    },
     email: {
         config: {
             provider: "nodemailer",
