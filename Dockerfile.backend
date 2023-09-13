@@ -22,10 +22,11 @@ VOLUME [ "/app/apps/backend/public/uploads"]
 # Copy source files
 COPY . .
 
+EXPOSE 1337
 RUN yarn install --network-timeout 100000
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 RUN yarn build
 
 
-CMD ["yarn", "start", "--scope", "backend"]
+CMD ["yarn","workspace","backend", "start"]
