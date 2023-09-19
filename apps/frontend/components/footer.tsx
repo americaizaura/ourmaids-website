@@ -215,9 +215,12 @@ const Footer = () => {
 							>
 								{company.slice(0, 5).map((item) => (
 									<li key={item.name}>
-										<a href={item.href} className="no-underline text-onPrimary">
+										<Link
+											href={item.href}
+											className="no-underline text-onPrimary"
+										>
 											{item.name}
-										</a>
+										</Link>
 									</li>
 								))}
 							</ul>
@@ -230,9 +233,12 @@ const Footer = () => {
 							>
 								{company.slice(5, 9).map((item) => (
 									<li key={item.name}>
-										<a href={item.href} className="no-underline text-onPrimary">
+										<Link
+											href={item.href}
+											className="no-underline text-onPrimary"
+										>
 											{item.name}
-										</a>
+										</Link>
 									</li>
 								))}
 							</ul>
@@ -324,7 +330,12 @@ const Footer = () => {
 						</Accordion.Control>
 						{locations.map((item, index) => (
 							<Accordion.Panel key={index}>
-								<a className="text-surface">{item.name}</a>
+								<Link
+									href={`/locations?lat=${item.lat}&lng=${item.lng}`}
+									className="no-underline text-onPrimary"
+								>
+									{item.name}
+								</Link>
 							</Accordion.Panel>
 						))}
 					</Accordion.Item>
@@ -334,9 +345,9 @@ const Footer = () => {
 						</Accordion.Control>
 						{company.map((item, index) => (
 							<Accordion.Panel key={index}>
-								<a className="text-surface no-underline" href={item.href}>
+								<Link className="text-surface no-underline" href={item.href}>
 									{item.name}
-								</a>
+								</Link>
 							</Accordion.Panel>
 						))}
 					</Accordion.Item>
