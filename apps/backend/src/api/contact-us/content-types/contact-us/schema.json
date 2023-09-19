@@ -4,7 +4,8 @@
   "info": {
     "singularName": "contact-us",
     "pluralName": "contact-uses",
-    "displayName": "Contact Us"
+    "displayName": "Contact Us",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -24,7 +25,7 @@
       "required": true
     },
     "message": {
-      "type": "string"
+      "type": "text"
     }
   }
 }
