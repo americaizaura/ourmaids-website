@@ -12,12 +12,25 @@ interface ServicesProps {
 	services: any;
 	reviewsGoogle: any;
 }
-
 enum CatalogItemProductType {
 	AppointmentsService = "APPOINTMENTS_SERVICE",
 	Regular = "REGULAR",
 }
 import { NextSeo } from "next-seo";
+
+const keyWords = [
+	"DEEP clean to 1,000 s.f., or less premisses. $209",
+	"DEEP clean to 1,001 to 2,000 s.f. Premisses. $269.",
+	"DEEP Clean to a 2,000 to 3,000 s.f., premisses. $319.",
+	"Post Construction cleaning. $229.",
+	"Move out/move in cleaning to a 1,000 s.f. or less premisses. $249.",
+	"Move out/move in cleaning to a 1001 to 2,000 s.f. premises. $299.",
+	"Move out/move in cleaning to a 2,001 to 3,000 s.f. $329",
+	"First time Standard cleaning to a 1,001 to 2,000 s.f. premisses. $219.",
+	"First time STANDARD cleaning to a 2,001 to 3,000 s.f., premisses. $279.",
+	"First time Standard cleaning to a 1,000 or less s.f. premises (not a studio apartment)",
+];
+
 export default function AppShellDemo({
 	services,
 	reviewsGoogle,
@@ -82,21 +95,27 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 	try {
 		const [catalogData, imagesData] = await Promise.all([
 			CatalogService.fetchCatalogItems(
-				CatalogItemProductType.AppointmentsService,
-				10
+				CatalogItemProductType.AppointmentsService
 			),
 			ImagesService.fetchImages(),
 		]);
 
-		const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${"ChIJC-g-TsaVwoAReX0svaIhOL4"}&key=${"AIzaSyCFIeOK8R5tCOSIPBDeCceJx-ayHwwXfhw&"}`;
+		const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${"ChIJC-g-TsaVwoAReX0svaIhOL4"}&key=${
+			process.env.NEXT_PUBLIC_MAPS_API_KEY
+		}`;
 
 		const enhancedCatalogData = enhanceCatalogData(catalogData, imagesData);
+
+		const filtered = enhancedCatalogData.filter((item) => {
+			return keyWords.includes(item.itemData.name);
+		});
+
 		const reviews = await fetch(url);
 		const data = await reviews.json();
 
 		return {
 			props: {
-				services: enhancedCatalogData,
+				services: filtered,
 				reviewsGoogle: data && data.status === "OK" ? data.result : null,
 			},
 		};

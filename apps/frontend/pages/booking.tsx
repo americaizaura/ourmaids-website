@@ -541,7 +541,7 @@ export default function BookingView() {
 											<br />
 
 											<GooglePay className="mt-4" />
-											{/* <ApplePay className="mt-4" /> */}
+											<ApplePay className="mt-4" />
 										</>
 									)}
 								</PaymentForm>
