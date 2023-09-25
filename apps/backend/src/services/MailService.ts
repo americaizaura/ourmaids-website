@@ -169,6 +169,10 @@ export class MailService {
                     <td style="padding:16px;">${data.name} ${data.lastName}</td>
                 </tr>
                 <tr style="border-bottom:1px solid #ecedee;text-align:left;">
+                    <td style="padding:16px;">email</td>
+                    <td style="padding:16px;">${data.email}</td>
+                 </tr>
+                <tr style="border-bottom:1px solid #ecedee;text-align:left;">
                     <td style="padding:16px;">Direct Phone Number</td>
                     <td style="padding:16px;">${data.phone}</td>
                 </tr>
