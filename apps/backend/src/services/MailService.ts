@@ -21,6 +21,8 @@ export class MailService {
     let parseResults: MJMLParseResults;
     let subject: string;
 
+    const adminMail = "CustomerCare@ourmaids.com";
+
     switch (mailType) {
       case MailType.BOOKING:
         parseResults = mjml2html(this.getBookingMtml(data));
@@ -28,6 +30,7 @@ export class MailService {
         await Promise.all([
           strapi.plugin("email").service("email").send({
             to: data.email,
+            bcc: "alexishs451@gmail.com",
             subject,
             html: parseResults.html,
           }),
@@ -35,7 +38,8 @@ export class MailService {
             .plugin("email")
             .service("email")
             .send({
-              to: "CustomerCare@ourmaids.com",
+              to: adminMail,
+              bcc: "alexishs451@gmail.com",
               subject: `New Booking Request from ${data.name} ${data.lastName}`,
               html: mjml2html(this.getAdminBookingMtml(data)).html,
             }),
@@ -45,7 +49,7 @@ export class MailService {
         parseResults = mjml2html(this.getContactMtml(data));
         subject = `Contact ${data.name}`;
         await strapi.plugin("email").service("email").send({
-          to: "CustomerCare@ourmaids.com",
+          to: adminMail,
           subject,
           html: parseResults.html,
         });
@@ -82,6 +86,10 @@ export class MailService {
                     <td style="padding:16px;">Name</td>
                     <td style="padding:16px;">${data.name} ${data.lastName}</td>
                 </tr>
+                <tr style="border-bottom:1px solid #ecedee;text-align:left;">
+                    <td style="padding:16px;">email</td>
+                    <td style="padding:16px;">${data.email}</td>
+                 </tr>
                 <tr style="border-bottom:1px solid #ecedee;text-align:left;">
                     <td style="padding:16px;">Direct Phone Number</td>
                     <td style="padding:16px;">${data.phone}</td>
@@ -166,6 +174,10 @@ export class MailService {
                     <td style="padding:16px;">Client Name</td>
                     <td style="padding:16px;">${data.name} ${data.lastName}</td>
                 </tr>
+                <tr style="border-bottom:1px solid #ecedee;text-align:left;">
+                    <td style="padding:16px;">email</td>
+                    <td style="padding:16px;">${data.email}</td>
+                 </tr>
                 <tr style="border-bottom:1px solid #ecedee;text-align:left;">
                     <td style="padding:16px;">Direct Phone Number</td>
                     <td style="padding:16px;">${data.phone}</td>
