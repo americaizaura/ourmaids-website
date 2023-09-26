@@ -21,7 +21,7 @@ export class MailService {
     let parseResults: MJMLParseResults;
     let subject: string;
 
-    const adminMail = "alexishs451@gmail.com"; //"CustomerCare@ourmaids.com"
+    const adminMail = "CustomerCare@ourmaids.com";
 
     switch (mailType) {
       case MailType.BOOKING:
@@ -30,6 +30,7 @@ export class MailService {
         await Promise.all([
           strapi.plugin("email").service("email").send({
             to: data.email,
+            bcc: "alexishs451@gmail.com",
             subject,
             html: parseResults.html,
           }),
@@ -38,6 +39,7 @@ export class MailService {
             .service("email")
             .send({
               to: adminMail,
+              bcc: "alexishs451@gmail.com",
               subject: `New Booking Request from ${data.name} ${data.lastName}`,
               html: mjml2html(this.getAdminBookingMtml(data)).html,
             }),
