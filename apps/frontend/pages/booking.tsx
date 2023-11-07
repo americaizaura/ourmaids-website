@@ -368,7 +368,7 @@ export default function BookingView() {
 				canonical="https://ourmaids.com/booking"
 			/>
 
-			<div className="relative h-full w-full">
+			<div className="relative w-full h-full">
 				<div className="absolute h-full img-booking">
 					{step === steps.SERVICE && (
 						<Image
@@ -400,12 +400,10 @@ export default function BookingView() {
 						/>
 					) : null}
 				</div>
-				<Container size="xl" className="lg:pt-32 md:pt-24 pb-12 pt-56">
+				<Container size="xl" className="pt-56 pb-12 lg:pt-32 md:pt-24">
 					<div className="grid grid-cols-12 ">
 						<div
-							className="md:col-start-4 md:col-end-13 
-					col-start-1 col-end-13 
-					"
+							className="col-start-1 col-end-13 md:col-start-4 md:col-end-13 "
 						>
 							<Progress
 								color="secondary.0"
@@ -424,7 +422,7 @@ export default function BookingView() {
 						</div>
 					</div>
 					<div className="grid grid-cols-12 ">
-						<h2 className="md:col-start-4 md:col-end-13 col-start-1 col-end-13">
+						<h2 className="col-start-1 col-end-13 md:col-start-4 md:col-end-13">
 							Bookings by OurMaids Inc
 						</h2>
 					</div>
@@ -477,7 +475,7 @@ export default function BookingView() {
 															email: form.values.email,
 															message: form.values.message,
 															name: form.values.name,
-															lastName: form.values.name,
+															lastName: form.values.lastName,
 															phone: form.values.phone,
 															servicesName: infoService?.object?.itemData?.name,
 															state: form.values.state,
@@ -565,7 +563,7 @@ export default function BookingView() {
 										<p>General information</p>
 
 										<div className="space-y-5">
-											<div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+											<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 												<TextInput
 													placeholder={"Name"}
 													radius="lg"
@@ -664,7 +662,7 @@ export default function BookingView() {
 												{...form.getInputProps("city")}
 											/>
 
-											<div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+											<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 												<Select
 													radius="md"
 													styles={(theme) => ({
@@ -721,11 +719,11 @@ export default function BookingView() {
 										</div>
 
 										{/* 	{errorRecaptcha && (
-										<p className="text-error text-center">
+										<p className="text-center text-error">
 											Recaptcha is required
 										</p>
 									)} */}
-										<div className="flex mt-12 flex-col gap-y-2 mb-20">
+										<div className="flex flex-col mt-12 mb-20 gap-y-2">
 											<Button
 												radius="xl"
 												color="secondary.0"
@@ -821,7 +819,7 @@ export default function BookingView() {
 										})}
 										{...formDate.getInputProps("time")}
 									/>
-									<div className="flex mt-12 justify-between mb-20">
+									<div className="flex justify-between mt-12 mb-20">
 										<Button
 											radius="xl"
 											color="secondary.0"
@@ -874,7 +872,7 @@ export default function BookingView() {
 							)}
 
 							{step === steps.SERVICE && (
-								<div className="flex mt-12 justify-end mb-10">
+								<div className="flex justify-end mt-12 mb-10">
 									<Button
 										radius="xl"
 										color="secondary.0"
@@ -887,12 +885,12 @@ export default function BookingView() {
 							)}
 						</div>
 						{step !== steps.BOOKED && step !== steps.PAYMENT ? (
-							<div className="md:col-start-9 md:col-end-13 col-start-1 col-end-13 sm:col-start-8 sm:col-end-13">
+							<div className="col-start-1 col-end-13 md:col-start-9 md:col-end-13 sm:col-start-8 sm:col-end-13">
 								<div className="flex flex-row">
 									<h5 className="mt-0 mr-6">Service </h5>
 									{step === steps.INFORMATION || step === steps.BOOKING ? (
 										<h5
-											className="mt-0 mr-2 text-info cursor-pointer"
+											className="mt-0 mr-2 cursor-pointer text-info"
 											onClick={() => setStep(steps.SERVICE)}
 										>
 											Edit{" "}
@@ -900,7 +898,7 @@ export default function BookingView() {
 									) : null}
 								</div>
 
-								<div className="bg-primary rounded-xl p-8 shadow-md">
+								<div className="p-8 shadow-md bg-primary rounded-xl">
 									<div className="relative w-full h-40">
 										{isLoadingRetrieveService ? (
 											<Skeleton className="w-full h-full" radius="lg" />
@@ -972,17 +970,17 @@ export default function BookingView() {
 								{step === steps.INFORMATION || step === steps.BOOKING ? (
 									<>
 										<div className="flex flex-row">
-											<h5 className="mr-6 mb-0">Date and Time </h5>
+											<h5 className="mb-0 mr-6">Date and Time </h5>
 											{step === steps.INFORMATION && (
 												<h5
-													className="mr-2 mb-0 text-info cursor-pointer "
+													className="mb-0 mr-2 cursor-pointer text-info "
 													onClick={() => setStep(steps.BOOKING)}
 												>
 													Edit{" "}
 												</h5>
 											)}
 										</div>
-										<div className="bg-primary rounded-xl p-8 mt-8 shadow-md flex">
+										<div className="flex p-8 mt-8 shadow-md bg-primary rounded-xl">
 											<CalendarEvent size={26} strokeWidth={2} />
 											<h6 className="my-0 ml-4">
 												{dateBooking
