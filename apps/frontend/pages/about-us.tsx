@@ -14,14 +14,14 @@ export default function AboutUsView() {
 	return (
 		<>
 			<NextSeo
-				title="House Cleaning Service Packages & Gift Cards | Our Maids, Inc.Residential and commercial Cleaning Services | OurMaids, Inc."
-				description="OurMaids, Inc.,  offer building cleaning, deep cleaning, move-in, move-out, post construction cleaning and domestic services in Los Angeles, Dallas, Delaware,  and surrounding areas. Book now!"
+				title="About our cleaning service | OurMaids, Inc."
+				description="OurMaids, Inc.,  offer building cleaning, deep cleaning, move-in, move-out, post construction cleaning."
 				openGraph={{
 					type: "eCommerceSite",
 					title:
-						"House Cleaning Service Packages & Gift Cards | Our Maids, Inc.Residential and commercial Cleaning Services | OurMaids, Inc.",
+						"About our cleaning service | OurMaids, Inc.",
 					description:
-						"OurMaids, Inc.,  offer building cleaning, deep cleaning, move-in, move-out, post construction cleaning and domestic services in Los Angeles, Dallas, Delaware,  and surrounding areas. Book now!",
+						"OurMaids, Inc.,  offer building cleaning, deep cleaning, move-in, move-out, post construction cleaning.",
 					url: "https://ourmaids.com/",
 					locale: "en_US",
 					siteName: "OurMaids, Inc.",

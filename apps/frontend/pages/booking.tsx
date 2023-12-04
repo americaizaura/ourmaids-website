@@ -345,14 +345,14 @@ export default function BookingView() {
 	return (
 		<>
 			<NextSeo
-				title="Book Cleaning services here every day of the year | Our Maids, Inc."
-				description="Book your professional house or office cleaning service online with OurMaids, Inc. Easy, transparent, and reliable service with a satisfaction guarantee. BOOK ONLINE, ANY TIME!"
+				title="Book Cleaning services here every day | Our Maids, Inc."
+				description="Book your professional house or office cleaning service | OurMaids, Inc."
 				openGraph={{
 					type: "eCommerceSite",
 					title:
-						"Book Cleaning services here every day of the year | Our Maids, Inc.",
+						"Book Cleaning services here every day | Our Maids, Inc.",
 					description:
-						"Book your professional house or office cleaning service online with OurMaids, Inc. Easy, transparent, and reliable service with a satisfaction guarantee. BOOK ONLINE, ANY TIME!",
+						"Book your professional house or office cleaning service | OurMaids, Inc.",
 					url: "https://ourmaids.com/booking",
 					locale: "en_US",
 					siteName: "OurMaids, Inc.",

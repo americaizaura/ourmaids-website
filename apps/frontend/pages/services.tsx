@@ -74,14 +74,14 @@ export default function ServicesView({ services, cursor }: ServicesProps) {
 	return (
 		<>
 			<NextSeo
-				title="House Cleaning Service Packages: Deep, subscriptions | Our Maids, Inc."
-				description="Find the best cleaning packages and services for your home at Our Maids, Inc. Quality and affordable prices to keep your space clean and healthy."
+				title="Cleaning Service Packages: Deep, subscriptions | Our Maids, Inc."
+				description="Find the best cleaning packages for your home here. Quality service at affordable prices."
 				openGraph={{
 					type: "eCommerceSite",
 					title:
-						"House Cleaning Service Packages: Deep, subscriptions | Our Maids, Inc.",
+						"Cleaning Service Packages: Deep, subscriptions | Our Maids, Inc.",
 					description:
-						"Find the best cleaning packages and services for your home at Our Maids, Inc. Quality and affordable prices to keep your space clean and healthy.",
+						"Find the best cleaning packages for your home here. Quality service at affordable prices.",
 					url: "https://ourmaids.com/services",
 					locale: "en_US",
 					siteName: "Our Maids, Inc.",

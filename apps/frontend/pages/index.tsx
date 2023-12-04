@@ -40,14 +40,14 @@ export default function AppShellDemo({
 	return (
 		<>
 			<NextSeo
-				title="Residential & commercial cleaning company in the United States, Canada and Mexico | OurMaids, Inc."
-				description="OurMaids, Inc., offers professional house cleaning services and commercial cleaning services in the United States, Canada and Mexico, with easy online booking, transparent pricing, and a satisfaction guarantee."
+				title="Residential & commercial cleaning company | OurMaids, Inc"
+				description="The most affordable residencial and commercial cleaning services, & the most reliable."
 				openGraph={{
 					type: "eCommerceSite",
 					title:
-						"Residential & commercial cleaning company in the United States, Canada and Mexico | OurMaids, Inc.",
+						"Residential & commercial cleaning company | OurMaids, Inc",
 					description:
-						"OurMaids, Inc., offers professional house cleaning services and commercial cleaning services in the United States, Canada and Mexico, with easy online booking, transparent pricing, and a satisfaction guarantee.",
+						"The most affordable residencial and commercial cleaning services, & the most reliable.",
 					url: "https://ourmaids.com/",
 					locale: "en_US",
 					siteName: "OurMaids, Inc.",
