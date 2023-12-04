@@ -376,7 +376,7 @@ export default function BookingView() {
 							layout="fill"
 							objectFit="cover"
 							objectPosition="0 600"
-							alt="step 1"
+							alt="Girl holding the laptop step 1"
 						/>
 					)}
 					{step === steps.BOOKING && (
@@ -385,7 +385,7 @@ export default function BookingView() {
 							layout="fill"
 							objectFit="cover"
 							objectPosition="0 600"
-							alt="step 2"
+							alt="Girl holding the laptop step 2"
 						/>
 					)}
 					{step === steps.INFORMATION ||
@@ -396,7 +396,7 @@ export default function BookingView() {
 							layout="fill"
 							objectFit="cover"
 							objectPosition="0 600"
-							alt="step 3"
+							alt="Girl holding the laptop step 3"
 						/>
 					) : null}
 				</div>
@@ -909,7 +909,7 @@ export default function BookingView() {
 														? infoService.object.imageData.url
 														: "/images/booking/service.png"
 												}
-												alt="service"
+												alt="Man holding the vaccume machine"
 												layout="fill"
 												objectFit="cover"
 												className="rounded-lg"

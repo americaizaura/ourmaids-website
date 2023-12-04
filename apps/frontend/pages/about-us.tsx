@@ -43,7 +43,7 @@ export default function AboutUsView() {
 						<div className="relative lg:absolute lg:block lg:h-full lg:w-[50%] h-[200px] w-full ">
 							<Image
 								src="/images/aboutUs/image-21.webp"
-								alt="Hero"
+								alt="Girl holding the detergents"
 								objectFit="cover"
 								layout="fill"
 								className="lg:rounded-r-xl 2xl:rounded-xl rounded-xl"
@@ -91,7 +91,7 @@ export default function AboutUsView() {
 									src="/icons/cleaning-equipment.svg"
 									height={40}
 									width={40}
-									alt="Follow us on Twitter"
+									alt="Cleaning equipment"
 									className="my-auto"
 								/>
 								<h5 className="ml-4">DEEP CLEAN </h5>
@@ -102,7 +102,7 @@ export default function AboutUsView() {
 									src="/icons/bubbles.svg"
 									height={40}
 									width={40}
-									alt="Follow us on Twitter"
+									alt="Bubbles"
 									className="my-auto"
 								/>
 								<h5 className="ml-4">MOVE-IN, MOVE-OUT </h5>
@@ -113,7 +113,7 @@ export default function AboutUsView() {
 									src="/icons/protection.svg"
 									height={40}
 									width={40}
-									alt="Follow us on Twitter"
+									alt="Projection equipments"
 									className="my-auto"
 								/>
 								<h5 className="ml-4"> FIRST TIME STANDARD CLEANING</h5>
@@ -256,7 +256,7 @@ export default function AboutUsView() {
 								<div className="relative h-[500px] w-[500px]">
 									<Image
 										src="/images/aboutUs/image-22.webp"
-										alt="Hero"
+										alt="laughing girl holding bottles"
 										layout="fill"
 										className="rounded-r-xl lg:object-cover sm:max-lg:object-contain max-sm:object-contain"
 									/>
@@ -336,7 +336,7 @@ export default function AboutUsView() {
 									<div className="relative h-[500px] w-[500px]">
 										<Image
 											src="/images/aboutUs/image-22.webp"
-											alt="Hero"
+											alt="laughing girl holding bottles"
 											layout="fill"
 											className="rounded-r-xl lg:object-cover sm:max-lg:object-contain max-sm:object-contain"
 										/>
@@ -420,7 +420,7 @@ export default function AboutUsView() {
 					<div className="lg:absolute top-0 right-0 h-[85%] w-[50%] hidden lg:block">
 						<Image
 							src="/images/aboutUs/how.jpg"
-							alt="Hero"
+							alt="Sitting in office"
 							layout="fill"
 							objectFit="cover"
 							className="rounded-l-xl"
@@ -433,7 +433,7 @@ export default function AboutUsView() {
 							<div className="lg:col-span-4 col-span-12">
 								<h3 className="mt-0">How it all started</h3>
 								<p className="text-justify">
-									IT ALL STARTED HERE, IN THIS SMALL OFFICE IN RICHARDSON, TX,
+									IT ALL STARTED HERE, IN THIS SMALL OurMaids OF  RICHARDSON, TX,
 									WITH THIS GROUP OF BEAUTIFUL LADIES, AND A VISIONARY, ANTONIO
 									V. MORENO (he was taking the picture:) Back in 2000, in a
 									small shop at Arapaho Rd., Richardson, Texas, United States of
@@ -467,7 +467,7 @@ export default function AboutUsView() {
 							<div className="lg:col-span-4 w-full h-full col-span-6 relative">
 								<Image
 									src="/images/aboutUs/image-26.webp"
-									alt="Hero"
+									alt="Girl holding equipments"
 									layout="fill"
 									objectFit="cover"
 									className="rounded-xl"
@@ -477,7 +477,7 @@ export default function AboutUsView() {
 							<div className="lg:hidden col-span-6 w-full h-full block relative">
 								<Image
 									src="/images/aboutUs/image-25.webp"
-									alt="Hero"
+									alt="girl washing the tables"
 									layout="fill"
 									objectFit="cover"
 									className="rounded-xl"

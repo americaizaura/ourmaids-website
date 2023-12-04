@@ -76,7 +76,7 @@ const Appbar = () => {
 							<Image
 								priority
 								src="/images/logo.png"
-								alt="Logo"
+								alt="Ourmaid Logo"
 								objectFit="contain"
 								layout="fill"
 								className="cursor-pointer"

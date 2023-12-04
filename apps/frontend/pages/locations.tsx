@@ -33,7 +33,7 @@ export default function LocationsView() {
 			locations: [
 				{
 					id: 1,
-					name: "Our Office in Dover, DE. (Corporate)",
+					name: "Our OurMaids of Dover, DE. (Corporate)",
 					phone: "213-800-7644",
 					location: "8 The Green, Dover, DE, United States",
 					lat: 39.158,
@@ -57,7 +57,7 @@ export default function LocationsView() {
 				},
 				{
 					id: 4,
-					name: "Office in Oklahoma City, OK",
+					name: "OurMaids of Oklahoma City, OK",
 					phone: "",
 					location:
 						"413 NW Britton Rd, Oklahoma City, Oklahoma, Oklahoma, United States",
@@ -66,7 +66,7 @@ export default function LocationsView() {
 				},
 				{
 					id: 5,
-					name: "Office in North Carolina",
+					name: "OurMaids of North Carolina",
 					phone: "213-800-7644",
 					location: "915 S Lindell Rd, Greensboro, NC, United States",
 					lat: 36.0632,
@@ -92,7 +92,7 @@ export default function LocationsView() {
 				},
 				{
 					id: 8,
-					name: "Office in Austin, TX.",
+					name: "OurMaids of Austin, TX.",
 					phone: "213-800-7644",
 					location: "1070 Mearns Meadow Blvd, Austin, TX, United States",
 					lat: 30.358,
@@ -100,7 +100,7 @@ export default function LocationsView() {
 				},
 				{
 					id: 9,
-					name: "Office in Fort Worth, TX.",
+					name: "OurMaids of Fort Worth, TX.",
 					phone: "231-800-7644",
 					location: "2832 Crenshaw Ave, Fort Worth, TX, United States",
 					lat: 32.725,
@@ -317,7 +317,7 @@ export default function LocationsView() {
 							objectFit="cover"
 							layout="fill"
 							objectPosition="0 25%"
-							alt="locations"
+							alt="girl washing the tables"
 						/>
 					</div>
 
@@ -349,7 +349,7 @@ export default function LocationsView() {
 							objectFit="cover"
 							layout="fill"
 							objectPosition="0 25%"
-							alt="locations"
+							alt="girl washing the tables"
 						/>
 					</div>
 				</div>

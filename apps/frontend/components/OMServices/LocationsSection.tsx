@@ -12,7 +12,7 @@ export default function LocationsSection({ url, id }: BookingProps) {
 			<div className="flex gap-x-4">
 				<img
 					src={url || "/images/oservices/image 17.png"}
-					alt=""
+					alt="waching the dinning table"
 					className="w-3/4 h-40 lg:h-56 object-cover rounded-3xl"
 				/>
 				<div>

@@ -26,7 +26,7 @@ const Booking = () => {
 			<div className="absolute right-0">
 				<Image
 					src="/images/circle-booking.png"
-					alt="Hero"
+					alt="Circle"
 					width={150}
 					height={345}
 					objectFit="cover"
@@ -35,7 +35,7 @@ const Booking = () => {
 			<div className="absolute -bottom-20">
 				<Image
 					src="/images/circles-booking.png"
-					alt="Hero"
+					alt="Circle"
 					width={151}
 					height={212}
 					objectFit="cover"
