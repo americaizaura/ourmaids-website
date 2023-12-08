@@ -844,7 +844,6 @@ export default function BookingView() {
 										}}
 										error={errorService && "Select a service"}
 										clearable
-										disabled={isLoadingCatalog}
 										nothingFound={data && <Loader size="xs" />}
 										onDropdownOpen={() => setOpened(true)}
 										styles={(theme) => ({

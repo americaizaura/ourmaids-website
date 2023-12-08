@@ -74,8 +74,7 @@ const Footer = () => {
 		{
 			id: 10,
 			name: "Van Nuys, CA.",
-			lat: 34.196,
-			lng: -118.467,
+			url: "https://ca1.ourmaids.com/"
 		},
 
 		{
@@ -192,12 +191,23 @@ const Footer = () => {
 							>
 								{locations.slice(7, 13).map((item) => (
 									<li key={item.name}>
-										<Link
-											href={`/locations?lat=${item.lat}&lng=${item.lng}`}
-											className="no-underline text-onPrimary"
-										>
-											{item.name}
-										</Link>
+										{item.url ? (
+											<a
+												href={item.url}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="no-underline text-onPrimary"
+											>
+												{item.name}
+											</a>
+										) : (
+											<Link
+												href={`/locations?lat=${item.lat}&lng=${item.lng}`}
+												className="no-underline text-onPrimary"
+											>
+												{item.name}
+											</Link>
+										)}
 									</li>
 								))}
 							</ul>

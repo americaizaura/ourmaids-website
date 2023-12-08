@@ -39,9 +39,6 @@ export default function DateSection() {
 						calendarHeaderLevel: {
 							fontWeight: 600,
 						},
-						calendarHeaderControl: {
-							display: "none",
-						},
 						weekdays: {
 							backgroundColor: theme.colors.secondary[0],
 						},

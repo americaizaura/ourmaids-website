@@ -33,7 +33,7 @@ export default function LocationsView() {
 			locations: [
 				{
 					id: 1,
-					name: "Our OurMaids of Dover, DE. (Corporate)",
+					name: "OurMaids of Dover, DE. (Corporate)",
 					phone: "213-800-7644",
 					location: "8 The Green, Dover, DE, United States",
 					lat: 39.158,
@@ -123,7 +123,7 @@ export default function LocationsView() {
 			locations: [
 				{
 					id: 1,
-					name: "Office en Cancun, Mexico",
+					name: "OurMaids of en Cancun, Mexico",
 					phone: "624-106-4460",
 					location: "Supmz 7, Avenida Bonampak, Cancún, México",
 					lat: 21.16195,
