@@ -81,12 +81,12 @@ export default function App(props: AppProps) {
 							function gtag(){dataLayer.push(arguments);}
 							gtag('js', new Date());
 						  
-							gtag('config', 'AW-363431816');`,
+							gtag('config', 'AW-11398284107');`,
 								}}
 							></Script>
 							<Script
 								strategy="afterInteractive"
-								src={`https://www.googletagmanager.com/gtag/js?id=AW-363431816`}
+								src={`https://www.googletagmanager.com/gtag/js?id=AW-11398284107`}
 							/>
 							<Script id="google-tag-manager" strategy="afterInteractive">
 								{`

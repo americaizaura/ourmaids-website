@@ -50,13 +50,13 @@ const SiteMap = ({ services }: ServicesProps) => {
 	return (
 		<>
 			<NextSeo
-				title="Sitemap | OurMaids, Inc."
-				description="OurMaids, Inc. Site Map will guide you to easily find whatever you are looking for on this web app."
+				title="Sitemap | OurMaids, Inc"
+				description="OurMaids, Inc. Site Map will guide you to easily find whatever you are looking for on this web app."
 				openGraph={{
 					type: "eCommerceSite",
 					title: "Sitemap | OurMaids, Inc.",
 					description:
-						"OurMaids, Inc. Site Map will guide you to easily find whatever you are looking for on this web app.",
+						"OurMaids, Inc. Site Map will guide you to easily find whatever you are looking for on this web app.",
 					url: "https://ourmaids.com/sitemap",
 					locale: "en_US",
 					siteName: "Our Maids, Inc.",

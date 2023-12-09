@@ -77,14 +77,14 @@ export default function ContactUsView() {
 	return (
 		<>
 			<NextSeo
-				title="Contact OurMaids, inc., to request any information, or reschedule a cleaning service."
-				description="Need to request information about janitorial services, reschedule or cancel a cleaning service? OurMaids, Inc., makes it easy with our online rescheduling tool."
+				title="Contact us to request any information."
+				description="Need to request information about janitorial services, reschedule or cancel a cleaning service? OurMaids, Inc."
 				openGraph={{
 					type: "eCommerceSite",
 					title:
-						"Contact OurMaids, inc., to request any information, or reschedule a cleaning service.",
+						"Contact us to request any information.",
 					description:
-						"Need to request information about janitorial services, reschedule or cancel a cleaning service? OurMaids, Inc., makes it easy with our online rescheduling tool.",
+						"Need to request information about janitorial services, reschedule or cancel a cleaning service? OurMaids, Inc.",
 					url: "https://ourmaids.com/contact-us",
 					locale: "en_US",
 					siteName: "Our Maids, Inc.",

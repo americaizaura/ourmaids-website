@@ -23,7 +23,7 @@ function ReviewsService({
           <div className="flex items-center">
             <img
               src={profilePic}
-              alt=""
+              alt="profile picture"
               className="w-10 h-12 object-cover rounded-2xl"
             />
           </div>

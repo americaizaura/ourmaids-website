@@ -10,7 +10,7 @@ const AboutUs = () => {
             <Container fluid className="relative w-auto md:h-[531px] h-[200px]">
               <Image
                 src="/images/about.png"
-                alt="Hero"
+                alt="Girl washing the glass"
                 layout="fill"
                 objectFit="cover"
                 className="rounded-xl"
@@ -60,7 +60,7 @@ const AboutUs = () => {
       <div className="mt-8 w-[500px] h-64 bottom-0 right-0  translate-y-[50%]   lg:absolute lg:block hidden ">
         <Image
           src="/images/image 8.png"
-          alt="Hero"
+          alt="Washing the computer table and room"
           layout="fill"
           objectFit="cover"
           className="md:rounded-l-xl rounded-xl "

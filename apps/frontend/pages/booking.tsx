@@ -345,14 +345,14 @@ export default function BookingView() {
 	return (
 		<>
 			<NextSeo
-				title="Book Cleaning services here every day of the year | Our Maids, Inc."
-				description="Book your professional house or office cleaning service online with OurMaids, Inc. Easy, transparent, and reliable service with a satisfaction guarantee. BOOK ONLINE, ANY TIME!"
+				title="Book Cleaning services here every day | Our Maids, Inc."
+				description="Book your professional house or office cleaning service | OurMaids, Inc."
 				openGraph={{
 					type: "eCommerceSite",
 					title:
-						"Book Cleaning services here every day of the year | Our Maids, Inc.",
+						"Book Cleaning services here every day | Our Maids, Inc.",
 					description:
-						"Book your professional house or office cleaning service online with OurMaids, Inc. Easy, transparent, and reliable service with a satisfaction guarantee. BOOK ONLINE, ANY TIME!",
+						"Book your professional house or office cleaning service | OurMaids, Inc.",
 					url: "https://ourmaids.com/booking",
 					locale: "en_US",
 					siteName: "OurMaids, Inc.",
@@ -376,7 +376,7 @@ export default function BookingView() {
 							layout="fill"
 							objectFit="cover"
 							objectPosition="0 600"
-							alt="step 1"
+							alt="Girl holding the laptop step 1"
 						/>
 					)}
 					{step === steps.BOOKING && (
@@ -385,7 +385,7 @@ export default function BookingView() {
 							layout="fill"
 							objectFit="cover"
 							objectPosition="0 600"
-							alt="step 2"
+							alt="Girl holding the laptop step 2"
 						/>
 					)}
 					{step === steps.INFORMATION ||
@@ -396,7 +396,7 @@ export default function BookingView() {
 							layout="fill"
 							objectFit="cover"
 							objectPosition="0 600"
-							alt="step 3"
+							alt="Girl holding the laptop step 3"
 						/>
 					) : null}
 				</div>
@@ -844,7 +844,6 @@ export default function BookingView() {
 										}}
 										error={errorService && "Select a service"}
 										clearable
-										disabled={isLoadingCatalog}
 										nothingFound={data && <Loader size="xs" />}
 										onDropdownOpen={() => setOpened(true)}
 										styles={(theme) => ({
@@ -909,7 +908,7 @@ export default function BookingView() {
 														? infoService.object.imageData.url
 														: "/images/booking/service.png"
 												}
-												alt="service"
+												alt="Man holding the vaccume machine"
 												layout="fill"
 												objectFit="cover"
 												className="rounded-lg"

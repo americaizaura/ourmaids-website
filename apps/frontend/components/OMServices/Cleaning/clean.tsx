@@ -27,7 +27,7 @@ function CleaningS({
 				<div className="mx-10 w-28 h-28 overflow-hidden rounded-3xl ">
 					<img
 						src={profilePic}
-						alt=""
+						alt="profile picture"
 						className="object-cover w-full h-full scale-[1.8] translate-x-4 translate-y-8"
 					/>
 				</div>
