@@ -23,6 +23,7 @@ export default function DateSection() {
 			<Group position="center">
 				<Calendar
 					style={{ width: 348, paddingRight: 40 }}
+					placeholder={dayjs().format("MMMM D, YYYY")}
 					level="month"
 					defaultLevel="month"
 					size="md"

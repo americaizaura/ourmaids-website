@@ -60,7 +60,7 @@ export default function RescheduleView() {
             </Input.Wrapper>
             <DatePickerInput
               label="Select date"
-              placeholder="Select date"
+              // placeholder="Select date"
               value={value}
               onChange={setValue}
               className="w-[80%]"
