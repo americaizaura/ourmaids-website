@@ -340,12 +340,23 @@ const Footer = () => {
 						</Accordion.Control>
 						{locations.map((item, index) => (
 							<Accordion.Panel key={index}>
-								<Link
-									href={`/locations?lat=${item.lat}&lng=${item.lng}`}
-									className="no-underline text-onPrimary"
-								>
-									{item.name}
-								</Link>
+								{item.url ? (
+									<a
+										href={item.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="no-underline text-onPrimary"
+									>
+										{item.name}
+									</a>
+								) : (
+									<Link
+										href={`/locations?lat=${item.lat}&lng=${item.lng}`}
+										className="no-underline text-onPrimary"
+									>
+										{item.name}
+									</Link>
+								)}
 							</Accordion.Panel>
 						))}
 					</Accordion.Item>
