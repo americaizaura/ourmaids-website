@@ -11,6 +11,7 @@ export default class _Document extends Document {
 			<Html lang="en-US">
 				<Head>
 					<link rel="shortcut icon" href="/favicon.ico" />
+					<meta name="google-site-verification" content="LoL7UyKHyXOTla_V9PWeZL_-bqui8LCQF-Oj3a5Lkoc" />
 				</Head>
 				<body>
 					<noscript
