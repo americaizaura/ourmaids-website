@@ -1,6 +1,5 @@
 import { ListCatalogResponse, Payment } from "square";
-const API_BASE_URL = process.env.NEXT_PUBLIC_SERVER_API;
-/* const API_BASE_URL = "http://localhost:3000/api"; */
+const API_BASE_URL = typeof window === "undefined" ? process.env.NEXT_PUBLIC_SERVER_API : window.location.origin + "/api";
 class PaymentService {
   async createPayment(
     sourceId: string,

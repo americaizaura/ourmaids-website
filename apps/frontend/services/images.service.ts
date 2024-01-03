@@ -1,7 +1,5 @@
 import { ListCatalogResponse } from "square";
-/* const API_BASE_URL =
-	"https://ourmaids-website-frontend-git-alexis-ocstudios.vercel.app/api"; */
-const API_BASE_URL = process.env.NEXT_PUBLIC_SERVER_API;
+const API_BASE_URL = typeof window === "undefined" ? process.env.NEXT_PUBLIC_SERVER_API : window.location.origin + "/api";
 class ImagesService {
   async fetchImages(): Promise<ListCatalogResponse | null> {
     try {
