@@ -34,7 +34,7 @@ export default function LocationsView() {
 				{
 					id: 1,
 					name: "OurMaids of Dover, DE. (Corporate)",
-					phone: "213-800-7644",
+					phone: "1-833-659-9533",
 					location: "8 The Green, Dover, DE, United States",
 					lat: 39.158,
 					lng: -75.524,
@@ -42,7 +42,7 @@ export default function LocationsView() {
 				{
 					id: 2,
 					name: "OurMaids of Grand Prairie, TX.",
-					phone: "213-800-7644",
+					phone: "1-833-659-9533",
 					location: "3603 Forest Trail Dr, Grand Prairie, TX, United States",
 					lat: 32.6840495,
 					lng: -97.0477151,
@@ -50,7 +50,7 @@ export default function LocationsView() {
 				{
 					id: 3,
 					name: "OurMaids of Delaware",
-					phone: "213-800-7644",
+					phone: "1-833-659-9533",
 					location: "7th St, Ocean City, MD 21842 USA",
 					lat: 38.33786,
 					lng: -75.08214,
@@ -58,7 +58,7 @@ export default function LocationsView() {
 				{
 					id: 4,
 					name: "OurMaids of Oklahoma City, OK",
-					phone: "",
+					phone: "1-833-659-9533",
 					location:
 						"413 NW Britton Rd, Oklahoma City, Oklahoma, Oklahoma, United States",
 					lat: 35.56656,
@@ -67,7 +67,7 @@ export default function LocationsView() {
 				{
 					id: 5,
 					name: "OurMaids of North Carolina",
-					phone: "213-800-7644",
+					phone: "1-833-659-9533",
 					location: "915 S Lindell Rd, Greensboro, NC, United States",
 					lat: 36.0632,
 					lng: -79.83629,
@@ -85,7 +85,7 @@ export default function LocationsView() {
 				{
 					id: 7,
 					name: "OurMaids of Sun Valley, CA.",
-					phone: "213-800-7644",
+					phone: "1-833-659-9533",
 					location: "7520 Satsuma Ave, Sun Valley, CA, United States",
 					lat: 34.213,
 					lng: -118.378,
@@ -93,7 +93,7 @@ export default function LocationsView() {
 				{
 					id: 8,
 					name: "OurMaids of Austin, TX.",
-					phone: "213-800-7644",
+					phone: "1-833-659-9533",
 					location: "1070 Mearns Meadow Blvd, Austin, TX, United States",
 					lat: 30.358,
 					lng: -97.688,
@@ -101,7 +101,7 @@ export default function LocationsView() {
 				{
 					id: 9,
 					name: "OurMaids of Fort Worth, TX.",
-					phone: "231-800-7644",
+					phone: "1-833-659-9533",
 					location: "2832 Crenshaw Ave, Fort Worth, TX, United States",
 					lat: 32.725,
 					lng: -97.342,
@@ -146,7 +146,7 @@ export default function LocationsView() {
 				{
 					id: 1,
 					name: "OurMaids of Montreal, QC",
-					phone: "438-701-2058",
+					phone: "1-833-659-9533",
 					location: "Montréal, 6625 Rue Dumas, QC, Canada",
 					lat: 45.45175,
 					lng: -73.59831,
