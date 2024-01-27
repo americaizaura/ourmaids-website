@@ -39,6 +39,8 @@ import {
 
 import { useCreateBookingMutation } from "../generated/graphql";
 import { NextSeo } from "next-seo";
+import Head from 'next/head';
+
 const steps = {
 	SERVICE: "SERVICE",
 	BOOKING: "BOOKING",
@@ -99,6 +101,8 @@ export default function BookingView() {
 	const [errorService, setErrorService] = useState(false);
 	const [createBooking, { loading }] = useCreateBookingMutation();
 	const [loadingPayment, setLoadingPayment] = useState(false);
+	const [bookingCompleted, setBookingCompleted] = useState(false);
+
 	const form = useForm({
 		initialValues: {
 			name: "",
@@ -209,6 +213,7 @@ export default function BookingView() {
 			})
 				.then(() => {
 					setStep(steps.BOOKED);
+					setBookingCompleted(true);
 				})
 				.catch((error) => {
 					toast.error(error.message);
@@ -217,6 +222,17 @@ export default function BookingView() {
 			setStep(steps.PAYMENT);
 		}
 	};
+
+	useEffect(() => {
+		if (bookingCompleted) {
+		  window.gtag('event', 'conversion', {
+			'send_to': 'AW-11398284107/CSAwCMGJlIUZEMuGkLsq',
+			'value': 159.0,
+			'currency': 'USD',
+			'transaction_id': ''
+		  });
+		}
+	  }, [bookingCompleted]);
 
 	const sendBookingDate = () => {
 		window.scrollTo(0, 0);
@@ -545,6 +561,7 @@ export default function BookingView() {
 								</PaymentForm>
 							)}
 							{step === steps.BOOKED && (
+								
 								<div className="text-center">
 									<h1>Thank you!</h1>
 									<h4 className="mb-4">Booking confirmed</h4>

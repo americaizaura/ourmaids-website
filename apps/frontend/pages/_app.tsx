@@ -101,7 +101,10 @@ export default function App(props: AppProps) {
 							function gtag(){dataLayer.push(arguments);}
 							gtag('js', new Date());
 						  
-							gtag('config', 'AW-11398284107');`,
+							gtag('config', 'AW-11398284107');, {
+								page_path: window.location.pathname,
+							}
+							`,
 								}}
 							></Script>
 							<Script
