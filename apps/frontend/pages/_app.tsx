@@ -100,14 +100,23 @@ export default function App(props: AppProps) {
 									__html: `window.dataLayer = window.dataLayer || [];
 							function gtag(){dataLayer.push(arguments);}
 							gtag('js', new Date());
+
+							gtag('event', 'conversion', {
+								'send_to': 'AW-11398284107/CSAwCMGJlIUZEMuGkLsq',
+								'value': 159.0,
+								'currency': 'USD',
+								'transaction_id': ''
+							});
 						  
 							gtag('config', 'AW-11398284107');`,
 								}}
-							></Script>
+								>
+
+								</Script>
 							<Script
 								strategy="afterInteractive"
 								src={`https://www.googletagmanager.com/gtag/js?id=AW-11398284107`}
-							/>
+								/>
 							<Script id="google-tag-manager" strategy="afterInteractive">
 								{`
 									(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -115,8 +124,10 @@ export default function App(props: AppProps) {
 									j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 									})(window,document,'script','dataLayer','GTM-5FHW3ZM');
+									
 								`}
 							</Script>
+
 
 							<ProgressBar
 								height="2px"
