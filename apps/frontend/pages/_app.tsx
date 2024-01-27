@@ -100,13 +100,6 @@ export default function App(props: AppProps) {
 									__html: `window.dataLayer = window.dataLayer || [];
 							function gtag(){dataLayer.push(arguments);}
 							gtag('js', new Date());
-
-							gtag('event', 'conversion', {
-								'send_to': 'AW-11398284107/CSAwCMGJlIUZEMuGkLsq',
-								'value': 159.0,
-								'currency': 'USD',
-								'transaction_id': ''
-							});
 						  
 							gtag('config', 'AW-11398284107');`,
 								}}
