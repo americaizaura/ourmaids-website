@@ -15,26 +15,26 @@ import { useEffect } from "react";
 export default function App(props: AppProps) {
 	const { Component, pageProps, router } = props;
 
-	// useEffect(() => {
-	// 	function LoadChatWidget() {
-	// 		var resource = document.createElement('script'); 
-	// 		resource.defer = true;
-	// 		resource.src = "https://chatbot.agentz.ai/agentz-chatbot.js?version=1&botUrl=https://chatbot.agentz.ai&title=title&businessAgent=00cbc8d1-9eac-4442-bb80-6464a88935d3";
-	// 		var script = document.getElementsByTagName('script')[0];
-	// 		script.parentNode.insertBefore(resource, script);
-	// 	  }
-	// 	  document.addEventListener('readystatechange', function(event){
-	// 		if ((event.target as any).readyState  === "complete") {
-	// 		  setTimeout(function() {
-	// 			LoadChatWidget();
-	// 		  }, 5000)
-	// 		}
-	// 	  }, false);
-	// }, [])
+	useEffect(() => {
+		function LoadChatWidget() {
+			var resource = document.createElement('script'); 
+			resource.defer = true;
+			resource.src = "https://chatbot.agentz.ai/agentz-chatbot.js?version=1&botUrl=https://chatbot.agentz.ai&title=title&businessAgent=00cbc8d1-9eac-4442-bb80-6464a88935d3";
+			var script = document.getElementsByTagName('script')[0];
+			script.parentNode.insertBefore(resource, script);
+		  }
+		  document.addEventListener('readystatechange', function(event){
+			if ((event.target as any).readyState  === "complete") {
+			  setTimeout(function() {
+				LoadChatWidget();
+			  }, 5000)
+			}
+		  }, false);
+	}, [])
 
 	return (
 		<>
-			{/* <div id="agentz-chatbot-00cbc8d1-9eac-4442-bb80-6464a88935d3"></div> */}
+			<div id="agentz-chatbot-00cbc8d1-9eac-4442-bb80-6464a88935d3"></div>
 			
 			<MantineProvider
 				withGlobalStyles
