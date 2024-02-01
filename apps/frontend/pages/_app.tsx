@@ -15,7 +15,7 @@ import { useEffect } from "react";
 export default function App(props: AppProps) {
 	const { Component, pageProps, router } = props;
 
-	useEffect(() => {
+/* 	useEffect(() => {
 		function LoadChatWidget() {
 			var resource = document.createElement('script'); 
 			resource.defer = true;
@@ -30,11 +30,11 @@ export default function App(props: AppProps) {
 			  }, 5000)
 			}
 		  }, false);
-	}, [])
+	}, []) */
 
 	return (
 		<>
-			<div id="agentz-chatbot-00cbc8d1-9eac-4442-bb80-6464a88935d3"></div>
+			{/* <div id="agentz-chatbot-00cbc8d1-9eac-4442-bb80-6464a88935d3"></div> */}
 			
 			<MantineProvider
 				withGlobalStyles
